@@ -1,17 +1,9 @@
 T-113-VLN1 – H46 HMV	
 27.11.2023
+Verkstjóri - Baldvin
 Day 1
 - Búa til Github repository fyrir hópinn - Make a Github repository for the group
 - Skipuleggja fyrstu viku - Organize the first week
+- User group analysis - 
 - Búa til Github handbók - Create Github manual
 
-Hönnunarskýrsla - Design report
-- User group analysis
-- User stories
-- Use cases
-- Class diagram
-- Wireframe "happy path"
-- Kröfulisti - Requirement list
-	- Virknikröfur - Functional requirements
-	- Nytsemiskröfur - Usability requirements
-	- Notendaupplifunarkröfur - User experience requirements
