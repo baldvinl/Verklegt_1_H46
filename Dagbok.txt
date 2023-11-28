@@ -17,3 +17,13 @@ Before next meeting:
 - Watch Git videos
 - Study 3 layered design
 
+28.11.2023
+Verkstjóri - Guðrún Elín
+
+Day 2 plan:
+-Hildur finishes the Github manual
+-Guðrún Elín og Georgia make up the classes needed for the class diagram
+-Guðrún Elín og Georgia make use cases
+
+Needs doing: 
+-make usability requirements and user experience requirements
