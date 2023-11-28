@@ -1,0 +1,19 @@
+T-113-VLN1 – H46 HMV	
+27.11.2023
+Verkstjóri - Baldvin
+Day 1 plan:
+- Búa til Github repository fyrir hópinn - Make a Github repository for the group - Baldvin
+- Skipuleggja fyrstu viku - Organize the first week
+- User group analysis 
+- Búa til Github handbók - Create Github manual - Hildur
+
+Done today:
+- Github repository
+- User group analysis draft
+- Requirement list draft
+- Use case diagram draft - Georgia
+
+Before next meeting:
+- Watch Git videos
+- Study 3 layered design
+
