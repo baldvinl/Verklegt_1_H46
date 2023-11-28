@@ -24,6 +24,4 @@ Day 2 plan:
 -Hildur finishes the Github manual
 -Guðrún Elín og Georgia make up the classes needed for the class diagram
 -Guðrún Elín og Georgia make use cases
-
-Needs doing: 
--make usability requirements and user experience requirements
+-Baldivin makes usability requirements and user experience requirements
