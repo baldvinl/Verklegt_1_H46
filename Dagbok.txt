@@ -21,7 +21,14 @@ Before next meeting:
 Verkstjóri - Guðrún Elín
 
 Day 2 plan:
--Hildur finishes the Github manual
--Guðrún Elín og Georgia make up the classes needed for the class diagram
--Guðrún Elín og Georgia make use cases
--Baldivin makes usability requirements and user experience requirements
+- Hildur finishes the Github manual
+- Guðrún Elín og Georgia make up the classes needed for the class diagram
+- Guðrún Elín og Georgia make use cases
+- Baldivin makes usability requirements and user experience requirements
+- Sara starts the structure of the report 
+
+Done today: 
+- type of requirement added to requirement list (usability requirements and user experience requirements)
+
+Before next meeting:
+- Continue working on assigned assignments. 
