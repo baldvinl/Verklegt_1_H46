@@ -32,3 +32,17 @@ Done today:
 
 Before next meeting:
 - Continue working on assigned assignments. 
+
+29.11.2023
+
+What is mostly finsihed: 
+- Github manual
+- requirement list (ongoing chances until hand in)
+- usergroup analysis
+
+Day plan: 
+- Baldvin starts on the happy path layouts and makes introduction and closing and final words if applicable
+- Sara looks over group analysis and finishes that
+- Guðrún Elín keeps working on the use cases and adds them to a template
+- Georgia keeps working on classes and class diagrams
+- Hildur and Sara help on happy path, class diagrams, use cases
