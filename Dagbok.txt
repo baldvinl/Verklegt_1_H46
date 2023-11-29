@@ -46,3 +46,4 @@ Day plan:
 - Guðrún Elín keeps working on the use cases and adds them to a template
 - Georgia keeps working on classes and class diagrams
 - Hildur and Sara help on happy path, class diagrams, use cases
+-
