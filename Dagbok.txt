@@ -1,4 +1,5 @@
-T-113-VLN1 – H46 HMV	
+T-113-VLN1 – H46 HMV
+
 27.11.2023
 Verkstjóri - Baldvin
 Day 1 plan:
@@ -35,6 +36,8 @@ Before next meeting:
 
 29.11.2023
 
+Guðrún Elín verður verkefnastjóri það sem eftir er af verkefninu.
+
 What is mostly finsihed: 
 - Github manual
 - requirement list (ongoing chances until hand in)
@@ -46,3 +49,11 @@ Day plan:
 - Guðrún Elín keeps working on the use cases and adds them to a template
 - Georgia keeps working on classes and class diagrams
 - Hildur and Sara help on happy path, class diagrams, use cases
+
+Done today:
+- Hildur and Baldvin worked on the happy path and made good progress
+- Guðrún Elín made good progress on the use cases
+- Georgia worked on class diagram
+- Sara went over group analysis and requirement list and continued to work on the report
+
+Meeting time tomorrow 15:30 and people keep working on their assignments at home
