@@ -60,8 +60,25 @@ Meeting time tomorrow 15:30 and people keep working on their assignments at home
 
 30.11.2023
 
-Day plan:
-- Baldvin and Hildur keep working on the happy paths. 
-- Guðrún, Georgia, Sara finsih the use cases and class diagrams.
+Everybody have done some work today. Things are coming along nicely. 
 
+Day plan:
+- Hildur and Sara work on the happy paths. 
+- Guðrún, Georgia finsih the use cases and class diagrams.
+
+What is mostly finsihed: 
+- Github manual
+- requirement list (ongoing chances until hand in)
+- usergroup analysis
+- class diagrams
+- report layout and text
+
+What we need to check and go over:
+- Use cases! finishing rest of B requirements.
+- Adding voyage with regards to requirements, flight numbers and ect. 
+- Go over class module
+- Go over happy paths
+- make introduction text in report
+
+meeting time tomorrow 13:30
 
