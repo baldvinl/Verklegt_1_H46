@@ -57,3 +57,11 @@ Done today:
 - Sara went over group analysis and requirement list and continued to work on the report
 
 Meeting time tomorrow 15:30 and people keep working on their assignments at home
+
+30.11.2023
+
+Day plan:
+- Baldvin and Hildur keep working on the happy paths. 
+- Guðrún, Georgia, Sara finsih the use cases and class diagrams.
+
+
