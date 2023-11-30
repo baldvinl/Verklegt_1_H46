@@ -75,7 +75,7 @@ What is mostly finsihed:
 
 What we need to check and go over:
 - Use cases! finishing rest of B requirements.
-- Adding voyage with regards to requirements, flight numbers and ect. 
+- Adding voyage with regards to requirements B, flight numbers and ect. 
 - Go over class module
 - Go over happy paths
 - make introduction text in report
