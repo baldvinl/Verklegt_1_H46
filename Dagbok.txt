@@ -86,7 +86,9 @@ meeting time tomorrow 13:30
 
 - Baldvin added the introduction to the report yesterday.
 
-
 - Guðrún works on use cases. 
-- Sara, Baldvin and Hildur work on happy path
+- Sara, Baldvin and Hildur work on happy path.
+
+Muna að skoða requirement 21!
+
 
