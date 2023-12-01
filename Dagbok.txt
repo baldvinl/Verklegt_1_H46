@@ -88,5 +88,5 @@ meeting time tomorrow 13:30
 
 
 - Guðrún works on use cases. 
-- Sara works on happy path. 
+- Sara, Baldvin and Hildur work on happy path
 
