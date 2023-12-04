@@ -82,13 +82,31 @@ What we need to check and go over:
 
 meeting time tomorrow 13:30
 
-1.12.2023
+01.12.2023
 
 - Baldvin added the introduction to the report yesterday.
 
 - Guðrún works on use cases. 
 - Sara, Baldvin and Hildur work on happy path.
+- Georgia finished the class diagram and helped with happy path.
 
 Muna að skoða requirement 21!
+
+We finished the prelimnery report on friday 01.12.2023 and handed in. 
+
+04.12.2023
+
+We got the report back and we can see that we are on the right path.
+Not much that we need to change for now. Can start coding. 
+
+Everybody should have watched the lecture this morning. 
+
+Plan for today:
+set up all folders and files in Github. 
+
+Start on destination. 
+
+Divide coding between layers. 2 people code IU layer - 2 people code logic layer - 1 person codes data layer.
+
 
 
