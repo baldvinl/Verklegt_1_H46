@@ -108,5 +108,11 @@ Start on destination.
 
 Divide coding between layers. 2 people code IU layer - 2 people code logic layer - 1 person codes data layer.
 
+Baldvin and Hildur will start on the UI layer.
 
+Sara and Georgia will start on the Logic layer.
+
+Guðrún Elín will start on model classes and Data layer.
+
+Plan for tomorrow is everybody codes at home and be in touch on discord. 
 
