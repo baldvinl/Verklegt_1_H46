@@ -8,17 +8,17 @@ class Voyage_Logic:
     def register_voyage(self, voyage):
         return self.data_wrapper.register_voyage(voyage)
 
-    def get_crew_info(self, ):
-        return self.data_wrapper.get_information()
+    def get_crew_info(self, destination, date):
+        return self.data_wrapper.get_information(destination, date)
 
     def add_crew(self, crew, voyage):
         return self.data_wrapper.add_crew()
 
-    def display_voyage(self):
-        return self.data_wrapper.display_voyage()
+    def display_voyage(self, destination, date):
+        return self.data_wrapper.display_voyage(destination, date)
 
-    def get_voyage_status(self):
-        return self.data_wrapper.get_voyage_status()
+    def get_voyage_status(self,destination, date):
+        return self.data_wrapper.get_voyage_status(destination, date)
 
     def display_all_voyages_day(self, day):
         return self.data_wrapper.display_all_voyages_day(day)

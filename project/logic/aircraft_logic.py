@@ -6,13 +6,13 @@ class Aircraft_logic:
         self.data_wrapper = data_connection
 
     def register_aircraft(self, aircraft):
-        pass
+        return self.data_wrapper.register_aircraft(aircraft)
 
-    def display_aircraft_into(self):
-        pass
+    def display_aircraft_info(self, name):
+        return self.data_wrapper.display_aircraft_info(name)
 
-    def display_aircraft_status(self):
-        pass
+    def display_aircraft_status(self, name):
+        return self.data_wrapper.display_aircraft_status(name)
 
     def display_all_aircrafts(self, day, time):
-        pass
+        return self.data_wrapper.display_aircraft_info(day, time)

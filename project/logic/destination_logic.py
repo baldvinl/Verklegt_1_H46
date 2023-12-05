@@ -8,11 +8,11 @@ class Destination_Logic:
     def register_destination(self, destination):
         return self.data_wrapper.register_destination(destination)
 
-    def display_destination(self):
-        return self.data_wrapper.display_destination 
+    def display_destination(self, aita):
+        return self.data_wrapper.display_destination(aita)
 
-    def change_ice_name(self, name):
-        return self.data_wrapper.change_ice_name(name)
+    def change_ice_name(self, name, aita):
+        return self.data_wrapper.change_ice_name(name, aita)
 
-    def change_ice_number(self, number):
-        return self.data_wrapper.change_ice_number(number)
+    def change_ice_number(self, number, aita):
+        return self.data_wrapper.change_ice_number(number, aita)
