@@ -1,4 +1,4 @@
-from project.Data.destination_data import Destination_Data
+from data.destination_data import Destination_Data
 
 
 class Data_Wrapper:
