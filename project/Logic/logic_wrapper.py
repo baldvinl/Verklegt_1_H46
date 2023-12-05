@@ -40,11 +40,11 @@ class Logic_Wrapper:
     
     # to add -- add type rating to pilot
 
-    def change_emergency_contact_name(self, name):
-        return Destination_Logic.change_emergency_contact_name(name)
+    def change_ice_name(self, name):
+        return Destination_Logic.change_ice_name(name)
 
-    def change_emergency_contact_number(self, number):
-        return Destination_Logic.change_emergency_contact_number(number)
+    def change_ice_number(self, number):
+        return Destination_Logic.change_ice_number(number)
     
     def add_crew(self, crew, voyage):
         return Voyage_Logic.add_crew(crew, voyage)
@@ -81,11 +81,11 @@ class Logic_Wrapper:
     def get_voyage_status(self):
         return Voyage_Logic.get_voyage_status()
 
-    def display_all_voyages(self, day):
-        return Voyage_Logic.display_all_voyages(day)
+    def display_all_voyages_day(self, day):
+        return Voyage_Logic.display_all_voyages_day(day)
     
-    def display_all_voyages(self, week): # should we have weeks numbered like in the calendar?
-        return Voyage_Logic.display_all_voyages(week)
+    def display_all_voyages_week(self, week): # should we have weeks numbered like in the calendar?
+        return Voyage_Logic.display_all_voyages_week(week)
     
     def get_voyage_schedule(self, crew, day):
         return Voyage_Logic.get_voyage_schedule(crew, day)
