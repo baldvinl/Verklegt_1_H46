@@ -1,36 +1,30 @@
 from data.data_wrapper import data_wrapper
-from model.voyage import Voyage
+from model.voyage import voyage
 
 class Voyage_Logic:
     def __init__(self, data_connection):
         self.data_wrapper = data_connection
 
     def register_voyage(self, voyage):
-        pass
-
-        self.data_wrapper.register_voyage(voyage)
+        return self.data_wrapper.register_voyage(voyage)
 
     def get_crew_info(self, ):
-        pass
-
-        self.data_wrapper.get_information()
+        return self.data_wrapper.get_information()
 
     def add_crew(self, crew, voyage):
-        pass
-
-        self.data_wrapper.add_crew()
+        return self.data_wrapper.add_crew()
 
     def display_voyage(self):
-        pass
+        return self.data_wrapper.display_voyage()
 
     def get_voyage_status(self):
-        pass
+        return self.data_wrapper.get_voyage_status()
 
     def display_all_voyages_day(self, day):
-        pass
+        return self.data_wrapper.display_all_voyages_day(day)
 
     def display_all_voyages_week(self, week):
-        pass
+        return self.data_wrapper.display_all_voyages_day(week)
 
     def get_voyage_schedule(self, crew, day):
-        pass
+        return self.data_wrapper.get_voyage_schedule(crew, day)

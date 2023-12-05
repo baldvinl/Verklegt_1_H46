@@ -1,22 +1,18 @@
 from data.data_wrapper import data_wrapper
-from model.destintion import Destination
+from model.destintion import destination
 
 class Destination_Logic:
     def __init__(self, data_connection):
         self.data_wrapper = data_connection
 
     def register_destination(self, destination):
-        pass
+        return self.data_wrapper.register_destination(destination)
 
     def display_destination(self):
-        pass
+        return self.data_wrapper.display_destination 
 
-    def change_ice_name(self, ):
-        pass
+    def change_ice_name(self, name):
+        return self.data_wrapper.change_ice_name(name)
 
-        self.data_wrapper.change_ice_name() # why is this outside the function??
-
-    def change_ice_number(self, ):
-        pass
-
-        self.data_wrapper.change_ice_number()
+    def change_ice_number(self, number):
+        return self.data_wrapper.change_ice_number(number)

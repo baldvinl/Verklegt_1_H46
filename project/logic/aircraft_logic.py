@@ -1,5 +1,5 @@
 from data.data_wrapper import data_wrapper
-from model.aircraft import Aircraft
+from model.aircraft import aircraft
 
 class Aircraft_logic:
     def __init__(self, data_connection):
