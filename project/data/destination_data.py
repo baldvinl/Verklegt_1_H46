@@ -22,7 +22,47 @@ class Destination_Data:
         dest_list = []
         with open(self.file_name, newline='', encoding="utf-8") as csvfile:
             reader = csv.DictReader(csvfile)
-            for line in reader:
-                dest_list.append(Destination(line["country"], line["airport"], line["flight_duration"], 
-                                             line["distance"], line["ice_name"], line["ice_number"]))
+            for row in reader:
+                dest_list.append(Destination(row["country"], row["airport"], row["flight_duration"], 
+                                             row["distance"], row["ice_name"], row["ice_number"]))
         return dest_list
+    
+
+    def change_ice_name(self, iata, new_ice_name):
+        """Changes the emergency contacts name"""
+
+        with open(self.file_name, 'r+', newline='', encoding="utf-8") as csvfile:
+            reader = csv.DictReader(csvfile)
+
+            rows = []
+            for row in reader:
+                if row["airport"] == iata:
+                    row["ice_name"] = new_ice_name
+                rows.append(row)
+
+            csvfile.seek(0)
+            fieldnames = ["country", "airport", "flight_duration", "distance", "ice_name", "ice_number"]
+            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+            writer.writeheader()
+            writer.writerows(rows)
+            csvfile.truncate()
+
+
+    def change_ice_number(self, iata, new_ice_number):
+        """Changes the emergency contacts number"""
+        
+        with open(self.file_name, 'r+', newline='', encoding="utf-8") as csvfile:
+            reader = csv.DictReader(csvfile)
+
+            rows = []
+            for row in reader:
+                if row["airport"] == iata:
+                    row["ice_number"] = new_ice_number
+                rows.append(row)
+
+            csvfile.seek(0)
+            fieldnames = ["country", "airport", "flight_duration", "distance", "ice_name", "ice_number"]
+            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+            writer.writeheader()
+            writer.writerows(rows)
+            csvfile.truncate()

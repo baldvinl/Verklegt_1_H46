@@ -9,3 +9,9 @@ class Data_Wrapper:
     
     def create_destination(self, destination):
         return self.destination_data.create_destination(destination)
+    
+    def change_ice_name(self, aita, new_ice_name):
+        return self.destination_data.change_ice_name(aita, new_ice_name)
+
+    def change_ice_number(self, aita, new_ice_number):
+        return self.destination_data.change_ice_name(aita, new_ice_number)
