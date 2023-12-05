@@ -1,9 +1,9 @@
-from data.destination_data import Destination_Data
+from data.data_wrapper import data_wrapper
 from model.destintion import Destination
 
 class Destination_Logic:
-    def __init__(self):
-        pass
+    def __init__(self, data_connection):
+        self.data_wrapper = data_connection
 
     def register_destination(self, destination):
         pass

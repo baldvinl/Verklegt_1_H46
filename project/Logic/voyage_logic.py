@@ -1,9 +1,9 @@
-from data.voyage_data import Voyage_Data
+from data.data_wrapper import data_wrapper
 from model.voyage import Voyage
 
 class Voyage_Logic:
     def __init__(self, data_connection):
-        pass
+        self.data_wrapper = data_connection
 
     def register_voyage(self, voyage):
         pass

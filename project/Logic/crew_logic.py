@@ -1,9 +1,9 @@
-from data.crew_data import Crew_Data
+from data.data_wrapper import data_wrapper
 from model.crew import Crew
 
 class Crew_logic:
-    def __init__(self) -> None:
-        pass
+    def __init__(self, data_connection):
+        self.data_wrapper = data_connection
 
     def register_crew(self, crew):
         pass
