@@ -116,3 +116,41 @@ Guðrún Elín will start on model classes and Data layer.
 
 Plan for tomorrow is everybody codes at home and be in touch on discord. 
 
+05.12.2023
+________________________________________________________
+Everybody worked on their parts today and made some progress. 
+Communication on Discord about uncertainties. 
+
+Plan for tomorrow is have phone meeting on Discord and discuss better the setup. 
+
+All model classes done except crew that Guðrún will finish tomorrow.
+
+TODO_LIST follows through the days!
+
+IU LAYER: 
+-----------------------
+List of what has been implamented and is working:
+
+List of what has been done and not working:
+
+List of what we need to go over better:
+
+LOGIC LAYER:
+----------------------
+List of what has been implamented and is working:
+
+List of what has been done and not working:
+
+List of what we need to go over better:
+
+DATA LAYER:
+----------------------
+List of what has been implamented and is working:
+destination_data: Create destiantion, display all destiantion, change ICE name or number.
+
+List of what has been done and not working:
+
+List of what we need to go over better:
+Have all information that need to be changed in a file come together to the data layer.
+
+
