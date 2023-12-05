@@ -1,4 +1,5 @@
-T-113-VLN1 – H46 HMV	
+T-113-VLN1 – H46 HMV
+
 27.11.2023
 Verkstjóri - Baldvin
 Day 1 plan:
@@ -16,4 +17,102 @@ Done today:
 Before next meeting:
 - Watch Git videos
 - Study 3 layered design
+
+28.11.2023
+Verkstjóri - Guðrún Elín
+
+Day 2 plan:
+- Hildur finishes the Github manual
+- Guðrún Elín og Georgia make up the classes needed for the class diagram
+- Guðrún Elín og Georgia make use cases
+- Baldivin makes usability requirements and user experience requirements
+- Sara starts the structure of the report 
+
+Done today: 
+- type of requirement added to requirement list (usability requirements and user experience requirements)
+
+Before next meeting:
+- Continue working on assigned assignments. 
+
+29.11.2023
+
+Guðrún Elín verður verkefnastjóri það sem eftir er af verkefninu.
+
+What is mostly finsihed: 
+- Github manual
+- requirement list (ongoing chances until hand in)
+- usergroup analysis
+
+Day plan: 
+- Baldvin starts on the happy path layouts and makes introduction and closing and final words if applicable
+- Sara looks over group analysis and finishes that
+- Guðrún Elín keeps working on the use cases and adds them to a template
+- Georgia keeps working on classes and class diagrams
+- Hildur and Sara help on happy path, class diagrams, use cases
+
+Done today:
+- Hildur and Baldvin worked on the happy path and made good progress
+- Guðrún Elín made good progress on the use cases
+- Georgia worked on class diagram
+- Sara went over group analysis and requirement list and continued to work on the report
+
+Meeting time tomorrow 15:30 and people keep working on their assignments at home
+
+30.11.2023
+
+Everybody have done some work today. Things are coming along nicely. 
+
+Day plan:
+- Hildur and Sara work on the happy paths. 
+- Guðrún, Georgia finsih the use cases and class diagrams.
+
+What is mostly finsihed: 
+- Github manual
+- requirement list (ongoing chances until hand in)
+- usergroup analysis
+- class diagrams
+- report layout and text
+
+What we need to check and go over:
+- Use cases! finishing rest of B requirements.
+- Adding voyage with regards to requirements B, flight numbers and ect. 
+- Go over class module
+- Go over happy paths
+- make introduction text in report
+
+meeting time tomorrow 13:30
+
+01.12.2023
+
+- Baldvin added the introduction to the report yesterday.
+
+- Guðrún works on use cases. 
+- Sara, Baldvin and Hildur work on happy path.
+- Georgia finished the class diagram and helped with happy path.
+
+Muna að skoða requirement 21!
+
+We finished the prelimnery report on friday 01.12.2023 and handed in. 
+
+04.12.2023
+
+We got the report back and we can see that we are on the right path.
+Not much that we need to change for now. Can start coding. 
+
+Everybody should have watched the lecture this morning. 
+
+Plan for today:
+set up all folders and files in Github. 
+
+Start on destination. 
+
+Divide coding between layers. 2 people code IU layer - 2 people code logic layer - 1 person codes data layer.
+
+Baldvin and Hildur will start on the UI layer.
+
+Sara and Georgia will start on the Logic layer.
+
+Guðrún Elín will start on model classes and Data layer.
+
+Plan for tomorrow is everybody codes at home and be in touch on discord. 
 
