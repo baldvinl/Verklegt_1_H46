@@ -2,29 +2,35 @@
 NAME = "NaN Air"
 TITLE = "Crew planning software"
 QUIT = "[Q]uit"
-current_menu = "Crew menu"
+
 
 class CrewMenu_ui():
     def __init__(self):
         return None
     
     def crew_menu(self):
-        tabledata = [[1, "Register crew"],
-                  [2, "Crew records"],
-                  [3, "Crew availability"],]
-        
-        menu_table = tabulate(tabledata, tablefmt='simple_outline')
+        '''Function that displays Crew Menu UI.'''
 
-        print(f"{NAME : ^20}")
-        print(f"{TITLE : ^20}")
-        print(f"{current_menu : ^20}")
-        print(menu_table)
-        print(f"{QUIT : ^20}")
+        current_menu = "Crew menu"
+        
+        print(f"{NAME}")
+        print(f"{TITLE}")
+        print(f"{current_menu}")
+
+        print(f"1. Register crew")
+        print(f"2. Crew records")
+        print(f"3. Crew availability")
+        print(f"[M]enu  [B]ack  [Q]uit")
     
     def register_crew(self):
-        print(f"{NAME : ^20}")
-        print(f"{TITLE : ^20}")
-        print(f"{current_menu : ^20}")
+        '''Function that asks for input to register crew and returns crew information.'''
+
+        current_menu = "Register crew"
+
+        print(f"{NAME}")
+        print(f"{TITLE}")
+        print(f"{current_menu}")
+
         name = input("Enter name: ")
         ssn = input("Enter SSN: ")
         address = input("Enter Address: ")
@@ -35,16 +41,21 @@ class CrewMenu_ui():
         return name, ssn, address, mobile, home_phone, email, job_title
 
     def input(self):
+        '''Function that asks for input in crew menu.'''
+
         while True:
             self.crew_menu()
             command = input("Please enter menu number: ")
             command = command.lower()
             if command == "q":
-                print("Quitting program")
                 return "q"
             if command == "b":
                 print("Going back to previous menu.")
                 return "b"
             if command == '1':
                 crew_entry = self.register_crew()
-                
+                print(crew_entry)
+            if command == '2':
+                pass
+            if command == '3':
+                pass

@@ -1,4 +1,3 @@
-from tabulate import tabulate
 
 NAME = "NaN Air"
 TITLE = "Crew planning software"
@@ -10,21 +9,23 @@ class MainMenu_ui():
         return None
     
     def main_menu(self):
-        menu_options = [[1, "Crew"],
-                  [2, "Destinations"],
-                  [3, "Voyages"],
-                  [4, "Aircraft"],
-                  [5, "Print options"],]
-        
+        '''Function that displays the main menu UI.'''
 
+        print(f"{NAME}")
+        print(f"{TITLE}")
+        print(f"{current_menu}")
 
-        print(f"{NAME : ^60}")
-        print(f"{TITLE : ^60}")
-        print(f"{current_menu : ^60}")
+        print(f"1. Crew")
+        print(f"2. Destinations")
+        print(f"3. Voyages")
+        print(f"4. Aircraft")
+        print(f"5. Print options")
         
-        print(f"{QUIT : ^60}")
+        print(f"{QUIT}")
     
     def input(self):
+        '''Function that asks for menu number in the main menu UI.'''
+
         while True:
             self.main_menu()
             command = input("Please enter menu number: ")
