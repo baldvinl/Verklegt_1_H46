@@ -50,7 +50,7 @@ class DestinationMenu_ui():
 
         iata = input("Enter IATA code: ")
         
-        output = Destination_Data.display_destination(Destination_Data, iata)
+        output = Data_Wrapper.display_destination(Data_Wrapper, iata)
 
         print(output)
 
