@@ -1,7 +1,8 @@
 from data.destination_data import Destination_Data
-from project.data.aircraft_data import Aircraft_Data
-from project.data.crew_data import Crew_Data
-from project.data.voyage_data import Voyage_Data
+from data.aircraft_data import Aircraft_Data
+from data.crew_data import Crew_Data
+from data.voyage_data import Voyage_Data
+
 
 class Data_Wrapper:
     def __init__(self):
@@ -10,8 +11,8 @@ class Data_Wrapper:
         self.aircraft_data = Aircraft_Data()
         self.voyage_data = Voyage_Data()
         
-    def display_destinations(self):
-        return self.destination_data.display_destinations()
+    def display_destination(self, aita):
+        return self.destination_data.display_destination(aita)
     
     def create_destination(self, destination):
         return self.destination_data.create_destination(destination)
