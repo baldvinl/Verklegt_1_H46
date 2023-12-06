@@ -1,9 +1,9 @@
 
-from UI.ui_mainmenu import MainMenu_ui
-from UI.ui_crewmenu import CrewMenu_ui
-from UI.ui_destinationmenu import DestinationMenu_ui
-from UI.ui_aircraftmenu import AircraftMenu_ui
-from UI.ui_voyagemenu import VoyageMenu_ui
+from ui.ui_mainmenu import MainMenu_ui
+from ui.ui_crewmenu import CrewMenu_ui
+from ui.ui_destinationmenu import DestinationMenu_ui
+from ui.ui_aircraftmenu import AircraftMenu_ui
+from ui.ui_voyagemenu import VoyageMenu_ui
 
 QUIT_MESSAGE = "Quitting program"
 

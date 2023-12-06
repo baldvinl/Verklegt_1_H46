@@ -44,6 +44,22 @@ class DestinationMenu_ui():
 
     def destination_info(self):
         '''Function that displays the information about a specific destination.'''
+        
+        current_menu = "Destination info"
+
+        if(os.name == 'posix'):
+            os.system('clear')
+        else:
+            os.system('cls')
+
+        print(f"{NAME}")
+        print(f"{TITLE}")
+        print(f"{current_menu}")
+
+        iata = input("Enter IATA code: ")
+        
+        print(iata)
+
         pass
 
 
@@ -63,7 +79,7 @@ class DestinationMenu_ui():
                 destination_entry = self.register_destination()
                 print(destination_entry)
             if command == '2':
-                pass
+                self.destination_info()
             if command == '3':
                 pass
                 
