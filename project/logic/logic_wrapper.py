@@ -71,8 +71,8 @@ class Logic_Wrapper:
         return crew_logic.display_working()
 
         # Destination
-    def display_destination(self, aita): # ARE WE GIVING DESTINATION AN ID?
-        return destination_logic.display_destination(aita)
+    def display_destination(self, iata): # ARE WE GIVING DESTINATION AN ID?
+        return destination_logic.display_destination(iata)
 
         # Voyage
     def display_voyage(self): # ID?
