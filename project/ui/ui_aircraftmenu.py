@@ -1,7 +1,6 @@
 import os
+from ui.ui_mainmenu import *
 
-NAME = "NaN Air"
-TITLE = "Crew planning software"
 QUIT = "[Q]uit"
 
 
@@ -14,9 +13,8 @@ class AircraftMenu_ui():
 
         current_menu = "Aircraft menu"
 
-        print(f"{NAME}")
-        print(f"{TITLE}")
-        print(f"{current_menu}")
+        MainMenu_ui.clear_terminal()
+        MainMenu_ui.menu_header(current_menu)
 
         print(f"1. Register a new aircraft")
         print(f"2. Aircraft status")
@@ -26,10 +24,8 @@ class AircraftMenu_ui():
         '''Function that asks for input to register aircraft and returns aircraft information.'''
 
         current_menu = "Register a new aircraft"
-
-        print(f"{NAME}")
-        print(f"{TITLE}")
-        print(f"{current_menu}")
+        MainMenu_ui.clear_terminal()
+        MainMenu_ui.menu_header(current_menu)
 
         aircraft_name = input("Enter aircraft name: ")
         aircraft_type = input("Enter aircraft type: ")
@@ -42,10 +38,8 @@ class AircraftMenu_ui():
         '''Function that displays the aircraft status.'''
         
         current_menu = "Aircraft status"
-
-        print(f"{NAME}")
-        print(f"{TITLE}")
-        print(f"{current_menu}")
+        MainMenu_ui.clear_terminal()
+        MainMenu_ui.menu_header(current_menu)
 
         date = input("Enter date: (YY-MM-DD) ")
         time = input("Enter time: (hh:mm) ")

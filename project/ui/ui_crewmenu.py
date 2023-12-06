@@ -1,7 +1,6 @@
 import os
+from ui.ui_mainmenu import *
 
-NAME = "NaN Air"
-TITLE = "Crew planning software"
 QUIT = "[Q]uit"
 
 
@@ -14,9 +13,8 @@ class CrewMenu_ui():
 
         current_menu = "Crew menu"
 
-        print(f"{NAME}")
-        print(f"{TITLE}")
-        print(f"{current_menu}")
+        MainMenu_ui.clear_terminal()
+        MainMenu_ui.menu_header(current_menu)
 
         print(f"1. Register crew")
         print(f"2. Crew records")
@@ -29,9 +27,8 @@ class CrewMenu_ui():
 
         current_menu = "Register crew"
 
-        print(f"{NAME}")
-        print(f"{TITLE}")
-        print(f"{current_menu}")
+        MainMenu_ui.clear_terminal()
+        MainMenu_ui.menu_header(current_menu)        
 
         crew_name = input("Enter name: ")
         ssn = input("Enter SSN: ")

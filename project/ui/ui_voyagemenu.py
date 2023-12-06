@@ -1,4 +1,5 @@
 import os
+from ui.ui_mainmenu import *
 
 NAME = "NaN Air"
 TITLE = "Crew planning software"
@@ -14,9 +15,8 @@ class VoyageMenu_ui():
 
         current_menu = "Voyage menu"
 
-        print(f"{NAME}")
-        print(f"{TITLE}")
-        print(f"{current_menu}")
+        MainMenu_ui.clear_terminal()
+        MainMenu_ui.menu_header(current_menu)
 
         print(f"1. Register a new voyage")
         print(f"2. Print voyages")
@@ -31,9 +31,8 @@ class VoyageMenu_ui():
 
         current_menu = "Register a new voyage"
 
-        print(f"{NAME}")
-        print(f"{TITLE}")
-        print(f"{current_menu}")
+        MainMenu_ui.clear_terminal()
+        MainMenu_ui.menu_header(current_menu)
 
         destination_iata = input("Enter destination IATA code: ")
         voyage_date = input("Enter voyage date: ")

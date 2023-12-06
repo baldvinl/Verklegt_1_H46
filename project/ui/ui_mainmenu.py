@@ -12,9 +12,8 @@ class MainMenu_ui():
     def main_menu(self):
         '''Function that displays the main menu UI.'''
 
-        print(f"{NAME}")
-        print(f"{TITLE}")
-        print(f"{current_menu}")
+        MainMenu_ui.clear_terminal()
+        MainMenu_ui.menu_header(current_menu)
 
         print(f"1. Crew")
         print(f"2. Destinations")
@@ -32,3 +31,19 @@ class MainMenu_ui():
             command = input("Please enter menu number: ")
             command = command.lower()
             return command
+        
+    def clear_terminal():
+        '''Function that clears the terminal screen.'''
+
+        if(os.name == 'posix'):
+            os.system('clear')
+        else:
+            os.system('cls')
+    
+    def menu_header(current_menu):
+        '''Reusable menu header for all menus.'''
+        
+        print(f"{NAME}")
+        print(f"{TITLE}")
+        print(f"{current_menu}")
+    

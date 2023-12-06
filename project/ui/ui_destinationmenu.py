@@ -1,8 +1,7 @@
 import os
 from data.data_wrapper import Data_Wrapper
+from ui.ui_mainmenu import *
 
-NAME = "NaN Air"
-TITLE = "Crew planning software"
 QUIT = "[Q]uit"
 
 class DestinationMenu_ui():
@@ -13,10 +12,9 @@ class DestinationMenu_ui():
         '''Function that displays Destination Menu UI.'''
 
         current_menu = "Destination menu"
-
-        print(f"{NAME}")
-        print(f"{TITLE}")
-        print(f"{current_menu}")
+        
+        MainMenu_ui.clear_terminal()
+        MainMenu_ui.menu_header(current_menu)
 
         print(f"1. Register a new destination")
         print(f"2. Destination info")
@@ -29,9 +27,8 @@ class DestinationMenu_ui():
 
         current_menu = "Register a new destination"
 
-        print(f"{NAME}")
-        print(f"{TITLE}")
-        print(f"{current_menu}")
+        MainMenu_ui.clear_terminal()
+        MainMenu_ui.menu_header(current_menu)
 
         country = input("Enter country: ")
         iata = input("Enter IATA code: ")
@@ -39,7 +36,7 @@ class DestinationMenu_ui():
         distance = input("Enter distance in kilometers: ")
         ice_name = input("Enter emergency contact name: ")
         ice_number = input("Enter emergency contact phone number: ")
-
+        
         return country, iata, duration, distance, ice_name, ice_number
 
     def destination_info(self):
@@ -47,18 +44,12 @@ class DestinationMenu_ui():
         
         current_menu = "Destination info"
 
-        if(os.name == 'posix'):
-            os.system('clear')
-        else:
-            os.system('cls')
+        MainMenu_ui.clear_terminal()
+        MainMenu_ui.menu_header(current_menu)
 
-        print(f"{NAME}")
-        print(f"{TITLE}")
-        print(f"{current_menu}")
-
-        aita = input("Enter IATA code: ")
+        iata = input("Enter IATA code: ")
         
-        output = Data_Wrapper.display_destination(aita)
+        output = Data_Wrapper.display_destination(iata)
 
         print(output)
 
