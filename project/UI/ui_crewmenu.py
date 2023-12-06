@@ -12,7 +12,7 @@ class CrewMenu_ui():
         '''Function that displays Crew Menu UI.'''
 
         current_menu = "Crew menu"
-        
+
         print(f"{NAME}")
         print(f"{TITLE}")
         print(f"{current_menu}")
@@ -20,6 +20,7 @@ class CrewMenu_ui():
         print(f"1. Register crew")
         print(f"2. Crew records")
         print(f"3. Crew availability")
+
         print(f"[M]enu  [B]ack  [Q]uit")
     
     def register_crew(self):
@@ -31,14 +32,15 @@ class CrewMenu_ui():
         print(f"{TITLE}")
         print(f"{current_menu}")
 
-        name = input("Enter name: ")
+        crew_name = input("Enter name: ")
         ssn = input("Enter SSN: ")
         address = input("Enter Address: ")
         mobile = input("Enter mobile phone number: ")
         home_phone = input("Enter home phone number: ")
         email = input("Enter e-mail: ")
         job_title = input("Enter job title: ")
-        return name, ssn, address, mobile, home_phone, email, job_title
+
+        return crew_name, ssn, address, mobile, home_phone, email, job_title
 
     def input(self):
         '''Function that asks for input in crew menu.'''
