@@ -18,7 +18,7 @@ class Destination_Data:
 
 
     def display_destination(self, iata):
-        """Returns a list of all destinations stored in the file"""
+        """Returns the destination with the reletive iata"""
 
         with open(self.file_name, newline='', encoding="utf-8") as csvfile:
             reader = csv.DictReader(csvfile)
