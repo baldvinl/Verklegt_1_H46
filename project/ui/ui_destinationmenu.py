@@ -1,5 +1,5 @@
 import os
-
+from data.data_wrapper import Data_Wrapper
 
 NAME = "NaN Air"
 TITLE = "Crew planning software"
@@ -56,9 +56,11 @@ class DestinationMenu_ui():
         print(f"{TITLE}")
         print(f"{current_menu}")
 
-        iata = input("Enter IATA code: ")
+        aita = input("Enter IATA code: ")
         
-        print(iata)
+        output = Data_Wrapper.display_destination(aita)
+
+        print(output)
 
         pass
 
