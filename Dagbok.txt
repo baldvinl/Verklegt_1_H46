@@ -125,6 +125,11 @@ Plan for tomorrow is have phone meeting on Discord and discuss better the setup.
 
 All model classes done except crew that Guðrún will finish tomorrow.
 
+06.12.2023
+___________________________________________________________
+Meeting held today and gone over uncertainties. 
+
+
 TODO_LIST follows through the days!
 
 IU LAYER: 
@@ -132,14 +137,18 @@ IU LAYER:
 List of what has been implamented and is working:
 
 List of what has been done and not working:
+display of main menus and sub menus 
+destination_ui
 
 List of what we need to go over better:
+Sending information to change through. All at once?
 
 LOGIC LAYER:
 ----------------------
 List of what has been implamented and is working:
 
 List of what has been done and not working:
+destination_logic
 
 List of what we need to go over better:
 
