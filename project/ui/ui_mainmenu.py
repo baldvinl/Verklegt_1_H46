@@ -3,6 +3,7 @@ import os
 NAME = "NaN Air"
 TITLE = "Crew planning software"
 QUIT = "[Q]uit"
+QUIT_MESSAGE = "Quitting program"
 current_menu = "Main menu"
 
 class MainMenu_ui():
@@ -47,3 +48,12 @@ class MainMenu_ui():
         print(f"{TITLE}")
         print(f"{current_menu}")
     
+    def quit_program():
+        '''Function that quits the program.'''
+
+        command = input(f"Are you sure you want to quit? (Y/N) ")
+        if command.lower() == "y":
+            print(f"{QUIT_MESSAGE}")
+            quit()
+        else: 
+            return None

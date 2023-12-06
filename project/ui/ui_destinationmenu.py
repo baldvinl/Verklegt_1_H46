@@ -1,6 +1,7 @@
 import os
 from data.data_wrapper import Data_Wrapper
 from ui.ui_mainmenu import *
+from data.destination_data import Destination_Data
 
 QUIT = "[Q]uit"
 
@@ -30,14 +31,14 @@ class DestinationMenu_ui():
         MainMenu_ui.clear_terminal()
         MainMenu_ui.menu_header(current_menu)
 
-        country = input("Enter country: ")
         iata = input("Enter IATA code: ")
+        country = input("Enter country: ")
         duration = input("Enter flight duration in hh:mm: ")
         distance = input("Enter distance in kilometers: ")
         ice_name = input("Enter emergency contact name: ")
         ice_number = input("Enter emergency contact phone number: ")
         
-        return country, iata, duration, distance, ice_name, ice_number
+        return iata, country, duration, distance, ice_name, ice_number
 
     def destination_info(self):
         '''Function that displays the information about a specific destination.'''
@@ -49,7 +50,7 @@ class DestinationMenu_ui():
 
         iata = input("Enter IATA code: ")
         
-        output = Data_Wrapper.display_destination(iata)
+        output = Destination_Data.display_destination(Destination_Data, iata)
 
         print(output)
 
@@ -64,12 +65,14 @@ class DestinationMenu_ui():
             command = input("Please enter menu number: ")
             command = command.lower()
             if command == "q":
-                return "q"
+                MainMenu_ui.quit_program()
+                pass
             if command == "b":
                 print("Going back to previous menu.")
                 return "b"
             if command == '1':
                 destination_entry = self.register_destination()
+                Data_Wrapper.create_destination(destination_entry)
                 print(destination_entry)
             if command == '2':
                 self.destination_info()

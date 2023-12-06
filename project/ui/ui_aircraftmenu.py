@@ -56,7 +56,8 @@ class AircraftMenu_ui():
             command = input("Please enter menu number: ")
             command = command.lower()
             if command == "q":
-                return "q"
+                MainMenu_ui.quit_program()
+                pass
             if command == "b":
                 print("Going back to previous menu.")
                 return "b"
