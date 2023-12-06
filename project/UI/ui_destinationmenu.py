@@ -1,3 +1,5 @@
+import os
+
 
 NAME = "NaN Air"
 TITLE = "Crew planning software"
@@ -19,7 +21,7 @@ class DestinationMenu_ui():
         print(f"1. Register a new destination")
         print(f"2. Destination info")
         print(f"3. Edit destination")
-        
+
         print(f"[M]enu  [B]ack  [Q]uit")
     
     def register_destination(self):

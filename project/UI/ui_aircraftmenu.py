@@ -41,7 +41,7 @@ class AircraftMenu_ui():
         '''Function that displays the aircraft status.'''
         
         current_menu = "Aircraft status"
-        
+
         print(f"{NAME}")
         print(f"{TITLE}")
         print(f"{current_menu}")
@@ -51,7 +51,7 @@ class AircraftMenu_ui():
 
         # Call function that returns list of aircraft and their status at the given date/time.
 
-        break
+        pass
 
     def input(self):
         '''Function that asks for input in aircraft menu.'''
