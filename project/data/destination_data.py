@@ -9,23 +9,22 @@ class Destination_Data:
         """Adds a new destination to the file"""
         
         with open(self.file_name, 'a', newline='', encoding="utf-8") as csvfile:
-            fieldnames = ["country", "airport", "flight_duration", "distance", "ice_name", "ice_number"]
+            fieldnames = ["airport", "country", "flight_duration", "distance", "ice_name", "ice_number"]
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 
-            writer.writerow({"country": destination.country, "airport": destination.airport, "flight_duration": destination.flight_duration, 
+            writer.writerow({"airport": destination.airport, "country": destination.country, "flight_duration": destination.flight_duration, 
                              "distance": destination.distance, "ice_name": destination.ice_name, "ice_number": destination.ice_number})
 
 
-    def display_destinations(self):
+    def display_destination(self, iata):
         """Returns a list of all destinations stored in the file"""
 
-        dest_list = []
         with open(self.file_name, newline='', encoding="utf-8") as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
-                dest_list.append(Destination(row["country"], row["airport"], row["flight_duration"], 
-                                             row["distance"], row["ice_name"], row["ice_number"]))
-        return dest_list
+                if row["airport"] == iata:
+                    destination = Destination(row["airport"], row["country"], row["flight_duration"], row["distance"], row["ice_name"], row["ice_number"])
+        return destination
     
 
     def change_ice_name(self, iata, new_ice_name):
@@ -41,7 +40,7 @@ class Destination_Data:
                 rows.append(row)
 
             csvfile.seek(0)
-            fieldnames = ["country", "airport", "flight_duration", "distance", "ice_name", "ice_number"]
+            fieldnames = ["airport", "country", "flight_duration", "distance", "ice_name", "ice_number"]
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
             writer.writeheader()
             writer.writerows(rows)
@@ -61,7 +60,7 @@ class Destination_Data:
                 rows.append(row)
 
             csvfile.seek(0)
-            fieldnames = ["country", "airport", "flight_duration", "distance", "ice_name", "ice_number"]
+            fieldnames = ["airport", "country", "flight_duration", "distance", "ice_name", "ice_number"]
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
             writer.writeheader()
             writer.writerows(rows)

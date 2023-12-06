@@ -10,8 +10,8 @@ class Data_Wrapper:
         self.aircraft_data = Aircraft_Data()
         self.voyage_data = Voyage_Data()
         
-    def display_destinations(self):
-        return self.destination_data.display_destinations()
+    def display_destination(self):
+        return self.destination_data.display_destination()
     
     def create_destination(self, destination):
         return self.destination_data.create_destination(destination)
