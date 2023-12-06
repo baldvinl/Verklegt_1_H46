@@ -1,7 +1,8 @@
 from data.destination_data import Destination_Data
-from project.data.aircraft_data import Aircraft_Data
-from project.data.crew_data import Crew_Data
-from project.data.voyage_data import Voyage_Data
+from data.aircraft_data import Aircraft_Data
+from data.crew_data import Crew_Data
+from data.voyage_data import Voyage_Data
+
 
 class Data_Wrapper:
     def __init__(self):
