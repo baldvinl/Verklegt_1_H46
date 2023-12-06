@@ -1,3 +1,4 @@
+import os
 
 NAME = "NaN Air"
 TITLE = "Crew planning software"
