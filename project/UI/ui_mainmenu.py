@@ -10,19 +10,19 @@ class MainMenu_ui():
         return None
     
     def main_menu(self):
-        tabledata = [[1, "Crew"],
+        menu_options = [[1, "Crew"],
                   [2, "Destinations"],
                   [3, "Voyages"],
                   [4, "Aircraft"],
                   [5, "Print options"],]
         
-        menu_table = tabulate(tabledata, tablefmt='simple_outline')
 
-        print(f"{NAME : ^20}")
-        print(f"{TITLE : ^20}")
-        print(f"{current_menu : ^20}")
-        print(menu_table)
-        print(f"{QUIT : ^20}")
+
+        print(f"{NAME : ^60}")
+        print(f"{TITLE : ^60}")
+        print(f"{current_menu : ^60}")
+        
+        print(f"{QUIT : ^60}")
     
     def input(self):
         while True:

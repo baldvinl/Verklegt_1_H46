@@ -1,5 +1,3 @@
-from tabulate import tabulate
-
 
 NAME = "NaN Air"
 TITLE = "Crew planning software"
