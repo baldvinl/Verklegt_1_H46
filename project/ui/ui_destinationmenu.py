@@ -1,6 +1,9 @@
 import os
 from data.data_wrapper import Data_Wrapper
 from ui.ui_mainmenu import *
+from logic.logic_wrapper import *
+
+
 #from data.destination_data import Destination_Data
 from model.destination import Destination
 
@@ -8,7 +11,8 @@ QUIT = "[Q]uit"
 
 class DestinationMenu_ui():
     def __init__(self):
-        self.data_wrapper = Data_Wrapper
+        #self.data_wrapper = Data_Wrapper
+        self.logic_wrapper = Logic_Wrapper
         return None
     
     def destination_menu(self):
@@ -40,7 +44,9 @@ class DestinationMenu_ui():
         ice_name = input("Enter emergency contact name: ")
         ice_number = input("Enter emergency contact phone number: ")
         
-        return iata, country, duration, distance, ice_name, ice_number
+        new_dest = Destination(iata, country, duration, distance, ice_name, ice_number)
+
+        return new_dest
 
     def destination_info(self):
         '''Function that displays the information about the destinations.'''
@@ -50,13 +56,22 @@ class DestinationMenu_ui():
         MainMenu_ui.clear_terminal()
         MainMenu_ui.menu_header(current_menu)
         
-        data_class = Data_Wrapper()
-        output = data_class.display_destinations()
+        #data_class = Data_Wrapper()
+        data_class = Logic_Wrapper()
+        data = data_class.display_destinations()
 
-        for elem in output:
-            print(elem.airport)
+        loc_info = Destination()
 
-        return output
+        for elem in data:
+            loc_info = elem
+            print(loc_info.airport)
+            print(loc_info.country)
+            print(loc_info.distance)
+            print(loc_info.flight_duration)
+            print(loc_info.ice_name)
+            print(loc_info.ice_number)
+
+        return None
 
 
     def input(self):
@@ -74,7 +89,8 @@ class DestinationMenu_ui():
                 return "b"
             if command == '1':
                 destination_entry = self.register_destination()
-                Data_Wrapper.create_destination(destination_entry)
+                data_class = Data_Wrapper()
+                data_class.create_destination(destination_entry)
                 print(destination_entry)
             if command == '2':
                 self.destination_info()
