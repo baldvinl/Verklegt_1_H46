@@ -31,7 +31,7 @@ class Destination_Data:
         with open(self.file_name, newline='', encoding="utf-8") as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
-                dest_list.append(Destination(row["country"], row["airport"], row["flight_duration"], 
+                dest_list.append(Destination(row["airport"], row["country"], row["flight_duration"], 
                                              row["distance"], row["ice_name"], row["ice_number"]))
         return dest_list
     
