@@ -1,7 +1,7 @@
-from data.data_wrapper import data_wrapper
-from model.crew import crew
+from data.crew_data import Crew_Data
+from model.crew import Crew
 
-class Crew_logic:
+class Crew_Logic:
     def __init__(self, data_connection):
         self.data_wrapper = data_connection
 
