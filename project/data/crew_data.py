@@ -70,4 +70,7 @@ class Crew_Data:
                 if row["ssn"] == ssn:
                     return Pilot(row["ssn"], row["name"], row["job_title"], row["address"], row["area_code"], 
                                  row["email"], row["mobile_no"], row["phone_no"], row["type_rating"])
+                
+        def change_crew_member_info(self, ssn):
+            pass
         
