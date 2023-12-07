@@ -15,17 +15,18 @@ class Destination_Data:
 
             writer.writerow({"airport": destination.airport, "country": destination.country, "flight_duration": destination.flight_duration, 
                              "distance": destination.distance, "ice_name": destination.ice_name, "ice_number": destination.ice_number})
+            
 
+    def display_destinations(self):
+        """Returns a list of all destinations stored in the file"""
 
-    def display_destination(self, iata):
-        """Returns the destination with the reletive iata"""
-
+        dest_list = []
         with open(self.file_name, newline='', encoding="utf-8") as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
-                if row["airport"] == iata:
-                    destination = Destination(row["airport"], row["country"], row["flight_duration"], row["distance"], row["ice_name"], row["ice_number"])
-        return destination
+                dest_list.append(Destination(row["country"], row["airport"], row["flight_duration"], 
+                                             row["distance"], row["ice_name"], row["ice_number"]))
+        return dest_list
     
 
     def change_ice_name(self, iata, new_ice_name):
