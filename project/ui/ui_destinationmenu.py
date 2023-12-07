@@ -41,14 +41,12 @@ class DestinationMenu_ui():
         return iata, country, duration, distance, ice_name, ice_number
 
     def destination_info(self):
-        '''Function that displays the information about a specific destination.'''
+        '''Function that displays the information about the destinations.'''
         
         current_menu = "Destination info"
 
         MainMenu_ui.clear_terminal()
         MainMenu_ui.menu_header(current_menu)
-
-        iata = input("Enter IATA code: ")
         
         output = Data_Wrapper.display_destination(Data_Wrapper, iata)
 
