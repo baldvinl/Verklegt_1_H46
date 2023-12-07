@@ -14,7 +14,7 @@ class MainMenu_ui():
         '''Function that displays the main menu UI.'''
 
         MainMenu_ui.clear_terminal()
-        MainMenu_ui.menu_header(current_menu)
+        MainMenu_ui.main_header(current_menu)
 
         print(f"1. Crew")
         print(f"2. Destinations")
@@ -41,7 +41,7 @@ class MainMenu_ui():
         else:
             os.system('cls')
     
-    def menu_header(current_menu):
+    def main_header(current_menu):
         '''Reusable menu header for all menus.'''
         
         print(f"{NAME}")
