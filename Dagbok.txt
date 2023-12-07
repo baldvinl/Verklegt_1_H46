@@ -129,16 +129,28 @@ All model classes done except crew that Guðrún will finish tomorrow.
 ___________________________________________________________
 Meeting held today and gone over uncertainties. 
 
+07.12.2023
+________________________________________________________
+Very good progress made today. A lot of uncertainties ironed out.
 
 TODO_LIST follows through the days!
+
+<<destination working through all layers>>
 
 IU LAYER: 
 -----------------------
 List of what has been implamented and is working:
+destination_ui
+display of main menu 
+
+crew_menu
+register_crew
+destination_info
+aircraft_menu
 
 List of what has been done and not working:
-display of main menus and sub menus 
-destination_ui
+register_aircraft
+
 
 List of what we need to go over better:
 Sending information to change through. All at once?
@@ -146,9 +158,11 @@ Sending information to change through. All at once?
 LOGIC LAYER:
 ----------------------
 List of what has been implamented and is working:
+destination_logic
 
 List of what has been done and not working:
-destination_logic
+Almost everything has been implamented and connected with wrappers.
+some functions left to finish.
 
 List of what we need to go over better:
 
@@ -157,7 +171,10 @@ DATA LAYER:
 List of what has been implamented and is working:
 destination_data: Create destiantion, display all destiantion, change ICE name or number.
 
-List of what has been done and not working:
+List of what has been done and not checked if it is working:
+Crew_Data: register_pilot, register_flight_attendant, display_pilots, display_flight_attendants, display_crew_member_info
+Voyage_Data: create_voyage
+Aircraft_Data: create_aircraft
 
 List of what we need to go over better:
 Have all information that need to be changed in a file come together to the data layer.
