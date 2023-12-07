@@ -14,14 +14,14 @@ class Voyage_Logic:
     def add_crew(self, crew, voyage):
         return self.data_wrapper.add_crew(crew, voyage)
 
-    def get_voyage_status(self,destination, date):
+    def get_voyage_status(self, destination, date):
         return self.data_wrapper.get_voyage_status(destination, date)
 
-    def display_all_voyages_day(self, day):
-        return self.data_wrapper.display_all_voyages_day(day)
+    def display_all_voyages_day(self, date):
+        return self.data_wrapper.display_all_voyages_day(date)
 
-    def display_all_voyages_week(self, week):
-        return self.data_wrapper.display_all_voyages_day(week)
+    def display_all_voyages_week(self, date):
+        return self.data_wrapper.display_all_voyages_day(date)
 
-    def get_voyage_schedule(self, crew, day):
-        return self.data_wrapper.get_voyage_schedule(crew, day)
+    def get_voyage_schedule(self, ssn, date):
+        return self.data_wrapper.get_voyage_schedule(ssn, date)

@@ -14,5 +14,5 @@ class Aircraft_Logic:
     def display_aircraft_status(self, name):
         return self.data_wrapper.display_aircraft_status(name)
 
-    def display_all_aircrafts(self, day, time):
-        return self.data_wrapper.display_aircraft_info(day, time)
+    def display_all_aircrafts(self, date, time):
+        return self.data_wrapper.display_aircraft_info(date, time)

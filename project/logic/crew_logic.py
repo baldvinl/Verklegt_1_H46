@@ -8,7 +8,12 @@ class Crew_Logic:
         self.data_wrapper = data_connection
 
     def register_crew(self, crew):
-        return self.data_wrapper.register_crew(crew)
+        """Checks if crew object received is of the type 
+        Pilot or not and forwards to data wrapper accordingly"""
+        if isinstance(crew, Pilot):
+            return self.data_wrapper.register_pilot(crew)
+        else:
+            return self.data_wrapper.register_flight_attendant(crew)
 
     def change_crew_info(self, crew):
         return self.data_wrapper.change_crew_info(crew)
@@ -19,20 +24,14 @@ class Crew_Logic:
     def get_crew_info(self, ssn):
         return self.data_wrapper.get_crew_info(ssn)
 
-    def display_not_working(self, day):
-        return self.data_wrapper.display_not_working(day)
+    def display_not_working(self, date):
+        return self.data_wrapper.display_not_working(date)
 
-    def display_working(self, day):
-        return self.data_wrapper.display_working(day)
-    
-    def register_pilot(self, pilot):
-        return self.data_wrapper.register_pilot(pilot)
+    def display_working(self, date):
+        return self.data_wrapper.display_working(date)
     
     def display_pilots(self):
         return self.data_wrapper.display_pilots()
     
     def display_flight_attendants(self):
-        return self.data_wrapper.display_flight_attendants
-    
-    def register_flight_attendant(self, flight_attendant):
-        return self.data_wrapper.register_flight_attendant(flight_attendant)
+        return self.data_wrapper.display_flight_attendants()
