@@ -1,5 +1,7 @@
 from data.crew_data import Crew_Data
 from model.crew import Crew
+from model.pilot import Pilot
+from model.flight_attendant import Flight_Attendant
 
 class Crew_Logic:
     def __init__(self, data_connection):
@@ -20,5 +22,17 @@ class Crew_Logic:
     def display_not_working(self, day):
         return self.data_wrapper.display_not_working(day)
 
-    def display_working(self):
-        return self.data_wrapper.display_working()
+    def display_working(self, day):
+        return self.data_wrapper.display_working(day)
+    
+    def register_pilot(self, pilot):
+        return self.data_wrapper.register_pilot(pilot)
+    
+    def display_pilots(self):
+        return self.data_wrapper.display_pilots()
+    
+    def display_flight_attendants(self):
+        return self.data_wrapper.display_flight_attendants
+    
+    def register_flight_attendant(self, flight_attendant):
+        return self.data_wrapper.register_flight_attendant(flight_attendant)

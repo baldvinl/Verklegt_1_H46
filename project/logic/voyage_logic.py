@@ -14,9 +14,6 @@ class Voyage_Logic:
     def add_crew(self, crew, voyage):
         return self.data_wrapper.add_crew(crew, voyage)
 
-    def display_voyage(self, destination, date):
-        return self.data_wrapper.display_voyage(destination, date)
-
     def get_voyage_status(self,destination, date):
         return self.data_wrapper.get_voyage_status(destination, date)
 
