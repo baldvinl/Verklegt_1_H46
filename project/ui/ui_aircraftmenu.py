@@ -14,7 +14,7 @@ class AircraftMenu_ui():
         current_menu = "Aircraft menu"
 
         MainMenu_ui.clear_terminal()
-        MainMenu_ui.menu_header(current_menu)
+        MainMenu_ui.main_header(current_menu)
 
         print(f"1. Register a new aircraft")
         print(f"2. Aircraft status")
@@ -25,7 +25,7 @@ class AircraftMenu_ui():
 
         current_menu = "Register a new aircraft"
         MainMenu_ui.clear_terminal()
-        MainMenu_ui.menu_header(current_menu)
+        MainMenu_ui.main_header(current_menu)
 
         aircraft_name = input("Enter aircraft name: ")
         aircraft_type = input("Enter aircraft type: ")
@@ -39,7 +39,7 @@ class AircraftMenu_ui():
         
         current_menu = "Aircraft status"
         MainMenu_ui.clear_terminal()
-        MainMenu_ui.menu_header(current_menu)
+        MainMenu_ui.main_header(current_menu)
 
         date = input("Enter date: (YY-MM-DD) ")
         time = input("Enter time: (hh:mm) ")

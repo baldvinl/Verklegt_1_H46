@@ -1,4 +1,4 @@
-from project.model.crew import Crew
+from model.crew import Crew
 
 class Pilot(Crew):
     def __init__(self, ssn='9999999999', name='Chuck Norris', supervisor=False, address='Beststreet 1', area_code='999', 
