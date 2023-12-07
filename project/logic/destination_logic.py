@@ -1,5 +1,5 @@
-from data.data_wrapper import data_wrapper
-from model.destination import destination
+from data.data_wrapper import Data_Wrapper
+from model.destination import Destination
 
 class Destination_Logic:
     def __init__(self, data_connection):
