@@ -1,4 +1,4 @@
-from data.data_wrapper import Data_Wrapper
+from data.crew_data import Crew_Data
 from model.crew import Crew
 
 class Crew_Logic:

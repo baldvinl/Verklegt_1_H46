@@ -1,4 +1,4 @@
-from data.data_wrapper import Data_Wrapper
+from data.voyage_data import Voyage_Data
 from model.voyage import Voyage
 
 class Voyage_Logic:
@@ -12,7 +12,7 @@ class Voyage_Logic:
         return self.data_wrapper.get_information(destination, date)
 
     def add_crew(self, crew, voyage):
-        return self.data_wrapper.add_crew()
+        return self.data_wrapper.add_crew(crew, voyage)
 
     def display_voyage(self, destination, date):
         return self.data_wrapper.display_voyage(destination, date)

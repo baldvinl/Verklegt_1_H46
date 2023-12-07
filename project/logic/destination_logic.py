@@ -1,4 +1,4 @@
-from data.data_wrapper import Data_Wrapper
+from data.destination_data import Destination_Data
 from model.destination import Destination
 
 class Destination_Logic:

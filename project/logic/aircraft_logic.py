@@ -1,4 +1,4 @@
-from data.data_wrapper import Data_Wrapper
+from data.aircraft_data import Aircraft_Data
 from model.aircraft import Aircraft
 
 class Aircraft_Logic:
