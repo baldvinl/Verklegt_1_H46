@@ -21,7 +21,7 @@ class DestinationMenu_ui():
         current_menu = "Destination menu"
         
         MainMenu_ui.clear_terminal()
-        MainMenu_ui.menu_header(current_menu)
+        MainMenu_ui.main_header(current_menu)
 
         print(f"1. Register a new destination")
         print(f"2. Destination info")
@@ -35,7 +35,7 @@ class DestinationMenu_ui():
         current_menu = "Register a new destination"
 
         MainMenu_ui.clear_terminal()
-        MainMenu_ui.menu_header(current_menu)
+        MainMenu_ui.main_header(current_menu)
 
         iata = input("Enter IATA code: ")
         country = input("Enter country: ")
@@ -54,24 +54,23 @@ class DestinationMenu_ui():
         current_menu = "Destination info"
 
         MainMenu_ui.clear_terminal()
-        MainMenu_ui.menu_header(current_menu)
+        MainMenu_ui.main_header(current_menu)
         
-        #data_class = Data_Wrapper()
         data_class = Logic_Wrapper()
         data = data_class.display_destinations()
 
         loc_info = Destination()
 
+        print(f"IATA, Country, Distance, Flight duration, ICE Name, ICE Number")
         for elem in data:
             loc_info = elem
-            print(loc_info.airport)
-            print(loc_info.country)
-            print(loc_info.distance)
-            print(loc_info.flight_duration)
-            print(loc_info.ice_name)
-            print(loc_info.ice_number)
+            print(loc_info.airport, loc_info.country, loc_info.distance, loc_info.flight_duration, loc_info.ice_name, loc_info.ice_number, end= " " "\n")
+        print(f"[M]enu  [B]ack  [Q]uit")
+        
+        command = input("Please enter menu number: ")
+        command = command.lower()
 
-        return None
+        return command
 
 
     def input(self):
@@ -94,6 +93,7 @@ class DestinationMenu_ui():
                 print(destination_entry)
             if command == '2':
                 self.destination_info()
+                pass
             if command == '3':
                 pass
                 
