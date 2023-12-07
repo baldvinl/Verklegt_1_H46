@@ -1,12 +1,14 @@
 import os
 from data.data_wrapper import Data_Wrapper
 from ui.ui_mainmenu import *
-from data.destination_data import Destination_Data
+#from data.destination_data import Destination_Data
+from model.destination import Destination
 
 QUIT = "[Q]uit"
 
 class DestinationMenu_ui():
     def __init__(self):
+        self.data_wrapper = Data_Wrapper
         return None
     
     def destination_menu(self):
@@ -48,11 +50,13 @@ class DestinationMenu_ui():
         MainMenu_ui.clear_terminal()
         MainMenu_ui.menu_header(current_menu)
         
-        output = Data_Wrapper.display_destinations()
+        data_class = Data_Wrapper()
+        output = data_class.display_destinations()
 
-        print(output)
+        for elem in output:
+            print(elem.airport)
 
-        pass
+        return output
 
 
     def input(self):

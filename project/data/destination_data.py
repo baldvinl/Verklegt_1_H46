@@ -4,7 +4,7 @@ from model.destination import Destination
 
 class Destination_Data:
     def __init__(self):
-        self.file_name = "project/files/destinations.csv"
+        self.file_name = "files/destinations.csv"
 
     def create_destination(self, destination):
         """Adds a new destination to the file"""
