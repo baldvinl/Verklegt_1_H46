@@ -13,7 +13,7 @@ class Data_Wrapper:
 
         #destination functions
         
-    def display_destinations(self, iata):
+    def display_destinations(self):
         return self.destination_data.display_destinations()
     
     def create_destination(self, destination):
