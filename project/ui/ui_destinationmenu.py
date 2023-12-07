@@ -1,17 +1,13 @@
 import os
-from data.data_wrapper import Data_Wrapper
 from ui.ui_mainmenu import *
-from logic.logic_wrapper import *
+from logic.logic_wrapper import Logic_Wrapper
 
-
-#from data.destination_data import Destination_Data
 from model.destination import Destination
 
 QUIT = "[Q]uit"
 
 class DestinationMenu_ui():
     def __init__(self):
-        #self.data_wrapper = Data_Wrapper
         self.logic_wrapper = Logic_Wrapper
         return None
     
@@ -56,8 +52,8 @@ class DestinationMenu_ui():
         MainMenu_ui.clear_terminal()
         MainMenu_ui.main_header(current_menu)
         
-        data_class = Logic_Wrapper()
-        data = data_class.display_destinations()
+        wrapper = Logic_Wrapper()
+        data = wrapper.display_destinations()
 
         loc_info = Destination()
 
@@ -88,8 +84,8 @@ class DestinationMenu_ui():
                 return "b"
             if command == '1':
                 destination_entry = self.register_destination()
-                data_class = Data_Wrapper()
-                data_class.create_destination(destination_entry)
+                wrapper = Logic_Wrapper()
+                wrapper.create_destination(destination_entry)
                 print(destination_entry)
             if command == '2':
                 self.destination_info()
