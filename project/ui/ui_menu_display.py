@@ -10,9 +10,16 @@ EIGHT = '8'
 NINE = '9'
 TEN = '10'
 
-
 QUIT_MENU = '[M]ENU  [Q]UIT'
 QUIT_MENU_BACK = '[M]ENU  [BACK]  [Q]UIT'
+
+EMPLOYEE_AVAILABILITY = 'Employee availability'
+LIST_EMPLOYEE = 'List of employees'
+PRINT_PILOT_LIST
+PRINT_FLIGHT_ATTENDANT_LIST
+AVAILABLE_EMPLOYEES_GIVEN_DAY
+LIST_DESTINATION
+AIRCRAFT_STATUS = 'Aircraft status'
 
 UNDERSCORE = '_'
 DASH = '-' * 68
@@ -31,6 +38,29 @@ VOYAGES = 'Voyages'
 AIRCRAFT = 'Aircraft'
 PRINT_OPTIONS = 'Print options'
 PRUFA = 'Shift schedule for employee within a specific week'
+
+#------EMPLOYEE MENU CONSTANTS---------
+EMPLOYEE_MENU = 'Employees'
+REGISTER_PILOT = 'Register pilot'
+REGISTER_FLIGHT_ATTENDANT = 'Register flight attendant'
+EMPLOYEE_RECORDS = 'Employee records'
+
+#-------DESTINATION MENU CONSTANTS----------
+REGISTER_DESTINATION = 'Register destination'
+DESTINATION_INFO = 'Destination info'
+EDIT_DESTINATION = 'Edit destination'
+
+#------VOYAGE MENU CONTANTS-----------
+REGISTER_VOYAGE = 'Register voyage'
+PRINT_VOYAGE = 'Print voyage'
+ADD_AIRCRAFT_VOYAGE = 'Add aircraft'
+ADD_CREW_VOYAGE = 'Add crew'
+
+# -----AIRCRAFT MENU CONSTANTS-----
+REGISTER_AIRCRAFT = 'Register aircraft'
+
+# -----PRINT OPTIONS MENU CONSTANTS-----
+
 
 #------COMMAND CONSTANTS-----------
 COMMAND = 'Enter a menu number: '
