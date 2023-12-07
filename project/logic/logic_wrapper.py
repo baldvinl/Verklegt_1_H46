@@ -28,14 +28,6 @@ class Logic_Wrapper:
         """Receives voyage objects and forwards to data wrapper"""
         return self.voyage_logic.register_voyage(voyage)
 
-    #def register_pilot(self, pilot):
-        """Receives pilot object and forwards to data wrapper"""
-        return self.crew_logic.register_pilot(pilot)
-    
-    #def register_flight_attendant(self, flight_attendant):
-        """Receives flight attendant object and forwards to data wrapper"""
-        return self.crew_logic.register_flight_attendant(flight_attendant)
-
     # REGISTER B
     def register_aircraft(self, aircraft):
         """Receives aircraft objects and forwards to data wrapper"""
