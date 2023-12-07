@@ -16,7 +16,7 @@ class VoyageMenu_ui():
         current_menu = "Voyage menu"
 
         MainMenu_ui.clear_terminal()
-        MainMenu_ui.menu_header(current_menu)
+        MainMenu_ui.main_header(current_menu)
 
         print(f"1. Register a new voyage")
         print(f"2. Print voyages")
@@ -32,7 +32,7 @@ class VoyageMenu_ui():
         current_menu = "Register a new voyage"
 
         MainMenu_ui.clear_terminal()
-        MainMenu_ui.menu_header(current_menu)
+        MainMenu_ui.main_header(current_menu)
 
         destination_iata = input("Enter destination IATA code: ")
         voyage_date = input("Enter voyage date: ")
