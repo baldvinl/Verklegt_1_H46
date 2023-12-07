@@ -1,6 +1,6 @@
 import csv
 
-from project.model.destination import Destination
+from model.destination import Destination
 
 class Destination_Data:
     def __init__(self):

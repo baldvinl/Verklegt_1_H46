@@ -25,7 +25,7 @@ class DestinationMenu_ui():
 
         print(f"1. Register a new destination")
         print(f"2. Destination info")
-        print(f"3. Edit destination")
+        #print(f"3. Edit destination ICE information")
 
         print(f"[M]enu  [B]ack  [Q]uit")
     
@@ -67,7 +67,7 @@ class DestinationMenu_ui():
             print(loc_info.airport, loc_info.country, loc_info.distance, loc_info.flight_duration, loc_info.ice_name, loc_info.ice_number, end= " " "\n")
         print(f"[M]enu  [B]ack  [Q]uit")
         
-        command = input("Please enter menu number: ")
+        command = input("Please enter command: ")
         command = command.lower()
 
         return command
