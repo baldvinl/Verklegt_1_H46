@@ -52,6 +52,8 @@ class CrewMenu_ui():
             captain = captain.lower()
             if captain == "y":
                 supervisor = True
+            else:
+                supervisor = False
             address = input("Enter address: ")
             area_code = input("Enter area code: ")
             email = input("Enter email: ")
@@ -92,7 +94,7 @@ class CrewMenu_ui():
             if command == '1':
                 crew_entry = self.register_crew()
                 wrapper = Logic_Wrapper
-                wrapper.register_crew(crew_entry)
+                wrapper.register_crew(wrapper, crew_entry)
                 print(crew_entry)
             if command == '2':
                 pass
