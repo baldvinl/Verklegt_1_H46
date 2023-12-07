@@ -19,19 +19,25 @@ class Crew_Logic:
         return self.data_wrapper.change_crew_info(crew)
 
     def display_all_crew(self):
+        """Forwards request to data wrapper"""
         return self.data_wrapper.display_all_crew()
 
     def get_crew_info(self, ssn):
+        """Receives social security number of crew member and forwards to data wrapper"""
         return self.data_wrapper.get_crew_info(ssn)
 
     def display_not_working(self, date):
+        """Receives date and forwards to data wrapper"""
         return self.data_wrapper.display_not_working(date)
 
     def display_working(self, date):
+        """Receives date and forwards to data wrapper"""
         return self.data_wrapper.display_working(date)
     
     def display_pilots(self):
+        """Forwards request to data wrapper"""
         return self.data_wrapper.display_pilots()
     
     def display_flight_attendants(self):
+        """Forwards requests to data wrapper"""
         return self.data_wrapper.display_flight_attendants()

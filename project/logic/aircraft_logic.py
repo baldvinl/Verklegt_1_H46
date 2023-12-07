@@ -6,13 +6,17 @@ class Aircraft_Logic:
         self.data_wrapper = data_connection
 
     def register_aircraft(self, aircraft):
+        """Receives aircraft object and forwards to data wrapper"""
         return self.data_wrapper.register_aircraft(aircraft)
 
     def display_aircraft_info(self, name):
+        """receives aircraft name and forwards to data wrapper"""
         return self.data_wrapper.display_aircraft_info(name)
 
     def display_aircraft_status(self, name):
+        """Receives aircraft name and forwards to data wrapper"""
         return self.data_wrapper.display_aircraft_status(name)
 
     def display_all_aircrafts(self, date, time):
+        """Receives date and time and forwards to data wrapper"""
         return self.data_wrapper.display_aircraft_info(date, time)
