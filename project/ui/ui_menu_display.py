@@ -10,16 +10,6 @@ EIGHT = '8'
 NINE = '9'
 TEN = '10'
 
-QUIT_MENU = '[M]ENU  [Q]UIT'
-QUIT_MENU_BACK = '[M]ENU  [BACK]  [Q]UIT'
-
-EMPLOYEE_AVAILABILITY = 'Employee availability'
-LIST_EMPLOYEE = 'List of employees'
-PRINT_PILOT_LIST
-PRINT_FLIGHT_ATTENDANT_LIST
-AVAILABLE_EMPLOYEES_GIVEN_DAY
-LIST_DESTINATION
-AIRCRAFT_STATUS = 'Aircraft status'
 
 UNDERSCORE = '_'
 DASH = '-' * 68
@@ -30,36 +20,54 @@ SPACE = ' '
 PIPE = '|'
 EQUAL_SIGN = '=' * 68
 
+# -----MULTIPLE MENU OPTIONS-----
+QUIT_MENU = '[M]ENU  [Q]UIT'
+QUIT_MENU_BACK = '[M]ENU  [BACK]  [Q]UIT'
+
+CREW_MEMBER_AVAILABILITY = 'Crew member availability'
+CREW_MEMBER_LIST = 'List of crew'
+PILOT_LIST = 'List of pilots'
+FLIGHT_ATTENDANT_LIST = 'List of flight attendants'
+AVAILABLE_CREW_GIVEN_DAY = 'Available crew for a given day'
+DESTINATION_LIST = 'List of destinations'
+DAY_SCHEDULE = 'Crew day schedule'
+WEEK_SCHEDULE = 'Crew member week schedule'
+AIRCRAFT_STATUS = 'Aircraft status'
+PRINT_VOYAGES_ONE_DAY = 'Print voyages for 1 day'
+PRINT_VOYAGES_ONE_WEEK = 'Print voyages for 1 week'
+
 #------MAIN MENU CONSTANTS------------
 MAIN_MENU = 'Main menu'
-EMPLOYEES = 'Employees'
+CREW = 'Crew'
 DESTINATION = 'Destination'
 VOYAGES = 'Voyages'
 AIRCRAFT = 'Aircraft'
 PRINT_OPTIONS = 'Print options'
-PRUFA = 'Shift schedule for employee within a specific week'
+PRUFA = 'Shift schedule for crew member within a specific week'
 
-#------EMPLOYEE MENU CONSTANTS---------
-EMPLOYEE_MENU = 'Employees'
+#------CREW_MEMBER MENU CONSTANTS---------
+CREW_MEMBER_MENU = 'Crew'
+REGISTER_CAPTAIN = 'Register captain'
 REGISTER_PILOT = 'Register pilot'
+REGISTER_HEAD_FLIGHT_ATTENDANT = 'Register head flight attendant'
 REGISTER_FLIGHT_ATTENDANT = 'Register flight attendant'
-EMPLOYEE_RECORDS = 'Employee records'
+CREW_MEMBER_RECORDS = 'Crew member records'
 
 #-------DESTINATION MENU CONSTANTS----------
+DESTINATION_MENU = 'Destinations'
 REGISTER_DESTINATION = 'Register destination'
 DESTINATION_INFO = 'Destination info'
 EDIT_DESTINATION = 'Edit destination'
 
 #------VOYAGE MENU CONTANTS-----------
+VOYAGE_MENU = 'Voyages'
 REGISTER_VOYAGE = 'Register voyage'
-PRINT_VOYAGE = 'Print voyage'
 ADD_AIRCRAFT_VOYAGE = 'Add aircraft'
 ADD_CREW_VOYAGE = 'Add crew'
 
 # -----AIRCRAFT MENU CONSTANTS-----
+AIRCRAFT_MENU = 'Aircrafts'
 REGISTER_AIRCRAFT = 'Register aircraft'
-
-# -----PRINT OPTIONS MENU CONSTANTS-----
 
 
 #------COMMAND CONSTANTS-----------
@@ -104,43 +112,51 @@ class Main_Menu:
     def __init__(self):
         return None
     def get_main_menu(self):
+        extra_lines = 7
         print(f'{HYPHEN:>15}{EQUAL_SIGN.center(67)}{HYPHEN}')
         print(f'{HYPHEN:>15}{HYPHEN:>69}')
         print(f'{HYPHEN:>15}{MAIN_MENU:>18}{HYPHEN:>51}')
         print(f'{HYPHEN:>15}{DASH.center(67)}{HYPHEN}')
-        print(f'{HYPHEN:>15}{ONE:>10}{EMPLOYEES:>11}{HYPHEN:>48}')
+        print(f'{HYPHEN:>15}{ONE:>10}{CREW:>11}{HYPHEN:>48}')
         print(f'{HYPHEN:>15}{TWO:>10}{DESTINATION:>13}{HYPHEN:>46}')
         print(f'{HYPHEN:>15}{THREE:>10}{VOYAGES:>9}{HYPHEN:>50}')
         print(f'{HYPHEN:>15}{FOUR:>10}{AIRCRAFT:>10}{HYPHEN:>49}')
         print(f'{HYPHEN:>15}{FIVE:>10}{PRINT_OPTIONS:>15}{HYPHEN:>44}')
-        print(f'{HYPHEN:>15}{HYPHEN:>69}')
-        print(f'{HYPHEN:>15}{HYPHEN:>69}')
-        print(f'{HYPHEN:>15}{HYPHEN:>69}')
-        print(f'{HYPHEN:>15}{HYPHEN:>69}')
-        print(f'{HYPHEN:>15}{HYPHEN:>69}')
-        print(f'{HYPHEN:>15}{HYPHEN:>69}')
-        print(f'{HYPHEN:>15}{HYPHEN:>69}')
+        for _ in range(extra_lines):    
+            print(f'{HYPHEN:>15}{HYPHEN:>69}')
 
 
-class Employee_Menu:
+class Crew_Member_Menu:
     def __init__(self):
         return None
-    print('1 Register employees')
-    # print('2 Employee records (get employ record, edit record)')
-    # print('3 Employee availability3')
-    # print('Employee lists (three lists(all, pilots and flight attentant))')
-    def register_employees(self):
+    def get_crew_member_menu(self):
+        extra_lines = 5
+        print(f'{HYPHEN:>15}{EQUAL_SIGN.center(67)}{HYPHEN}')
+        print(f'{HYPHEN:>15}{HYPHEN:>69}')
+        print(f'{HYPHEN:>15}{CREW_MEMBER_MENU:>13}{HYPHEN:>56}')
+        print(f'{HYPHEN:>15}{DASH.center(67)}{HYPHEN}')
+        print(f'{HYPHEN:>15}{ONE:>10}{REGISTER_PILOT:>16}{HYPHEN:>43}')
+        print(f'{HYPHEN:>15}{TWO:>10}{REGISTER_CAPTAIN:>18}{HYPHEN:>41}')
+        print(f'{HYPHEN:>15}{THREE:>10}{REGISTER_HEAD_FLIGHT_ATTENDANT:>32}{HYPHEN:>27}')
+        print(f'{HYPHEN:>15}{FOUR:>10}{REGISTER_FLIGHT_ATTENDANT:>27}{HYPHEN:>32}')
+        print(f'{HYPHEN:>15}{FIVE:>10}{CREW_MEMBER_RECORDS:>21}{HYPHEN:>38}')
+        print(f'{HYPHEN:>15}{SIX:>10}{CREW_MEMBER_AVAILABILITY:>26}{HYPHEN:>33}')
+        print(f'{HYPHEN:>15}{SEVEN:>10}{CREW_MEMBER_LIST:>14}{HYPHEN:>45}')
+        for _ in range(extra_lines):
+            print(f'{HYPHEN:>15}{HYPHEN:>69}')
+    
+    def register_crew(self):
         pass
-    def get_employees_record(self):
+    def get_crew_record(self):
         pass
-    def edit_employees_records(self):
+    def edit_crew_records(self):
         pass
-    def check_employees_availability(self):
-        print('Available employees for given day')
-        # print('Shift schedule for employees on specific day')
-        # print('Shift schedule for employee within a specific week')
-    def get_all_employees_list(self):
-        print('All employee list')
+    def check_crew_availability(self):
+        print('Available crew for given day')
+        # print('Shift schedule for crew on specific day')
+        # print('Shift schedule for crew member within a specific week')
+    def get_all_crew_list(self):
+        print('All crew member list')
     def get_pilot_list(self):
         print('Pilot list')
     def get_flight_attentant_list(self):
@@ -164,7 +180,7 @@ class Voyages_Menu:
     def print_voyages(self):
         print('Print for 1 day')
         # print('Print for 1 week')
-    # call a function employees avalability
+    # call a function crew avalability
     def add_aircraft(self):
         print('Add aircraft')
     def add_crew(self):
@@ -175,13 +191,13 @@ class Aircraft_Menu:
     # print('Aircraft status')
 
 class Print_Menu:
-    print('Print employee list')
+    print('Print crew member list')
     # print('Print pilot list')
     # print('Print flight attendant list')
-    # print('Available employees for given day')
+    # print('Available crew for given day')
     # print('List of destinations')
-    # print('Shift schedule for employees on specific day')
-    # print('Shift schedule for employee within a specific week')
+    # print('Shift schedule for crew on specific day')
+    # print('Shift schedule for crew member within a specific week')
     # print('Aircraft status')
     # print('Print voyages for 1 day')
     # print('Print voyages for 1 week')

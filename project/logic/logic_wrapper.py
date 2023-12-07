@@ -22,7 +22,7 @@ class Logic_Wrapper:
         return self.destination_logic.register_destination(destination)
 
     def register_voyage(self, voyage): 
-        # When voyage is registered, choose aircraft first then employees
+        # When voyage is registered, choose aircraft first then crew
         # When voyage is registered shall prevent registering a pilot that doesn't have a type rating for an aircraft for that aircraft
         # Voyage has to consist of two flights and each flight has to be registered with different flight number
         """Receives voyage objects and forwards to data wrapper"""
@@ -60,7 +60,7 @@ class Logic_Wrapper:
     # DISPLAY A
 
     def get_crew_info(self, ssn):
-        """Receives social security number of employee and forwards to data wrapper"""
+        """Receives social security number of crew member and forwards to data wrapper"""
         return self.crew_logic.get_crew_info(ssn)
 
     def display_all_crew(self):
@@ -80,7 +80,7 @@ class Logic_Wrapper:
         return self.voyage_logic.display_all_voyages_week(date)
     
     def get_voyage_schedule(self, ssn, date):
-        """Receives employees social security number and date selected and forwards to data wrapper"""
+        """Receives crew social security number and date selected and forwards to data wrapper"""
         return self.voyage_logic.get_voyage_schedule(ssn, date)
     
     def display_not_working(self, date):
