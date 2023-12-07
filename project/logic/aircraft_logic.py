@@ -1,7 +1,7 @@
-from data.data_wrapper import data_wrapper
-from model.aircraft import aircraft
+from data.data_wrapper import Data_Wrapper
+from model.aircraft import Aircraft
 
-class Aircraft_logic:
+class Aircraft_Logic:
     def __init__(self, data_connection):
         self.data_wrapper = data_connection
 
