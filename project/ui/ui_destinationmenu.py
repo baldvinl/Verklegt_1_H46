@@ -48,7 +48,7 @@ class DestinationMenu_ui():
         MainMenu_ui.clear_terminal()
         MainMenu_ui.menu_header(current_menu)
         
-        output = Data_Wrapper.display_destination()
+        output = Data_Wrapper.display_destinations()
 
         print(output)
 
