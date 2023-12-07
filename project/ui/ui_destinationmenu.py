@@ -53,12 +53,12 @@ class DestinationMenu_ui():
         MainMenu_ui.main_header(current_menu)
         
         wrapper = Logic_Wrapper()
-        data = wrapper.display_destinations()
+        info = wrapper.display_destinations()
 
         loc_info = Destination()
 
         print(f"IATA, Country, Distance, Flight duration, ICE Name, ICE Number")
-        for elem in data:
+        for elem in info:
             loc_info = elem
             print(loc_info.airport, loc_info.country, loc_info.distance, loc_info.flight_duration, loc_info.ice_name, loc_info.ice_number, end= " " "\n")
         print(f"[M]enu  [B]ack  [Q]uit")
