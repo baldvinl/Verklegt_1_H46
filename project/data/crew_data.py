@@ -1,6 +1,6 @@
 import csv
-from project.model.flight_attendant import Flight_Attendant
-from project.model.pilot import Pilot
+from model.flight_attendant import Flight_Attendant
+from model.pilot import Pilot
 
 class Crew_Data:
     def __init__(self):
@@ -70,7 +70,46 @@ class Crew_Data:
                 if row["ssn"] == ssn:
                     return Pilot(row["ssn"], row["name"], row["job_title"], row["address"], row["area_code"], 
                                  row["email"], row["mobile_no"], row["phone_no"], row["type_rating"])
-                
-        def change_crew_member_info(self, ssn):
-            pass
-        
+                    
+                    
+    def change_pilot_info(self, ssn, changes): #changes is a list of tuples (header_name, changed_info)
+        """Change attribute information for a pilot"""
+
+        with open(self.file_pilots, 'r+', newline='', encoding="utf-8") as csvfile:
+            reader = csv.DictReader(csvfile)
+
+            rows = []
+            for row in reader:
+                if row["ssn"] == ssn:
+                    for elem in changes:
+                        if row[elem[0]]:
+                            row[elem[0]] = elem[1]
+                rows.append(row)
+
+            csvfile.seek(0)
+            fieldnames = ["ssn", "name", "job_title", "address", "area_code", "email, mobile_no, phone_no, type_rating"]
+            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+            writer.writeheader()
+            writer.writerows(rows)
+            csvfile.truncate()
+
+    def change_flight_attendant_info(self, ssn, changes): #changes is a list of tuples (header_name, changed_info)
+        """Change attribute information for a flight attendant"""
+
+        with open(self.file_flight_attendants, 'r+', newline='', encoding="utf-8") as csvfile:
+            reader = csv.DictReader(csvfile)
+
+            rows = []
+            for row in reader:
+                if row["ssn"] == ssn:
+                    for elem in changes:
+                        if row[elem[0]]:
+                            row[elem[0]] = elem[1]
+                rows.append(row)
+
+            csvfile.seek(0)
+            fieldnames = ["ssn", "name", "job_title", "address", "area_code", "email, mobile_no, phone_no"]
+            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+            writer.writeheader()
+            writer.writerows(rows)
+            csvfile.truncate()

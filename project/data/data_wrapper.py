@@ -44,9 +44,9 @@ class Data_Wrapper:
     def display_crew_member_info(self, ssn):
         return self.crew_data.display_crew_member_info(ssn)
     
-    def change_crew_member_info(self, ssn):
-        return self.crew_data.change_crew_member_info(ssn)
-    
+    def change_crew_member_info(self, ssn, changes):
+        return self.crew_data.change_crew_member_info(ssn, changes)
+
 
 #Voyage functions
 
