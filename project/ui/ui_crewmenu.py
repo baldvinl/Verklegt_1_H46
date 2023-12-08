@@ -40,18 +40,17 @@ class CrewMenu_ui():
         MainMenu_ui.clear_terminal()
         MainMenu_ui.main_header(current_menu)  
 
-        print(f"1. Register pilot")
-        print(f"2. Register flight attendant.")   
+        print(f"1. Register Captain")
+        print(f"2. Register First Officer")
+        print(f"3. Register Head Flight Attendant.")
+        print(f"4. Register Flight attendant.")   
 
         command = input("Please enter command: ")
 
         if command == "1":
             ssn = input("Enter SSN: ")
             crew_name = input("Enter name: ")
-            captain = input("Captain? (Y/N) ")
-            captain = captain.lower()
-            if captain == "y":
-                supervisor = True
+            job_title = "Captain"
             address = input("Enter address: ")
             area_code = input("Enter area code: ")
             email = input("Enter email: ")
@@ -59,22 +58,44 @@ class CrewMenu_ui():
             phone_no = input("Enter home phone number: ")
             type_rating = input("Enter type rating: ")
 
-            return Pilot(ssn, crew_name, supervisor, address, area_code, email, mobile_no, phone_no, type_rating)
+            return Pilot(ssn, crew_name, job_title, address, area_code, email, mobile_no, phone_no, type_rating)
 
         if command == "2":
             ssn = input("Enter SSN: ")
             crew_name = input("Enter name: ")
-            head = input("Head flight attendant? (Y/N) ")
-            head = head.lower()
-            if head == "y":
-                supervisor = True
+            job_title = "First Officer"
+            address = input("Enter address: ")
+            area_code = input("Enter area code: ")
+            email = input("Enter email: ")
+            mobile_no = input("Enter mobile phone number: ")
+            phone_no = input("Enter home phone number: ")
+            type_rating = input("Enter type rating: ")
+
+            return Pilot(ssn, crew_name, job_title, address, area_code, email, mobile_no, phone_no, type_rating)
+        
+        if command == "3":    
+            ssn = input("Enter SSN: ")
+            crew_name = input("Enter name: ")
+            job_title = "Head Flight Attendant"
             address = input("Enter address: ")
             area_code = input("Enter area code: ")
             email = input("Enter email: ")
             mobile_no = input("Enter mobile phone number: ")
             phone_no = input("Enter home phone number: ")
 
-            return Flight_Attendant(ssn, crew_name, supervisor, address, area_code, email, mobile_no, phone_no)
+            return Flight_Attendant(ssn, crew_name, job_title, address, area_code, email, mobile_no, phone_no)
+
+        if command == "4":    
+            ssn = input("Enter SSN: ")
+            crew_name = input("Enter name: ")
+            job_title = "Flight Attendant"
+            address = input("Enter address: ")
+            area_code = input("Enter area code: ")
+            email = input("Enter email: ")
+            mobile_no = input("Enter mobile phone number: ")
+            phone_no = input("Enter home phone number: ")
+
+            return Flight_Attendant(ssn, crew_name, job_title, address, area_code, email, mobile_no, phone_no)
 
     def input(self):
         '''Function that asks for input in crew menu.'''
@@ -92,7 +113,7 @@ class CrewMenu_ui():
             if command == '1':
                 crew_entry = self.register_crew()
                 wrapper = Logic_Wrapper
-                wrapper.register_crew(crew_entry)
+                wrapper.register_crew(wrapper, crew_entry)
                 print(crew_entry)
             if command == '2':
                 pass
