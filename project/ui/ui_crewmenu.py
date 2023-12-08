@@ -1,11 +1,11 @@
 import os
-from ui.ui_mainmenu import *
+from project.ui.ui_mainmenu import MainMenu_ui
 
-from logic.logic_wrapper import Logic_Wrapper
+from project.logic.logic_wrapper import Logic_Wrapper
 
-from model.crew import Crew
-from model.pilot import Pilot
-from model.flight_attendant import Flight_Attendant
+from project.model.crew import Crew
+from project.model.pilot import Pilot
+from project.model.flight_attendant import Flight_Attendant
 
 QUIT = "[Q]uit"
 
@@ -95,7 +95,36 @@ class CrewMenu_ui():
             mobile_no = input("Enter mobile phone number: ")
             phone_no = input("Enter home phone number: ")
 
-            return Flight_Attendant(ssn, crew_name, job_title, address, area_code, email, mobile_no, phone_no)
+       return Flight_Attendant(ssn, crew_name, job_title, address, area_code, email, mobile_no, phone_no)
+
+
+    def crew_information(self):
+        '''Function that displays information on single crew member.'''
+
+        current_menu = "Crew record"
+
+        MainMenu_ui.clear_terminal()
+        MainMenu_ui.main_header(current_menu)
+
+        wrapper = Logic_Wrapper()
+        info = wrapper.display_all_crew()
+
+        loc_info = Crew()
+
+        for elem in info:
+            loc_info = elem
+            print(f'SSN: {loc_info.ssn}')
+            print(f'Name: {loc_info.name}')
+            print(f'Job title: {loc_info.job_title}')
+            print(f'Address: {loc_info.address}')
+            print(f'Area code: {loc_info.area_code}')
+            print(f'Email: {loc_info.email}')
+            print(f'Mobile number: {loc_info.molbile_no}')
+            print(f'Home phone:{loc_info.phone_no}')
+
+            command = input('Please enter a command: ').lower()
+
+            return command
 
     def input(self):
         '''Function that asks for input in crew menu.'''
