@@ -22,12 +22,12 @@ class Voyage_Logic:
         return self.data_wrapper.get_voyage_status(destination, date)
 
     def display_voyages_day(self, date):
-        """ """
+        """Receive list from data wrapper, sorts by time and returns"""
         # sort by time ascending
         return self.data_wrapper.display_voyages_day(date)
 
     def display_voyages_week(self, date):
-        """ """
+        """"""
         # sort by date and time?
         return self.data_wrapper.display_voyages_day(date)
 

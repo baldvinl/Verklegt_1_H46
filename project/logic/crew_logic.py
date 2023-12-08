@@ -17,8 +17,14 @@ class Crew_Logic:
         else:
             return self.data_wrapper.register_flight_attendant(crew)
 
-    def change_crew_info(self, crew):
-        return self.data_wrapper.change_crew_info(crew)
+    def change_crew_info(self, ssn, changes):
+        """ """
+        crew_member = self.data_wrapper.get_crew_info(ssn)
+        #for element in changes:
+
+        # go through list of changes and change attributes
+        # check if pilot or not and return to data wrapper
+        pass
 
     def display_all_crew(self):
         """Receives lists of pilots and flight attendants 
