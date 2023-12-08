@@ -130,8 +130,12 @@ ___________________________________________________________
 Meeting held today and gone over uncertainties. 
 
 07.12.2023
-________________________________________________________
+___________________________________________________________________
 Very good progress made today. A lot of uncertainties ironed out.
+
+08.12.2023
+___________________________________________________________________
+Plan for today on Data is to try and finish most functions and make sure they are working correctly.
 
 TODO_LIST follows through the days!
 
@@ -172,7 +176,7 @@ List of what has been implamented and is working:
 destination_data: Create destiantion, display all destiantion, change ICE name or number.
 
 List of what has been done and not checked if it is working:
-Crew_Data: register_pilot, register_flight_attendant, display_pilots, display_flight_attendants, display_crew_member_info
+Crew_Data: register_pilot, register_flight_attendant, display_pilots, display_flight_attendants, display_crew_member_info, change_crew_member_info
 Voyage_Data: create_voyage
 Aircraft_Data: create_aircraft
 
