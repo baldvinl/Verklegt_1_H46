@@ -1,4 +1,4 @@
-from data.data_wrapper import Data_Wrapper
+from data.destination_data import Destination_Data
 from model.destination import Destination
 
 class Destination_Logic:
@@ -8,8 +8,8 @@ class Destination_Logic:
     def register_destination(self, destination):
         return self.data_wrapper.register_destination(destination)
 
-    def display_destination(self, iata):
-        return self.data_wrapper.display_destination(iata)
+    def display_destinations(self):
+        return self.data_wrapper.display_destinations()
 
     def change_ice_name(self, iata, name):
         return self.data_wrapper.change_ice_name(iata, name)

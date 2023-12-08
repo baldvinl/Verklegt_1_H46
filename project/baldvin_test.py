@@ -33,9 +33,7 @@ while run_program:
             print("Print options")
             break
         if command == "q":
-            print(f"{QUIT_MESSAGE}")
-            run_program = False
-            break
+            MainMenu_ui.quit_program()
         if command == "b":
             break
         

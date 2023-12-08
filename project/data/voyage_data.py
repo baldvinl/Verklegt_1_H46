@@ -15,4 +15,10 @@ class Voyage_Data:
             writer.writerow({"destination": voyage.destination, "date": voyage.date, "time_depart_iceland": voyage.time_depart_iceland, 
                              "time_depart_destination": voyage.time_depart_destination})
             
-    
+    def register_crew_to_voyage(self, some_parameters):
+        """Adds all crew members needed to a voyage"""
+
+
+    def 
+
+        
