@@ -21,13 +21,15 @@ class Voyage_Logic:
         """Receives destination and data and forwards to data wrapper"""
         return self.data_wrapper.get_voyage_status(destination, date)
 
-    def display_all_voyages_day(self, date):
-        """Receives date and forwards to data wrapper"""
-        return self.data_wrapper.display_all_voyages_day(date)
+    def display_voyages_day(self, date):
+        """ """
+        # sort by time ascending
+        return self.data_wrapper.display_voyages_day(date)
 
-    def display_all_voyages_week(self, date):
-        """Receives date and forwards to data wrapper"""
-        return self.data_wrapper.display_all_voyages_day(date)
+    def display_voyages_week(self, date):
+        """ """
+        # sort by date and time?
+        return self.data_wrapper.display_voyages_day(date)
 
     def get_voyage_schedule(self, ssn, date):
         """Receives social security number and date and forwards to data wrapper"""
