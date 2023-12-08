@@ -71,13 +71,13 @@ class Logic_Wrapper:
         """Forwards request to data wrapper"""
         return self.destination_logic.display_destinations()
     
-    def display_all_voyages_day(self, date):
+    def display_voyages_day(self, date):
         """Receives selected date and forwards it to data wrapper"""
-        return self.voyage_logic.display_all_voyages_day(date)
+        return self.voyage_logic.display_voyages_day(date)
     
-    def display_all_voyages_week(self, date):
+    def display_voyages_week(self, date):
         """Receives selected week and forwards it to data wrapper"""
-        return self.voyage_logic.display_all_voyages_week(date)
+        return self.voyage_logic.display_voyages_week(date)
     
     def get_voyage_schedule(self, ssn, date):
         """Receives employees social security number and date selected and forwards to data wrapper"""
