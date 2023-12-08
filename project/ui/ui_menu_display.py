@@ -69,7 +69,6 @@ ADD_CREW_VOYAGE = 'Add crew'
 AIRCRAFT_MENU = 'Aircrafts'
 REGISTER_AIRCRAFT = 'Register aircraft'
 
-
 #------COMMAND CONSTANTS-----------
 COMMAND = 'Enter a menu number: '
 
@@ -117,26 +116,26 @@ class Main_Menu:
         print(f'{HYPHEN:>15}{HYPHEN:>69}')
         print(f'{HYPHEN:>15}{MAIN_MENU:>18}{HYPHEN:>51}')
         print(f'{HYPHEN:>15}{DASH.center(67)}{HYPHEN}')
-        print(f'{HYPHEN:>15}{ONE:>10}{CREW:>11}{HYPHEN:>48}')
+        print(f'{HYPHEN:>15}{ONE:>10}{CREW:>6}{HYPHEN:>53}')
         print(f'{HYPHEN:>15}{TWO:>10}{DESTINATION:>13}{HYPHEN:>46}')
         print(f'{HYPHEN:>15}{THREE:>10}{VOYAGES:>9}{HYPHEN:>50}')
         print(f'{HYPHEN:>15}{FOUR:>10}{AIRCRAFT:>10}{HYPHEN:>49}')
         print(f'{HYPHEN:>15}{FIVE:>10}{PRINT_OPTIONS:>15}{HYPHEN:>44}')
-        for _ in range(extra_lines):    
+        for _ in range(extra_lines):
             print(f'{HYPHEN:>15}{HYPHEN:>69}')
 
 
-class Crew_Member_Menu:
+class Crew_Menu:
     def __init__(self):
         return None
-    def get_crew_member_menu(self):
+    def get_crew_menu(self):
         extra_lines = 5
         print(f'{HYPHEN:>15}{EQUAL_SIGN.center(67)}{HYPHEN}')
         print(f'{HYPHEN:>15}{HYPHEN:>69}')
         print(f'{HYPHEN:>15}{CREW_MEMBER_MENU:>13}{HYPHEN:>56}')
         print(f'{HYPHEN:>15}{DASH.center(67)}{HYPHEN}')
-        print(f'{HYPHEN:>15}{ONE:>10}{REGISTER_PILOT:>16}{HYPHEN:>43}')
-        print(f'{HYPHEN:>15}{TWO:>10}{REGISTER_CAPTAIN:>18}{HYPHEN:>41}')
+        print(f'{HYPHEN:>15}{ONE:>10}{REGISTER_CAPTAIN:>18}{HYPHEN:>41}')
+        print(f'{HYPHEN:>15}{TWO:>10}{REGISTER_PILOT:>16}{HYPHEN:>43}')
         print(f'{HYPHEN:>15}{THREE:>10}{REGISTER_HEAD_FLIGHT_ATTENDANT:>32}{HYPHEN:>27}')
         print(f'{HYPHEN:>15}{FOUR:>10}{REGISTER_FLIGHT_ATTENDANT:>27}{HYPHEN:>32}')
         print(f'{HYPHEN:>15}{FIVE:>10}{CREW_MEMBER_RECORDS:>21}{HYPHEN:>38}')
@@ -144,19 +143,18 @@ class Crew_Member_Menu:
         print(f'{HYPHEN:>15}{SEVEN:>10}{CREW_MEMBER_LIST:>14}{HYPHEN:>45}')
         for _ in range(extra_lines):
             print(f'{HYPHEN:>15}{HYPHEN:>69}')
-    
-    def register_crew(self):
+    def register_employees(self):
         pass
-    def get_crew_record(self):
+    def get_employees_record(self):
         pass
-    def edit_crew_records(self):
+    def edit_employees_records(self):
         pass
-    def check_crew_availability(self):
-        print('Available crew for given day')
-        # print('Shift schedule for crew on specific day')
-        # print('Shift schedule for crew member within a specific week')
-    def get_all_crew_list(self):
-        print('All crew member list')
+    def check_employees_availability(self):
+        print('Available employees for given day')
+        # print('Shift schedule for employees on specific day')
+        # print('Shift schedule for employee within a specific week')
+    def get_all_employees_list(self):
+        print('All employee list')
     def get_pilot_list(self):
         print('Pilot list')
     def get_flight_attentant_list(self):
@@ -164,9 +162,20 @@ class Crew_Member_Menu:
 
 
 class Destination_Menu:
-    print('Register a new destination')
-    # print('Destination info')
-    # print('Edit destination')
+    def __init__(self):
+        return None
+    def get_destination_menu(self):
+        extra_lines = 9
+        print(f'{HYPHEN:>15}{EQUAL_SIGN.center(67)}{HYPHEN}')
+        print(f'{HYPHEN:>15}{HYPHEN:>69}')
+        print(f'{HYPHEN:>15}{DESTINATION_MENU:>21}{HYPHEN:>48}')
+        print(f'{HYPHEN:>15}{DASH.center(67)}{HYPHEN}')
+        print(f'{HYPHEN:>15}{ONE:>10}{REGISTER_DESTINATION:>22}{HYPHEN:>37}')
+        print(f'{HYPHEN:>15}{TWO:>10}{DESTINATION_INFO:>18}{HYPHEN:>41}')
+        print(f'{HYPHEN:>15}{THREE:>10}{EDIT_DESTINATION:>18}{HYPHEN:>41}')
+        for _ in range(extra_lines):
+            print(f'{HYPHEN:>15}{HYPHEN:>69}')
+
     def register_new_destination(self):
         pass
     def destination_info(self):
@@ -175,32 +184,68 @@ class Destination_Menu:
         pass
 
 class Voyages_Menu:
+    def __init__(self):
+        return None
+    def get_voyage_menu(self):
+        extra_lines = 6
+        print(f'{HYPHEN:>15}{EQUAL_SIGN.center(67)}{HYPHEN}')
+        print(f'{HYPHEN:>15}{HYPHEN:>69}')
+        print(f'{HYPHEN:>15}{VOYAGE_MENU:>16}{HYPHEN:>53}')
+        print(f'{HYPHEN:>15}{DASH.center(67)}{HYPHEN}')
+        print(f'{HYPHEN:>15}{ONE:>10}{REGISTER_VOYAGE:>17}{HYPHEN:>42}')
+        print(f'{HYPHEN:>15}{TWO:>10}{PRINT_VOYAGES_ONE_DAY:>25}{HYPHEN:>34}')
+        print(f'{HYPHEN:>15}{THREE:>10}{PRINT_VOYAGES_ONE_WEEK:>26}{HYPHEN:>33}')
+        print(f'{HYPHEN:>15}{FOUR:>10}{CREW_MEMBER_AVAILABILITY:>26}{HYPHEN:>33}')
+        print(f'{HYPHEN:>15}{FIVE:>10}{ADD_AIRCRAFT_VOYAGE:>14}{HYPHEN:>45}')
+        print(f'{HYPHEN:>15}{SIX:>10}{ADD_CREW_VOYAGE:>10}{HYPHEN:>49}')
+        for _ in range(extra_lines):
+            print(f'{HYPHEN:>15}{HYPHEN:>69}')
     def register_new_voyage(self):
         print('Register a new voyage')
     def print_voyages(self):
         print('Print for 1 day')
         # print('Print for 1 week')
-    # call a function crew avalability
+    # call a function employees avalability
     def add_aircraft(self):
         print('Add aircraft')
     def add_crew(self):
         print('Add crew')
 
 class Aircraft_Menu:
-    print('Register new aircraft')
-    # print('Aircraft status')
+    def __init__(self):
+        return None
+    def get_aircraft_menu(self):
+        extra_lines = 10
+        print(f'{HYPHEN:>15}{EQUAL_SIGN.center(67)}{HYPHEN}')
+        print(f'{HYPHEN:>15}{HYPHEN:>69}')
+        print(f'{HYPHEN:>15}{AIRCRAFT_MENU:>18}{HYPHEN:>51}')
+        print(f'{HYPHEN:>15}{DASH.center(67)}{HYPHEN}')
+        print(f'{HYPHEN:>15}{ONE:>10}{REGISTER_AIRCRAFT:>19}{HYPHEN:>40}')
+        print(f'{HYPHEN:>15}{TWO:>10}{AIRCRAFT_STATUS:>17}{HYPHEN:>42}')
+        for _ in range(extra_lines):
+            print(f'{HYPHEN:>15}{HYPHEN:>69}')
 
 class Print_Menu:
-    print('Print crew member list')
-    # print('Print pilot list')
-    # print('Print flight attendant list')
-    # print('Available crew for given day')
-    # print('List of destinations')
-    # print('Shift schedule for crew on specific day')
-    # print('Shift schedule for crew member within a specific week')
-    # print('Aircraft status')
-    # print('Print voyages for 1 day')
-    # print('Print voyages for 1 week')
+    def __init__(self):
+        return None
+    def get_print_menu(self):
+        extra_lines = 2
+        print(f'{HYPHEN:>15}{EQUAL_SIGN.center(67)}{HYPHEN}')
+        print(f'{HYPHEN:>15}{HYPHEN:>69}')
+        print(f'{HYPHEN:>15}{PRINT_OPTIONS:>22}{HYPHEN:>47}')
+        print(f'{HYPHEN:>15}{DASH.center(67)}{HYPHEN}')
+        print(f'{HYPHEN:>15}{ONE:>10}{CREW_MEMBER_LIST:>14}{HYPHEN:>45}')
+        print(f'{HYPHEN:>15}{TWO:>10}{PILOT_LIST:>16}{HYPHEN:>43}')
+        print(f'{HYPHEN:>15}{THREE:>10}{FLIGHT_ATTENDANT_LIST:>27}{HYPHEN:>32}')
+        print(f'{HYPHEN:>15}{FOUR:>10}{AVAILABLE_CREW_GIVEN_DAY:>32}{HYPHEN:>27}')
+        print(f'{HYPHEN:>15}{FIVE:>10}{DESTINATION_LIST:>22}{HYPHEN:>37}')
+        print(f'{HYPHEN:>15}{SIX:>10}{DAY_SCHEDULE:>19}{HYPHEN:>40}')
+        print(f'{HYPHEN:>15}{SEVEN:>10}{WEEK_SCHEDULE:>27}{HYPHEN:>32}')
+        print(f'{HYPHEN:>15}{EIGHT:>10}{AIRCRAFT_STATUS:>17}{HYPHEN:>42}')
+        print(f'{HYPHEN:>15}{NINE:>10}{PRINT_VOYAGES_ONE_DAY:>25}{HYPHEN:>34}')
+        print(f'{HYPHEN:>15}{TEN:>10}{PRINT_VOYAGES_ONE_WEEK:>26}{HYPHEN:>33}')
+        for _ in range(extra_lines):
+            print(f'{HYPHEN:>15}{HYPHEN:>69}')
 
     
 
