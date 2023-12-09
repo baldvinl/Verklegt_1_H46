@@ -20,17 +20,21 @@ class Voyage_Logic:
     def get_voyage(self, destination, date):
         return self.data_wrapper.get_voyage(destination, date)
 
-    def find_crew_for_voyage(self, destination, datetime):
-        """"""
-        # to do later - aircraft needs to be added before crew later in B requirements - check if aircraft in voyage validation
-        voyage = self.data_wrapper.get_voyage(destination, datetime) # to replace
-        # get voyage object from data with the input information
+    def find_crew_for_voyage(self, datetime):
+        """Receives date, requests crew not working on that date and returns dictionary with key: job title and fills with all
+        crew members separated by their job title"""
         # list of employees not working on this day - import from crew logic file and use the function there
-        # make and lists inside of list, separated by job title [captain, pilot, head flight attendant]
-        # return list of lists and voyage obj
-        pass
+        availability = "not working"
+        crew_not_working = self.crew_logic.crew_not_working(datetime, availability)
+        # make dict with key: job_title and fill with crew
+        job_title = ["captain", "pilot", "head flight attendant", "extra flight attendants"]
+        crew_dict = dict.fromkeys(job_title, None)
+        for member in crew_not_working:
+            if member.job_title in crew_dict.keys():
+                crew_dict[member.job_title].append(member)
+        return crew_dict
 
-    def add_crew_to_voyage(self, crew, voyage):
+    def add_crew_to_voyage(self, crew, destination, date):
         # receives crew to add
         # gets voyage from data
         # checks what is the job title of each one and adds to voyage
