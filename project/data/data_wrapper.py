@@ -44,11 +44,11 @@ class Data_Wrapper:
     def get_crew_member_from_file(self, ssn):
         return self.crew_data.get_crew_member_from_file(ssn)
     
-    def change_pilot_info(self, ssn, changes):
-        return self.crew_data.change_pilot_info(ssn, changes)
+    def register_updated_pilot_to_file(self, pilot):
+        return self.crew_data.register_updated_pilot_to_file(pilot)
     
-    def change_flight_attendant_info(self, ssn, changes):
-        return self.crew_data.change_flight_attendant_info(ssn, changes)
+    def register_updated_flight_attendant_to_file(self, flight_attendant):
+        return self.crew_data.register_updated_flight_attendant_to_file(flight_attendant)
 
 
 #Voyage functions
