@@ -18,13 +18,19 @@ class Crew_Logic:
             return self.data_wrapper.register_flight_attendant(crew)
 
     def change_crew_info(self, ssn, changes):
-        """ """
+        """Receives ssn, and changes list of tuples with format [(attribute_name, new_value)], requests crew member with ssn
+        changes attributes with their new values and returns updated object to data wrapper"""
         crew_member = self.data_wrapper.get_crew_member(ssn)
         #for element in changes: [its a list of tuples]
-
-        # go through list of changes and change attributes
+        # go through and change attributes
+        for attribute_name, new_value in changes:
+            attribute_name_lower = attribute_name.lower()
+            setattr(crew_member, attribute_name_lower, new_value)
         # check if pilot or not and return to data wrapper
-        pass
+        if isinstance(crew_member, Pilot):
+            return self.data_wrapper.change_pilot_info(crew_member)
+        else:
+            return self.data_wrapper.change_flight_attendant_info(crew_member)
 
     def display_all_crew(self):
         """Receives lists of pilots and flight attendants 
