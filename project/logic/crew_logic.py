@@ -19,8 +19,8 @@ class Crew_Logic:
 
     def change_crew_info(self, ssn, changes):
         """ """
-        crew_member = self.data_wrapper.get_crew_info(ssn)
-        #for element in changes:
+        crew_member = self.data_wrapper.get_crew_member(ssn)
+        #for element in changes: [its a list of tuples]
 
         # go through list of changes and change attributes
         # check if pilot or not and return to data wrapper
@@ -34,17 +34,21 @@ class Crew_Logic:
         all_crew_list = pilots_list + flight_attendants_list
         return all_crew_list
 
-    def get_crew_info(self, ssn):
+    def get_crew_member(self, ssn):
         """Receives social security number of crew member and forwards to data wrapper"""
-        return self.data_wrapper.get_crew_info(ssn)
+        return self.data_wrapper.get_crew_member(ssn)
 
-    def display_not_working(self, date):
-        """Receives date and forwards to data wrapper"""
-        return self.data_wrapper.display_not_working(date)
-
-    def display_working(self, date):
-        """Receives date and forwards to data wrapper"""
-        return self.data_wrapper.display_working(date)
+    def availability_list(self, date, availability):
+        """"""
+        # specific day
+        # get all voyages for that day from data [list of objects]
+        # request pilots and flight attendants [list of objects]
+        # [destination is in the voyage]
+        # put all ssn from voyages into list [.captain, .pilot, .head_flight_attendant = attributes]
+        # different for loop for working/ not working [working includes destinations]
+        # for working tuple of [(employee, destination)] [check for destination in the for loops]
+        # for loop employees and for ssn not in ssn list add employee to new list of non working [not working]
+        pass
     
     def display_pilots(self):
         """Forwards request to data wrapper"""
