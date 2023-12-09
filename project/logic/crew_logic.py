@@ -5,8 +5,12 @@ from model.flight_attendant import Flight_Attendant
 
 
 class Crew_Logic:
-    def __init__(self):
-        self.data_wrapper = Data_Wrapper()
+    def __init__(self, data_connection: Data_Wrapper):
+        self.data_wrapper = data_connection
+        self.voyage_logic = None
+
+    def setVoyage(self, x):
+        self.voyage_logic = x
 
     def register_crew(self, crew):
         """Checks if crew object received is of the type 

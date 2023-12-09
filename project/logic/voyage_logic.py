@@ -1,8 +1,8 @@
-from data.voyage_data import Voyage_Data
+from data.data_wrapper import Data_Wrapper
 from model.voyage import Voyage
 
 class Voyage_Logic:
-    def __init__(self, data_connection, crew_logic_instance):
+    def __init__(self, data_connection: Data_Wrapper):
         self.data_wrapper = data_connection
         self.crew_logic = None
     
@@ -30,16 +30,17 @@ class Voyage_Logic:
         job_title = ["captain", "pilot", "head flight attendant", "extra flight attendants"]
         crew_dict = dict.fromkeys(job_title, None)
         for member in crew_not_working:
-            if member.job_title in crew_dict.keys():
+            if member.job_title in crew_dict:
                 crew_dict[member.job_title].append(member)
         return crew_dict
 
-    def add_crew_to_voyage(self, crew, destination, date):
+    def add_crew_to_voyage(self, crew_dict: dict, voyage: Voyage):
         # receives crew to add
         # gets voyage from data
-        # checks what is the job title of each one and adds to voyage
+        for job_title, crew_member in crew_dict.items():
+            setattr(voyage, job_title, crew_member)
         # returns new voyage object to data
-        pass
+        return voyage
 
     def get_voyage_status(self, destination, date):
         """Receives destination and data and forwards to data wrapper"""

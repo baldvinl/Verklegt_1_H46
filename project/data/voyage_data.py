@@ -21,6 +21,6 @@ class Voyage_Data:
 #List all voyages for a day and say if they are fully manned or not.  
 
 #List all voyages for some week and say if they are fully manned or not.  
-    def 
+    #def 
 
         

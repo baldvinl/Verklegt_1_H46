@@ -12,6 +12,7 @@ class Logic_Wrapper:
         self.destination_logic = Destination_Logic(self.data_wrapper)
         self.voyage_logic = Voyage_Logic(self.data_wrapper, self.crew_logic)
         self.voyage_logic.setCrew(self.crew_logic)
+        self.crew_logic.setVoyage(self.voyage_logic)
 
     # REGISTER A
     def register_crew(self, crew):
