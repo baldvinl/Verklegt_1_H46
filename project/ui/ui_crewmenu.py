@@ -55,7 +55,9 @@ class CrewMenu_ui():
             phone_no = input("Enter home phone number: ")
             type_rating = input("Enter type rating: ")
 
-            return Pilot(ssn, name, job_title, address, email, mobile_no, phone_no, type_rating)
+            new_crew_member = Pilot(ssn, name, job_title, address, email, mobile_no, phone_no, type_rating)
+            return new_crew_member
+
 
         if crew_type == "2":
             ssn = input("Enter SSN: ")
@@ -68,7 +70,9 @@ class CrewMenu_ui():
             phone_no = input("Enter home phone number: ")
             type_rating = input("Enter type rating: ")
 
-            return Pilot(ssn, name, job_title, address, email, mobile_no, phone_no, type_rating)
+            new_crew_member = Pilot(ssn, name, job_title, address, email, mobile_no, phone_no, type_rating)
+            return new_crew_member
+
         
         if crew_type == "3":    
             ssn = input("Enter SSN: ")
@@ -80,7 +84,8 @@ class CrewMenu_ui():
             mobile_no = input("Enter mobile phone number: ")
             phone_no = input("Enter home phone number: ")
 
-            return Flight_Attendant(ssn, name, job_title, address, email, mobile_no, phone_no)
+            new_crew_member = Flight_Attendant(ssn, name, job_title, address, email, mobile_no, phone_no)
+            return new_crew_member
 
         if crew_type == "4":    
             ssn = input("Enter SSN: ")
@@ -92,7 +97,8 @@ class CrewMenu_ui():
             mobile_no = input("Enter mobile phone number: ")
             phone_no = input("Enter home phone number: ")
 
-            return Flight_Attendant(ssn, name, job_title, address, email, mobile_no, phone_no)
+            new_crew_member = Flight_Attendant(ssn, name, job_title, address, email, mobile_no, phone_no)
+            return new_crew_member
 
     def input(self):
         '''Function that asks for input in crew menu.'''
@@ -111,7 +117,7 @@ class CrewMenu_ui():
                 crew_entry = self.register_crew(command)
                 print(crew_entry)
                 wrapper = Logic_Wrapper
-                Logic_Wrapper.register_crew(wrapper, crew_entry)
+                wrapper.register_crew(wrapper, crew_entry)
                 
             if command == '2':
                 crew_entry = self.register_crew(command)
