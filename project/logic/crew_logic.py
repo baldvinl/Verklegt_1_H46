@@ -15,7 +15,6 @@ class Crew_Logic:
     def register_crew(self, crew):
         """Checks if crew object received is of the type 
         Pilot or not and forwards to data wrapper accordingly"""
-
         if isinstance(crew, Pilot):
             return self.data_wrapper.register_pilot(crew)
         else:
