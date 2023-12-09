@@ -10,13 +10,13 @@ class Aircraft_Logic:
         return self.data_wrapper.register_aircraft(aircraft)
 
     def display_aircraft_info(self, name):
-        """receives aircraft name and forwards to data wrapper"""
+        """Receives aircraft name and forwards to data wrapper"""
         return self.data_wrapper.display_aircraft_info(name)
 
-    def display_aircraft_status(self, name):
+    def display_aircraft_status(self, name): # for later
         """Receives aircraft name and forwards to data wrapper"""
         return self.data_wrapper.display_aircraft_status(name)
 
-    def display_all_aircrafts(self, date, time):
+    def display_all_aircrafts(self, date, time): # for later
         """Receives date and time and forwards to data wrapper"""
         return self.data_wrapper.display_aircraft_info(date, time)

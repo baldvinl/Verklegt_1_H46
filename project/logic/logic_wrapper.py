@@ -10,7 +10,8 @@ class Logic_Wrapper:
         self.aircraft_logic = Aircraft_Logic(self.data_wrapper)
         self.crew_logic = Crew_Logic(self.data_wrapper)
         self.destination_logic = Destination_Logic(self.data_wrapper)
-        self.voyage_logic = Voyage_Logic(self.data_wrapper)
+        self.voyage_logic = Voyage_Logic(self.data_wrapper, self.crew_logic)
+        self.voyage_logic.setCrew(self.crew_logic)
 
     # REGISTER A
     def register_crew(self, crew):
@@ -59,9 +60,9 @@ class Logic_Wrapper:
 
     # DISPLAY A
 
-    def get_crew_info(self, ssn):
+    def get_crew_member(self, ssn):
         """Receives social security number of employee and forwards to data wrapper"""
-        return self.crew_logic.get_crew_info(ssn)
+        return self.crew_logic.get_crew_member(ssn)
 
     def display_all_crew(self):
         """Forwards request to data wrapper"""
@@ -71,25 +72,21 @@ class Logic_Wrapper:
         """Forwards request to data wrapper"""
         return self.destination_logic.display_destinations()
     
-    def display_all_voyages_day(self, date):
+    def display_voyages_day(self, datetime):
         """Receives selected date and forwards it to data wrapper"""
-        return self.voyage_logic.display_all_voyages_day(date)
+        return self.voyage_logic.display_voyages_day(datetime)
     
-    def display_all_voyages_week(self, date):
+    def display_voyages_week(self, datetime):
         """Receives selected week and forwards it to data wrapper"""
-        return self.voyage_logic.display_all_voyages_week(date)
+        return self.voyage_logic.display_voyages_week(datetime)
     
     def get_voyage_schedule(self, ssn, date):
         """Receives employees social security number and date selected and forwards to data wrapper"""
         return self.voyage_logic.get_voyage_schedule(ssn, date)
     
-    def display_not_working(self, date):
-        """Receives date and forwards to data wrapper"""
-        return self.crew_logic.display_not_working(date)
-
-    def display_working(self, date):
-        """Receives date and forwards to data wrapper"""
-        return self.crew_logic.display_working(date)
+    def display_availability(self, date, availability):
+        """"""
+        return self.crew_logic.display_availability(date, availability)
     
     def display_pilots(self):
         """Forwards request to data wrapper"""
