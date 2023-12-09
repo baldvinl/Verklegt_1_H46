@@ -6,7 +6,8 @@ from model.destination import Destination
 class Destination_Data:
     def __init__(self):
         self.file_destinations = "project/files/destinations.csv"
-        self.file_in = "project/files/infile.csv"
+        self.file_out = "project/files/outfile.csv"
+
 
     def register_destination_in_file(self, destination):
         """Adds a new destination to the file"""
@@ -22,19 +23,31 @@ class Destination_Data:
             ]
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 
-            writer.writerow({"airport": destination.airport, "country": destination.country, "flight_duration": destination.flight_duration, 
-                             "distance": destination.distance, "ice_name": destination.ice_name, "ice_number": destination.ice_number})
+            writer.writerow({
+                "airport": destination.airport, 
+                "country": destination.country, 
+                "flight_duration": destination.flight_duration, 
+                "distance": destination.distance, 
+                "ice_name": destination.ice_name, 
+                "ice_number": destination.ice_number
+            })
             
     
     def get_destination_from_file(self, iata):
         """Returns the destination with the reletive iata"""
 
-        with open(self.file_destinations, newline='', encoding="utf-8") as csvfile:
+        with open(self.file_destinations, newline="", encoding="utf-8") as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
                 if row["airport"] == iata:
-                    destination = Destination(row["airport"], row["country"], row["flight_duration"], 
-                                              row["distance"], row["ice_name"], row["ice_number"])
+                    destination = Destination(
+                        row["airport"], 
+                        row["country"], 
+                        row["flight_duration"], 
+                        row["distance"], 
+                        row["ice_name"], 
+                        row["ice_number"]
+                    )
         return destination
 
 
@@ -42,20 +55,33 @@ class Destination_Data:
         """Returns a list of all destinations stored in the file"""
 
         dest_list = []
-        with open(self.file_destinations, newline='', encoding="utf-8") as csvfile:
+        with open(self.file_destinations, newline="", encoding="utf-8") as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
-                dest_list.append(Destination(row["airport"], row["country"], row["flight_duration"], 
-                                             row["distance"], row["ice_name"], row["ice_number"]))
+                dest_list.append(Destination(
+                    row["airport"], 
+                    row["country"], 
+                    row["flight_duration"], 
+                    row["distance"], 
+                    row["ice_name"], 
+                    row["ice_number"]
+                ))
         return dest_list
     
     
     def register_updated_destination_to_file(self, destination):
         """Adds all the destinations in new file and swaps out the old destination for the new updated one"""
 
-        fieldnames = ["airport", "country", "flight_duration", "distance", "ice_name", "ice_number"]
+        fieldnames = [
+            "airport", 
+            "country", 
+            "flight_duration", 
+            "distance", 
+            "ice_name", 
+            "ice_number"
+        ]
 
-        with open(self.file_destinations, "r", newline="", encoding="utf-8") as infile, open(self.file_in, "w+", newline="", encoding="utf-8") as outfile:
+        with open(self.file_destinations, "r", newline="", encoding="utf-8") as infile, open(self.file_out, "w+", newline="", encoding="utf-8") as outfile:
             reader = csv.DictReader(infile)
             writer = csv.DictWriter(outfile, fieldnames)
 
@@ -63,7 +89,8 @@ class Destination_Data:
 
             for row in reader:
                 if row["airport"] == destination.airport:
-                    row = {"airport": destination.airport,
+                    row = {
+                        "airport": destination.airport,
                         "country": row["country"], 
                         "flight_duration": row["flight_duration"], 
                         "distance": row["distance"], 
@@ -74,6 +101,6 @@ class Destination_Data:
 
         file_temp = "project/files/file_temp.cvs"
         os.rename(self.file_destinations, file_temp)
-        os.rename(self.file_in, self.file_destinations)
-        os.rename(file_temp, self.file_in)
+        os.rename(self.file_out, self.file_destinations)
+        os.rename(file_temp, self.file_out)
 
