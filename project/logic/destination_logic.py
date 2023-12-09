@@ -14,7 +14,8 @@ class Destination_Logic:
         return self.data_wrapper.display_destinations()
 
     def change_ice_info(self, iata, new_info):
-        """Receives iata and new_info tuple, requests destination object from data
+        """Receives iata and new_info tuple with the format (new_name, new_number) - if one of those doesn't need to be changed
+        it will be set to "None", requests destination object from data
         wrapper using iata, changes the information and returns updated destination object"""
         # send iata and get destination object back from data
         destination = self.data_wrapper.get_destination_from_file(iata) 
@@ -24,4 +25,4 @@ class Destination_Logic:
             destination.ice_name = new_info[0]
         if new_info[1]:
             destination.ice_number = new_info[1]
-        return destination
+        return self.data_wrapper.register_updated_destination_to_file(destination)
