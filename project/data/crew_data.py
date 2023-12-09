@@ -54,7 +54,7 @@ class Crew_Data:
         return flight_attendants_list
     
 
-    def display_crew_member_info(self, ssn):
+    def get_crew_member(self, ssn):
         """Returns a class of crew member with the corresponding ssn"""
 
         with open(self.file_flight_attendants, newline='', encoding="utf-8") as csvfile:
@@ -63,7 +63,6 @@ class Crew_Data:
                 if row["ssn"] == ssn:
                     return Flight_Attendant(row["ssn"], row["name"], row["job_title"], row["address"], 
                                             row["area_code"], row["email"], row["mobile_no"], row["phone_no"])
-                
         with open(self.file_pilots, newline='', encoding="utf-8") as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
