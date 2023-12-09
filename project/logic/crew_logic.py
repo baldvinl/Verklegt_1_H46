@@ -47,6 +47,7 @@ class Crew_Logic:
     def availability_list(self, date, availability):
         """"""
         # specific day
+        # availability will be "working"/ "not working"
         # get all voyages for that day from data [list of objects]
         voyages_that_day = self.voyage_logic.get_voyages_day(date) # to be implemented in data - might need to change name
         # request pilots and flight attendants [list of objects]
@@ -56,12 +57,22 @@ class Crew_Logic:
         # put all ssn from voyages into list [.captain, .pilot, .head_flight_attendant, .extra_flight_attendants = attributes]
         ssn_list = []
         for attribute in attributes_list:
-            attribute_value = getattr(crew, attribute)
+            attribute_value = getattr(voyages_that_day, attribute)
             ssn_list.append(attribute_value)
         # different for loop for working/ not working [working should include destinations]
         # for working tuple of [(employee, destination)] [check for destination in the for loops]
         # for loop employees and for ssn not in ssn list add employee to new list of non working [not working]
-        pass
+        crew_not_working = []
+        crew_working = []
+        for crew_member in crew:
+            if crew_member.ssn not in ssn_list:
+                crew_not_working.append(crew_member)
+            else:
+                crew_working.append(crew_member, voyages_that_day.destination)
+        if availability == "working":
+            return crew_working
+        else:
+            return crew_not_working
     
     def display_pilots(self):
         """Forwards request to data wrapper"""
