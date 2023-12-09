@@ -8,7 +8,7 @@ class Crew_Data:
         self.file_flight_attendants = "files/flight_attendants.csv"
 
 
-    def register_pilot(self, pilot):
+    def register_pilot_to_file(self, pilot):
         """Adds a new pilot to the file of pilots"""
 
         with open(self.file_pilots, 'a', newline='', encoding="utf-8") as csvfile:
@@ -19,7 +19,7 @@ class Crew_Data:
                              "email": pilot.email, "mobile_no": pilot.mobile_no, "phone_no": pilot.phone_no, "type_rating": pilot.type_rating})
     
 
-    def register_flight_attendant(self, flight_attendant):
+    def register_flight_attendant_to_file(self, flight_attendant):
         """Adds a new flight attendant to the file of flight attendants"""
 
         with open(self.file_flight_attendants, 'a', newline='', encoding="utf-8") as csvfile:
@@ -30,7 +30,7 @@ class Crew_Data:
                              "area_code": flight_attendant.area_code, "email": flight_attendant.email, "mobile_no": flight_attendant.mobile_no, "phone_no": flight_attendant.phone_no})
             
 
-    def display_pilots(self):
+    def get_pilots_from_file(self):
         """Returns a list of all pilots"""
 
         pilot_list = []
@@ -42,7 +42,7 @@ class Crew_Data:
         return pilot_list
 
 
-    def display_flight_attendants(self):
+    def get_flight_attendants_from_file(self):
         """Returns a list of all flight_attendants"""
 
         flight_attendants_list = []
@@ -54,7 +54,7 @@ class Crew_Data:
         return flight_attendants_list
     
 
-    def get_crew_member(self, ssn):
+    def get_crew_member_from_file(self, ssn):
         """Returns a class of crew member with the corresponding ssn"""
 
         with open(self.file_flight_attendants, newline='', encoding="utf-8") as csvfile:
