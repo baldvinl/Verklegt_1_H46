@@ -17,7 +17,7 @@ class Destination_Logic:
         """Receives iata and new_info tuple, requests destination object from data
         wrapper using iata, changes the information and returns updated destination object"""
         # send iata and get destination object back from data
-        destination = self.data_wrapper.get_destination(iata) 
+        destination = self.data_wrapper.get_destination_from_file(iata) 
         # new info is tuple [(name, number)]
         # change object here and send back to data
         if new_info[0]:
