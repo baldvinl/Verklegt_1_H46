@@ -84,9 +84,9 @@ class Logic_Wrapper:
         """Receives employees social security number and date selected and forwards to data wrapper"""
         return self.voyage_logic.get_voyage_schedule(ssn, date)
     
-    def display_availability(self, date, availability):
+    def availability_list(self, date, availability):
         """"""
-        return self.crew_logic.display_availability(date, availability)
+        return self.crew_logic.availability_list(date, availability)
     
     def display_pilots(self):
         """Forwards request to data wrapper"""
