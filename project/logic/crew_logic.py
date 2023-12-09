@@ -17,11 +17,19 @@ class Crew_Logic:
         else:
             return self.data_wrapper.register_flight_attendant(crew)
 
+    def get_all_crew(self):
+        """Receives lists of pilots and flight attendants 
+        from data wrapper, combines them and returns"""
+        pilots_list = self.data_wrapper.display_pilots()
+        flight_attendants_list = self.data_wrapper.display_flight_attendants()
+        all_crew_list = pilots_list + flight_attendants_list
+        return all_crew_list
+    
     def change_crew_info(self, ssn, changes):
         """Receives ssn, and changes list of tuples with format [(attribute_name, new_value)], requests crew member with ssn
         changes attributes with their new values and returns updated object to data wrapper"""
         crew_member = self.data_wrapper.get_crew_member(ssn)
-        #for element in changes: [its a list of tuples]
+        # for element in changes: [its a list of tuples]
         # go through and change attributes
         for attribute_name, new_value in changes:
             attribute_name_lower = attribute_name.lower()
@@ -32,14 +40,6 @@ class Crew_Logic:
         else:
             return self.data_wrapper.change_flight_attendant_info(crew_member)
 
-    def display_all_crew(self):
-        """Receives lists of pilots and flight attendants 
-        from data wrapper, combines them and returns"""
-        pilots_list = self.data_wrapper.display_pilots()
-        flight_attendants_list = self.data_wrapper.display_flight_attendants()
-        all_crew_list = pilots_list + flight_attendants_list
-        return all_crew_list
-
     def get_crew_member(self, ssn):
         """Receives social security number of crew member and forwards to data wrapper"""
         return self.data_wrapper.get_crew_member(ssn)
@@ -48,10 +48,17 @@ class Crew_Logic:
         """"""
         # specific day
         # get all voyages for that day from data [list of objects]
+        voyages_that_day = self.voyage_logic.get_voyages_day(date) # to be implemented in data - might need to change name
         # request pilots and flight attendants [list of objects]
+        crew = self.get_all_crew()
+        attributes_list = ["pilot", "captain", "head_flight_attendant", "extra_flight_attendants"]
         # [destination is in the voyage]
-        # put all ssn from voyages into list [.captain, .pilot, .head_flight_attendant = attributes]
-        # different for loop for working/ not working [working includes destinations]
+        # put all ssn from voyages into list [.captain, .pilot, .head_flight_attendant, .extra_flight_attendants = attributes]
+        ssn_list = []
+        for attribute in attributes_list:
+            attribute_value = getattr(crew, attribute)
+            ssn_list.append(attribute_value)
+        # different for loop for working/ not working [working should include destinations]
         # for working tuple of [(employee, destination)] [check for destination in the for loops]
         # for loop employees and for ssn not in ssn list add employee to new list of non working [not working]
         pass
