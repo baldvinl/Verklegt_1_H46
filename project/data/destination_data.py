@@ -83,7 +83,7 @@ class Destination_Data:
 
         with open(self.file_destinations, "r", newline="", encoding="utf-8") as infile, open(self.file_out, "w+", newline="", encoding="utf-8") as outfile:
             reader = csv.DictReader(infile)
-            writer = csv.DictWriter(outfile, fieldnames)
+            writer = csv.DictWriter(outfile, fieldnames=fieldnames)
 
             writer.writeheader()
 
