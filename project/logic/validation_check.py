@@ -1,5 +1,9 @@
+from logic.aircraft_logic import Aircraft_Logic
+from logic.crew_logic import Crew_Logic
+from logic.destination_logic import Destination_Logic
+from logic.voyage_logic import Voyage_Logic
 
-class Validation:
+class ValidationLogic:
     def __init__(self) -> None:
         pass
 
@@ -7,8 +11,9 @@ class Validation:
     # check if crew member is already registered
     # in listing employee info - needs to be registered
     # change info crew - need to exist
-    # destination register - needs to have ice
-    # 
+    # destination register - needs to have ice contact/ needs to not exist yet
+    # register voyage - check if exists already/ if departure time from iceland is within 30 min from another voyage
+    # add crew to voyage - voyage needs to exist/ aircraft has been added?/ 
 
 
 
