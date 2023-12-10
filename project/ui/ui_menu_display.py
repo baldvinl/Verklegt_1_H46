@@ -11,14 +11,6 @@ SPACE = ' '
 PIPE = '|'
 EQUAL_SIGN = '=' * 68
 
-#------MAIN MENU CONSTANTS------------
-MAIN_MENU = 'Main menu'
-EMPLOYEES = 'Employees'
-DESTINATION = 'Destination'
-VOYAGES = 'Voyages'
-AIRCRAFT = 'Aircraft'
-PRINT_OPTIONS = 'Print options'
-PRUFA = 'Shift schedule for employee within a specific week'
 
 #------COMMAND CONSTANTS-----------
 COMMAND = 'Enter a menu number: '
@@ -28,6 +20,7 @@ class Inputs_Prompt:
         return None
     def menu_number(self):
         print(f'{COMMAND:>35}')
+        print()
 
 class Header_Footer:
     def __init__(self):
@@ -69,13 +62,12 @@ class Main_Menu:
     def __init__(self):
         return None
     
-    def display_main_menu_header(self):
-        Header_Footer.lines_above_in_submenu(self)
-        header_list = 'Main menu'
-        print(f'{HYPHEN:>15}{header_list:>18}{HYPHEN:>51}')
-        Header_Footer.lines_below_in_submenu(self)
-
     def display_main_menu(self):
+        Header_Footer.lines_above_in_submenu(self)
+        sub_header = 'Main menu'
+        print(f'{HYPHEN:>15}{sub_header:>18}{HYPHEN:>51}')
+        Header_Footer.display_lines_below_in_submenu(self)
+
         menu_list = ['Employees', 'Destination', 'Voyages', 'Aircraft', 'Print options']
         rest_of_lines = 10 - len(menu_list)
 
@@ -84,16 +76,81 @@ class Main_Menu:
         for _ in range(rest_of_lines):
             print(f'{HYPHEN:>15}{HYPHEN:>69}')
 
-
 class Employee_Menu:
     def __init__(self):
         return None
-    print('1 Register employees')
-    # print('2 Employee records (get employ record, edit record)')
-    # print('3 Employee availability3')
-    # print('Employee lists (three lists(all, pilots and flight attentant))')
-    def register_employees(self):
-        pass
+    
+    def display_employees_menu(self):
+        Header_Footer.lines_above_in_submenu(self)
+        sub_header = 'Employees'
+        print(f'{HYPHEN:>15}{sub_header:>18}{HYPHEN:>51}')
+        Header_Footer.display_lines_below_in_submenu(self)
+
+        menu_list = ['Register pilot', 'Register captain', 'Register flight attentant', 'Register head flight attentant', 'Employee record', 'Employee avaliability', 'List of employees']
+        rest_of_lines = 10 - len(menu_list)
+
+        for number , ele in enumerate(menu_list):
+            print(f'{HYPHEN:>15}{(number+1):>10}   {ele:<55}{HYPHEN:>1}')
+        for _ in range(rest_of_lines):
+            print(f'{HYPHEN:>15}{HYPHEN:>69}')
+
+    def register_captain(self):
+        Header_Footer.lines_above_in_submenu(self)
+        sub_header = 'Register captain'
+        print(f'{HYPHEN:>15}{sub_header:>25}{HYPHEN:>44}')
+        Header_Footer.display_lines_below_in_submenu(self)
+
+        menu_list = ['SSN: ', 'Name: ', 'Supervisor: Yes', 'Address: ', 'Area Code: ', 'Email: ', 'Mobile number: ', 'Phone number: ', 'Type rating: ']
+        rest_of_lines = 10 - len(menu_list)
+
+        for number , ele in enumerate(menu_list):
+            print(f'{HYPHEN:>15}{(number+1):>10}   {ele:<55}{HYPHEN:>1}')
+        for _ in range(rest_of_lines):
+            print(f'{HYPHEN:>15}{HYPHEN:>69}')
+
+    def register_pilot(self):
+        Header_Footer.lines_above_in_submenu(self)
+        sub_header = 'Register pilot'
+        print(f'{HYPHEN:>15}{sub_header:>25}{HYPHEN:>44}')
+        Header_Footer.display_lines_below_in_submenu(self)
+
+        menu_list = ['SSN: ', 'Name: ', 'Supervisor: No', 'Address: ', 'Area Code: ', 'Email: ', 'Mobile number: ', 'Phone number: ', 'Type rating: ']
+        rest_of_lines = 10 - len(menu_list)
+
+        for number , ele in enumerate(menu_list):
+            print(f'{HYPHEN:>15}{(number+1):>10}   {ele:<55}{HYPHEN:>1}')
+        for _ in range(rest_of_lines):
+            print(f'{HYPHEN:>15}{HYPHEN:>69}')
+
+    def register_head_flight_attentant(self):
+        Header_Footer.lines_above_in_submenu(self)
+        sub_header = 'Register head flight_attentant'
+        print(f'{HYPHEN:>15}{sub_header:>25}{HYPHEN:>44}')
+        Header_Footer.display_lines_below_in_submenu(self)
+
+        menu_list = ['SSN: ', 'Name: ', 'Supervisor: Yes', 'Address: ', 'Area Code: ', 'Email: ', 'Mobile number: ', 'Phone number: ']
+        rest_of_lines = 10 - len(menu_list)
+
+        for number , ele in enumerate(menu_list):
+            print(f'{HYPHEN:>15}{(number+1):>10}   {ele:<55}{HYPHEN:>1}')
+        for _ in range(rest_of_lines):
+            print(f'{HYPHEN:>15}{HYPHEN:>69}')
+
+    def register_flight_attentant(self):
+        Header_Footer.lines_above_in_submenu(self)
+        sub_header = 'Register flight_attentant'
+        print(f'{HYPHEN:>15}{sub_header:>25}{HYPHEN:>44}')
+        Header_Footer.display_lines_below_in_submenu(self)
+
+        menu_list = ['SSN: ', 'Name: ', 'Supervisor: No', 'Address: ', 'Area Code: ', 'Email: ', 'Mobile number: ', 'Phone number: ']
+        rest_of_lines = 10 - len(menu_list)
+
+        for number , ele in enumerate(menu_list):
+            print(f'{HYPHEN:>15}{(number+1):>10}   {ele:<55}{HYPHEN:>1}')
+        for _ in range(rest_of_lines):
+            print(f'{HYPHEN:>15}{HYPHEN:>69}')
+
+        
     def get_employees_record(self):
         pass
     def edit_employees_records(self):
