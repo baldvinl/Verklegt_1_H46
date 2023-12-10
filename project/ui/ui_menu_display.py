@@ -1,15 +1,3 @@
-# -------GENERAL CONSTANTS AND SYMBOLS----------
-ONE = '1'
-TWO = '2'
-THREE = '3'
-FOUR = '4'
-FIVE = '5'
-SIX = '6'
-SEVEN = '7'
-EIGHT = '8'
-NINE = '9'
-TEN = '10'
-
 
 QUIT_MENU = '[M]ENU  [Q]UIT'
 QUIT_MENU_BACK = '[M]ENU  [BACK]  [Q]UIT'
@@ -45,7 +33,7 @@ class Header_Footer:
     def __init__(self):
         return None
 
-    def get_main_header(self):
+    def display_main_header(self):
         print()
         print()
         print(' '*29,'||\    ||         ||\    ||')
@@ -54,7 +42,7 @@ class Header_Footer:
         print(' '*29,'||   \ || //___\\\ ||   \ ||  /_\ || ||')
         print(' '*29,'||    \||//     \\\||    \|| /   \|| ||')
 
-    def get_main_footer_with_q_m(self):
+    def display_main_footer_with_q_m(self):
         print(f'{HYPHEN:>15}{EQUAL_SIGN.center(67)}{HYPHEN}')
         print(f'{HYPHEN:>15}{HYPHEN:>69}')
         print(f'{HYPHEN:>15}{QUIT_MENU.center(67)}{HYPHEN:>2}')
@@ -62,7 +50,7 @@ class Header_Footer:
         print(f'{HYPHEN:>15}{EQUAL_SIGN.center(67)}{HYPHEN}')
         print()
 
-    def get_main_footer_with_q_m_b(self):
+    def display_main_footer_with_q_m_b(self):
         print(f'{HYPHEN:>15}{EQUAL_SIGN.center(67)}{HYPHEN}')
         print(f'{HYPHEN:>15}{HYPHEN:>69}')
         print(f'{HYPHEN:>15}{QUIT_MENU_BACK.center(67)}{HYPHEN:>2}')
@@ -70,26 +58,31 @@ class Header_Footer:
         print(f'{HYPHEN:>15}{EQUAL_SIGN.center(67)}{HYPHEN}')
         print()
 
+    def lines_above_in_submenu(self):
+        print(f'{HYPHEN:>15}{EQUAL_SIGN.center(67)}{HYPHEN}')
+        print(f'{HYPHEN:>15}{HYPHEN:>69}')
+
+    def display_lines_below_in_submenu(self):
+        print(f'{HYPHEN:>15}{DASH.center(67)}{HYPHEN}')
+
 class Main_Menu:
     def __init__(self):
         return None
-    def get_main_menu(self):
-        print(f'{HYPHEN:>15}{EQUAL_SIGN.center(67)}{HYPHEN}')
-        print(f'{HYPHEN:>15}{HYPHEN:>69}')
-        print(f'{HYPHEN:>15}{MAIN_MENU:>18}{HYPHEN:>51}')
-        print(f'{HYPHEN:>15}{DASH.center(67)}{HYPHEN}')
-        print(f'{HYPHEN:>15}{ONE:>10}{EMPLOYEES:>11}{HYPHEN:>48}')
-        print(f'{HYPHEN:>15}{TWO:>10}{DESTINATION:>13}{HYPHEN:>46}')
-        print(f'{HYPHEN:>15}{THREE:>10}{VOYAGES:>9}{HYPHEN:>50}')
-        print(f'{HYPHEN:>15}{FOUR:>10}{AIRCRAFT:>10}{HYPHEN:>49}')
-        print(f'{HYPHEN:>15}{FIVE:>10}{PRINT_OPTIONS:>15}{HYPHEN:>44}')
-        print(f'{HYPHEN:>15}{HYPHEN:>69}')
-        print(f'{HYPHEN:>15}{HYPHEN:>69}')
-        print(f'{HYPHEN:>15}{HYPHEN:>69}')
-        print(f'{HYPHEN:>15}{HYPHEN:>69}')
-        print(f'{HYPHEN:>15}{HYPHEN:>69}')
-        print(f'{HYPHEN:>15}{HYPHEN:>69}')
-        print(f'{HYPHEN:>15}{HYPHEN:>69}')
+    
+    def display_main_menu_header(self):
+        Header_Footer.lines_above_in_submenu(self)
+        header_list = 'Main menu'
+        print(f'{HYPHEN:>15}{header_list:>18}{HYPHEN:>51}')
+        Header_Footer.lines_below_in_submenu(self)
+
+    def display_main_menu(self):
+        menu_list = ['Employees', 'Destination', 'Voyages', 'Aircraft', 'Print options']
+        rest_of_lines = 10 - len(menu_list)
+
+        for number , ele in enumerate(menu_list):
+            print(f'{HYPHEN:>15}{(number+1):>10}   {ele:<55}{HYPHEN:>1}')
+        for _ in range(rest_of_lines):
+            print(f'{HYPHEN:>15}{HYPHEN:>69}')
 
 
 class Employee_Menu:

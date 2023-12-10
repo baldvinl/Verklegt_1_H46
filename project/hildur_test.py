@@ -8,6 +8,7 @@ test_menu = Main_Menu()
 test_input = Inputs_Prompt()
 
 test_header.get_main_header()
-test_menu.get_main_menu()
+test_header.lines_above_in_submenu()
+test_menu.display_main_menu()
 test_header.get_main_footer_with_q_m()
 test_input.menu_number()
