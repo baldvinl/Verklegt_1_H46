@@ -21,11 +21,11 @@ class Voyage_Logic:
         """TODO"""
         return self.data_wrapper.get_voyages_from_file()
     
-    def register_voyage(self, voyage: Voyage):
+    def register_voyage(self, new_voyage: Voyage):
         """Receives voyage object and forwards to data wrapper TODO"""
-        voyage = self.get_voyage(voyage.destination, voyage.time_depart_destination)
+        voyage = self.get_voyage(new_voyage.destination, new_voyage.time_depart_destination)
         if not voyage:
-            return self.data_wrapper.register_voyage(voyage)
+            return self.data_wrapper.register_voyage(new_voyage)
         else:
             return ValidationLogic.ALREADY_IN_SYSTEM
 
@@ -33,12 +33,12 @@ class Voyage_Logic:
     #     """Receives destination and date and forwards to data wrapper"""
     #     return self.data_wrapper.get_information(destination, departure)
 
-    def find_crew_for_voyage(self, datetime):
+    def find_crew_for_voyage(self, departure_time):
         """Receives date, requests crew not working on that date and returns dictionary with key: job title and fills with all
         crew members separated by their job title"""
         # list of employees not working on this day - import from crew logic file and use the function there
         availability = False
-        crew_not_working = self.crew_logic.availability_list(datetime, availability)
+        crew_not_working = self.crew_logic.availability_list(departure_time, availability)
         # make dict with key: job_title and fill with crew
         job_title = ["captain", "pilot", "head flight attendant", "extra flight attendants"]
         crew_dict = dict.fromkeys(job_title, None)
@@ -57,19 +57,28 @@ class Voyage_Logic:
     
     def add_aircraft_to_voyage(self, aircraft, destination, departure):
         """TODO"""
+        # do we need to check if aircraft is already there and not allow them to replace it?
+        voyage_to_add_aircraft = self.get_voyage( destination, departure)
+        voyage_to_add_aircraft.aircraft = aircraft
+        return voyage_to_add_aircraft
 
     def get_voyage_status(self, destination, departure):
         """Receives destination and data and forwards to data wrapper"""
         return self.data_wrapper.get_voyage_status(destination, departure)
 
-    def display_voyages_day(self, datetime):
+    def get_voyages_day(self, datetime):
         """Receive list from data wrapper, sorts by time and returns"""
         # sort by datetime
+        # need to figure out the date for this TODO
+        all_voyages = self.get_all_voyages()
+        voyages_day = []
+        for voyage in all_voyages:
+            if voyage.date = datetime
         return self.data_wrapper.display_voyages_day(datetime)
 
     def display_voyages_week(self, datetime):
         """"""
-        # sort by datetime
+        # sort by datetime TODO
         return self.data_wrapper.display_voyages_day(datetime)
 
     def get_voyage_schedule(self, ssn, departure):

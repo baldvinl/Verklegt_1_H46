@@ -70,12 +70,12 @@ class Crew_Logic:
         else:
             return ValidationLogic.NOT_FOUND
 
-    def availability_list(self, date, availability: bool):
+    def availability_list(self, departure_time, availability: bool):
         """"""
         # specific day
         # availability will be "True(for working/ False)"
         # get all voyages for that day from data [list of objects]
-        voyages_that_day = self.voyage_logic.get_voyages_day(date) # to be implemented in data - might need to change name
+        voyages_that_day = self.voyage_logic.get_voyages_day(departure_time) # to be implemented in data - might need to change name
         # request pilots and flight attendants [list of objects]
         crew = self.get_all_crew()
         attributes_list = ["pilot", "captain", "head_flight_attendant", "extra_flight_attendants"]
