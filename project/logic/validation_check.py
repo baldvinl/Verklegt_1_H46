@@ -3,6 +3,16 @@ class Validation:
     def __init__(self) -> None:
         pass
 
+    #TODO
+    # check if crew member is already registered
+    # in listing employee info - needs to be registered
+    # change info crew - need to exist
+    # destination register - needs to have ice
+    # 
+
+
+
+
     # Crew
         # Name [just letters 3-30 - no numbers or symbol] -- maybe split functions for first and last name
         # SSN [just digits up to 10]
