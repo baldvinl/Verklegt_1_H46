@@ -101,39 +101,6 @@ class Crew_Data:
                         row["phone_no"]
                     ))
         return flight_attendants_list
-    
-
-    def get_crew_member_from_file(self, ssn):
-        """Returns a class of crew member with the corresponding ssn"""
-
-        with open(self.file_flight_attendants, newline="", encoding="utf-8") as csvfile:
-            reader = csv.DictReader(csvfile)
-            for row in reader:
-                if row["ssn"] == ssn:
-                    return Flight_Attendant(
-                        row["ssn"], 
-                        row["name"], 
-                        row["job_title"], 
-                        row["address"], 
-                        row["email"], 
-                        row["mobile_no"], 
-                        row["phone_no"]
-                    )
-    
-        with open(self.file_pilots, newline="", encoding="utf-8") as csvfile:
-            reader = csv.DictReader(csvfile)
-            for row in reader:
-                if row["ssn"] == ssn:
-                    return Pilot(
-                        row["ssn"], 
-                        row["name"], 
-                        row["job_title"], 
-                        row["address"],
-                        row["email"], 
-                        row["mobile_no"], 
-                        row["phone_no"], 
-                        row["type_rating"]
-                    )
                     
                     
     def register_updated_pilot_to_file(self, pilot):
