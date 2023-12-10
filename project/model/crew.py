@@ -1,10 +1,9 @@
 class Crew:
-    def __init__(self, ssn='9999999999', name='Chuck Norris', job_title='Captain', address='Beststreet 1', area_code='999', email='chucknorris@ru.is', mobile_no='9999999', phone_no=''):
+    def __init__(self, ssn, name, job_title, address, email, mobile_no, phone_no=''):
         self.ssn = ssn
         self.name = name
         self.job_title = job_title
         self.address = address
-        self.area_code = area_code
         self.email = email
         self.mobile_no = mobile_no
         self.phone_no = phone_no 

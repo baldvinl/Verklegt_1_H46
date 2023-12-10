@@ -14,27 +14,42 @@ class Data_Wrapper:
 
 #destination functions
 
-    def display_destinations(self):
-        return self.destination_data.display_destinations()
-    
-    def create_destination(self, destination):
-        return self.destination_data.create_destination(destination)
-    
-    def change_ice_name(self, iata, new_ice_name):
-        return self.destination_data.change_ice_name(iata, new_ice_name)
+    def register_destination_in_file(self, destination):
+        return self.destination_data.register_destination_in_file(destination)
 
-    def change_ice_number(self, iata, new_ice_number):
-        return self.destination_data.change_ice_name(iata, new_ice_number)
+    def get_destination_from_file(self, aita):
+        return self.destination_data.get_destination_from_file(aita)
+
+    def get_destinations_from_file(self):
+        return self.destination_data.get_destinations_from_file()
+    
+    def register_updated_destination_to_file(self, iata):
+        return self.destination_data.register_updated_destination_to_file(iata)
     
 
 #crew functions
 
-    def register_pilot(self, pilot):
-        return self.crew_data.register_pilot(pilot)
+    def register_pilot_to_file(self, pilot):
+        return self.crew_data.register_pilot_to_file(pilot)
     
-    def register_flight_attendant(self, flight_attendant):
-        return self.crew_data.register_flight_attendant(flight_attendant)
+    def register_flight_attendant_to_file(self, flight_attendant):
+        return self.crew_data.register_flight_attendant_to_file(flight_attendant)
     
+    def get_pilots_from_file(self):
+        return self.crew_data.get_pilots_from_file()
+    
+    def get_flight_attendants_from_file(self):
+        return self.crew_data.get_flight_attendants_from_file()
+    
+    def get_crew_member_from_file(self, ssn):
+        return self.crew_data.get_crew_member_from_file(ssn)
+    
+    def register_updated_pilot_to_file(self, pilot):
+        return self.crew_data.register_updated_pilot_to_file(pilot)
+    
+    def register_updated_flight_attendant_to_file(self, flight_attendant):
+        return self.crew_data.register_updated_flight_attendant_to_file(flight_attendant)
+
 
 #Voyage functions
 
