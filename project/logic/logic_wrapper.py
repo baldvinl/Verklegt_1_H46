@@ -45,7 +45,7 @@ class Logic_Wrapper:
         all_crew_list = self.crew_logic.get_all_crew()
         return all_crew_list
 
-    def availability_list(self, date, availability): # to be implemented in ui still
+    def availability_list(self, date, availability): #TODO
         """Receives date and availability request (working or not working), requests
         voyages that day using the date from data wrapper, gets all crew from data wrapper. Using
         the ssns found in the voyages that day it makes 2 lists one for crew thats working
@@ -68,35 +68,33 @@ class Logic_Wrapper:
     # to add -- display all pilots sorted by aircraft type
 
     # AIRCRAFT
-
-    def register_aircraft(self, aircraft):
+    def register_aircraft(self, aircraft: Aircraft):
         """Receives aircraft objects and forwards to data wrapper"""
         return self.aircraft_logic.register_aircraft(aircraft)
 
-    def display_aircraft_info(self, name):
+    def display_aircraft_info(self, name: str):
         """Receives aircrafts name and forwards it to data wrapper"""
-        return self.aircraft_logic.display_aircraft_info(name)
+        return self.aircraft_logic.get_aircraft_info(name)
 
-    def get_aircraft_status(self, name):
+    def display_aircraft_status(self, name: str):
         """Receives aircrafts name and forwards it to data wrapper"""
         return self.aircraft_logic.get_aircraft_status(name)
     
-    def display_all_aircrafts(self, date, time):
-        """Receives date and time and forwards them to data wrapper"""
-        return self.aircraft_logic.display_all_aircrafts(date, time)
+    def display_all_aircrafts(self, datetime):
+        """Receives datetime, requests aicrafts from data and returns the list"""
+        return self.aircraft_logic.get_all_aircrafts(datetime)
     
     # VOYAGE
-
-    def register_voyage(self, voyage): 
+    def register_voyage(self, voyage: Voyage):
         # When voyage is registered, choose aircraft first then employees
         # When voyage is registered shall prevent registering a pilot that doesn't have a type rating for an aircraft for that aircraft
         # Voyage has to consist of two flights and each flight has to be registered with different flight number
-        """Receives voyage objects and forwards to data wrapper"""
+        """Receives voyage object and forwards to data wrapper"""
         return self.voyage_logic.register_voyage(voyage)
     
-    def add_aircraft(self, aircraft, voyage):
-        """"""
-        return self.voyage_logic.add_aircraft(aircraft, voyage)
+    def add_aircraft_to_voyage(self, aircraft, voyage):
+        """TODO"""
+        return self.voyage_logic.add_aircraft_to_voyage(aircraft, voyage)
     
     def display_voyages_day(self, datetime):
         """Receives selected date and forwards it to data wrapper"""
@@ -119,18 +117,16 @@ class Logic_Wrapper:
         return self.voyage_logic.add_crew(crew, voyage)
     
     # DESTINATION
-    def register_destination(self, destination):
+    def register_destination(self, destination: Destination):
         """Receives destination object and forwards to data wrapper"""
         return self.destination_logic.register_destination(destination)
 
-    def change_ice_name(self, name):
-        """"""
-        return self.destination_logic.change_ice_name(name)
-
-    def change_ice_number(self, number):
-        """"""
-        return self.destination_logic.change_ice_number(number)
+    def change_ice_info(self, iata: str, new_info: tuple):
+        """Receives iata and new_info tuple with the format (new_name, new_number) - if one of those doesn't need to be changed
+        it will be set to "None", requests destination object from data
+        wrapper using iata, changes the information and returns updated destination object"""
+        return self.destination_logic.change_ice_info(iata, new_info)
     
     def display_destinations(self):
         """Forwards request to data wrapper"""
-        return self.destination_logic.display_destinations()
+        return self.destination_logic.get_destinations()

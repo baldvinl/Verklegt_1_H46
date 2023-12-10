@@ -9,7 +9,7 @@ class Voyage_Logic:
     def setCrew(self, x):
         self.crew_logic = x
 
-    def register_voyage(self, voyage):
+    def register_voyage(self, voyage: Voyage):
         """Receives voyage object and forwards to data wrapper"""
         return self.data_wrapper.register_voyage(voyage)
 
@@ -18,6 +18,7 @@ class Voyage_Logic:
         return self.data_wrapper.get_information(destination, date)
 
     def get_voyage(self, destination, date):
+        """Requests voyage for a certain destination and date from data wrapper"""
         return self.data_wrapper.get_voyage(destination, date)
 
     def find_crew_for_voyage(self, datetime):
@@ -41,6 +42,9 @@ class Voyage_Logic:
             setattr(voyage, job_title, crew_member)
         # returns new voyage object to data
         return voyage
+    
+    def add_aircraft_to_voyage(self, aircraft, voyage):
+        """TODO"""
 
     def get_voyage_status(self, destination, date):
         """Receives destination and data and forwards to data wrapper"""
