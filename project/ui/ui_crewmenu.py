@@ -1,7 +1,7 @@
 import os
-from ui.ui_mainmenu import *
+from project.ui.ui_mainmenu import MainMenu_ui
 
-from logic.logic_wrapper import Logic_Wrapper
+from project.logic.logic_wrapper import Logic_Wrapper
 
 from model.crew import Crew
 from model.pilot import Pilot
