@@ -10,23 +10,34 @@ class Voyage_Logic:
     def setCrew(self, x):
         self.crew_logic = x
 
+    def get_voyage(self, destination, departure):
+        """Requests voyage for a certain destination and date from data wrapper TODO"""
+        voyages = self.get_all_voyages()
+        for voyage in voyages:
+            if voyage.destination == destination & voyage.time_depart_destination == departure:
+                return voyage
+    
+    def get_all_voyages(self):
+        """TODO"""
+        return self.data_wrapper.get_voyages_from_file()
+    
     def register_voyage(self, voyage: Voyage):
-        """Receives voyage object and forwards to data wrapper"""
-        return self.data_wrapper.register_voyage(voyage)
+        """Receives voyage object and forwards to data wrapper TODO"""
+        voyage = self.get_voyage(voyage.destination, voyage.time_depart_destination)
+        if not voyage:
+            return self.data_wrapper.register_voyage(voyage)
+        else:
+            return ValidationLogic.ALREADY_IN_SYSTEM
 
-    def get_crew_info(self, destination, date):
-        """Receives destination and date and forwards to data wrapper"""
-        return self.data_wrapper.get_information(destination, date)
-
-    def get_voyage(self, destination, date):
-        """Requests voyage for a certain destination and date from data wrapper"""
-        return self.data_wrapper.get_voyage(destination, date)
+    # def get_crew_info(self, destination, departure):
+    #     """Receives destination and date and forwards to data wrapper"""
+    #     return self.data_wrapper.get_information(destination, departure)
 
     def find_crew_for_voyage(self, datetime):
         """Receives date, requests crew not working on that date and returns dictionary with key: job title and fills with all
         crew members separated by their job title"""
         # list of employees not working on this day - import from crew logic file and use the function there
-        availability = "not working"
+        availability = False
         crew_not_working = self.crew_logic.availability_list(datetime, availability)
         # make dict with key: job_title and fill with crew
         job_title = ["captain", "pilot", "head flight attendant", "extra flight attendants"]
@@ -44,12 +55,12 @@ class Voyage_Logic:
         # returns new voyage object to data
         return voyage
     
-    def add_aircraft_to_voyage(self, aircraft, voyage):
+    def add_aircraft_to_voyage(self, aircraft, destination, departure):
         """TODO"""
 
-    def get_voyage_status(self, destination, date):
+    def get_voyage_status(self, destination, departure):
         """Receives destination and data and forwards to data wrapper"""
-        return self.data_wrapper.get_voyage_status(destination, date)
+        return self.data_wrapper.get_voyage_status(destination, departure)
 
     def display_voyages_day(self, datetime):
         """Receive list from data wrapper, sorts by time and returns"""
@@ -61,6 +72,6 @@ class Voyage_Logic:
         # sort by datetime
         return self.data_wrapper.display_voyages_day(datetime)
 
-    def get_voyage_schedule(self, ssn, date):
+    def get_voyage_schedule(self, ssn, departure):
         """Receives social security number and date and forwards to data wrapper"""
-        return self.data_wrapper.get_voyage_schedule(ssn, date)
+        return self.data_wrapper.get_voyage_schedule(ssn, departure)

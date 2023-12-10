@@ -112,9 +112,9 @@ class Logic_Wrapper:
         """Receives destination and date and forwards them to data wrapper"""
         return self.voyage_logic.get_voyage_status(destination, date)
     
-    def add_crew(self, crew, voyage):
+    def add_crew_to_voyage(self, crew, voyage):
         """"""
-        return self.voyage_logic.add_crew(crew, voyage)
+        return self.voyage_logic.add_crew_to_voyage(crew, voyage)
     
     # DESTINATION
     def register_destination(self, destination: Destination):
@@ -129,4 +129,4 @@ class Logic_Wrapper:
     
     def display_destinations(self):
         """Forwards request to data wrapper"""
-        return self.destination_logic.get_destinations()
+        return self.destination_logic.get_all_destinations()
