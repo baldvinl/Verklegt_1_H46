@@ -1,4 +1,4 @@
-from project.logic.logic_wrapper import Logic_Wrapper
+# from logic.logic_wrapper import Logic_Wrapper
 
 CORRECT_FORMAT = 'This is a correct input'
 SSN_LEN = 10
@@ -10,10 +10,11 @@ MOLBILE_LEN_MAXIMUM = 15
 # ------------CREW---------------------
 
 class Validation_Ui:
-    def __init__(self,ssn ,name, mobile):
+    def __init__(self, ssn ,name, mobile, address):
         self.ssn = ssn
         self.name = name
         self.mobile = mobile
+        self.address = address
         return None
 
     def validate_ssn(self,ssn):
@@ -47,18 +48,45 @@ class Validation_Ui:
                 for char in self.mobile:
                     if char.isdigit():
                         print(CORRECT_FORMAT)
-                        # Logic_Wrapper.register_crew(mobile)
+                        Logic_Wrapper.register_crew(mobile)
                     else:
                         print('This is not correct format.')
                         print('SSN has no digits')
                         self.mobile = input('Enter correct ssn: ') #sHOULD i put something else
-                print('This is not correct format. SSN has 10 numbers')
+                print('This is not valid format. SSN has 10 numbers')
                 self.mobile = input('Enter correct ssn: ')
 
 
+        def validate_address(self, address):
+             # Address [just numbers and letters, dashes, spaces]
+            string_punc = "!\"#$%&'()*+, -./:;<=>?@[\]^_`{|}~"
+            while True:
+                for char in self.addess: 
+                    if char in string_punc:
+                        print('This is not a valid address')
+                        print('') 
+                        self.address = input('Enter correct address: ')
+                    else:
+                        print(CORRECT_FORMAT)
+                        Logic_Wrapper.register_crew(address)
+                        break
         
-        # Address [just numbers and letters, dashes, spaces]
-        # Landline -- same as phone number probably 
+
+        def validate_mobile_number(self, mobile):
+            # Landline -- same as phone number probably
+            while not MOBILE_LEN_MINIMUM >= len(self.mobile) >= MOLBILE_LEN_MAXIMUM :
+                for char in self.mobile:
+                    if char.isdigit():
+                        print(CORRECT_FORMAT)
+                        Logic_Wrapper.register_crew(mobile)
+                    else:
+                        print('This is not correct format.')
+                        print('SSN has no digits')
+                        self.mobile = input('Enter correct ssn: ') #sHOULD i put something else
+                print('This is not valid format. Number should be between 7 and 15 numbers')
+                self.mobile = input('Enter correct ssn: ')
+
+        
         # Email first part cant contain ".", one "@" only, second part needs to contain "."
 
 
