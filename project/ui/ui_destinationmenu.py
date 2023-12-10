@@ -21,7 +21,7 @@ class DestinationMenu_ui():
 
         print(f"1. Register a new destination")
         print(f"2. Destination info")
-        #print(f"3. Edit destination ICE information")
+        print(f"3. Edit destination ICE information")
 
         print(f"[M]enu  [B]ack  [Q]uit")
     
@@ -68,6 +68,24 @@ class DestinationMenu_ui():
 
         return command
 
+    def change_ice_info(self):
+        """Function that asks for location IATA and new ICE information and returns."""
+        
+        current_menu = "Edit destination ICE information"
+
+        MainMenu_ui.clear_terminal()
+        MainMenu_ui.main_header(current_menu)
+        
+        new_ice_info = ()
+
+        iata = input("Enter the location IATA code: ")
+        new_ice_name = input("Enter the new emergency contact name: ")
+        new_ice_number = input("Enter the new emergency contact phone number: ")
+        new_ice_info = new_ice_name, new_ice_number
+
+        return iata, new_ice_info
+
+
 
     def input(self):
         '''Function that asks for input in destination menu.'''
@@ -85,11 +103,14 @@ class DestinationMenu_ui():
             if command == '1':
                 destination_entry = self.register_destination()
                 wrapper = Logic_Wrapper()
-                wrapper.create_destination(destination_entry)
+                wrapper.register_destination(destination_entry)
                 print(destination_entry)
             if command == '2':
                 self.destination_info()
                 pass
             if command == '3':
+                new_ice_info = self.change_ice_info()
+                wrapper = Logic_Wrapper()
+                wrapper.change_ice_info(new_ice_info)
                 pass
                 

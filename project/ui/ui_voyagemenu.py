@@ -1,6 +1,13 @@
 import os
 from ui.ui_mainmenu import *
 
+from logic.logic_wrapper import Logic_Wrapper
+
+from model.voyage import Voyage
+from model.crew import Crew
+from model.destination import Destination
+
+
 NAME = "NaN Air"
 TITLE = "Crew planning software"
 QUIT = "[Q]uit"
@@ -41,6 +48,51 @@ class VoyageMenu_ui():
         
         return destination_iata, voyage_date, departure_time_from, departure_time_to
 
+    def display_crew_availability():
+        pass
+
+    def display_available_crew(date):
+        """Function that displays available crew for given date."""
+        
+        current_menu = f"Available crew on {date}"
+
+        MainMenu_ui.clear_terminal()
+        MainMenu_ui.main_header(current_menu)
+
+        wrapper = Logic_Wrapper()
+        available_crew = wrapper.availability_list(date)
+        
+        crew_info = Crew()
+
+        print(f"SSN, Name, Job title, Address, E-mail, Mobile, Phone")
+        for elem in available_crew:
+            crew_info = elem
+            print(crew_info.ssn, crew_info.name, crew_info.job_title, crew_info.address, crew_info.email, crew_info.mobile_no, crew_info.phone_no end= " " "\n")
+        print(f"[M]enu  [B]ack  [Q]uit")
+        
+        command = input("Please enter command: ")
+        command = command.lower()
+
+        def display_crew_schedule_date(ssn, date):
+        """Function that displays the schedule for a given crew number on date."""
+        
+        current_menu = f"Schedule for {ssn} on {date}"
+
+        MainMenu_ui.clear_terminal()
+        MainMenu_ui.main_header(current_menu)
+
+        wrapper = Logic_Wrapper()
+        schedule = wrapper.get_voyages_date(ssn, date) #need to confirm function call
+        
+        crew_info = Crew(schedule)
+
+        print(f"SSN, Name, Job title, Address, E-mail, Mobile, Phone, Destination") 
+        print(crew_info.ssn, crew_info.name, crew_info.job_title, crew_info.address, crew_info.email, crew_info.mobile_no, crew_info.phone_no, crew_info.destination end= " " "\n") # need to confirm how to get destination
+        print(f"[M]enu  [B]ack  [Q]uit")
+        
+        command = input("Please enter command: ")
+        command = command.lower()
+
     def input(self):
         '''Function that asks for input in voyage menu.'''
 
@@ -56,6 +108,8 @@ class VoyageMenu_ui():
                 return "b"
             if command == '1':
                 voyage_entry = self.register_voyage()
+                wrapper = Logic_Wrapper()
+                wrapper.register_voyage(voyage_entry)
                 print(voyage_entry)
             if command == '2':
                 pass
