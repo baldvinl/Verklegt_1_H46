@@ -15,13 +15,13 @@ class Crew_Data:
 
         with open(self.file_pilots, "a", newline="", encoding="utf-8") as csvfile:
             fieldnames = [
-                "ssn", 
-                "name", 
+                "ssn",
+                "name",
                 "job_title",
-                "address", 
+                "address",
                 "email", 
-                "mobile_no", 
-                "phone_no", 
+                "mobile_no",
+                "phone_no",
                 "type_rating"
             ]
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
@@ -43,12 +43,12 @@ class Crew_Data:
 
         with open(self.file_flight_attendants, "a", newline="", encoding="utf-8") as csvfile:
             fieldnames = [
-                "ssn", 
-                "name", 
+                "ssn",
+                "name",
                 "job_title",
-                "address", 
-                "email", 
-                "mobile_no", 
+                "address",
+                "email",
+                "mobile_no",
                 "phone_no",
             ]
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
