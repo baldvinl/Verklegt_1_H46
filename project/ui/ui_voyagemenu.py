@@ -1,4 +1,6 @@
 import os
+from datetime import datetime
+
 from ui.ui_mainmenu import *
 
 from logic.logic_wrapper import Logic_Wrapper
@@ -105,8 +107,71 @@ class VoyageMenu_ui():
         command = input("Please enter command: ")
         command = command.lower()
 
-    def display_crew_availability(self):
+    def display_voyages_for_day(self, date):
+        """Function that sends date to logic layer and prints all voyages on given date and if they are fully manned or not."""
         
+        current_menu = f"Voyages on {date}"
+
+        MainMenu_ui.clear_terminal()
+        MainMenu_ui.main_header(current_menu)
+
+        wrapper = Logic_Wrapper()
+        voyages = wrapper.get_voyage_status(date)
+
+        voyage_info = Voyage()
+        
+        for elem in voyages:
+            voyage_info = elem
+            print(voyage_info.destination, voyage_info.is_manned, end= " " "\n")
+
+            return None
+        
+    def display_voyages_for_week(self, date):
+        """Function that sends date to logic layer and prints all voyages a week from given date and if they are fully manned or not."""
+        
+        current_menu = f"Voyages in week after {date}"
+
+        MainMenu_ui.clear_terminal()
+        MainMenu_ui.main_header(current_menu)
+
+        wrapper = Logic_Wrapper()
+        voyages = wrapper.get_voyage_status(date)
+
+        voyage_info = Voyage()
+        
+        for elem in voyages:
+            voyage_info = elem
+            print(voyage_info.destination, voyage_info.is_manned, end= " " "\n")
+
+            return None
+
+    def display_voyages(self):
+        """Function that displays voyage menu"""
+
+        current_menu = "Display voyages"
+
+        MainMenu_ui.clear_terminal()
+        MainMenu_ui.main_header(current_menu)
+
+        print(f"1. Voyage fully manned for date")
+        print(f"2. Voyage fully manned for week")
+    
+        print(f"[M]enu  [B]ack  [Q]uit")
+
+        command = input("Enter menu number: ")
+
+        if command == '1':
+            date = input("Enter date: ")
+            self.display_voyages_for_day(date)
+        if command == '2':
+            date = input("Enter date: ")
+            self.display_voyages_for_week(date)
+            
+        return None
+    
+    def display_crew_availability(self):
+        """Function that displays crew availability menu."""
+
         current_menu = "Display crew availability"
 
         MainMenu_ui.clear_terminal()
