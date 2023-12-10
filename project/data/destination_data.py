@@ -91,15 +91,15 @@ class Destination_Data:
                 if row["airport"] == destination.airport:
                     row = {
                         "airport": destination.airport,
-                        "country": row["country"], 
-                        "flight_duration": row["flight_duration"], 
-                        "distance": row["distance"], 
-                        "ice_name": row["ice_name"], 
-                        "ice_number": row["ice_number"]
+                        "country": destination.country, 
+                        "flight_duration": destination.flight_duration, 
+                        "distance": destination.distance, 
+                        "ice_name": destination.ice_name, 
+                        "ice_number": destination.ice_number
                     }
                 writer.writerow(row)
 
-        file_temp = "project/files/file_temp.cvs"
+        file_temp = "project/files/file_temp.csv"
         os.rename(self.file_destinations, file_temp)
         os.rename(self.file_out, self.file_destinations)
         os.rename(file_temp, self.file_out)

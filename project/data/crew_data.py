@@ -101,39 +101,6 @@ class Crew_Data:
                         row["phone_no"]
                     ))
         return flight_attendants_list
-    
-
-    def get_crew_member_from_file(self, ssn):
-        """Returns a class of crew member with the corresponding ssn"""
-
-        with open(self.file_flight_attendants, newline="", encoding="utf-8") as csvfile:
-            reader = csv.DictReader(csvfile)
-            for row in reader:
-                if row["ssn"] == ssn:
-                    return Flight_Attendant(
-                        row["ssn"], 
-                        row["name"], 
-                        row["job_title"], 
-                        row["address"], 
-                        row["email"], 
-                        row["mobile_no"], 
-                        row["phone_no"]
-                    )
-    
-        with open(self.file_pilots, newline="", encoding="utf-8") as csvfile:
-            reader = csv.DictReader(csvfile)
-            for row in reader:
-                if row["ssn"] == ssn:
-                    return Pilot(
-                        row["ssn"], 
-                        row["name"], 
-                        row["job_title"], 
-                        row["address"],
-                        row["email"], 
-                        row["mobile_no"], 
-                        row["phone_no"], 
-                        row["type_rating"]
-                    )
                     
                     
     def register_updated_pilot_to_file(self, pilot):
@@ -152,7 +119,7 @@ class Crew_Data:
 
         with open(self.file_pilots, "r", newline="", encoding="utf-8") as infile, open(self.file_out, "w+", newline="", encoding="utf-8") as outfile:
             reader = csv.DictReader(infile)
-            writer = csv.DictWriter(outfile, fieldnames)
+            writer = csv.DictWriter(outfile, fieldnames=fieldnames)
 
             writer.writeheader()
 
@@ -160,17 +127,17 @@ class Crew_Data:
                 if row["ssn"] == pilot.ssn:
                     row = {
                         "ssn": pilot.ssn, 
-                        "name": row["name"], 
-                        "job_title": row["job_title"], 
-                        "address": row["address"], 
-                        "email": row["email"], 
-                        "mobile_no": row["mobile_no"], 
-                        "phone_no": row["phone_no"],
-                        "type_rating": row["type_rating"]
+                        "name": pilot.name, 
+                        "job_title": pilot.job_title, 
+                        "address": pilot.address, 
+                        "email": pilot.email, 
+                        "mobile_no": pilot.mobile_no, 
+                        "phone_no": pilot.phone_no,
+                        "type_rating": pilot.type_rating
                     }
                 writer.writerows(row)
 
-            file_temp = "project/files/file_temp.cvs"
+            file_temp = "project/files/file_temp.csv"
             os.rename(self.file_pilots, file_temp)
             os.rename(self.file_out, self.file_pilots)
             os.rename(file_temp, self.file_out)
@@ -190,7 +157,7 @@ class Crew_Data:
         
         with open(self.file_flight_attendants, "r", newline="", encoding="utf-8") as infile, open(self.file_out, "w+", newline="", encoding="utf-8") as outfile:
             reader = csv.DictReader(infile)
-            writer = csv.DictWriter(outfile, fieldnames)
+            writer = csv.DictWriter(outfile, fieldnames=fieldnames)
 
             writer.writeheader()
 
@@ -198,16 +165,16 @@ class Crew_Data:
                 if row["ssn"] == flight_attendant.ssn:
                     row = {
                         "ssn": flight_attendant.ssn, 
-                        "name": row["name"], 
-                        "job_title": row["job_title"], 
-                        "address": row["address"], 
-                        "email": row["email"], 
-                        "mobile_no": row["mobile_no"], 
-                        "phone_no": row["phone_no"],
+                        "name": flight_attendant.name, 
+                        "job_title": flight_attendant.job_title, 
+                        "address": flight_attendant.address, 
+                        "email": flight_attendant.email, 
+                        "mobile_no": flight_attendant.mobile_no, 
+                        "phone_no": flight_attendant.phone_no,
                     }
                 writer.writerows(row)
 
-            file_temp = "project/files/file_temp.cvs"
+            file_temp = "project/files/file_temp.csv"
             os.rename(self.file_flight_attendants, file_temp)
             os.rename(self.file_out, self.file_flight_attendants)
             os.rename(file_temp, self.file_out)

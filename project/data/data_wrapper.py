@@ -41,9 +41,6 @@ class Data_Wrapper:
     def get_flight_attendants_from_file(self):
         return self.crew_data.get_flight_attendants_from_file()
     
-    def get_crew_member_from_file(self, ssn):
-        return self.crew_data.get_crew_member_from_file(ssn)
-    
     def register_updated_pilot_to_file(self, pilot):
         return self.crew_data.register_updated_pilot_to_file(pilot)
     
@@ -53,8 +50,17 @@ class Data_Wrapper:
 
 #Voyage functions
 
-    def create_voyage(self, voyage):
-        return self.voyage_data.create_voyage(voyage)
+    def register_voyage_to_file(self, voyage):
+        return self.voyage_data.register_voyage_to_file(voyage)
+    
+    def get_voyages_from_file(self):
+        return self.voyage_data.get_voyages_from_file(self)
+    
+    def get_voyage_from_file(self, destination, date):
+        return self.voyage_data.get_voyage_from_file(self, destination, date)
+    
+    def register_updated_voyage_to_file(self, voyage):
+        return self.voyage_data.register_updated_voyage_to_file(self, voyage)
     
 
 #aircraft functions
