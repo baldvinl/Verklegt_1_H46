@@ -1,5 +1,6 @@
 from data.data_wrapper import Data_Wrapper
 from model.destination import Destination
+from logic.validation_check import ValidationLogic
 
 class Destination_Logic:
     def __init__(self, data_connection: Data_Wrapper):

@@ -1,5 +1,6 @@
 from data.data_wrapper import Data_Wrapper
 from model.voyage import Voyage
+from logic.validation_check import ValidationLogic
 
 class Voyage_Logic:
     def __init__(self, data_connection: Data_Wrapper):
@@ -26,7 +27,7 @@ class Voyage_Logic:
         crew members separated by their job title"""
         # list of employees not working on this day - import from crew logic file and use the function there
         availability = "not working"
-        crew_not_working = self.crew_logic.crew_not_working(datetime, availability)
+        crew_not_working = self.crew_logic.availability_list(datetime, availability)
         # make dict with key: job_title and fill with crew
         job_title = ["captain", "pilot", "head flight attendant", "extra flight attendants"]
         crew_dict = dict.fromkeys(job_title, None)

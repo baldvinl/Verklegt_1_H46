@@ -2,12 +2,15 @@ from data.data_wrapper import Data_Wrapper
 from model.crew import Crew
 from model.pilot import Pilot
 from model.flight_attendant import Flight_Attendant
+from logic.validation_check import ValidationLogic
+#from logic.validation_check import find_crew_member
 
 
 class Crew_Logic:
     def __init__(self, data_connection: Data_Wrapper):
         self.data_wrapper = data_connection
         self.voyage_logic = None
+        self.validator = ValidationLogic()
 
     def setVoyage(self, x):
         self.voyage_logic = x
@@ -15,10 +18,16 @@ class Crew_Logic:
     def register_crew(self, crew: Crew):
         """Checks if crew object received is of the type 
         Pilot or not and forwards to data wrapper accordingly"""
-        if isinstance(crew, Pilot):
-            return self.data_wrapper.register_pilot(crew)
+        all_crew_list = self.get_all_crew()
+        new_ssn = crew.ssn
+        crew_found = self.validator.find_crew_member(new_ssn, all_crew_list)
+        if not crew_found:
+            if isinstance(crew, Pilot):
+                return self.data_wrapper.register_pilot(crew)
+            else:
+                return self.data_wrapper.register_flight_attendant(crew)
         else:
-            return self.data_wrapper.register_flight_attendant(crew)
+            return ValidationLogic.ALREADY_IN_SYSTEM
 
     def get_all_crew(self):
         """Receives lists of pilots and flight attendants 
@@ -47,12 +56,13 @@ class Crew_Logic:
 
     def get_crew_member(self, ssn: str):
         """Receives social security number of crew member and forwards to data wrapper"""
+
         return self.data_wrapper.get_crew_member(ssn)
 
-    def availability_list(self, date, availability: str):
+    def availability_list(self, date, availability: bool):
         """"""
         # specific day
-        # availability will be "working"/ "not working"
+        # availability will be "True(for working/ False)"
         # get all voyages for that day from data [list of objects]
         voyages_that_day = self.voyage_logic.get_voyages_day(date) # to be implemented in data - might need to change name
         # request pilots and flight attendants [list of objects]
@@ -74,7 +84,7 @@ class Crew_Logic:
                 crew_not_working.append(crew_member)
             else:
                 crew_working.append(crew_member, voyages_that_day.destination)
-        if availability == "working":
+        if availability:
             return crew_working
         else:
             return crew_not_working

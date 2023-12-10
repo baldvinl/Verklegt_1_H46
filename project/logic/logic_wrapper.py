@@ -45,7 +45,7 @@ class Logic_Wrapper:
         all_crew_list = self.crew_logic.get_all_crew()
         return all_crew_list
 
-    def availability_list(self, date, availability): #TODO
+    def availability_list(self, date, availability: bool): #TODO
         """Receives date and availability request (working or not working), requests
         voyages that day using the date from data wrapper, gets all crew from data wrapper. Using
         the ssns found in the voyages that day it makes 2 lists one for crew thats working
