@@ -1,13 +1,13 @@
 
-from ui.ui_menu_display import Main_Menu
-from ui.ui_menu_display import Header_Footer
-from ui.ui_menu_display import Inputs_Prompt
-from ui.ui_menu_display import Employee_Menu
+# from ui.ui_menu_display import Main_Menu
+# from ui.ui_menu_display import Header_Footer
+# from ui.ui_menu_display import Inputs_Prompt
+# from ui.ui_menu_display import Employee_Menu
 
 
 from ui.ui_validation import Validation_Ui
 test_validation = Validation_Ui("1234567890", "John Doe", "123-456-7890", "123 Main St")
-test_validation.validate_ssn('932k32')
+test_validation.validate_ssn("1234567890")
 
 # test_header = Header_Footer()
 # test_input = Inputs_Prompt()

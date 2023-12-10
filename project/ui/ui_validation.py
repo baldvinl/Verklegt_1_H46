@@ -1,4 +1,4 @@
-# from logic.logic_wrapper import Logic_Wrapper
+# from project.logic.logic_wrapper import Logic_Wrapper
 
 CORRECT_FORMAT = 'This is a correct input'
 SSN_LEN = 10
@@ -18,25 +18,25 @@ class Validation_Ui:
         return None
 
     def validate_ssn(self,ssn):
-        while len(self.ssn) != SSN_LEN:
-            for char in self.ssn:
+        while len(ssn) != SSN_LEN:
+            for char in ssn:
                 if char.isdigit():
                     print(CORRECT_FORMAT) #Take out later
                     # Logic_Wrapper.register_crew(ssn)
                 else:
                     print('This is not correct format.')
                     print('SSN has no digits')
-                    self.ssn = input('Enter correct ssn: ') #sHOULD i put something else
+                    ssn = input('Enter correct ssn: ') #sHOULD i put something else
             print('This is not correct format. SSN has 10 numbers')
-            self.ssn = input('Enter correct ssn: ')
+            ssn = input('Enter correct ssn: ')
 
         def validate_name(self,name):
             # Name [just letters 3-30 - no numbers or symbol] -- maybe split functions for first and last name
-            while not NAME_LEN_MINIMUM < self.name <= NAME_LEN_MAXIMUM:
-                if not NAME_LEN_MINIMUM < self.name <= NAME_LEN_MAXIMUM:
+            while not NAME_LEN_MINIMUM < name <= NAME_LEN_MAXIMUM:
+                if not NAME_LEN_MINIMUM < name <= NAME_LEN_MAXIMUM:
                     print('This is incorrect input')
                     print('Input name lenght between 3 and 30 charachter')
-                    self.name = input('Enter a name with correct lenght: ')
+                    name = input('Enter a name with correct lenght: ')
                 else:
                     print(CORRECT_FORMAT)
                     first_name, last_name = name.strip().split()
@@ -44,32 +44,33 @@ class Validation_Ui:
 
         def validate_mobile_number(self, mobile):
             #Mobile number [just digits up to 15]
-            while not MOBILE_LEN_MINIMUM >= len(self.mobile) >= MOLBILE_LEN_MAXIMUM :
-                for char in self.mobile:
+            while not MOBILE_LEN_MINIMUM >= len(mobile) >= MOLBILE_LEN_MAXIMUM :
+                for char in mobile:
                     if char.isdigit():
                         print(CORRECT_FORMAT)
                         Logic_Wrapper.register_crew(mobile)
                     else:
                         print('This is not correct format.')
                         print('SSN has no digits')
-                        self.mobile = input('Enter correct ssn: ') #sHOULD i put something else
+                        mobile = input('Enter correct ssn: ') #sHOULD i put something else
                 print('This is not valid format. SSN has 10 numbers')
-                self.mobile = input('Enter correct ssn: ')
+                mobile = input('Enter correct ssn: ')
 
 
         def validate_address(self, address):
              # Address [just numbers and letters, dashes, spaces]
-            string_punc = "!\"#$%&'()*+, -./:;<=>?@[\]^_`{|}~"
+            string_punc = "!\"#$%&'()*+, ./:;<=>?@[\]^_`{|}~"
             while True:
-                for char in self.addess: 
+                for char in address: 
                     if char in string_punc:
                         print('This is not a valid address')
                         print('') 
-                        self.address = input('Enter correct address: ')
+                        address = input('Enter correct address: ')
                     else:
                         print(CORRECT_FORMAT)
-                        Logic_Wrapper.register_crew(address)
-                        break
+                        # return address
+                        # Logic_Wrapper...
+                        break 
         
 
         def validate_mobile_number(self, mobile):
