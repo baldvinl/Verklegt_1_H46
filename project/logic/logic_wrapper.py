@@ -22,9 +22,15 @@ class Logic_Wrapper:
         self.crew_logic.setVoyage(self.voyage_logic) # needs to be fixed maybe
 
     # CREW
+
+    def get_crew_member(self, ssn: str):
+        """Receives social security number of crew member, checks if already exists and forwards to data wrapper
+        if not it returns an error code"""
+        return self.crew_logic.get_all_crew(ssn)
+
     def register_crew(self, crew: Crew):
-        """Receives crew object, checks if it's a pilot or 
-        a flight attendant and forwards to data wrapper accordingly"""
+        """Receives crew object, checks if member with same ssn already exists, if not checks 
+        if crew object received is of the type Pilot or not and forwards to data wrapper accordingly"""
         return self.crew_logic.register_crew(crew)
 
     def change_crew_info(self, ssn: str, changes: list[tuple]):
@@ -33,34 +39,28 @@ class Logic_Wrapper:
         provided ssn from data wrapper, makes the changes and sends back
         the updated crew member object."""
         return self.crew_logic.change_crew_info(ssn, changes)
-    
-    def display_crew_member(self, ssn: str):
-        """Receives social security number of employee and forwards to data wrapper"""
-        return self.crew_logic.get_crew_member(ssn)
 
-    def display_all_crew(self):
-        """Receives request, asks for list of pilots and flight attendants from data
-        wrapper, combines both into one list and returns it"""
-        all_crew_list = self.crew_logic.get_all_crew()
-        return all_crew_list
+    def get_all_crew(self):
+        """Receives lists of pilots and flight attendants 
+        from data wrapper, combines them and returns list if not empty, otherwise an error code"""
+        return self.crew_logic.get_all_crew()
 
-    def availability_list(self, date, busy: bool): #TODO
+    def crew_status(self, date, busy: bool): #TODO
         """Receives date and availability request (working or not working), requests
         voyages that day using the date from data wrapper, gets all crew from data wrapper. Using
         the ssns found in the voyages that day it makes 2 lists one for crew thats working
         and one for crew that isnt. Then returns according to the availability requested"""
-        crew_list = self.crew_logic.crew_status(date, busy)
-        return crew_list
+        return self.crew_logic.crew_status(date, busy)
     
-    def display_pilots(self):
-        """Receives request, gets pilots list from data and returns it"""
-        pilots_list = self.crew_logic.get_pilots()
-        return pilots_list
+    def get_pilots(self):
+        """Requests all pilots from data wrapper and returns if there is any. 
+        If not returns error code"""
+        return self.crew_logic.get_pilots()
     
-    def display_flight_attendants(self):
-        """Receives request, gets flight attendants list from data and returns it"""
-        flight_attendants_list = self.crew_logic.get_flight_attendants()
-        return flight_attendants_list
+    def get_flight_attendants(self):
+        """Requests all flight attendants from data wrapper and returns if there is any. 
+        If not returns error code"""
+        return self.crew_logic.get_flight_attendants()
     
     # to add -- add type rating to pilot
     # to add -- display all pilots rated for specific aircraft
