@@ -59,7 +59,7 @@ class Voyage_Logic:
     def add_aircraft_to_voyage(self, aircraft, destination, departure):
         """TODO"""
         # do we need to check if aircraft is already there and not allow them to replace it?
-        voyage_to_add_aircraft = self.get_voyage( destination, departure)
+        voyage_to_add_aircraft = self.get_voyage(destination, departure)
         voyage_to_add_aircraft.aircraft = aircraft
         return voyage_to_add_aircraft
 
@@ -72,30 +72,49 @@ class Voyage_Logic:
         # sort by datetime
         # need to receive date only
         all_voyages = self.get_all_voyages()
-        voyages_day = []
-        for voyage in all_voyages:
-            if voyage.date == date: # need to add date attribute to voyage model?
-                voyages_day.append(voyage)
-        sorted_voyages_day = sorted(voyages_day, key=lambda voyage: voyage.departure_time)
-        return sorted_voyages_day
+        if all_voyages:
+            voyages_day = []
+            for voyage in all_voyages:
+                if voyage.date == date: # need to add date attribute to voyage model?
+                    voyages_day.append(voyage)
+            sorted_voyages_day = sorted(voyages_day, key=lambda voyage: voyage.departure_time)
+            return sorted_voyages_day
+        else:
+            return ValidationLogic.NO_VOYAGES_FOUND
 
-    def display_voyages_week(self, date):
-        """"""
+    def get_voyages_week(self, date):
+        """TODO"""
         # sort by datetime
         all_voyages = self.get_all_voyages()
-        voyages_week = []
-        dates_week = []
-        counter_date = date
-        end_date = date + timedelta(days=6)
-        while date <= end_date:
-            dates_week.append(date)
-            counter_date += 1
-        for voyage in all_voyages:
-            if voyage.date in dates_week:
-                voyages_week.append(voyage)
-        sorted_voyages_week = sorted(voyages_week, key=lambda voyage: (voyage.date, voyage.departure_time)) #not sure if this sorts properly
-        return sorted_voyages_week
+        if all_voyages:
+            voyages_week = []
+            dates_week = []
+            counter_date = date
+            end_date = date + timedelta(days=6)
+            while date <= end_date:
+                dates_week.append(date)
+                counter_date += 1
+            for voyage in all_voyages:
+                if voyage.date in dates_week:
+                    voyages_week.append(voyage)
+            sorted_voyages_week = sorted(voyages_week, key=lambda voyage: (voyage.date, voyage.departure_time)) #not sure if this sorts properly
+            return sorted_voyages_week
+        else:
+            return ValidationLogic.NO_VOYAGES_FOUND
 
-    def get_voyage_schedule(self, ssn, departure):
-        """Receives social security number and date and forwards to data wrapper"""
-        return self.data_wrapper.get_voyage_schedule(ssn, departure)
+    def get_voyage_schedule(self, ssn, first_day):
+        """Receives social security number and date and forwards to data wrapper TODO"""
+        crew_members_voyages = []
+        voyages_week = self.get_voyages_week(first_day)
+        if voyages_week != ValidationLogic.NO_VOYAGES_FOUND:
+            job_title = ["captain", "pilot", "head flight attendant", "extra flight attendants"]
+            for voyage in voyages_week:
+                crew_in_voyage = []
+                for job in job_title:
+                    crew_in_voyage.append(getattr(voyage.job))
+                if ssn in crew_in_voyage:
+                    crew_members_voyages.append(voyage)
+            crew_members_voyages_sorted = sorted(crew_members_voyages, key=lambda voyage:(voyage.date, voyage.departure_time))
+            return crew_members_voyages_sorted
+        else:
+            return voyages_week

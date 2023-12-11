@@ -13,6 +13,7 @@ class ValidationLogic:
 
     NOT_FOUND = "NF"
     ALREADY_IN_SYSTEM = "AIS"
+    NO_VOYAGES_FOUND = "NVF"
 
     def __init__(self) -> None:
         pass

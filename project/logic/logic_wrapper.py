@@ -92,17 +92,17 @@ class Logic_Wrapper:
         """Receives voyage object and forwards to data wrapper"""
         return self.voyage_logic.register_voyage(voyage)
     
-    def add_aircraft_to_voyage(self, aircraft, voyage):
+    def add_aircraft_to_voyage(self, aircraft, destination, departure):
         """TODO"""
-        return self.voyage_logic.add_aircraft_to_voyage(aircraft, voyage)
+        return self.voyage_logic.add_aircraft_to_voyage(aircraft, destination, departure)
     
     def display_voyages_day(self, datetime):
         """Receives selected date and forwards it to data wrapper"""
-        return self.voyage_logic.display_voyages_day(datetime)
+        return self.voyage_logic.get_voyages_day(datetime)
     
     def display_voyages_week(self, datetime):
         """Receives selected week and forwards it to data wrapper"""
-        return self.voyage_logic.display_voyages_week(datetime)
+        return self.voyage_logic.get_voyages_week(datetime)
     
     def get_voyage_schedule(self, ssn, date):
         """Receives employees social security number and date selected and forwards to data wrapper"""
