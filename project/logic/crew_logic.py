@@ -15,20 +15,33 @@ class Crew_Logic:
     def setVoyage(self, x):
         self.voyage_logic = x
 
+    def get_crew_member(self, ssn: str):
+        """Receives social security number of crew member and forwards to data wrapper"""
+        all_crew = self.get_all_crew()
+        for member in all_crew:
+            if member.ssn == ssn:
+                return member
+
     def register_crew(self, crew: Crew):
         """Checks if crew object received is of the type 
-        Pilot or not and forwards to data wrapper accordingly"""
-        all_crew_list = self.get_all_crew()
-        new_ssn = crew.ssn
-        crew_found = self.validator.find_crew_member(new_ssn, all_crew_list)
-        if not crew_found:
+        Pilot or not and forwards to data wrapper accordingly""" #TODO
+        crew_member = self.get_crew_member(crew.ssn)
+        if not crew_member:
             if isinstance(crew, Pilot):
                 return self.data_wrapper.register_pilot(crew)
             else:
                 return self.data_wrapper.register_flight_attendant(crew)
         else:
             return ValidationLogic.ALREADY_IN_SYSTEM
-
+        
+    def get_pilots(self):
+            """Forwards request to data wrapper"""
+            return self.data_wrapper.get_pilots()
+        
+    def get_flight_attendants(self):
+        """Forwards requests to data wrapper"""
+        return self.data_wrapper.get_flight_attendants()
+    
     def get_all_crew(self):
         """Receives lists of pilots and flight attendants 
         from data wrapper, combines them and returns"""
@@ -36,35 +49,33 @@ class Crew_Logic:
         flight_attendants_list = self.data_wrapper.get_flight_attendants()
         all_crew_list = pilots_list + flight_attendants_list
         return all_crew_list
-    
+
     def change_crew_info(self, ssn: str, changes: list[tuple]):
         """Receives ssn, and changes list of tuples with format 
         [(attribute, new_value)], requests crew member with ssn
         changes attributes with their new values 
         and returns updated object to data wrapper"""
-        crew_member = self.data_wrapper.get_crew_member(ssn)
-        # for element in changes: [its a list of tuples]
-        # go through and change attributes
-        for attribute_name, new_value in changes:
-            attribute_name_lower = attribute_name.lower()
-            setattr(crew_member, attribute_name_lower, new_value)
-        # check if pilot or not and return to data wrapper
-        if isinstance(crew_member, Pilot):
-            return self.data_wrapper.change_pilot_info(crew_member)
+        crew_member = self.get_crew_member(ssn)
+        if crew_member:
+            # for element in changes: [its a list of tuples]
+            # go through and change attributes
+            for attribute_name, new_value in changes:
+                attribute_name_lower = attribute_name.lower()
+                setattr(crew_member, attribute_name_lower, new_value)
+            # check if pilot or not and return to data wrapper
+            if isinstance(crew_member, Pilot):
+                return self.data_wrapper.change_pilot_info(crew_member)
+            else:
+                return self.data_wrapper.change_flight_attendant_info(crew_member)
         else:
-            return self.data_wrapper.change_flight_attendant_info(crew_member)
+            return ValidationLogic.NOT_FOUND
 
-    def get_crew_member(self, ssn: str):
-        """Receives social security number of crew member and forwards to data wrapper"""
-
-        return self.data_wrapper.get_crew_member(ssn)
-
-    def availability_list(self, date, availability: bool):
+    def availability_list(self, departure_time, availability: bool):
         """"""
         # specific day
         # availability will be "True(for working/ False)"
         # get all voyages for that day from data [list of objects]
-        voyages_that_day = self.voyage_logic.get_voyages_day(date) # to be implemented in data - might need to change name
+        voyages_that_day = self.voyage_logic.get_voyages_day(departure_time) # to be implemented in data - might need to change name
         # request pilots and flight attendants [list of objects]
         crew = self.get_all_crew()
         attributes_list = ["pilot", "captain", "head_flight_attendant", "extra_flight_attendants"]
@@ -89,10 +100,3 @@ class Crew_Logic:
         else:
             return crew_not_working
     
-    def get_pilots(self):
-        """Forwards request to data wrapper"""
-        return self.data_wrapper.get_pilots()
-    
-    def get_flight_attendants(self):
-        """Forwards requests to data wrapper"""
-        return self.data_wrapper.get_flight_attendants()

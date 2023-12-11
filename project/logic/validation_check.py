@@ -13,21 +13,24 @@ class ValidationLogic:
 
     NOT_FOUND = "NF"
     ALREADY_IN_SYSTEM = "AIS"
+    NO_VOYAGES_FOUND = "NVF"
 
     def __init__(self) -> None:
         pass
 
     # TODO
-    # check if crew member is already registered - implemented
+    # check if crew member is already registered - IN
     def find_crew_member(self, ssn_to_register: str, all_crew_list: list):
         """Checks if ssn has already been registered in the crew list"""
         for crew_member in all_crew_list:
             if crew_member.ssn == ssn_to_register:
                 return True
             return False
-    # in listing employee info - needs to be registered - 
-    # change info crew - need to exist
-    # destination register - needs to have ice contact/ needs to not exist yet
+    # in listing employee info - needs to be registered - IN
+    # change info crew - need to exist - IN 
+    # destination register - IN 
+    #   needs to have ice contact/ needs to not exist yet - IN
+    # change ice info - destination needs to exist - IN
     # register voyage - check if exists already/ if departure time from iceland is within 30 min from another voyage
     # add crew to voyage - voyage needs to exist/ aircraft has been added?/ 
 

@@ -83,6 +83,7 @@ class DestinationMenu_ui():
         new_ice_number = input("Enter the new emergency contact phone number: ")
         new_ice_info = new_ice_name, new_ice_number
 
+
         return iata, new_ice_info
 
 

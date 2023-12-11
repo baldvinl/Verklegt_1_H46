@@ -1,5 +1,5 @@
 import os
-from ui.ui_mainmenu import *
+from ui.ui_mainmenu import MainMenu_ui
 
 from logic.logic_wrapper import Logic_Wrapper
 
@@ -121,7 +121,7 @@ class CrewMenu_ui():
         print(f"SSN, Name, Job title, Address, E-mail, Mobile, Phone, Type rating")
         for elem in info:
             pilot_info = elem
-            print(pilot_info.ssn, pilot_info.name, pilot_info.job_title, pilot_info.address, pilot_info.email, pilot_info.mobile_no, pilot_info.phone_no, pilot_info.type_rating end= " " "\n")
+            print(pilot_info.ssn, pilot_info.name, pilot_info.job_title, pilot_info.address, pilot_info.email, pilot_info.mobile_no, pilot_info.phone_no, pilot_info.type_rating, end= " " "\n")
         print(f"[M]enu  [B]ack  [Q]uit")
         
         command = input("Please enter command: ")
@@ -143,7 +143,7 @@ class CrewMenu_ui():
         print(f"SSN, Name, Job title, Address, E-mail, Mobile, Phone")
         for elem in info:
             fa_info = elem
-            print(fa_info.ssn, fa_info.name, fa_info.job_title, fa_info.address, fa_info.email, fa_info.mobile_no, fa_info.phone_no end= " " "\n")
+            print(fa_info.ssn, fa_info.name, fa_info.job_title, fa_info.address, fa_info.email, fa_info.mobile_no, fa_info.phone_no, end= " " "\n")
         print(f"[M]enu  [B]ack  [Q]uit")
         
         command = input("Please enter command: ")
@@ -165,7 +165,7 @@ class CrewMenu_ui():
         print(f"SSN, Name, Job title, Address, E-mail, Mobile, Phone, Type rating") #how do we get the type rating for pilots?
         for elem in info:
             crew_info = elem
-            print(crew_info.ssn, crew_info.name, crew_info.job_title, crew_info.address, crew_info.email, crew_info.mobile_no, crew_info.phone_no, crew_info.type_rating end= " " "\n")
+            print(crew_info.ssn, crew_info.name, crew_info.job_title, crew_info.address, crew_info.email, crew_info.mobile_no, crew_info.phone_no, crew_info.type_rating, end= " " "\n")
         print(f"[M]enu  [B]ack  [Q]uit")
         
         command = input("Please enter command: ")
@@ -185,7 +185,7 @@ class CrewMenu_ui():
         crew_info = Crew(info)
 
         print(f"SSN, Name, Job title, Address, E-mail, Mobile, Phone, Type rating") #how do we get the type rating for pilots?
-        print(crew_info.ssn, crew_info.name, crew_info.job_title, crew_info.address, crew_info.email, crew_info.mobile_no, crew_info.phone_no, crew_info.type_rating end= " " "\n")
+        print(crew_info.ssn, crew_info.name, crew_info.job_title, crew_info.address, crew_info.email, crew_info.mobile_no, crew_info.phone_no, crew_info.type_rating, end= " " "\n")
         print(f"[M]enu  [B]ack  [Q]uit")
         
         command = input("Please enter command: ")

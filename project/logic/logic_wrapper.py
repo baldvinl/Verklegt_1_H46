@@ -92,17 +92,17 @@ class Logic_Wrapper:
         """Receives voyage object and forwards to data wrapper"""
         return self.voyage_logic.register_voyage(voyage)
     
-    def add_aircraft_to_voyage(self, aircraft, voyage):
+    def add_aircraft_to_voyage(self, aircraft, destination, departure):
         """TODO"""
-        return self.voyage_logic.add_aircraft_to_voyage(aircraft, voyage)
+        return self.voyage_logic.add_aircraft_to_voyage(aircraft, destination, departure)
     
     def display_voyages_day(self, datetime):
         """Receives selected date and forwards it to data wrapper"""
-        return self.voyage_logic.display_voyages_day(datetime)
+        return self.voyage_logic.get_voyages_day(datetime)
     
     def display_voyages_week(self, datetime):
         """Receives selected week and forwards it to data wrapper"""
-        return self.voyage_logic.display_voyages_week(datetime)
+        return self.voyage_logic.get_voyages_week(datetime)
     
     def get_voyage_schedule(self, ssn, date):
         """Receives employees social security number and date selected and forwards to data wrapper"""
@@ -112,9 +112,9 @@ class Logic_Wrapper:
         """Receives destination and date and forwards them to data wrapper"""
         return self.voyage_logic.get_voyage_status(destination, date)
     
-    def add_crew(self, crew, voyage):
+    def add_crew_to_voyage(self, crew, voyage):
         """"""
-        return self.voyage_logic.add_crew(crew, voyage)
+        return self.voyage_logic.add_crew_to_voyage(crew, voyage)
     
     # DESTINATION
     def register_destination(self, destination: Destination):
@@ -129,4 +129,4 @@ class Logic_Wrapper:
     
     def display_destinations(self):
         """Forwards request to data wrapper"""
-        return self.destination_logic.get_destinations()
+        return self.destination_logic.get_all_destinations()
