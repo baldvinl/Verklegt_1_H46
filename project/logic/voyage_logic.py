@@ -1,6 +1,7 @@
 from data.data_wrapper import Data_Wrapper
 from model.voyage import Voyage
 from logic.validation_check import ValidationLogic
+from datetime import date, timedelta
 
 class Voyage_Logic:
     def __init__(self, data_connection: Data_Wrapper):
@@ -18,7 +19,7 @@ class Voyage_Logic:
                 return voyage
     
     def get_all_voyages(self):
-        """TODO"""
+        """Receives and forwards request to data wrapper"""
         return self.data_wrapper.get_voyages_from_file()
     
     def register_voyage(self, new_voyage: Voyage):
@@ -66,20 +67,34 @@ class Voyage_Logic:
         """Receives destination and data and forwards to data wrapper"""
         return self.data_wrapper.get_voyage_status(destination, departure)
 
-    def get_voyages_day(self, datetime):
+    def get_voyages_day(self, date):
         """Receive list from data wrapper, sorts by time and returns"""
         # sort by datetime
-        # need to figure out the date for this TODO
+        # need to receive date only
         all_voyages = self.get_all_voyages()
         voyages_day = []
         for voyage in all_voyages:
-            if voyage.date = datetime
-        return self.data_wrapper.display_voyages_day(datetime)
+            if voyage.date == date: # need to add date attribute to voyage model?
+                voyages_day.append(voyage)
+        sorted_voyages_day = sorted(voyages_day, key=lambda voyage: voyage.departure_time)
+        return sorted_voyages_day
 
-    def display_voyages_week(self, datetime):
+    def display_voyages_week(self, date):
         """"""
-        # sort by datetime TODO
-        return self.data_wrapper.display_voyages_day(datetime)
+        # sort by datetime
+        all_voyages = self.get_all_voyages()
+        voyages_week = []
+        dates_week = []
+        counter_date = date
+        end_date = date + timedelta(days=6)
+        while date <= end_date:
+            dates_week.append(date)
+            counter_date += 1
+        for voyage in all_voyages:
+            if voyage.date in dates_week:
+                voyages_week.append(voyage)
+        sorted_voyages_week = sorted(voyages_week, key=lambda voyage: (voyage.date, voyage.departure_time)) #not sure if this sorts properly
+        return sorted_voyages_week
 
     def get_voyage_schedule(self, ssn, departure):
         """Receives social security number and date and forwards to data wrapper"""
