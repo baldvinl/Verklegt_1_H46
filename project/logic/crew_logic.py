@@ -48,7 +48,10 @@ class Crew_Logic:
         pilots_list = self.data_wrapper.get_pilots()
         flight_attendants_list = self.data_wrapper.get_flight_attendants()
         all_crew_list = pilots_list + flight_attendants_list
-        return all_crew_list
+        if all_crew_list:
+            return all_crew_list
+        else:
+            return ValidationLogic.NO_CREW_FOUND
 
     def change_crew_info(self, ssn: str, changes: list[tuple]):
         """Receives ssn, and changes list of tuples with format 
@@ -68,14 +71,14 @@ class Crew_Logic:
             else:
                 return self.data_wrapper.change_flight_attendant_info(crew_member)
         else:
-            return ValidationLogic.NOT_FOUND
+            return ValidationLogic.NO_CREW_FOUND
 
     def crew_status(self, departure_time, busy: bool):
         """"""
         # specific day
         # availability will be "True(for working/ False)"
         # get all voyages for that day from data [list of objects]
-        voyages_that_day = self.voyage_logic.get_voyages_day(departure_time) # to be implemented in data - might need to change name
+        voyages_that_day = self.voyage_logic.get_voyages_day(departure_time)
         # request pilots and flight attendants [list of objects]
         crew = self.get_all_crew()
         attributes_list = ["pilot", "captain", "head_flight_attendant", "extra_flight_attendants"]
