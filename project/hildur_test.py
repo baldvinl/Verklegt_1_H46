@@ -1,4 +1,3 @@
-
 # from ui.ui_menu_display import Main_Menu
 # from ui.ui_menu_display import Header_Footer
 # from ui.ui_menu_display import Inputs_Prompt
@@ -6,8 +5,11 @@
 
 
 from ui.ui_validation import Validation_Ui
-test_validation = Validation_Ui("123456789077", "John Doe", "123-456-7890", "123 Main St")
-test_validation.validate_name("kd7")
+
+test_validation = Validation_Ui("4988939", "John Doe", "493488939", "123 Main St")
+# test_validation.validate_mobile_number("493488939")
+test_validation.validate_address("123 Main St")
+
 
 # test_header = Header_Footer()
 # test_input = Inputs_Prompt()

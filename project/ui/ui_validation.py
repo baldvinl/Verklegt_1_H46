@@ -1,13 +1,13 @@
 # from project.logic.logic_wrapper import Logic_Wrapper
 
 ERROR_MESSAGE = "An error occured. The program will shut down"
-INCORRECT_INPUT = 'Incorrect input'
+INCORRECT_INPUT = "Incorrect input"
 CORRECT_FORMAT = "This is a correct input"
 SSN_LEN = 10
 NAME_LEN_MINIMUM = 3
 NAME_LEN_MAXIMUM = 30
 MOBILE_LEN_MINIMUM = 7
-MOLBILE_LEN_MAXIMUM = 15
+MOBILE_LEN_MAXIMUM = 15
 
 # ------------CREW---------------------
 
@@ -39,7 +39,7 @@ class Validation_Ui:
         while True:
             try:
                 if NAME_LEN_MINIMUM < len(name) <= NAME_LEN_MAXIMUM:
-                    print('ok')
+                    print("ok")
                     first_name, last_name = name.strip().split()
                     return (first_name, last_name)
                     # break
@@ -52,62 +52,66 @@ class Validation_Ui:
                 print(ERROR_MESSAGE)
                 break
 
-        def validate_mobile_number(self, mobile):
-            # Mobile number [just digits up to 15]
-            while not MOBILE_LEN_MINIMUM >= len(mobile) >= MOLBILE_LEN_MAXIMUM:
-                for char in mobile:
-                    if char.isdigit():
-                        print(CORRECT_FORMAT)
-                        # Logic_Wrapper.register_crew(mobile)
-                    else:
-                        print("This is not correct format.")
-                        print("SSN has no digits")
-                        mobile = input(
-                            "Enter correct ssn: "
-                        )  # sHOULD i put something else
-                print("This is not valid format. SSN has 10 numbers")
-                mobile = input("Enter correct ssn: ")
+    def validate_mobile_number(self, mobile):
+        # Mobile number [just digits up to 15].
+        #something is wrong with this code
+        while True:
+            try:
+                if MOBILE_LEN_MINIMUM < len(mobile) < MOBILE_LEN_MAXIMUM and any(
+                    char.isdigit() for char in mobile
+                ):
+                    # return address
+                    # Logic_Wrapper...
+                    break
+                else:
+                    print(INCORRECT_INPUT)
+                    print("Mobile number should be digits between 7 and 15")
+                    mobile = input("Enter a correct mobile: ")
+            except ValueError:
+                print(ERROR_MESSAGE)
+                break
 
-        def validate_address(self, address):
-            # Address [just numbers and letters, dashes, spaces]
-            string_punc = "!\"#$%&'()*+, ./:;<=>?@[\]^_`{|}~"
-            while True:
-                for char in address:
-                    if char in string_punc:
-                        print("This is not a valid address")
-                        print("")
-                        address = input("Enter correct address: ")
-                    else:
-                        print(CORRECT_FORMAT)
-                        # return address
-                        # Logic_Wrapper...
-                        break
+    def validate_address(self, address):
+        # Address [just numbers and letters, dashes, spaces]
+        string_punc = "!\"#$%&'()*+, ./:;<=>?@[\]^_`{|}~"
+        while True:
+            try:
+                if not any(char in string_punc for char in address):
+                    # return address
+                    # Logic_Wrapper...
+                    break
+                else:
+                    print(INCORRECT_INPUT)
+                    print("The address is in a wrong format...and something more")
+                    address = input("Enter a correct address: ")
+            except ValueError:
+                print(ERROR_MESSAGE)
+                break
 
-        def validate_home_phone_number(self, mobile):
-            # Landline -- same as phone number probably
-            while not MOBILE_LEN_MINIMUM >= len(self.mobile) >= MOLBILE_LEN_MAXIMUM:
-                for char in self.mobile:
-                    if char.isdigit():
-                        print(CORRECT_FORMAT)
-                        # Logic_Wrapper.register_crew(mobile)
-                    else:
-                        print("This is not correct format.")
-                        print("SSN has no digits")
-                        self.mobile = input(
-                            "Enter correct ssn: "
-                        )  # sHOULD i put something else
-                print(
-                    "This is not valid format. Number should be between 7 and 15 numbers"
-                )
-                self.mobile = input("Enter correct ssn: ")
+    def validate_home_phone_number(self, home_phone):
+        # Landline -- same as phone number probably
+        # Mobile number [just digits up to 15].
+        #something is wrong with this code
+        while True:
+            try:
+                if MOBILE_LEN_MINIMUM < len(home_phone) < MOBILE_LEN_MAXIMUM and any(
+                    char.isdigit() for char in home_phone
+                ):
+                    # return address
+                    # Logic_Wrapper...
+                    break
+                else:
+                    print(INCORRECT_INPUT)
+                    print("Mobile number should be digits between 7 and 15")
+                    home_phone = input("Enter a correct mobile: ")
+            except ValueError:
+                print(ERROR_MESSAGE)
+                break
 
         # Email first part cant contain ".", one "@" only, second part needs to contain "."
 
-    def validate_phone_number(self, number):
-        pass
 
-    def validate_address(self, address):
-        pass
+
 
     def validate_email(self, email):
         pass
