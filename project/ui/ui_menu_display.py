@@ -63,6 +63,7 @@ class Main_Menu:
         return None
     
     def display_main_menu(self):
+        Header_Footer.display_main_header(self)
         Header_Footer.lines_above_in_submenu(self)
         sub_header = 'Main menu'
         print(f'{HYPHEN:>15}{sub_header:>18}{HYPHEN:>51}')
@@ -75,6 +76,9 @@ class Main_Menu:
             print(f'{HYPHEN:>15}{(number+1):>10}   {ele:<55}{HYPHEN:>1}')
         for _ in range(rest_of_lines):
             print(f'{HYPHEN:>15}{HYPHEN:>69}')
+
+
+        Header_Footer.display_main_footer_with_q_m(self)
 
 class Employee_Menu:
     def __init__(self):
@@ -107,6 +111,10 @@ class Employee_Menu:
             print(f'{HYPHEN:>15}{(number+1):>10}   {ele:<55}{HYPHEN:>1}')
         for _ in range(rest_of_lines):
             print(f'{HYPHEN:>15}{HYPHEN:>69}')
+
+        Header_Footer.lines_above_in_submenu(self)
+
+       
 
     def register_pilot(self):
         Header_Footer.lines_above_in_submenu(self)
