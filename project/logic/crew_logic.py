@@ -16,15 +16,15 @@ class Crew_Logic:
         self.voyage_logic = x
 
     def get_crew_member(self, ssn: str):
-        """Receives social security number of crew member and forwards to data wrapper"""
+        """Receives social security number of crew member, checks if already exists and forwards to data wrapper"""
         all_crew = self.get_all_crew()
         for member in all_crew:
             if member.ssn == ssn:
                 return member
 
     def register_crew(self, crew: Crew):
-        """Checks if crew object received is of the type 
-        Pilot or not and forwards to data wrapper accordingly""" #TODO
+        """Receives crew object, checks if member with same ssn already exists, if not checks 
+        if crew object received is of the type Pilot or not and forwards to data wrapper accordingly"""
         crew_member = self.get_crew_member(crew.ssn)
         if not crew_member:
             if isinstance(crew, Pilot):
@@ -70,7 +70,7 @@ class Crew_Logic:
         else:
             return ValidationLogic.NOT_FOUND
 
-    def availability_list(self, departure_time, availability: bool):
+    def crew_status(self, departure_time, busy: bool):
         """"""
         # specific day
         # availability will be "True(for working/ False)"
@@ -95,7 +95,7 @@ class Crew_Logic:
                 crew_not_working.append(crew_member)
             else:
                 crew_working.append(crew_member, voyages_that_day.destination)
-        if availability:
+        if busy:
             return crew_working
         else:
             return crew_not_working

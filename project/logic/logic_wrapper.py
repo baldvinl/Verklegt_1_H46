@@ -19,7 +19,7 @@ class Logic_Wrapper:
         self.destination_logic = Destination_Logic(self.data_wrapper)
         self.voyage_logic = Voyage_Logic(self.data_wrapper, None) #, self.crew_logic)
         self.voyage_logic.setCrew(self.crew_logic)
-        self.crew_logic.setVoyage(self.voyage_logic) # needs to be fixed
+        self.crew_logic.setVoyage(self.voyage_logic) # needs to be fixed maybe
 
     # CREW
     def register_crew(self, crew: Crew):
@@ -45,12 +45,12 @@ class Logic_Wrapper:
         all_crew_list = self.crew_logic.get_all_crew()
         return all_crew_list
 
-    def availability_list(self, date, availability: bool): #TODO
+    def availability_list(self, date, busy: bool): #TODO
         """Receives date and availability request (working or not working), requests
         voyages that day using the date from data wrapper, gets all crew from data wrapper. Using
         the ssns found in the voyages that day it makes 2 lists one for crew thats working
         and one for crew that isnt. Then returns according to the availability requested"""
-        crew_list = self.crew_logic.availability_list(date, availability)
+        crew_list = self.crew_logic.crew_status(date, busy)
         return crew_list
     
     def display_pilots(self):
