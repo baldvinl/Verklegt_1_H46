@@ -24,9 +24,7 @@ class Validation_Ui:
         while True:
             try:
                 if len(ssn) == SSN_LEN and any(char.isdigit() for char in ssn):
-                    # return address
-                    # Logic_Wrapper...
-                    break
+                    return False 
                 else:
                     print(INCORRECT_INPUT)
                     print("SSN should have 10 digits")
