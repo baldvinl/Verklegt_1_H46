@@ -6,8 +6,8 @@
 
 
 from ui.ui_validation import Validation_Ui
-test_validation = Validation_Ui("1234567890", "John Doe", "123-456-7890", "123 Main St")
-test_validation.validate_ssn("1234567890")
+test_validation = Validation_Ui("123456789077", "John Doe", "123-456-7890", "123 Main St")
+test_validation.validate_name("kd7")
 
 # test_header = Header_Footer()
 # test_input = Inputs_Prompt()
