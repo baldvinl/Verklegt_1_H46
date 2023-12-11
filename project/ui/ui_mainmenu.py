@@ -16,23 +16,10 @@ class MainMenu_ui():
         '''Function that displays the main menu UI.'''
 
         MainMenu_ui.clear_terminal()
-        MainMenu_ui.main_header(current_menu)
-
-        Header_Footer.display_main_header(self)
-        Header_Footer.display_lines_below_in_submenu(self)
-        Main_Menu.display_main_menu_header(self)
-        Header_Footer.display_lines_below_in_submenu(self)
         Main_Menu.display_main_menu(self)
-        Header_Footer.display_main_footer_with_q_m(self)
+        
         
 
-        print(f"1. Crew")
-        print(f"2. Destinations")
-        print(f"3. Voyages")
-        print(f"4. Aircraft")
-        print(f"5. Print options")
-        
-        print(f"{QUIT}")
     
     def input(self):
         '''Function that asks for menu number in the main menu UI.'''
