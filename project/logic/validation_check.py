@@ -1,7 +1,7 @@
-from logic.aircraft_logic import Aircraft_Logic
-from logic.crew_logic import Crew_Logic
-from logic.destination_logic import Destination_Logic
-from logic.voyage_logic import Voyage_Logic
+# from logic.aircraft_logic import Aircraft_Logic
+# from logic.crew_logic import Crew_Logic
+# from logic.destination_logic import Destination_Logic
+# from logic.voyage_logic import Voyage_Logic
 
 # def find_crew_member(ssn, crew_list):
 #     for crew_member in crew_list:
@@ -18,14 +18,14 @@ class ValidationLogic:
     def __init__(self) -> None:
         pass
 
-    # TODO
+    # TODO 
     # check if crew member is already registered - IN
-    def find_crew_member(self, ssn_to_register: str, all_crew_list: list):
-        """Checks if ssn has already been registered in the crew list"""
-        for crew_member in all_crew_list:
-            if crew_member.ssn == ssn_to_register:
-                return True
-            return False
+    # def find_crew_member(self, ssn_to_register: str, all_crew_list: list):
+    #     """Checks if ssn has already been registered in the crew list"""
+    #     for crew_member in all_crew_list:
+    #         if crew_member.ssn == ssn_to_register:
+    #             return True
+    #         return False
     # in listing employee info - needs to be registered - IN
     # change info crew - need to exist - IN 
     # destination register - IN 
@@ -46,30 +46,30 @@ class ValidationLogic:
         # Landline -- same as phone number probably 
         # Email first part cant contain ".", one "@" only, second part needs to contain "."
 
-    def validate_name(self, name):
-        pass
+    # def validate_name(self, name):
+    #     pass
 
-    def validate_ssn(self, ssn):
-        pass
+    # def validate_ssn(self, ssn):
+    #     pass
 
-    def validate_phone_number(self, number):
-        pass
+    # def validate_phone_number(self, number):
+    #     pass
 
-    def validate_address(self, address):
-        pass
+    # def validate_address(self, address):
+    #     pass
 
-    def validate_email(self, email):
-        pass
+    # def validate_email(self, email):
+    #     pass
 
-    # Aircraft
-        # Name [2 letters 3 numbers]
-        # Type 
-        # Manufacturer [probably use validate name?]
-        # seat count 
-        # status
+    # # Aircraft
+    #     # Name [2 letters 3 numbers]
+    #     # Type 
+    #     # Manufacturer [probably use validate name?]
+    #     # seat count 
+    #     # status
 
-    def validate_aircraft_name(self, name):
-        pass
+    # def validate_aircraft_name(self, name):
+    #     pass
 
     # Destination
         # Country
