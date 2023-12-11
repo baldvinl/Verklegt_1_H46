@@ -1,10 +1,11 @@
 import os
 import csv
+from datetime import datetime
 from model.voyage import Voyage
 
 class Voyage_Data:
     def __init__(self):
-        self.file_voyages = "project/files/voyage.csv"
+        self.file_voyages = "project/files/voyages.csv"
         self.file_out = "project/files/outfile.csv"
 
 
@@ -13,8 +14,7 @@ class Voyage_Data:
 
         with open(self.file_voyages, 'a', newline='', encoding="utf-8") as csvfile:
             fieldnames = [
-                "destination", 
-                "date", 
+                "destination",  
                 "time_depart_iceland", 
                 "time_depart_destination", 
                 "captain", 
@@ -26,8 +26,7 @@ class Voyage_Data:
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 
             writer.writerow({
-                "destination": voyage.destination, 
-                "date": voyage.date, 
+                "destination": voyage.destination,
                 "time_depart_iceland": voyage.time_depart_iceland, 
                 "time_depart_destination": voyage.time_depart_destination,
                 "captain": voyage.captain,
@@ -46,8 +45,7 @@ class Voyage_Data:
             reader = csv.DictReader(csvfile)
             for row in reader:
                 voyage_list.append(Voyage(
-                    row["destination"], 
-                    row["date"], 
+                    row["destination"],
                     row["time_depart_iceland"], 
                     row["time_depart_destination"], 
                     row["captain"], 
@@ -59,16 +57,16 @@ class Voyage_Data:
         return voyage_list
     
 
-    def get_voyage_from_file(self, destination, date):
+    def get_voyage_from_file(self, destination, departure):
         """Returns a class of a voyage with the corresponding destination and date"""
+        departure = datetime.date(departure)
 
         with open(self.file_voyages, newline="", encoding="utf-8") as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
-                if row["destination"] == destination and row["date"] == date:
+                if row["destination"] == destination and datetime.date(row["time_depart_iceland"]) == departure:
                     return Voyage(
                         row["destination"], 
-                        row["date"], 
                         row["time_depart_iceland"], 
                         row["time_depart_destination"], 
                         row["captain"], 
@@ -84,7 +82,6 @@ class Voyage_Data:
 
         fieldnames = [
             "destination",
-            "date",
             "time_depart_iceland", 
             "time_depart_destination", 
             "captain", 
@@ -101,10 +98,9 @@ class Voyage_Data:
             writer.writeheader()
 
             for row in reader:
-                if row["destination"] == voyage.destinastion and row["date"] == voyage.date:
+                if row["destination"] == voyage.destinastion and datetime.date(row["time_depart_iceland"]) == datetime.date(voyage.time_depart_destination):
                     row = {
                         "destination": voyage.destinastion,
-                        "date": voyage.date,
                         "time_depart_iceland": voyage.time_depart_iceland,
                         "time_depart_destination": voyage.time_depart_destination, 
                         "captain": voyage.captain, 

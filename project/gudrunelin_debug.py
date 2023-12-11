@@ -1,8 +1,11 @@
+from datetime import datetime
 from data.destination_data import Destination_Data
 from data.crew_data import Crew_Data
 from model.destination import Destination
 from model.flight_attendant import Flight_Attendant
 from model.pilot import Pilot
+from data.voyage_data import Voyage_Data
+from model.voyage import Voyage
 
 destination = Destination('LOL', 'Laughland', 'xx:xx', '909', 'changed', '55555')
 data_class = Destination_Data()
@@ -41,6 +44,16 @@ ssn = '9988776655'
 # print(get_crew_memb.name)
 # pilot1 = Pilot('1122334455','John', 'Captain', 'UPDATED', 'John@captain.com', 'UPDATED', '55874', 'FI-786')
 # flight_attendant1 = Flight_Attendant('9988776655', 'Rose', 'Head flight attendant', 'wateveralane 89', 'rose@titanic.com', 'UPDATED', '88464')
-reg_upd_pilot = crew_class.register_updated_pilot_to_file(pilot)
-reg_upd_flight_att = crew_class.register_updated_flight_attendant_to_file(flight_attendant)
+#reg_upd_pilot = crew_class.register_updated_pilot_to_file(pilot)
+#reg_upd_flight_att = crew_class.register_updated_flight_attendant_to_file(flight_attendant)
+a = datetime(2024, 1, 11, 8, 45)
+b = datetime(2025, 1, 11, 12, 30)
+voyage = Voyage('CHANGED', a, b)
+voyage_class = Voyage_Data()
+#voyage_class.register_voyage_to_file(voyage)
+c = voyage_class.get_voyages_from_file()
+#d = voyage_class.get_voyage_from_file('Greenland', a)
+print(c[0].destination)
+#print(d.time_depart_destination)
 
+voyage_class.register_updated_voyage_to_file(voyage)
