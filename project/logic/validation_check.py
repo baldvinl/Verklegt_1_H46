@@ -14,6 +14,10 @@ class ValidationLogic:
     NOT_FOUND = "NF"
     ALREADY_IN_SYSTEM = "AIS"
     NO_VOYAGES_FOUND = "NVF"
+    NO_CREW_FOUND = "NCF"
+    DESTINATION_NOT_FOUND = "DNF"
+    NO_PILOTS_FOUND = "NPF"
+    NO_FLIGHT_ATTENDANTS_FOUND = "NFAF"
 
     def __init__(self) -> None:
         pass
@@ -33,11 +37,7 @@ class ValidationLogic:
     # change ice info - destination needs to exist - IN
     # register voyage - check if exists already/ if departure time from iceland is within 30 min from another voyage
     # add crew to voyage - voyage needs to exist/ aircraft has been added?/ 
-
-
-
-
-
+    
     # Crew
         # Name [just letters 3-30 - no numbers or symbol] -- maybe split functions for first and last name
         # SSN [just digits up to 10]

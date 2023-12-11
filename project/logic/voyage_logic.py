@@ -11,68 +11,72 @@ class Voyage_Logic:
     def setCrew(self, x):
         self.crew_logic = x
 
-    def get_voyage(self, destination, departure):
-        """Requests voyage for a certain destination and date from data wrapper TODO"""
+    def get_voyage(self, destination, departure) -> Voyage:
+        """Requests voyage list, checks for a certain voyage with specific destination 
+        and departure time from data wrapper, returns either voyage object or error code"""
         voyages = self.get_all_voyages()
-        for voyage in voyages:
-            if voyage.destination == destination & voyage.time_depart_destination == departure:
-                return voyage
+        if voyages != ValidationLogic.NO_VOYAGES_FOUND:
+            for voyage in voyages:
+                if voyage.destination == destination & voyage.time_depart_destination == departure:
+                    return voyage
+                else:
+                    return ValidationLogic.NO_VOYAGES_FOUND
     
-    def get_all_voyages(self):
-        """Receives and forwards request to data wrapper"""
-        return self.data_wrapper.get_voyages_from_file()
+    def get_all_voyages(self) -> list:
+        """Requests voyage list from data wrapper, checks if empty, if so returns error otherwise returns list"""
+        voyage_list = self.data_wrapper.get_voyages_from_file()
+        if voyage_list:
+            return voyage_list
+        else:
+            return ValidationLogic.NO_VOYAGES_FOUND
     
     def register_voyage(self, new_voyage: Voyage):
-        """Receives voyage object and forwards to data wrapper TODO"""
+        """Receives voyage object, checks if already in system, if so returns error code
+         and if not forwards to data wrapper"""
         voyage = self.get_voyage(new_voyage.destination, new_voyage.time_depart_destination)
         if not voyage:
-            return self.data_wrapper.register_voyage(new_voyage)
+            return self.data_wrapper.register_voyage_to_file(new_voyage)
         else:
             return ValidationLogic.ALREADY_IN_SYSTEM
 
-    # def get_crew_info(self, destination, departure):
-    #     """Receives destination and date and forwards to data wrapper"""
-    #     return self.data_wrapper.get_information(destination, departure)
-
     def find_crew_for_voyage(self, departure_time):
-        """Receives date, requests crew not working on that date and returns dictionary with key: job title and fills with all
-        crew members separated by their job title"""
-        # list of employees not working on this day - import from crew logic file and use the function there
-        availability = False
-        crew_not_working = self.crew_logic.availability_list(departure_time, availability)
-        # make dict with key: job_title and fill with crew
+        """Receives date, requests crew not working on that date, returns dictionary with key: job title 
+        and fills with all crew members separated by their job title, if there is no crew it returns
+        error code"""
+        busy = False
         job_title = ["captain", "pilot", "head flight attendant", "extra flight attendants"]
-        crew_dict = dict.fromkeys(job_title, None)
-        for member in crew_not_working:
-            if member.job_title in crew_dict:
-                crew_dict[member.job_title].append(member)
-        return crew_dict
+        crew_not_working = self.crew_logic.crew_status(departure_time, busy)
+        if crew_not_working:
+            crew_dict = dict.fromkeys(job_title, None)
+            for member in crew_not_working:
+                if member.job_title in crew_dict:
+                    crew_dict[member.job_title].append(member)
+            return crew_dict
+        else: 
+            return ValidationLogic.NO_CREW_FOUND
 
     def add_crew_to_voyage(self, crew_dict: dict, voyage: Voyage):
-        # receives crew to add
-        # gets voyage from data
+        """Receives crew dictionary separated by job titles, adds to voyage object receives and returns
+        to data wrapper"""
         for job_title, crew_member in crew_dict.items():
             setattr(voyage, job_title, crew_member)
-        # returns new voyage object to data
-        return voyage
+        return self.data_wrapper.register_updated_voyage_to_file(voyage)
     
     def add_aircraft_to_voyage(self, aircraft, destination, departure):
-        """TODO"""
-        # do we need to check if aircraft is already there and not allow them to replace it?
+        """Gets voyage with certain destination & departure time, adds aircraft to it and returns to data wrapper"""
         voyage_to_add_aircraft = self.get_voyage(destination, departure)
         voyage_to_add_aircraft.aircraft = aircraft
-        return voyage_to_add_aircraft
+        return self.data_wrapper.add_aircraft(aircraft)
 
     def get_voyage_status(self, destination, departure):
-        """Receives destination and data and forwards to data wrapper"""
+        """Receives destination and data and forwards to data wrapper TODO"""
         return self.data_wrapper.get_voyage_status(destination, departure)
 
     def get_voyages_day(self, date):
-        """Receive list from data wrapper, sorts by time and returns"""
-        # sort by datetime
-        # need to receive date only
+        """Receives date, requests all voyages from data wrapper, if there is no voyages returns error
+        if there is it returns voyages for that day in a list sorted"""
         all_voyages = self.get_all_voyages()
-        if all_voyages:
+        if all_voyages != ValidationLogic.NO_VOYAGES_FOUND:
             voyages_day = []
             for voyage in all_voyages:
                 if voyage.date == date: # need to add date attribute to voyage model?
@@ -83,8 +87,8 @@ class Voyage_Logic:
             return ValidationLogic.NO_VOYAGES_FOUND
 
     def get_voyages_week(self, date):
-        """TODO"""
-        # sort by datetime
+        """Receives date, requests all voyages from data wrapper, if there is no voyages returns error
+        if there is it returns voyages for that week in a list sorted"""
         all_voyages = self.get_all_voyages()
         if all_voyages:
             voyages_week = []
@@ -103,7 +107,8 @@ class Voyage_Logic:
             return ValidationLogic.NO_VOYAGES_FOUND
 
     def get_voyage_schedule(self, ssn, first_day):
-        """Receives social security number and date and forwards to data wrapper TODO"""
+        """Receives ssn, and starting date of the week, checks them for the crew members ssn, and saves
+        the one that have them listed. returns them in a list sorted. if there is no voyages it returns error code"""
         crew_members_voyages = []
         voyages_week = self.get_voyages_week(first_day)
         if voyages_week != ValidationLogic.NO_VOYAGES_FOUND:
@@ -117,4 +122,4 @@ class Voyage_Logic:
             crew_members_voyages_sorted = sorted(crew_members_voyages, key=lambda voyage:(voyage.date, voyage.departure_time))
             return crew_members_voyages_sorted
         else:
-            return voyages_week
+            return ValidationLogic.NO_VOYAGES_FOUND
