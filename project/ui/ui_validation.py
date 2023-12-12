@@ -1,122 +1,170 @@
 # from project.logic.logic_wrapper import Logic_Wrapper
+import re
 
-ERROR_MESSAGE = "An error occured. The program will shut down"
-INCORRECT_INPUT = "Incorrect input"
-CORRECT_FORMAT = "This is a correct input"
 SSN_LEN = 10
 NAME_LEN_MINIMUM = 3
 NAME_LEN_MAXIMUM = 30
 MOBILE_LEN_MINIMUM = 7
 MOBILE_LEN_MAXIMUM = 15
 AIRCRAFT_NAME_LEN = 6
-DASH = '-'
+DASH = "-"
 AIRCRAFT_NAME_FIRST_PART_LEN = 2
 AIRCRAFT_NAME_LAST_PART_LEN = 3
-AIRCRAFT_NAME_FIRST_ALPHA = ''
-AIRCRAFT_NAME_LAST_ALPHA = ''
-AIRCRAFT_NAME_VALUE_ERROR_MESSAGE = 'Name is in this format: XX-XXX'
-AIRCRAFT_NAME_INPUT = 'Enter a correct aircraft name:'
+AIRCRAFT_NAME_FIRST_ALPHA = ""
+AIRCRAFT_NAME_LAST_ALPHA = ""
+AIRCRAFT_NAME_VALUE_ERROR_MESSAGE = "Name is in this format: XX-XXX"
+AIRCRAFT_NAME_INPUT = "Enter a correct aircraft name:"
+COUNTRY_LEN_MIN = 2
+COUNTRY_LEN_MAX = 30
+IATA_LEN = 3
+TIME_LEN = 5
+
+
 
 # ------------CREW---------------------
-class Validation_Ui:
-    def __init__(self, ssn, crew_name, mobile, address):
+class Crew_Validation_Ui:
+    def __init__(self, ssn, crew_name, mobile, address, email):
         self.ssn = ssn
         self.crew_name = crew_name
         self.mobile = mobile
         self.address = address
+        self.email = email
         return None
 
     def validate_ssn(self, ssn):
-        while True:
-            try:
-                if len(ssn) == SSN_LEN and any(char.isdigit() for char in ssn):
-                    return False 
-                else:
-                    print(INCORRECT_INPUT)
-                    print("SSN should have 10 digits")
-                    ssn = input("Enter a correct SSN: ")
-            except ValueError:
-                print(ERROR_MESSAGE)
-                break
+        # skoða
+        validity = r"^\d+$"
+        if not re.match(validity, ssn) or len(ssn) != SSN_LEN:
+            print(AIRCRAFT_NAME_VALUE_ERROR_MESSAGE)
+            raise ValueError
+        return ssn
 
     def validate_name(self, crew_name):
-        while True:
-            try:
-                if NAME_LEN_MINIMUM < len(crew_name) <= NAME_LEN_MAXIMUM:
-                    print("ok")
-                    first_name, last_name = crew_name.strip().split()
-                    return (first_name, last_name)
-                    # break
-                    # Logic_Wrapper.register_crew(first_name, last_name)
-                else:
-                    print(INCORRECT_INPUT)
-                    print("Input name lenght should be between 3 and 30 charachter")
-                    name = input("Enter a name with correct lenght: ")
-            except ValueError:
-                print(ERROR_MESSAGE)
-                break
+        if len(crew_name) < NAME_LEN_MINIMUM or len(crew_name) > NAME_LEN_MAXIMUM:
+            print(AIRCRAFT_NAME_VALUE_ERROR_MESSAGE)
+            raise ValueError
+        return crew_name
 
     def validate_mobile_number(self, mobile):
-        # Mobile number [just digits up to 15].
-        #something is wrong with this code
-        while True:
-
-            try:
-                if MOBILE_LEN_MINIMUM < len(mobile) < MOBILE_LEN_MAXIMUM and any(
-                    char.isdigit() for char in mobile
-                ):
-                    # return address
-                    # Logic_Wrapper...
-                    break
-                else:
-                    print(INCORRECT_INPUT)
-                    print("Mobile number should be digits between 7 and 15")
-                    mobile = input("Enter a correct mobile: ")
-            except ValueError:
-                print(ERROR_MESSAGE)
-                break
+        '''Validate mobile number.'''
+        validity = r"^\d+$"
+        if (
+            len(mobile) < MOBILE_LEN_MINIMUM
+            or len(mobile) > MOBILE_LEN_MAXIMUM
+            or not re.match(validity, mobile)):
+            print(AIRCRAFT_NAME_VALUE_ERROR_MESSAGE)
+            raise ValueError
+        return mobile
 
     def validate_address(self, address):
-        # Address [just numbers and letters, dashes, spaces]
-        string_punc = "!\"#$%&'()*+, ./:;<=>?@[\]^_`{|}~"
-        while True:
-            try:
-                if not any(char in string_punc for char in address):
-                    # return address
-                    # Logic_Wrapper...
-                    break
-                else:
-                    print(INCORRECT_INPUT)
-                    print("The address is in a wrong format...and something more")
-                    address = input("Enter a correct address: ")
-            except ValueError:
-                print(ERROR_MESSAGE)
-                break
+        """Validate crews address"""
+        string_punc = r"[^!\"#$%&'()*+,/:;<=>?@[]_`{|}~]"
+
+        if any(char in string_punc for char in address):
+            print(AIRCRAFT_NAME_VALUE_ERROR_MESSAGE)
+            raise ValueError
+        return address
 
     def validate_home_phone_number(self, home_phone):
-        # Landline -- same as phone number probably
-        # Mobile number [just digits up to 15].
-        #something is wrong with this code
-        while True:
-            try:
-                if MOBILE_LEN_MINIMUM < len(home_phone) < MOBILE_LEN_MAXIMUM and any(
-                    char.isdigit() for char in home_phone
-                ):
-                    # return address
-                    # Logic_Wrapper...
-                    break
-                else:
-                    print(INCORRECT_INPUT)
-                    print("Mobile number should be digits between 7 and 15")
-                    home_phone = input("Enter a correct mobile: ")
-            except ValueError:
-                print(ERROR_MESSAGE)
-                break
-
-        # Email first part cant contain ".", one "@" only, second part needs to contain "."
+        '''Validate mobile number.'''
+        validity = r"^\d+$"
+        if (
+            len(home_phone) < MOBILE_LEN_MINIMUM
+            or len(home_phone) > MOBILE_LEN_MAXIMUM
+            or not re.match(validity, home_phone)):
+            print(AIRCRAFT_NAME_VALUE_ERROR_MESSAGE)
+            raise ValueError
+        return home_phone
 
     def validate_email(self, email):
-        pass
+        valitity = r'([A-Za-z0-9]+[.-_])*[A-Za-z0-9]+@[A-Za-z0-9-]+(\.[A-Z|a-z]{2,})+'
+        if not re.search(valitity, email):
+            print(AIRCRAFT_NAME_VALUE_ERROR_MESSAGE)
+            raise ValueError
+        return email
+
+class Destination_Ui_Validation:
+    def __init__(self, country, airport, flight_time, flight_duration, distance, ice_name, ice_number):
+        self.country = country
+        self.airport = airport
+        self.flight_time = flight_time
+        self.flight_duration = flight_duration
+        self.distance = distance
+        self.ice_name = ice_name
+        self.ice_number = ice_number
+
+    def validate_country(self,country):
+        if len(country) < COUNTRY_LEN_MIN or len(country) > COUNTRY_LEN_MAX:
+            print(AIRCRAFT_NAME_VALUE_ERROR_MESSAGE)
+            raise ValueError
+        return country
+    
+    def validate_airport(self, airport):
+        validity = r'^[A-Z]+$'
+        if not re.match(validity,airport ) or len(airport) != IATA_LEN:
+            print(AIRCRAFT_NAME_VALUE_ERROR_MESSAGE)
+            raise ValueError
+        return airport
+    
+    def validate_flight_time(self, flight_time):
+        validity = r'^[0-2][0-9][:][0-5][0-9]'
+
+        if not re.match(validity,flight_time):
+            print(AIRCRAFT_NAME_VALUE_ERROR_MESSAGE)
+            raise ValueError
+        return flight_time
+
+    def validate_duration(self, flight_duration):
+        validity = r'^[0-2][0-9][:][0-5][0-9]'
+    
+        if not re.match(validity,flight_duration):
+            print(AIRCRAFT_NAME_VALUE_ERROR_MESSAGE)
+            raise ValueError
+        return flight_duration
+    
+
+    def validate_distance_from_iceland(self, distance):
+        validity = r"^\d+$"
+        if not re.match(validity, distance):
+            print(AIRCRAFT_NAME_VALUE_ERROR_MESSAGE)
+            raise ValueError
+        return distance
+    
+    def validate_ice_number(self, ice_number):
+        validity = r"^\d+$"
+        if (
+            len(ice_number) < MOBILE_LEN_MINIMUM
+            or len(ice_number) > MOBILE_LEN_MAXIMUM
+            or not re.match(validity, ice_number)):
+            print(AIRCRAFT_NAME_VALUE_ERROR_MESSAGE)
+            raise ValueError
+        return ice_number
+    
+
+class Voyage_Validation:
+    def __init__(self, destionation, flight_to, flight_from, fully_manned, status, pilot_count, f_a_count):
+        self.destionation = destionation
+        self.flight_to = flight_to
+        self.flight_from = flight_from
+        self.fully_manned = fully_manned
+        self.status = status
+        self.pilot_count = pilot_count
+        self.f_a_count = f_a_count
+
+    def validate_destination(self, voyage):
+        validity = r"^[a-zA-Z]+$"
+        if not re.match(validity, voyage):
+            print(AIRCRAFT_NAME_VALUE_ERROR_MESSAGE)
+            raise ValueError
+        return voyage
+
+
+# flight to
+# flight back
+# fully manned
+# status
+# pilot count
+# f.a count
 
 
 class Validate_Aircraft_Ui:
@@ -128,47 +176,16 @@ class Validate_Aircraft_Ui:
         return None
 
     def validate_aircraft_name(self, aircraft_name):
-        while True:
-            if not AIRCRAFT_NAME_LEN == len(aircraft_name):
-                raise ValueError(AIRCRAFT_NAME_VALUE_ERROR_MESSAGE)
-                aircraft_name = input("Enter a correct aircraft name: ")   
-            if not AIRCRAFT_NAME_FIRST_PART_LEN == len(aircraft_name[0:1]): 
-                raise ValueError(AIRCRAFT_NAME_VALUE_ERROR_MESSAGE)
-                aircraft_name = input("Enter a correct aircraft name: ")
-            if not AIRCRAFT_NAME_LAST_PART_LEN == len(aircraft_name[3:5]):
-                raise ValueError(AIRCRAFT_NAME_VALUE_ERROR_MESSAGE)
-                aircraft_name = input("Enter a correct aircraft name: ")
-            if not AIRCRAFT_NAME_FIRST_ALPHA.isalpha():
-                raise ValueError(AIRCRAFT_NAME_VALUE_ERROR_MESSAGE)
-                aircraft_name = input("Enter a correct aircraft name: ")
-            if not AIRCRAFT_NAME_LAST_ALPHA.isalpha():
-                raise ValueError(AIRCRAFT_NAME_VALUE_ERROR_MESSAGE)
-                aircraft_name = input("Enter a correct aircraft name: ")
-            else:
-                return False
+        valitity = "([A-Za-z]+[-]+([A-Z|a-z])"
 
+        if not AIRCRAFT_NAME_LEN == len(aircraft_name) and re.match(
+            valitity, aircraft_name
+        ):
+            print(AIRCRAFT_NAME_VALUE_ERROR_MESSAGE)
+            raise ValueError
+        return aircraft_name
 
-    # Aircraft
     # Name [2 letters 3 numbers]
     # Type
     # Manufacturer [probably use validate name?]
     # seat count
-
-
-    # Destination
-    # Country
-    # Airport
-    # Flight time
-    # Flight duration
-    # Distance from iceland
-    # emergency contact name
-    # number
-
-    # Voyage
-    # Destination
-    # flight to
-    # flight back
-    # fully manned
-    # status
-    # pilot count
-    # f.a count

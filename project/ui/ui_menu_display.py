@@ -77,7 +77,6 @@ class Main_Menu:
         for _ in range(rest_of_lines):
             print(f'{HYPHEN:>15}{HYPHEN:>69}')
 
-
         Header_Footer.display_main_footer_with_q_m(self)
 
 class Employee_Menu:
