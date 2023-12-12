@@ -41,7 +41,7 @@ class Voyage_Logic:
 
     def add_crew_to_voyage(self, crew_dict: dict, voyage: Voyage):
         """Receives crew dictionary separated by job titles, adds to voyage object receives and returns
-        to data wrapper"""
+        to data wrapper TODO need to update this to receive ("job title", ssn) and put ssns in the corresponding voyage attributes"""
         for job_title, crew_member in crew_dict.items():
             setattr(voyage, job_title, crew_member)
         return self.data_wrapper.register_updated_voyage_to_file(voyage)
@@ -66,12 +66,12 @@ class Voyage_Logic:
 
     def get_voyages_day(self, date_input):
         """Receives date, requests all voyages from data wrapper, if there is no voyages returns error
-        if there is it returns voyages for that day in a list sorted"""
+        if there is it returns voyages for that day in a list sorted #TODO MERGE THIS WITH BOTTOM"""
         all_voyages = self.get_all_voyages()
         if all_voyages:
             voyages_day = []
             for voyage in all_voyages:
-                if voyage.departure_time == date_input: # need to add date attribute to voyage model?
+                if voyage.departure_time == date_input:
                     voyages_day.append(voyage)
             sorted_voyages_day = sorted(voyages_day, key=lambda voyage: voyage.departure_time)
             return sorted_voyages_day

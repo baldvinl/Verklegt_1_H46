@@ -84,22 +84,22 @@ class Crew_Logic:
 
         voyages_that_day = self.voyage_logic.get_voyages_day(departure_time)
         crew = self.get_all_crew()
-        attributes_list = ["pilot", "captain", "head_flight_attendant", "extra_flight_attendants"]
+        attributes_list = ["pilot", "captain", "head_flight_attendant", "flight_attendant1", "flight_attendant2"]
 
-        if not voyages_that_day: #TODO
+        if not voyages_that_day:
             raise ValueError(ErrorMessages.NO_VOYAGES_FOUND)
         
-        ssn_list = []
+        ssn_list_of_crew_on_voyage = []
         for attribute in attributes_list:
             attribute_value = getattr(voyages_that_day, attribute)
-            ssn_list.append(attribute_value)
+            ssn_list_of_crew_on_voyage.append(attribute_value)
         if not crew:
             raise ValueError(ErrorMessages.NO_CREW_FOUND)
         
         crew_not_working = []
         crew_working = []
         for crew_member in crew:
-            if crew_member.ssn not in ssn_list:
+            if crew_member.ssn not in ssn_list_of_crew_on_voyage:
                 crew_not_working.append(crew_member)
             else:
                 crew_working.append(crew_member, voyages_that_day.destination)
@@ -113,13 +113,16 @@ class Crew_Logic:
         and fills with all crew members separated by their job title, if there is no crew it returns
         error code"""
         busy = False
-        job_title = ["captain", "pilot", "head_flight_attendant", "flight_attendant1", "flight_attendant2"]
+        job_title = ["captain", "pilot", "head_flight_attendant"]
         crew_not_working = self.crew_status(departure_time, busy)
         if crew_not_working:
             crew_dict = dict.fromkeys(job_title, None)
+            crew_dict.update({"flight_attendants": None})
             for member in crew_not_working:
                 if member.job_title in crew_dict:
                     crew_dict[member.job_title].append(member)
+                else:
+                    crew_dict["flight_attendants"].append(member)
             return crew_dict
         else:
             raise ValueError(ErrorMessages.NO_CREW_FOUND)
