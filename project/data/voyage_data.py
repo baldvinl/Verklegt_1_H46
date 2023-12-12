@@ -5,9 +5,9 @@ from model.voyage import Voyage
 
 class Voyage_Data:
     def __init__(self):
-        self.file_voyages = "project/files/voyages.csv"
-        self.file_out = "project/files/outfile.csv"
-        self.file_voyages_done = "project/files/voyages_done.csv"
+        self.file_voyages = "files/voyages.csv"
+        self.file_out = "files/outfile.csv"
+        self.file_voyages_done = "files/voyages_done.csv"
 
 
     def register_voyage_to_file(self, voyage):
@@ -123,7 +123,7 @@ class Voyage_Data:
             infile.close()
             outfile.close()
 
-        file_temp = "project/files/file_temp.csv"
+        file_temp = "files/file_temp.csv"
         os.rename(self.file_voyages, file_temp)
         os.rename(self.file_out, self.file_voyages)
         os.rename(file_temp, self.file_out)
@@ -164,7 +164,7 @@ class Voyage_Data:
             outfile1.close()
             outfile2.close()
 
-        file_temp = "project/files/file_temp.csv"
+        file_temp = "files/file_temp.csv"
         os.rename(self.file_voyages, file_temp)
         os.rename(self.file_out, self.file_voyages)
         os.rename(file_temp, self.file_out)

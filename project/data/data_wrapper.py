@@ -54,13 +54,16 @@ class Data_Wrapper:
         return self.voyage_data.register_voyage_to_file(voyage)
     
     def get_voyages_from_file(self):
-        return self.voyage_data.get_voyages_from_file(self)
+        return self.voyage_data.get_voyages_from_file()
     
     def get_voyage_from_file(self, destination, date):
-        return self.voyage_data.get_voyage_from_file(self, destination, date)
+        return self.voyage_data.get_voyage_from_file(destination, date)
     
     def register_updated_voyage_to_file(self, voyage):
-        return self.voyage_data.register_updated_voyage_to_file(self, voyage)
+        return self.voyage_data.register_updated_voyage_to_file(voyage)
+    
+    def move_voyages_done_to_file(self):
+        return self.voyage_data.move_voyages_done_to_file()
     
 
 #aircraft functions

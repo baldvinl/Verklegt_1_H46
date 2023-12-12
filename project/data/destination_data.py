@@ -5,8 +5,8 @@ from model.destination import Destination
 
 class Destination_Data:
     def __init__(self):
-        self.file_destinations = "project/files/destinations.csv"
-        self.file_out = "project/files/outfile.csv"
+        self.file_destinations = "files/destinations.csv"
+        self.file_out = "files/outfile.csv"
 
 
     def register_destination_in_file(self, destination):
@@ -106,7 +106,7 @@ class Destination_Data:
             infile.close()
             outfile.close()
 
-        file_temp = "project/files/file_temp.csv"
+        file_temp = "files/file_temp.csv"
         os.rename(self.file_destinations, file_temp)
         os.rename(self.file_out, self.file_destinations)
         os.rename(file_temp, self.file_out)

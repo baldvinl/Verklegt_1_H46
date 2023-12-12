@@ -5,9 +5,9 @@ from model.pilot import Pilot
 
 class Crew_Data:
     def __init__(self):
-        self.file_pilots = "project/files/pilots.csv"
-        self.file_flight_attendants = "project/files/flight_attendants.csv"
-        self.file_out = "project/files/outfile.csv"
+        self.file_pilots = "files/pilots.csv"
+        self.file_flight_attendants = "files/flight_attendants.csv"
+        self.file_out = "files/outfile.csv"
 
 
     def register_pilot_to_file(self, pilot):
@@ -148,7 +148,7 @@ class Crew_Data:
             infile.close()
             outfile.close()
 
-            file_temp = "project/files/file_temp.csv"
+            file_temp = "files/file_temp.csv"
             os.rename(self.file_pilots, file_temp)
             os.rename(self.file_out, self.file_pilots)
             os.rename(file_temp, self.file_out)
@@ -188,7 +188,7 @@ class Crew_Data:
             infile.close()
             outfile.close()
 
-            file_temp = "project/files/file_temp.csv"
+            file_temp = "files/file_temp.csv"
             os.rename(self.file_flight_attendants, file_temp)
             os.rename(self.file_out, self.file_flight_attendants)
             os.rename(file_temp, self.file_out)
