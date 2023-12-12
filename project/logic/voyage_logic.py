@@ -6,10 +6,6 @@ from datetime import date, timedelta
 class Voyage_Logic:
     def __init__(self, data_connection: Data_Wrapper):
         self.data_wrapper = data_connection
-        self.crew_logic = None
-    
-    def setCrew(self, x):
-        self.crew_logic = x
 
     def get_voyage(self, destination, departure) -> Voyage:
         """Requests voyage list, checks for a certain voyage with specific destination 
@@ -69,7 +65,7 @@ class Voyage_Logic:
         return self.data_wrapper.add_aircraft(aircraft)
 
     def get_voyage_status(self, destination, departure):
-        """Receives destination and data and forwards to data wrapper TODO"""
+        """Receives destination and data and forwards to data wrapper TODO B requirement"""
         return self.data_wrapper.get_voyage_status(destination, departure)
 
     def get_voyages_day(self, date):

@@ -15,11 +15,11 @@ class Logic_Wrapper:
     def __init__(self) -> None:
         self.data_wrapper = Data_Wrapper()
         self.aircraft_logic = Aircraft_Logic(self.data_wrapper)
-        self.crew_logic = Crew_Logic(self.data_wrapper, None)
+        self.crew_logic = Crew_Logic(self.data_wrapper, self.voyage_logic)
         self.destination_logic = Destination_Logic(self.data_wrapper)
-        self.voyage_logic = Voyage_Logic(self.data_wrapper, None) #, self.crew_logic)
-        self.voyage_logic.setCrew(self.crew_logic)
-        self.crew_logic.setVoyage(self.voyage_logic) # needs to be fixed maybe
+        self.voyage_logic = Voyage_Logic(self.data_wrapper) #, self.crew_logic)
+        #self.voyage_logic.setCrew(self.crew_logic)
+        #self.crew_logic.setVoyage(self.voyage_logic) # needs to be fixed maybe
 
     # CREW
 
@@ -62,6 +62,12 @@ class Logic_Wrapper:
         If not returns error code"""
         return self.crew_logic.get_flight_attendants()
     
+    def find_crew_for_voyage(self, departure_time):
+        """Receives date, requests crew not working on that date, returns dictionary with key: job title 
+        and fills with all crew members separated by their job title, if there is no crew it returns
+        error code"""
+        return self.crew_logic.find_crew_for_voyage(departure_time)
+    
     # to add -- add type rating to pilot
     # to add -- display all pilots rated for specific aircraft
     # to add -- display all pilots sorted by aircraft type
@@ -101,12 +107,6 @@ class Logic_Wrapper:
         """Receives voyage object, checks if already in system, if so returns error code
         and if not forwards to data wrapper"""
         return self.voyage_logic.register_voyage(new_voyage)
-    
-    def find_crew_for_voyage(self, departure_time):
-        """Receives date, requests crew not working on that date, returns dictionary with key: job title 
-        and fills with all crew members separated by their job title, if there is no crew it returns
-        error code"""
-        return self.voyage_logic.find_crew_for_voyage(departure_time)
     
     def add_crew_to_voyage(self, crew_dict: dict, voyage: Voyage):
         """Receives crew dictionary separated by job titles, adds to voyage object receives and returns

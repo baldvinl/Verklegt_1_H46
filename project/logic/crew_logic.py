@@ -3,17 +3,12 @@ from model.crew import Crew
 from model.pilot import Pilot
 from model.flight_attendant import Flight_Attendant
 from logic.validation_check import ValidationLogic
-#from logic.validation_check import find_crew_member
-
 
 class Crew_Logic:
     def __init__(self, data_connection: Data_Wrapper):
         self.data_wrapper = data_connection
         self.voyage_logic = None
         self.validator = ValidationLogic()
-
-    def setVoyage(self, x):
-        self.voyage_logic = x
 
     def get_crew_member(self, ssn: str):
         """Receives social security number of crew member, checks if already exists and forwards to data wrapper
@@ -111,3 +106,19 @@ class Crew_Logic:
         if not busy:
             return crew_not_working
         return crew_working
+    
+    def find_crew_for_voyage(self, departure_time):
+        """Receives date, requests crew not working on that date, returns dictionary with key: job title 
+        and fills with all crew members separated by their job title, if there is no crew it returns
+        error code"""
+        busy = False
+        job_title = ["captain", "pilot", "head flight attendant", "extra flight attendants"]
+        crew_not_working = self.crew_status(departure_time, busy)
+        if crew_not_working:
+            crew_dict = dict.fromkeys(job_title, None)
+            for member in crew_not_working:
+                if member.job_title in crew_dict:
+                    crew_dict[member.job_title].append(member)
+            return crew_dict
+        else:
+            return ValidationLogic.NO_CREW_FOUND
