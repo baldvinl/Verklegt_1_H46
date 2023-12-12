@@ -17,8 +17,8 @@ class Header_Footer:
 
     def display_main_header(self):
         print()
-        print()
-        print('\033[1;35;40m', ' '*27,'||\    ||         ||\    ||')
+        print('\033[1;35;40m')
+        print(' '*27,'||\    ||         ||\    ||')
         print(' ' * 19,'_|_', ' ' * 4,'|| \   ||    ^    || \   ||      **',' ' * 9, '_|_')
         print(' ' * 16,'---(*)---',' ' * 1,'||  \  ||  // \\\  ||  \  ||   ^  || ||__',' ' * 1 , '---(*)---')
         print(' ' * 18,'\" \' \"',' ' * 3,'||   \ || //___\\\ ||   \ ||  /_\ || ||',' ' * 5 , '\" \' \"')
@@ -362,6 +362,7 @@ class Destination_Menu:
 class Voyages_Menu:
     def __init__(self):
         return None
+    
     def display_voyage_menu(self):
         Header_Footer.display_main_header(self)
         Header_Footer.lines_above_in_submenu(self)
