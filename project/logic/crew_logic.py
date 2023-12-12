@@ -113,7 +113,7 @@ class Crew_Logic:
         and fills with all crew members separated by their job title, if there is no crew it returns
         error code"""
         busy = False
-        job_title = ["captain", "pilot", "head flight attendant", "extra flight attendants"]
+        job_title = ["captain", "pilot", "head_flight_attendant", "flight_attendant1", "flight_attendant2"]
         crew_not_working = self.crew_status(departure_time, busy)
         if crew_not_working:
             crew_dict = dict.fromkeys(job_title, None)
