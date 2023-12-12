@@ -3,9 +3,10 @@ from model.crew import Crew
 from model.pilot import Pilot
 from model.flight_attendant import Flight_Attendant
 from model.error_messages import ErrorMessages
+from logic.voyage_logic import Voyage_Logic
 
 class Crew_Logic:
-    def __init__(self, data_connection: Data_Wrapper, voyage_logic_instance):
+    def __init__(self, data_connection: Data_Wrapper, voyage_logic_instance: Voyage_Logic):
         self.data_wrapper = data_connection
         self.voyage_logic = voyage_logic_instance
 
