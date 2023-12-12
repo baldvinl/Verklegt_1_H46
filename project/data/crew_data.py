@@ -36,6 +36,8 @@ class Crew_Data:
                 "phone_no": pilot.phone_no, 
                 "type_rating": pilot.type_rating}
             )
+
+            csvfile.close()
     
 
     def register_flight_attendant_to_file(self, flight_attendant):
@@ -63,6 +65,8 @@ class Crew_Data:
                 "phone_no": flight_attendant.phone_no
             })
             
+            csvfile.close()
+            
 
     def get_pilots_from_file(self):
         """Returns a list of all pilots stored in the file"""
@@ -81,6 +85,8 @@ class Crew_Data:
                         row["phone_no"], 
                         row["type_rating"]
                 ))
+            
+            csvfile.close()
         return pilot_list
 
 
@@ -100,6 +106,8 @@ class Crew_Data:
                         row["mobile_no"], 
                         row["phone_no"]
                     ))
+           
+            csvfile.close()
         return flight_attendants_list
                     
                     
@@ -135,7 +143,10 @@ class Crew_Data:
                         "phone_no": pilot.phone_no,
                         "type_rating": pilot.type_rating
                     }
-                writer.writerows(row)
+                writer.writerow(row)
+
+            infile.close()
+            outfile.close()
 
             file_temp = "project/files/file_temp.csv"
             os.rename(self.file_pilots, file_temp)
@@ -172,7 +183,10 @@ class Crew_Data:
                         "mobile_no": flight_attendant.mobile_no, 
                         "phone_no": flight_attendant.phone_no,
                     }
-                writer.writerows(row)
+                writer.writerow(row)
+        
+            infile.close()
+            outfile.close()
 
             file_temp = "project/files/file_temp.csv"
             os.rename(self.file_flight_attendants, file_temp)
