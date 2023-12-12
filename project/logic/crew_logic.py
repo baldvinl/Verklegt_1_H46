@@ -16,17 +16,19 @@ class Crew_Logic:
         self.voyage_logic = x
 
     def get_crew_member(self, ssn: str):
-        """Receives social security number of crew member and forwards to data wrapper"""
+        """Receives social security number of crew member, checks if already exists and forwards to data wrapper
+        if not it returns an error code"""
         all_crew = self.get_all_crew()
         for member in all_crew:
             if member.ssn == ssn:
                 return member
+        return ValidationLogic.NO_CREW_FOUND
 
     def register_crew(self, crew: Crew):
-        """Checks if crew object received is of the type 
-        Pilot or not and forwards to data wrapper accordingly""" #TODO
+        """Receives crew object, checks if member with same ssn already exists, if not checks 
+        if crew object received is of the type Pilot or not and forwards to data wrapper accordingly"""
         crew_member = self.get_crew_member(crew.ssn)
-        if not crew_member:
+        if crew_member == ValidationLogic.NO_CREW_FOUND:
             if isinstance(crew, Pilot):
                 return self.data_wrapper.register_pilot(crew)
             else:
@@ -35,20 +37,33 @@ class Crew_Logic:
             return ValidationLogic.ALREADY_IN_SYSTEM
         
     def get_pilots(self):
-            """Forwards request to data wrapper"""
-            return self.data_wrapper.get_pilots()
+        """Requests all pilots from data wrapper and returns if there is any. 
+        If not returns error code"""
+        pilots_list = self.data_wrapper.get_pilots()
+        if pilots_list:
+            return pilots_list
+        else:
+            return ValidationLogic.NO_PILOTS_FOUND
         
     def get_flight_attendants(self):
-        """Forwards requests to data wrapper"""
-        return self.data_wrapper.get_flight_attendants()
+        """Requests all flight attendants from data wrapper and returns if there is any. 
+        If not returns error code"""
+        flight_attendants_list = self.data_wrapper.get_flight_attendants()
+        if flight_attendants_list:
+            return flight_attendants_list
+        else:
+            return ValidationLogic.NO_FLIGHT_ATTENDANTS_FOUND
     
     def get_all_crew(self):
         """Receives lists of pilots and flight attendants 
-        from data wrapper, combines them and returns"""
+        from data wrapper, combines them and returns list if not empty, otherwise an error code"""
         pilots_list = self.data_wrapper.get_pilots()
         flight_attendants_list = self.data_wrapper.get_flight_attendants()
         all_crew_list = pilots_list + flight_attendants_list
-        return all_crew_list
+        if all_crew_list:
+            return all_crew_list
+        else:
+            return ValidationLogic.NO_CREW_FOUND
 
     def change_crew_info(self, ssn: str, changes: list[tuple]):
         """Receives ssn, and changes list of tuples with format 
@@ -56,38 +71,35 @@ class Crew_Logic:
         changes attributes with their new values 
         and returns updated object to data wrapper"""
         crew_member = self.get_crew_member(ssn)
-        if crew_member:
-            # for element in changes: [its a list of tuples]
-            # go through and change attributes
+        if crew_member != ValidationLogic.NO_CREW_FOUND:
             for attribute_name, new_value in changes:
                 attribute_name_lower = attribute_name.lower()
                 setattr(crew_member, attribute_name_lower, new_value)
-            # check if pilot or not and return to data wrapper
             if isinstance(crew_member, Pilot):
                 return self.data_wrapper.change_pilot_info(crew_member)
             else:
                 return self.data_wrapper.change_flight_attendant_info(crew_member)
         else:
-            return ValidationLogic.NOT_FOUND
+            return ValidationLogic.NO_CREW_FOUND
 
-    def availability_list(self, departure_time, availability: bool):
-        """"""
-        # specific day
-        # availability will be "True(for working/ False)"
-        # get all voyages for that day from data [list of objects]
-        voyages_that_day = self.voyage_logic.get_voyages_day(departure_time) # to be implemented in data - might need to change name
-        # request pilots and flight attendants [list of objects]
+    def crew_status(self, departure_time, busy: bool):
+        """Receives departure time and availability request (working or not working), requests
+        voyages that day using the date from data wrapper, gets all crew from data wrapper. Using
+        the ssns found in the voyages that day it makes 2 lists one for crew thats working
+        and one for crew that isnt. Then returns according to the availability requested"""
+        voyages_that_day = self.voyage_logic.get_voyages_day(departure_time)
         crew = self.get_all_crew()
         attributes_list = ["pilot", "captain", "head_flight_attendant", "extra_flight_attendants"]
-        # [destination is in the voyage]
-        # put all ssn from voyages into list [.captain, .pilot, .head_flight_attendant, .extra_flight_attendants = attributes]
+        if voyages_that_day == ValidationLogic.NO_VOYAGES_FOUND:
+            return ValidationLogic.NO_VOYAGES_FOUND
+        
         ssn_list = []
         for attribute in attributes_list:
             attribute_value = getattr(voyages_that_day, attribute)
             ssn_list.append(attribute_value)
-        # different for loop for working/ not working [working should include destinations]
-        # for working tuple of [(employee, destination)] [check for destination in the for loops]
-        # for loop employees and for ssn not in ssn list add employee to new list of non working [not working]
+        if crew == ValidationLogic.NO_CREW_FOUND:
+            return ValidationLogic.NO_CREW_FOUND
+        
         crew_not_working = []
         crew_working = []
         for crew_member in crew:
@@ -95,8 +107,7 @@ class Crew_Logic:
                 crew_not_working.append(crew_member)
             else:
                 crew_working.append(crew_member, voyages_that_day.destination)
-        if availability:
-            return crew_working
-        else:
+                
+        if not busy:
             return crew_not_working
-    
+        return crew_working

@@ -1,21 +1,19 @@
-# from ui.ui_menu_display import Main_Menu
-# from ui.ui_menu_display import Header_Footer
-# from ui.ui_menu_display import Inputs_Prompt
-# from ui.ui_menu_display import Employee_Menu
+
+from ui.ui_menu_display import Main_Menu
+from ui.ui_menu_display import Header_Footer
+from ui.ui_menu_display import Inputs_Prompt
+from ui.ui_menu_display import Employee_Menu
 
 
-from ui.ui_validation import Validation_Ui
+# from ui.ui_validation import Validation_Ui
 
-test_validation = Validation_Ui("4988939", "John Doe", "493488939", "123 Main St")
-# test_validation.validate_mobile_number("493488939")
-test_validation.validate_address("123 Main St")
+# test_validation = Validation_Ui("FT-ERT")
+# # test_validation.validate_mobile_number("493488939")
+# test_validation.validate_address("test_validation = Validation_Ui("FT-ERT")t")
 
 
-# test_header = Header_Footer()
-# test_input = Inputs_Prompt()
-# test_main = Main_Menu()
-# test_employee = Employee_Menu()
-# reg_captain = Employee_Menu()
+test_main = Main_Menu()
+test_main.display_main_menu()
 
 
 # test_header.display_main_header()
@@ -24,11 +22,8 @@ test_validation.validate_address("123 Main St")
 # test_header.display_main_footer_with_q_m_b()
 # test_input.menu_number()
 
-# test_header.display_main_header()
-# test_header.lines_above_in_submenu()
-# test_main.display_main_menu()
-# test_header.display_main_footer_with_q_m_b()
-# test_input.menu_number()
+
+
 
 # test_header.display_main_header()
 # test_header.lines_above_in_submenu()
