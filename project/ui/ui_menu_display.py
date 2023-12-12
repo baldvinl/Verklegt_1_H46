@@ -18,11 +18,11 @@ class Header_Footer:
     def display_main_header(self):
         print()
         print()
-        print(' '*29,'||\    ||         ||\    ||')
-        print(' '*29,'|| \   ||    ^    || \   ||      **' )
-        print(' '*29,'||  \  ||  // \\\  ||  \  ||   ^  || ||__')
-        print(' '*29,'||   \ || //___\\\ ||   \ ||  /_\ || ||')
-        print(' '*29,'||    \||//     \\\||    \|| /   \|| ||')
+        print('\033[1;35;40m', ' '*27,'||\    ||         ||\    ||')
+        print(' ' * 19,'_|_', ' ' * 4,'|| \   ||    ^    || \   ||      **',' ' * 9, '_|_')
+        print(' ' * 16,'---(*)---',' ' * 1,'||  \  ||  // \\\  ||  \  ||   ^  || ||__',' ' * 1 , '---(*)---')
+        print(' ' * 18,'\" \' \"',' ' * 3,'||   \ || //___\\\ ||   \ ||  /_\ || ||',' ' * 5 , '\" \' \"')
+        print(' '*28,'||    \||//     \\\||    \|| /   \|| ||')
 
     def display_main_footer_with_q(self):
         print(f'{HYPHEN:>15}{EQUAL_SIGN.center(67)}{HYPHEN}')
@@ -522,9 +522,3 @@ class Print_Menu:
             print(f'{HYPHEN:>15}{HYPHEN:>69}')
 
         Header_Footer.display_main_footer_with_q_m_b(self) 
-
-
-    
-
-
-
