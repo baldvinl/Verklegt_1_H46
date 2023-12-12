@@ -89,9 +89,9 @@ class Logic_Wrapper:
     
     # VOYAGE
 
-    def voyage_files_maintencance(self):
+    def voyage_files_maintenance(self):
         """Forwards request to data wrapper"""
-        return self.voyage_logic.voyage_files_maintencance()
+        return self.voyage_logic.voyage_files_maintenance()
 
     def get_voyage(self, destination: str, departure):
         """Requests voyage list, checks for a certain voyage with specific destination 

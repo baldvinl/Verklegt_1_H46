@@ -48,4 +48,4 @@ class Destination_Logic:
                 destination.ice_number = new_info[1]
             return self.data_wrapper.register_updated_destination_to_file(destination)
         else:
-            raise FileNotFoundError
+            raise ValueError(ErrorMessages.DESTINATION_NOT_FOUND)

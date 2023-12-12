@@ -6,6 +6,7 @@ class ErrorMessages:
     NO_PILOTS_FOUND = "No pilots found!"
     NO_FLIGHT_ATTENDANTS_FOUND = "No flight attendants found!"
     CREW_MEMBER_ALREADY_IN_SYSTEM = "Crew member is already in the system!"
+    VOYAGE_ALREADY_IN_SYSTEM = "Voyage is already in the system!"
 
     def __init__(self):
         pass
