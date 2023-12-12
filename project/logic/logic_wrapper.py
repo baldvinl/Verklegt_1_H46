@@ -24,7 +24,7 @@ class Logic_Wrapper:
     def get_crew_member(self, ssn: str):
         """Receives social security number of crew member, checks if already exists and forwards to data wrapper
         if not it returns an error code"""
-        return self.crew_logic.get_all_crew(ssn)
+        return self.crew_logic.get_crew_member(ssn)
 
     def register_crew(self, crew: Crew):
         """Receives crew object, checks if member with same ssn already exists, if not checks 
