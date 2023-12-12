@@ -31,6 +31,8 @@ class Destination_Data:
                 "ice_name": destination.ice_name, 
                 "ice_number": destination.ice_number
             })
+
+            csvfile.close()
             
     
     def get_destination_from_file(self, iata):
@@ -66,6 +68,8 @@ class Destination_Data:
                     row["ice_name"], 
                     row["ice_number"]
                 ))
+                
+            csvfile.close()
         return dest_list
     
     
@@ -98,6 +102,9 @@ class Destination_Data:
                         "ice_number": destination.ice_number
                     }
                 writer.writerow(row)
+            
+            infile.close()
+            outfile.close()
 
         file_temp = "project/files/file_temp.csv"
         os.rename(self.file_destinations, file_temp)
