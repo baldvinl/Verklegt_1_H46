@@ -6,12 +6,13 @@ class Destination_Logic:
     def __init__(self, data_connection: Data_Wrapper):
         self.data_wrapper = data_connection
 
-    def register_destination(self, destination: Destination):
+    def register_destination(self, new_destination: Destination):
         """Receives destination, checks if it already exists, if so gives error, if not it forwards
         the new destination to data wrapper.""" 
-        destination = self.get_destination(destination.airport)
-        if not destination & destination.ice_name & destination.ice_number:
-            return self.data_wrapper.register_destination_in_file(destination)
+        destination_check = self.get_destination(new_destination.airport)
+        if not destination_check:
+            if new_destination.ice_name & new_destination.ice_number:
+                return self.data_wrapper.register_destination_in_file(new_destination)
         else:
             return ValidationLogic.ALREADY_IN_SYSTEM
 

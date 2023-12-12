@@ -32,9 +32,9 @@ class Voyage_Logic:
     
     def register_voyage(self, new_voyage: Voyage):
         """Receives voyage object, checks if already in system, if so returns error code
-         and if not forwards to data wrapper"""
-        voyage = self.get_voyage(new_voyage.destination, new_voyage.time_depart_destination)
-        if not voyage:
+        and if not forwards to data wrapper"""
+        voyage_check = self.get_voyage(new_voyage.destination, new_voyage.time_depart_destination)
+        if voyage_check == ValidationLogic.NO_VOYAGES_FOUND:
             return self.data_wrapper.register_voyage_to_file(new_voyage)
         else:
             return ValidationLogic.ALREADY_IN_SYSTEM
