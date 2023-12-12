@@ -46,7 +46,7 @@ class Crew_Logic:
         if flight_attendants_list:
             return flight_attendants_list
         else:
-            raise ValueError
+            raise ValueError(ErrorMessages.NO_FLIGHT_ATTENDANTS_FOUND)
     
     def get_all_crew(self):
         """Receives lists of pilots and flight attendants 
@@ -57,7 +57,7 @@ class Crew_Logic:
         if all_crew_list:
             return all_crew_list
         else:
-            raise ValueError
+            raise ValueError(ErrorMessages.NO_CREW_FOUND)
 
     def change_crew_info(self, ssn: str, changes: list[tuple]):
         """Receives ssn, and changes list of tuples with format 
@@ -74,7 +74,7 @@ class Crew_Logic:
             else:
                 return self.data_wrapper.register_updated_flight_attendant_to_file(crew_member)
         else:
-            raise ValueError
+            raise ValueError(ErrorMessages.NO_CREW_FOUND)
 
     def crew_status(self, departure_time, busy: bool):
         """Receives departure time and availability request (working or not working), requests
@@ -86,15 +86,15 @@ class Crew_Logic:
         crew = self.get_all_crew()
         attributes_list = ["pilot", "captain", "head_flight_attendant", "extra_flight_attendants"]
 
-        if voyages_that_day == ValueErrorNO_VOYAGES_FOUND:
-            raise ValueError
+        if not voyages_that_day: #TODO
+            raise ValueError(ErrorMessages.NO_VOYAGES_FOUND)
         
         ssn_list = []
         for attribute in attributes_list:
             attribute_value = getattr(voyages_that_day, attribute)
             ssn_list.append(attribute_value)
-        if crew:
-            raise ValueError
+        if not crew:
+            raise ValueError(ErrorMessages.NO_CREW_FOUND)
         
         crew_not_working = []
         crew_working = []
@@ -122,4 +122,4 @@ class Crew_Logic:
                     crew_dict[member.job_title].append(member)
             return crew_dict
         else:
-            raise ValueError
+            raise ValueError(ErrorMessages.NO_CREW_FOUND)

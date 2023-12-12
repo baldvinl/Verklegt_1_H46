@@ -1,5 +1,6 @@
 from data.data_wrapper import Data_Wrapper
 from model.destination import Destination
+from model.error_messages import ErrorMessages
 
 class Destination_Logic:
     def __init__(self, data_connection: Data_Wrapper):
@@ -13,7 +14,7 @@ class Destination_Logic:
             if new_destination.ice_name & new_destination.ice_number:
                 return self.data_wrapper.register_destination_in_file(new_destination)
         else:
-            return ValidationLogic.ALREADY_IN_SYSTEM
+            return ValueError(ErrorMessages.DESTINATION_NOT_FOUND)
 
     def get_all_destinations(self):
         """Requests destinations list from data wrapper. If empty returns error otherwise returns list"""
