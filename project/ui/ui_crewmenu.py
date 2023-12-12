@@ -114,18 +114,18 @@ class CrewMenu_ui():
         MainMenu_ui.main_header(current_menu)
         
         wrapper = Logic_Wrapper()
-        info = wrapper.get_pilots() #need to confirm function call
+        info = wrapper.display_pilots()
 
-        pilot_info = Pilot()
+        pilot_info = Pilot
 
         print(f"SSN, Name, Job title, Address, E-mail, Mobile, Phone, Type rating")
         for elem in info:
             pilot_info = elem
             print(pilot_info.ssn, pilot_info.name, pilot_info.job_title, pilot_info.address, pilot_info.email, pilot_info.mobile_no, pilot_info.phone_no, pilot_info.type_rating, end= " " "\n")
-        print(f"[M]enu  [B]ack  [Q]uit")
+        #print(f"[M]enu  [B]ack  [Q]uit")
         
-        command = input("Please enter command: ")
-        command = command.lower()
+        #command = input("Please enter command: ")
+        #command = command.lower()
 
     def display_flight_attendants(self):
         """Function that displays all information about the flight attendants."""
@@ -136,18 +136,18 @@ class CrewMenu_ui():
         MainMenu_ui.main_header(current_menu)
         
         wrapper = Logic_Wrapper()
-        info = wrapper.get_flight_attendants() #need to confirm function call
+        info = wrapper.display_flight_attendants() 
 
-        fa_info = Flight_Attendant()
+        fa_info = Flight_Attendant
 
         print(f"SSN, Name, Job title, Address, E-mail, Mobile, Phone")
         for elem in info:
             fa_info = elem
             print(fa_info.ssn, fa_info.name, fa_info.job_title, fa_info.address, fa_info.email, fa_info.mobile_no, fa_info.phone_no, end= " " "\n")
-        print(f"[M]enu  [B]ack  [Q]uit")
+        #print(f"[M]enu  [B]ack  [Q]uit")
         
-        command = input("Please enter command: ")
-        command = command.lower()
+        #command = input("Please enter command: ")
+        #command = command.lower()
 
     def display_all_crew(self):
         """Function that displays all information about the crew."""
@@ -157,15 +157,19 @@ class CrewMenu_ui():
         MainMenu_ui.clear_terminal()
         MainMenu_ui.main_header(current_menu)
         
-        wrapper = Logic_Wrapper()
-        info = wrapper.get_all_crew() #need to confirm function call
+        self.display_pilots()
+        self.display_flight_attendants()
 
-        crew_info = Crew()
+        # wrapper = Logic_Wrapper()
+        # info = wrapper.display_all_crew() 
+        
+        # crew_info = Crew
+        # pilot_info = Pilot
 
-        print(f"SSN, Name, Job title, Address, E-mail, Mobile, Phone, Type rating") #how do we get the type rating for pilots?
-        for elem in info:
-            crew_info = elem
-            print(crew_info.ssn, crew_info.name, crew_info.job_title, crew_info.address, crew_info.email, crew_info.mobile_no, crew_info.phone_no, crew_info.type_rating, end= " " "\n")
+        # print(f"SSN, Name, Job title, Address, E-mail, Mobile, Phone, Type rating") #how do we get the type rating for pilots?
+        # for elem in info:
+        #     crew_info = elem
+        #     print(crew_info.ssn, crew_info.name, crew_info.job_title, crew_info.address, crew_info.email, crew_info.mobile_no, crew_info.phone_no, end= " " "\n")
         print(f"[M]enu  [B]ack  [Q]uit")
         
         command = input("Please enter command: ")
@@ -180,12 +184,12 @@ class CrewMenu_ui():
         MainMenu_ui.main_header(current_menu)
         
         wrapper = Logic_Wrapper()
-        info = wrapper.get_crew_member() #need to confirm function call
+        info = wrapper.display_crew_member(ssn) #need to confirm function call
 
-        crew_info = Crew(info)
+        crew_info = Crew(info.name, info.job_title, info.address, info.email, info.mobile_no, info.phone_no)
 
         print(f"SSN, Name, Job title, Address, E-mail, Mobile, Phone, Type rating") #how do we get the type rating for pilots?
-        print(crew_info.ssn, crew_info.name, crew_info.job_title, crew_info.address, crew_info.email, crew_info.mobile_no, crew_info.phone_no, crew_info.type_rating, end= " " "\n")
+        print(crew_info.ssn, crew_info.name, crew_info.job_title, crew_info.address, crew_info.email, crew_info.mobile_no, crew_info.phone_no, end= " " "\n")
         print(f"[M]enu  [B]ack  [Q]uit")
         
         command = input("Please enter command: ")
@@ -199,18 +203,25 @@ class CrewMenu_ui():
         MainMenu_ui.clear_terminal()
         MainMenu_ui.main_header(current_menu)
         
-        new_crew_info = ()
-
-        ssn = input("Enter the crew member's SSN: ")
+        new_crew_info = ""
+        
+        ssn = ""
+        name = ""
+        job_title = input("Enter job title: ")
         address = input("Enter address: ")
         area_code = input("Enter area code: ")
         email = input("Enter email: ")
         mobile_no = input("Enter mobile phone number: ")
         phone_no = input("Enter home phone number: ")
+        type_rating = input("Enter type rating: ")
 
-        new_crew_info = address, email, mobile_no, phone_no
+        
+        crew = Crew(ssn, name, job_title, address, email, mobile_no, phone_no)
+        pilot = Pilot(name, job_title, address, email, mobile_no, type_rating)
 
-        return ssn, new_crew_info
+        new_crew_info = [('job_title', job_title), ('address',crew.address), ('email', crew.email), ('mobile_no', crew.mobile_no), ('phone_no', crew.phone_no), ('type_rating', pilot.type_rating)]
+
+        return new_crew_info
 
 
     def input(self):
@@ -229,25 +240,35 @@ class CrewMenu_ui():
             if command == '1':
                 crew_entry = self.register_crew(command)
                 print(crew_entry)
-                wrapper = Logic_Wrapper
-                result = wrapper.register_crew(wrapper, crew_entry)
+                wrapper = Logic_Wrapper()
+                result = wrapper.register_crew(crew_entry)
                 print(result)
             if command == '2':
                 crew_entry = self.register_crew(command)
-                wrapper = Logic_Wrapper
-                wrapper.register_crew(wrapper, crew_entry)
+                wrapper = Logic_Wrapper()
+                wrapper.register_crew(crew_entry)
                 print(crew_entry)
             if command == '3':
                 crew_entry = self.register_crew(command)
-                wrapper = Logic_Wrapper
-                wrapper.register_crew(wrapper, crew_entry)
+                wrapper = Logic_Wrapper()
+                wrapper.register_crew(crew_entry)
                 print(crew_entry)
             if command == '4':
                 crew_entry = self.register_crew(command)
-                wrapper = Logic_Wrapper
-                wrapper.register_crew(wrapper, crew_entry)
+                wrapper = Logic_Wrapper()
+                wrapper.register_crew(crew_entry)
                 print(crew_entry)
             if command == '5':
-                pass
+                ssn = input("Enter the crew member's SSN: ")
+                changes = self.change_crew_info()
+                wrapper = Logic_Wrapper()
+                wrapper.change_crew_info(ssn, changes)
             if command == '6':
-                pass
+                ssn = input("Enter the crew member's SSN: ")
+                display = self.display_crew_member(ssn)
+            if command == '7':
+                self.display_all_crew()
+            if command == '8':
+                self.display_pilots()
+            if command == '9':
+                self.display_flight_attendants()

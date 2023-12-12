@@ -9,6 +9,7 @@ QUIT = "[Q]uit"
 class DestinationMenu_ui():
     def __init__(self):
         self.logic_wrapper = Logic_Wrapper
+        self.destination = Destination
         return None
     
     def destination_menu(self):
@@ -53,9 +54,9 @@ class DestinationMenu_ui():
         MainMenu_ui.main_header(current_menu)
         
         wrapper = Logic_Wrapper()
-        info = wrapper.display_destinations()
+        info = wrapper.get_all_destinations()
 
-        loc_info = Destination()
+        loc_info = self.destination
 
         print(f"IATA, Country, Distance, Flight duration, ICE Name, ICE Number")
         for elem in info:
@@ -78,13 +79,13 @@ class DestinationMenu_ui():
         
         new_ice_info = ()
 
-        iata = input("Enter the location IATA code: ")
+        
         new_ice_name = input("Enter the new emergency contact name: ")
         new_ice_number = input("Enter the new emergency contact phone number: ")
         new_ice_info = new_ice_name, new_ice_number
 
 
-        return iata, new_ice_info
+        return new_ice_info
 
 
 
@@ -114,8 +115,9 @@ class DestinationMenu_ui():
                 self.destination_info()
                 pass
             if command == '3':
+                iata = input("Enter the location IATA code: ")
                 new_ice_info = self.change_ice_info()
                 wrapper = Logic_Wrapper()
-                wrapper.change_ice_info(new_ice_info)
+                wrapper.change_ice_info(iata, new_ice_info)
                 pass
                 

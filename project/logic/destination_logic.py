@@ -9,8 +9,8 @@ class Destination_Logic:
     def register_destination(self, destination: Destination):
         """Receives destination, checks if it already exists, if so gives error, if not it forwards
         the new destination to data wrapper.""" 
-        destination = self.get_destination(destination.airport)
-        if not destination & destination.ice_name & destination.ice_number:
+        current_destination = self.get_destination(destination.airport)
+        if current_destination != destination: #& destination.ice_name & destination.ice_number:
             return self.data_wrapper.register_destination_in_file(destination)
         else:
             return ValidationLogic.ALREADY_IN_SYSTEM

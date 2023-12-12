@@ -17,7 +17,7 @@ class Voyage_Logic:
         voyages = self.get_all_voyages()
         if voyages != ValidationLogic.NO_VOYAGES_FOUND:
             for voyage in voyages:
-                if voyage.destination == destination & voyage.time_depart_destination == departure:
+                if voyage.destination == destination and voyage.time_depart_destination == departure:
                     return voyage
                 else:
                     return ValidationLogic.NO_VOYAGES_FOUND
@@ -34,7 +34,7 @@ class Voyage_Logic:
         """Receives voyage object, checks if already in system, if so returns error code
          and if not forwards to data wrapper"""
         voyage = self.get_voyage(new_voyage.destination, new_voyage.time_depart_destination)
-        if not voyage:
+        if voyage == 'NVF':
             return self.data_wrapper.register_voyage_to_file(new_voyage)
         else:
             return ValidationLogic.ALREADY_IN_SYSTEM

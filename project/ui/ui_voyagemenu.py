@@ -48,11 +48,18 @@ class VoyageMenu_ui():
         MainMenu_ui.main_header(current_menu)
 
         destination_iata = input("Enter destination IATA code: ")
-        voyage_date = input("Enter voyage date: ")
-        departure_time_from = input("Enter departure time from Iceland: ")
-        departure_time_to = input(f"Enter departure time from {destination_iata}: ")
+        voyage_year = int(input("Enter voyage year: "))
+        voyage_month = int(input("Enter voyage month: "))
+        voyage_date = int(input("Enter voyage day: "))
+        departure_time_from_hour = int(input("Enter departure hour from Iceland: "))
+        departure_time_from_minutes = int(input("Enter departure minutes from Iceland: "))
+        departure_time_to_hour = int(input(f"Enter departure hour from {destination_iata}: "))
+        departure_time_to_minutes = int(input(f"Enter departure minutes from {destination_iata}: "))
+        voyage_departure_from = datetime(voyage_year, voyage_month, voyage_date, departure_time_from_hour, departure_time_from_minutes)
+        voyage_departure_to = datetime(voyage_year,voyage_month,voyage_date, departure_time_to_hour, departure_time_to_minutes)
 
-        new_voyage = Voyage(destination_iata, voyage_date, departure_time_from, departure_time_to)
+        
+        new_voyage = Voyage(destination_iata, voyage_departure_from, voyage_departure_to)
         
         return new_voyage
 
@@ -218,6 +225,8 @@ class VoyageMenu_ui():
                 wrapper = Logic_Wrapper()
                 wrapper.register_voyage(voyage_entry)
                 print(voyage_entry)
+                command = input("Do you want to add crew to the voyage? ")
+                # CALL ADD CREW TO VOYAGE
             if command == '2':
                 pass
             if command == '3':

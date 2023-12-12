@@ -1,6 +1,6 @@
 import os
-from ui.ui_menu_display import Header_Footer
-from ui.ui_menu_display import Main_Menu
+#from ui.ui_menu_display import Header_Footer
+#from ui.ui_menu_display import Main_Menu
 
 NAME = "NaN Air"
 TITLE = "Crew planning software"
@@ -18,12 +18,12 @@ class MainMenu_ui():
         MainMenu_ui.clear_terminal()
         MainMenu_ui.main_header(current_menu)
 
-        Header_Footer.display_main_header(self)
-        Header_Footer.display_lines_below_in_submenu(self)
-        Main_Menu.display_main_menu_header(self)
-        Header_Footer.display_lines_below_in_submenu(self)
-        Main_Menu.display_main_menu(self)
-        Header_Footer.display_main_footer_with_q_m(self)
+        # Header_Footer.display_main_header(self)
+        # Header_Footer.display_lines_below_in_submenu(self)
+        # Main_Menu.display_main_menu_header(self)
+        # Header_Footer.display_lines_below_in_submenu(self)
+        # Main_Menu.display_main_menu(self)
+        # Header_Footer.display_main_footer_with_q_m(self)
         
 
         print(f"1. Crew")

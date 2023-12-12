@@ -28,25 +28,25 @@ class Crew_Logic:
         crew_member = self.get_crew_member(crew.ssn)
         if not crew_member:
             if isinstance(crew, Pilot):
-                return self.data_wrapper.register_pilot(crew)
+                return self.data_wrapper.register_pilot_to_file(crew)
             else:
-                return self.data_wrapper.register_flight_attendant(crew)
+                return self.data_wrapper.register_flight_attendant_to_file(crew)
         else:
             return ValidationLogic.ALREADY_IN_SYSTEM
         
     def get_pilots(self):
             """Forwards request to data wrapper"""
-            return self.data_wrapper.get_pilots()
+            return self.data_wrapper.get_pilots_from_file()
         
     def get_flight_attendants(self):
         """Forwards requests to data wrapper"""
-        return self.data_wrapper.get_flight_attendants()
+        return self.data_wrapper.get_flight_attendants_from_file()
     
     def get_all_crew(self):
         """Receives lists of pilots and flight attendants 
         from data wrapper, combines them and returns"""
-        pilots_list = self.data_wrapper.get_pilots()
-        flight_attendants_list = self.data_wrapper.get_flight_attendants()
+        pilots_list = self.data_wrapper.get_pilots_from_file()
+        flight_attendants_list = self.data_wrapper.get_flight_attendants_from_file()
         all_crew_list = pilots_list + flight_attendants_list
         if all_crew_list:
             return all_crew_list
@@ -67,9 +67,9 @@ class Crew_Logic:
                 setattr(crew_member, attribute_name_lower, new_value)
             # check if pilot or not and return to data wrapper
             if isinstance(crew_member, Pilot):
-                return self.data_wrapper.change_pilot_info(crew_member)
+                return self.data_wrapper.register_updated_pilot_to_file(crew_member)
             else:
-                return self.data_wrapper.change_flight_attendant_info(crew_member)
+                return self.data_wrapper.register_updated_flight_attendant_to_file(crew_member)
         else:
             return ValidationLogic.NO_CREW_FOUND
 
