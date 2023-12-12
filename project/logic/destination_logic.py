@@ -22,7 +22,7 @@ class Destination_Logic:
         if destinations_list:
             return destinations_list
         else:
-            raise FileNotFoundError
+            raise ValueError(ErrorMessages.DESTINATION_NOT_FOUND)
     
     def get_destination(self, iata: str):
         """Requests lists of all destinations from data wrapper. If destination is not found it returns an error
@@ -31,7 +31,7 @@ class Destination_Logic:
         for destination in destinations_list:
             if destination.airport == iata:
                 return destination
-        raise FileNotFoundError
+        raise ValueError(ErrorMessages.DESTINATION_NOT_FOUND)
 
     def change_ice_info(self, iata: str, new_info: tuple):
         """Receives iata and new_info tuple with the format (new_name, new_number) - if one of those doesn't need to be changed
