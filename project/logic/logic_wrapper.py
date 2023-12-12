@@ -15,18 +15,16 @@ class Logic_Wrapper:
     def __init__(self) -> None:
         self.data_wrapper = Data_Wrapper()
         self.aircraft_logic = Aircraft_Logic(self.data_wrapper)
-        self.crew_logic = Crew_Logic(self.data_wrapper, None)
+        self.voyage_logic = Voyage_Logic(self.data_wrapper)
+        self.crew_logic = Crew_Logic(self.data_wrapper, self.voyage_logic)
         self.destination_logic = Destination_Logic(self.data_wrapper)
-        self.voyage_logic = Voyage_Logic(self.data_wrapper, None) #, self.crew_logic)
-        self.voyage_logic.setCrew(self.crew_logic)
-        self.crew_logic.setVoyage(self.voyage_logic) # needs to be fixed maybe
 
     # CREW
 
     def get_crew_member(self, ssn: str):
         """Receives social security number of crew member, checks if already exists and forwards to data wrapper
         if not it returns an error code"""
-        return self.crew_logic.get_all_crew(ssn)
+        return self.crew_logic.get_crew_member(ssn)
 
     def register_crew(self, crew: Crew):
         """Receives crew object, checks if member with same ssn already exists, if not checks 
@@ -61,6 +59,12 @@ class Logic_Wrapper:
         """Requests all flight attendants from data wrapper and returns if there is any. 
         If not returns error code"""
         return self.crew_logic.get_flight_attendants()
+    
+    def find_crew_for_voyage(self, departure_time):
+        """Receives date, requests crew not working on that date, returns dictionary with key: job title 
+        and fills with all crew members separated by their job title, if there is no crew it returns
+        error code"""
+        return self.crew_logic.find_crew_for_voyage(departure_time)
     
     # to add -- add type rating to pilot
     # to add -- display all pilots rated for specific aircraft
@@ -99,14 +103,8 @@ class Logic_Wrapper:
         # When voyage is registered shall prevent registering a pilot that doesn't have a type rating for an aircraft for that aircraft
         # Voyage has to consist of two flights and each flight has to be registered with different flight number
         """Receives voyage object, checks if already in system, if so returns error code
-         and if not forwards to data wrapper"""
+        and if not forwards to data wrapper"""
         return self.voyage_logic.register_voyage(new_voyage)
-    
-    def find_crew_for_voyage(self, departure_time):
-        """Receives date, requests crew not working on that date, returns dictionary with key: job title 
-        and fills with all crew members separated by their job title, if there is no crew it returns
-        error code"""
-        return self.voyage_logic.find_crew_for_voyage(departure_time)
     
     def add_crew_to_voyage(self, crew_dict: dict, voyage: Voyage):
         """Receives crew dictionary separated by job titles, adds to voyage object receives and returns

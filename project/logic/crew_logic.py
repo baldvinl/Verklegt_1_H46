@@ -3,17 +3,12 @@ from model.crew import Crew
 from model.pilot import Pilot
 from model.flight_attendant import Flight_Attendant
 from logic.validation_check import ValidationLogic
-#from logic.validation_check import find_crew_member
-
 
 class Crew_Logic:
-    def __init__(self, data_connection: Data_Wrapper):
+    def __init__(self, data_connection: Data_Wrapper, voyage_logic_instance):
         self.data_wrapper = data_connection
-        self.voyage_logic = None
+        self.voyage_logic = voyage_logic_instance
         self.validator = ValidationLogic()
-
-    def setVoyage(self, x):
-        self.voyage_logic = x
 
     def get_crew_member(self, ssn: str):
         """Receives social security number of crew member, checks if already exists and forwards to data wrapper
@@ -30,16 +25,16 @@ class Crew_Logic:
         crew_member = self.get_crew_member(crew.ssn)
         if crew_member == ValidationLogic.NO_CREW_FOUND:
             if isinstance(crew, Pilot):
-                return self.data_wrapper.register_pilot(crew)
+                return self.data_wrapper.register_pilot_to_file(crew)
             else:
-                return self.data_wrapper.register_flight_attendant(crew)
+                return self.data_wrapper.register_flight_attendant_to_file(crew)
         else:
             return ValidationLogic.ALREADY_IN_SYSTEM
         
     def get_pilots(self):
         """Requests all pilots from data wrapper and returns if there is any. 
         If not returns error code"""
-        pilots_list = self.data_wrapper.get_pilots()
+        pilots_list = self.data_wrapper.get_pilots_from_file()
         if pilots_list:
             return pilots_list
         else:
@@ -48,7 +43,7 @@ class Crew_Logic:
     def get_flight_attendants(self):
         """Requests all flight attendants from data wrapper and returns if there is any. 
         If not returns error code"""
-        flight_attendants_list = self.data_wrapper.get_flight_attendants()
+        flight_attendants_list = self.data_wrapper.get_flight_attendants_from_file()
         if flight_attendants_list:
             return flight_attendants_list
         else:
@@ -57,8 +52,8 @@ class Crew_Logic:
     def get_all_crew(self):
         """Receives lists of pilots and flight attendants 
         from data wrapper, combines them and returns list if not empty, otherwise an error code"""
-        pilots_list = self.data_wrapper.get_pilots()
-        flight_attendants_list = self.data_wrapper.get_flight_attendants()
+        pilots_list = self.data_wrapper.get_pilots_from_file()
+        flight_attendants_list = self.data_wrapper.get_flight_attendants_from_file()
         all_crew_list = pilots_list + flight_attendants_list
         if all_crew_list:
             return all_crew_list
@@ -76,9 +71,9 @@ class Crew_Logic:
                 attribute_name_lower = attribute_name.lower()
                 setattr(crew_member, attribute_name_lower, new_value)
             if isinstance(crew_member, Pilot):
-                return self.data_wrapper.change_pilot_info(crew_member)
+                return self.data_wrapper.register_updated_pilot_to_file(crew_member)
             else:
-                return self.data_wrapper.change_flight_attendant_info(crew_member)
+                return self.data_wrapper.register_updated_flight_attendant_to_file(crew_member)
         else:
             return ValidationLogic.NO_CREW_FOUND
 
@@ -111,3 +106,19 @@ class Crew_Logic:
         if not busy:
             return crew_not_working
         return crew_working
+    
+    def find_crew_for_voyage(self, departure_time):
+        """Receives date, requests crew not working on that date, returns dictionary with key: job title 
+        and fills with all crew members separated by their job title, if there is no crew it returns
+        error code"""
+        busy = False
+        job_title = ["captain", "pilot", "head flight attendant", "extra flight attendants"]
+        crew_not_working = self.crew_status(departure_time, busy)
+        if crew_not_working:
+            crew_dict = dict.fromkeys(job_title, None)
+            for member in crew_not_working:
+                if member.job_title in crew_dict:
+                    crew_dict[member.job_title].append(member)
+            return crew_dict
+        else:
+            return ValidationLogic.NO_CREW_FOUND
