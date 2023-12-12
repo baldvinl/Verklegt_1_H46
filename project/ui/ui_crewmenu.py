@@ -230,7 +230,8 @@ class CrewMenu_ui():
                 crew_entry = self.register_crew(command)
                 print(crew_entry)
                 wrapper = Logic_Wrapper
-                wrapper.register_crew(wrapper, crew_entry)
+                result = wrapper.register_crew(wrapper, crew_entry)
+                print(result)
             if command == '2':
                 crew_entry = self.register_crew(command)
                 wrapper = Logic_Wrapper

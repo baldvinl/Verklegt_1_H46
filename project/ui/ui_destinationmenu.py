@@ -104,8 +104,12 @@ class DestinationMenu_ui():
             if command == '1':
                 destination_entry = self.register_destination()
                 wrapper = Logic_Wrapper()
-                wrapper.register_destination(destination_entry)
-                print(destination_entry)
+                result = wrapper.register_destination(destination_entry)
+                print(result)
+                command = input("Press b to continue: ")
+                command = command.lower()
+                if command == "b":
+                    continue
             if command == '2':
                 self.destination_info()
                 pass

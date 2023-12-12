@@ -1,6 +1,8 @@
 import os
 from ui.ui_mainmenu import *
 
+from model.aircraft import Aircraft
+
 QUIT = "[Q]uit"
 
 
@@ -32,7 +34,9 @@ class AircraftMenu_ui():
         aircraft_manufacturer = input("Enter the aircraft manufacturer: ")
         seat_count = input("Enter the seat count: ")
 
-        return aircraft_name, aircraft_type, aircraft_manufacturer, seat_count
+        aircraft_entry = Aircraft(aircraft_name, aircraft_type, aircraft_manufacturer, seat_count)
+
+        return aircraft_entry
 
     def aircraft_status(self):
         '''Function that displays the aircraft status.'''
