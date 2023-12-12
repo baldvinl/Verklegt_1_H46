@@ -1,6 +1,5 @@
 from data.data_wrapper import Data_Wrapper
 from model.destination import Destination
-from logic.validation_check import ValidationLogic
 
 class Destination_Logic:
     def __init__(self, data_connection: Data_Wrapper):
@@ -22,7 +21,7 @@ class Destination_Logic:
         if destinations_list:
             return destinations_list
         else:
-            return ValidationLogic.DESTINATION_NOT_FOUND
+            raise FileNotFoundError
     
     def get_destination(self, iata: str):
         """Requests lists of all destinations from data wrapper. If destination is not found it returns an error
@@ -31,7 +30,7 @@ class Destination_Logic:
         for destination in destinations_list:
             if destination.airport == iata:
                 return destination
-        return ValidationLogic.DESTINATION_NOT_FOUND
+        raise FileNotFoundError
 
     def change_ice_info(self, iata: str, new_info: tuple):
         """Receives iata and new_info tuple with the format (new_name, new_number) - if one of those doesn't need to be changed
@@ -48,4 +47,4 @@ class Destination_Logic:
                 destination.ice_number = new_info[1]
             return self.data_wrapper.register_updated_destination_to_file(destination)
         else:
-            return ValidationLogic.NOT_FOUND
+            raise FileNotFoundError

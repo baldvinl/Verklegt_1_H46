@@ -1,7 +1,6 @@
 from datetime import date, timedelta
 from data.data_wrapper import Data_Wrapper
 from model.voyage import Voyage
-from logic.validation_check import ValidationLogic
 
 class Voyage_Logic:
     def __init__(self, data_connection: Data_Wrapper):
