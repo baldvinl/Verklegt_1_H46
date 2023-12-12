@@ -8,7 +8,7 @@ class Destination_Logic:
 
     def register_destination(self, new_destination: Destination):
         """Receives destination, checks if it already exists, if so gives error, if not it forwards
-        the new destination to data wrapper.""" 
+        the new destination to data wrapper."""
         destination_check = self.get_destination(new_destination.airport)
         if not destination_check:
             if new_destination.ice_name & new_destination.ice_number:

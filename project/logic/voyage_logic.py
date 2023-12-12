@@ -7,6 +7,10 @@ class Voyage_Logic:
     def __init__(self, data_connection: Data_Wrapper):
         self.data_wrapper = data_connection
 
+    def voyage_files_maintencance(self):
+        """Forwards request to data wrapper"""
+        return self.data_wrapper.move_voyages_done_to_file()
+
     def get_voyage(self, destination, departure) -> Voyage:
         """Requests voyage list, checks for a certain voyage with specific destination 
         and departure time from data wrapper, returns either voyage object or error code"""
@@ -34,22 +38,6 @@ class Voyage_Logic:
             return self.data_wrapper.register_voyage_to_file(new_voyage)
         else:
             return ValidationLogic.ALREADY_IN_SYSTEM
-
-    def find_crew_for_voyage(self, departure_time):
-        """Receives date, requests crew not working on that date, returns dictionary with key: job title 
-        and fills with all crew members separated by their job title, if there is no crew it returns
-        error code"""
-        busy = False
-        job_title = ["captain", "pilot", "head flight attendant", "extra flight attendants"]
-        crew_not_working = self.crew_logic.crew_status(departure_time, busy)
-        if crew_not_working:
-            crew_dict = dict.fromkeys(job_title, None)
-            for member in crew_not_working:
-                if member.job_title in crew_dict:
-                    crew_dict[member.job_title].append(member)
-            return crew_dict
-        else: 
-            return ValidationLogic.NO_CREW_FOUND
 
     def add_crew_to_voyage(self, crew_dict: dict, voyage: Voyage):
         """Receives crew dictionary separated by job titles, adds to voyage object receives and returns
