@@ -133,19 +133,16 @@ Meeting held today and gone over uncertainties.
 ___________________________________________________________________
 Very good progress made today. A lot of uncertainties ironed out.
 
-08.12.2023
-___________________________________________________________________
-Plan for today on Data is to try and finish most functions and make sure they are working correctly.
+08.12.2023 
 
-TODO_LIST follows through the days!
-
-<<destination working through all layers>>
-
+TODO_LIST!
 IU LAYER: 
 -----------------------
+
 List of what has been implamented and is working:
 destination_ui
-display of main menu 
+display of main menu
+
 
 crew_menu
 register_crew
@@ -182,5 +179,34 @@ Aircraft_Data: create_aircraft
 
 List of what we need to go over better:
 Have all information that need to be changed in a file come together to the data layer.
+
+9-12.12.2023
+___________________________________________________________________
+We've all been working on our layers, on our own and together, meeting at school and speaking together on discord. 
+We have been activly keeping track on our to do list in a shared word document and the project is comming along very nicely. 
+
+
+###working through all layers###
+
+<<register destination>>
+<<list all destinations>>
+
+<<change ice info>>
+<<register crew>>
+<<change crew info>>
+<<list crew member info>>
+<<list all pilots>>
+<<list all flight attendants>>
+<<list all crew>>
+
+<<register voyage>>
+
+NEED TO LOOK AT FURTHER: for very small changes
+<<display voyage>> (regarding datetime)
+<<add crew to voyage>> (how to send from ui to logic and logic to data)
+<<List all voyages for a specific day and imply if they're fully manned or not>> (regarding datetime)
+<<List all voyages for a specific week and imply if they're fully manned or not>> (regarding datetime)
+<<List all employees that are not working specific days>> (regarding datetime)
+<<Print schedule that shows all voyages for an employee for a specific week>> (regarding datetime)
 
 
