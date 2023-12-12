@@ -1,19 +1,20 @@
 from data.data_wrapper import Data_Wrapper
 from model.destination import Destination
-from logic.validation_check import ValidationLogic
+from model.error_messages import ErrorMessages
 
 class Destination_Logic:
     def __init__(self, data_connection: Data_Wrapper):
         self.data_wrapper = data_connection
 
-    def register_destination(self, destination: Destination):
+    def register_destination(self, new_destination: Destination):
         """Receives destination, checks if it already exists, if so gives error, if not it forwards
-        the new destination to data wrapper.""" 
-        destination = self.get_destination(destination.airport)
-        if not destination & destination.ice_name & destination.ice_number:
-            return self.data_wrapper.register_destination_in_file(destination)
+        the new destination to data wrapper."""
+        destination_check = self.get_destination(new_destination.airport)
+        if not destination_check:
+            if new_destination.ice_name & new_destination.ice_number:
+                return self.data_wrapper.register_destination_in_file(new_destination)
         else:
-            return ValidationLogic.ALREADY_IN_SYSTEM
+            return ValueError(ErrorMessages.DESTINATION_NOT_FOUND)
 
     def get_all_destinations(self):
         """Requests destinations list from data wrapper. If empty returns error otherwise returns list"""
@@ -21,7 +22,7 @@ class Destination_Logic:
         if destinations_list:
             return destinations_list
         else:
-            return ValidationLogic.DESTINATION_NOT_FOUND
+            raise ValueError(ErrorMessages.DESTINATION_NOT_FOUND)
     
     def get_destination(self, iata: str):
         """Requests lists of all destinations from data wrapper. If destination is not found it returns an error
@@ -30,7 +31,7 @@ class Destination_Logic:
         for destination in destinations_list:
             if destination.airport == iata:
                 return destination
-        return ValidationLogic.DESTINATION_NOT_FOUND
+        raise ValueError(ErrorMessages.DESTINATION_NOT_FOUND)
 
     def change_ice_info(self, iata: str, new_info: tuple):
         """Receives iata and new_info tuple with the format (new_name, new_number) - if one of those doesn't need to be changed
@@ -47,4 +48,4 @@ class Destination_Logic:
                 destination.ice_number = new_info[1]
             return self.data_wrapper.register_updated_destination_to_file(destination)
         else:
-            return ValidationLogic.NOT_FOUND
+            raise ValueError(ErrorMessages.DESTINATION_NOT_FOUND)

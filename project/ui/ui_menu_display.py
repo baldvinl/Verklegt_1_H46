@@ -523,9 +523,3 @@ class Print_Menu:
             print(f'{HYPHEN:>15}{HYPHEN:>69}')
 
         Header_Footer.display_main_footer_with_q_m_b(self) 
-
-
-    
-
-
-
