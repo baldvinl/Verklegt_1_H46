@@ -5,9 +5,9 @@ from model.flight_attendant import Flight_Attendant
 from logic.validation_check import ValidationLogic
 
 class Crew_Logic:
-    def __init__(self, data_connection: Data_Wrapper):
+    def __init__(self, data_connection: Data_Wrapper, voyage_logic_instance):
         self.data_wrapper = data_connection
-        self.voyage_logic = None
+        self.voyage_logic = voyage_logic_instance
         self.validator = ValidationLogic()
 
     def get_crew_member(self, ssn: str):

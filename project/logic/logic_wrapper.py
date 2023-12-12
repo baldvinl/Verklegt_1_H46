@@ -15,11 +15,9 @@ class Logic_Wrapper:
     def __init__(self) -> None:
         self.data_wrapper = Data_Wrapper()
         self.aircraft_logic = Aircraft_Logic(self.data_wrapper)
+        self.voyage_logic = Voyage_Logic(self.data_wrapper)
         self.crew_logic = Crew_Logic(self.data_wrapper, self.voyage_logic)
         self.destination_logic = Destination_Logic(self.data_wrapper)
-        self.voyage_logic = Voyage_Logic(self.data_wrapper) #, self.crew_logic)
-        #self.voyage_logic.setCrew(self.crew_logic)
-        #self.crew_logic.setVoyage(self.voyage_logic) # needs to be fixed maybe
 
     # CREW
 
