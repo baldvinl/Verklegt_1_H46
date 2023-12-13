@@ -65,10 +65,6 @@ class Logic_Wrapper:
         and fills with all crew members separated by their job title, if there is no crew it returns
         error code"""
         return self.crew_logic.find_crew_for_voyage(departure_time)
-    
-    # to add -- add type rating to pilot
-    # to add -- display all pilots rated for specific aircraft
-    # to add -- display all pilots sorted by aircraft type
 
     # AIRCRAFT
     def register_aircraft(self, aircraft: Aircraft):
@@ -120,7 +116,7 @@ class Logic_Wrapper:
         return self.voyage_logic.add_aircraft_to_voyage(aircraft, destination, departure)
     
     def get_voyage_status(self, destination, date):
-        """Receives destination and date and forwards them to data wrapper TODO"""
+        """Receives destination and date and forwards them to data wrapper TODO B requirement"""
         return self.voyage_logic.get_voyage_status(destination, date)
     
     def get_voyages_for_period(self, starting_date, total_days):
@@ -133,10 +129,9 @@ class Logic_Wrapper:
         """Receives ssn, and starting date of the week, checks them for the crew members ssn, and saves
         the one that have them listed. returns them in a list sorted. if there is no voyages it returns error code"""
         return self.voyage_logic.get_weekly_voyage_schedule(ssn, date)
-
     
     # DESTINATION
-    
+
     def register_destination(self, destination: Destination):
         """Receives destination, checks if it already exists, if so gives error, if not it forwards
         the new destination to data wrapper."""

@@ -60,15 +60,16 @@ class Voyage_Logic:
         else:
             raise ValueError(ErrorMessages.VOYAGE_ALREADY_IN_SYSTEM)
 
-    def add_crew_to_voyage(self, crew_dict: dict, voyage: Voyage):
-        """Receives crew dictionary separated by job titles, adds to voyage object receives and returns
-        to data wrapper TODO need to update this to receive ("job title", ssn) and put ssns in the corresponding voyage attributes"""
-        for job_title, crew_member in crew_dict.items():
-            setattr(voyage, job_title, crew_member)
+    def add_crew_to_voyage(self, ssn_list: list, voyage: Voyage):
+        """Receives crew members ssn in a list, and voyage object. Updates voyage
+        object according to the job title of each crew member and returns it"""
+        for ssn in ssn_list:
+            job_title = #TODO
+            setattr(voyage, job_title, ssn)
         return self.data_wrapper.register_updated_voyage_to_file(voyage)
     
     def add_aircraft_to_voyage(self, aircraft, destination, departure):
-        """Gets voyage with certain destination & departure time, adds aircraft to it and returns to data wrapper TODO B"""
+        """Gets voyage with certain destination & departure time, adds aircraft to it and returns to data wrapper TODO B requirement"""
         voyage_to_add_aircraft = self.get_voyage(destination, departure)
         voyage_to_add_aircraft.aircraft = aircraft
         return self.data_wrapper.add_aircraft(aircraft)
@@ -87,8 +88,9 @@ class Voyage_Logic:
         
     def get_voyages_for_period(self, starting_date, total_days):
         """Receives a starting date in datetime format, and total days of voyages to return. Requests all voyages from data wrapper
-        makes a list of all the dates to be included in the final list. Goes through all voyages and keeps only the ones with the same dates.
-        Sorts by departure time and returns list. If no voyages were initially received from data wrapper, it raises an error"""
+        makes a list of all the dates to be included in the final list. Goes through all voyages and keeps only the ones with 
+        the same dates & if they are manned or not. Sorts by departure time and returns list. 
+        If no voyages were initially received from data wrapper, it raises an error"""
         starting_date = starting_date.date
         all_voyages_list = self.get_all_voyages()
         if all_voyages_list:
@@ -102,7 +104,7 @@ class Voyage_Logic:
             
             for voyage in all_voyages_list:
                 if voyage.departure_time.date in dates_in_period:
-                    voyages_for_period.append(voyage)
+                    voyages_for_period.append(voyage, voyage.is_manned())
             
             sorted_voyages_for_period = sorted(voyages_for_period, key=lambda voyage: voyage.departure_time)
             return sorted_voyages_for_period
