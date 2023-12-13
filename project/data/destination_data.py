@@ -5,8 +5,8 @@ from model.destination import Destination
 
 class Destination_Data:
     def __init__(self):
-        self.file_destinations = "project/files/destinations.csv"
-        self.file_out = "project/files/outfile.csv"
+        self.file_destinations = "files/destinations.csv"
+        self.file_out = "files/outfile.csv"
 
 
     def register_destination_in_file(self, destination):
@@ -31,6 +31,8 @@ class Destination_Data:
                 "ice_name": destination.ice_name, 
                 "ice_number": destination.ice_number
             })
+
+            csvfile.close()
             
     
     def get_destination_from_file(self, iata):
@@ -66,6 +68,8 @@ class Destination_Data:
                     row["ice_name"], 
                     row["ice_number"]
                 ))
+                
+            csvfile.close()
         return dest_list
     
     
@@ -98,8 +102,11 @@ class Destination_Data:
                         "ice_number": destination.ice_number
                     }
                 writer.writerow(row)
+            
+            infile.close()
+            outfile.close()
 
-        file_temp = "project/files/file_temp.csv"
+        file_temp = "files/file_temp.csv"
         os.rename(self.file_destinations, file_temp)
         os.rename(self.file_out, self.file_destinations)
         os.rename(file_temp, self.file_out)
