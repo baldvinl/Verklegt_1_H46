@@ -159,12 +159,12 @@ class Voyage_Validation:
         return voyage
 
 
-# flight to
-# flight back
-# fully manned
-# status
-# pilot count
-# f.a count
+# flight to --> validate alpha
+# flight back --> validate alph
+# fully manned  --> validate yes or no
+# status --> what to validate
+# pilot count --> validate int
+# f.a count --> validate int
 
 
 class Validate_Aircraft_Ui:
