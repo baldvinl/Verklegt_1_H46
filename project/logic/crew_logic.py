@@ -1,7 +1,6 @@
 from data.data_wrapper import Data_Wrapper
 from model.crew import Crew
 from model.pilot import Pilot
-from model.flight_attendant import Flight_Attendant
 from model.error_messages import ErrorMessages
 from logic.voyage_logic import Voyage_Logic
 
