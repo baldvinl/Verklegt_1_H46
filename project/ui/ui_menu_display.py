@@ -12,10 +12,12 @@ PIPE = '|'
 EQUAL_SIGN = '=' * 68
 
 class Header_Footer:
+    '''Class with all display menus'''
     def __init__(self):
         return None
 
     def display_main_header(self):
+        '''Function with the main header'''
         print()
         print('\033[1;35;40m')
         print(' '*27,'||\    ||         ||\    ||')
@@ -25,6 +27,7 @@ class Header_Footer:
         print(' '*28,'||    \||//     \\\||    \|| /   \|| ||')
 
     def display_main_footer_with_q(self):
+        '''Footer with quit command'''
         print(f'{HYPHEN:>15}{EQUAL_SIGN.center(67)}{HYPHEN}')
         print(f'{HYPHEN:>15}{HYPHEN:>69}')
         print(f'{HYPHEN:>15}{QUIT_MENU.center(67)}{HYPHEN:>2}')
@@ -33,6 +36,7 @@ class Header_Footer:
         print()
 
     def display_main_footer_with_q_m_b(self):
+        '''Footer with quit, back and main menu command'''
         print(f'{HYPHEN:>15}{EQUAL_SIGN.center(67)}{HYPHEN}')
         print(f'{HYPHEN:>15}{HYPHEN:>69}')
         print(f'{HYPHEN:>15}{QUIT_MENU_BACK.center(67)}{HYPHEN:>2}')
@@ -41,17 +45,20 @@ class Header_Footer:
         print()
 
     def lines_above_in_submenu(self):
+        '''Functions with : and equal sign as line'''
         print(f'{HYPHEN:>15}{EQUAL_SIGN.center(67)}{HYPHEN}')
         print(f'{HYPHEN:>15}{HYPHEN:>69}')
 
     def display_lines_below_in_submenu(self):
+        '''Function with dashes as line'''
         print(f'{HYPHEN:>15}{DASH.center(67)}{HYPHEN}')
 
-class Display_Main_Menu:
+class Main_Menu:
     def __init__(self):
         return None
     
     def display_main_menu(self):
+        '''Function that display the main menu'''
         Header_Footer.display_main_header(self)
         Header_Footer.lines_above_in_submenu(self)
         sub_header = 'Main menu'
@@ -69,7 +76,7 @@ class Display_Main_Menu:
         Header_Footer.display_main_footer_with_q(self)
 
 class Display_Crew_Menu:
-class Crew_Menu:
+    '''Function that display the crew menu'''
     def __init__(self):
         return None
     
@@ -91,6 +98,7 @@ class Crew_Menu:
         Header_Footer.display_main_footer_with_q_m_b(self)
 
     def register_captain(self):
+        '''Function that register captains'''
         Header_Footer.display_main_header(self)
         Header_Footer.lines_above_in_submenu(self)
         sub_header = 'Register captain'
@@ -108,6 +116,7 @@ class Crew_Menu:
         Header_Footer.display_main_footer_with_q_m_b(self)
 
     def register_pilot(self):
+
         Header_Footer.display_main_header(self)
         Header_Footer.lines_above_in_submenu(self)
         sub_header = 'Register pilot'
