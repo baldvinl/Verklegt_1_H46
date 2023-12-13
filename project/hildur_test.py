@@ -11,7 +11,8 @@ test_val = Validation_Ui(
     "hildur@ru.is",
 )
 # test_val.validate_no_punctuation("kd")
-# test_val.validate_no_numbers("1aa")
+# test_val.validate_no_numbers("4kdk34d")
+test_val.validate_no_letter('393ee93')
 # test_val.validate_ssn("0206456093")
 # test_val.validate_name_and_country("Akdkddi")
 # test_val.validate_phone_number("9494994944")
