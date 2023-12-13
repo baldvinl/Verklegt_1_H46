@@ -123,15 +123,11 @@ class Logic_Wrapper:
         """Receives destination and date and forwards them to data wrapper TODO"""
         return self.voyage_logic.get_voyage_status(destination, date)
     
-    def get_voyages_day(self, datetime):
-        """Receives date, requests all voyages from data wrapper, if there is no voyages returns error
-        if there is it returns voyages for that day in a list sorted"""
-        return self.voyage_logic.get_voyages_day(datetime)
-    
-    def get_voyages_week(self, datetime):
-        """Receives date, requests all voyages from data wrapper, if there is no voyages returns error
-        if there is it returns voyages for that week in a list sorted"""
-        return self.voyage_logic.get_voyages_week(datetime)
+    def get_voyages_for_period(self, starting_date, total_days):
+        """Receives a starting date in datetime format, and total days of voyages to return. Requests all voyages from data wrapper
+        makes a list of all the dates to be included in the final list. Goes through all voyages and keeps only the ones with the same dates.
+        Sorts by departure time and returns list. If no voyages were initially received from data wrapper, it raises an error"""
+        return self.voyage_logic.get_voyages_for_period(starting_date, total_days)
     
     def get_voyage_schedule(self, ssn, date):
         """Receives ssn, and starting date of the week, checks them for the crew members ssn, and saves
