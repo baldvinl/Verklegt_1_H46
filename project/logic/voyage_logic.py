@@ -25,6 +25,7 @@ class Voyage_Logic:
     def get_all_voyages(self) -> list:
         """Requests voyage list from data wrapper, checks if empty, if so returns error otherwise returns list"""
         voyage_list = self.data_wrapper.get_voyages_from_file()
+        # old_voyages_list = self.data_wrapper.get still need to update some of these to include the old voyage file
         if voyage_list:
             return voyage_list
         else:
@@ -64,45 +65,68 @@ class Voyage_Logic:
         else:
             return False
 
-    def get_voyages_day(self, date_input):
-        """Receives date, requests all voyages from data wrapper, if there is no voyages returns error
-        if there is it returns voyages for that day in a list sorted #TODO MERGE THIS WITH BOTTOM"""
-        all_voyages = self.get_all_voyages()
-        if all_voyages:
-            voyages_day = []
-            for voyage in all_voyages:
-                if voyage.departure_time == date_input:
-                    voyages_day.append(voyage)
-            sorted_voyages_day = sorted(voyages_day, key=lambda voyage: voyage.departure_time)
-            return sorted_voyages_day
-        else:
-            raise ValueError(ErrorMessages.NO_VOYAGES_FOUND)
+    # def get_voyages_day(self, date_input):
+    #     """Receives date, requests all voyages from data wrapper, if there is no voyages returns error
+    #     if there is it returns voyages for that day in a list sorted #TODO MERGE THIS WITH BOTTOM"""
+    #     all_voyages = self.get_all_voyages()
+    #     if all_voyages:
+    #         voyages_day = []
+    #         for voyage in all_voyages:
+    #             if voyage.departure_time == date_input:
+    #                 voyages_day.append(voyage)
+    #         sorted_voyages_day = sorted(voyages_day, key=lambda voyage: voyage.departure_time)
+    #         return sorted_voyages_day
+    #     else:
+    #         raise ValueError(ErrorMessages.NO_VOYAGES_FOUND)
+        
+    def get_voyages_for_period(self, starting_date, total_days):
+        """Receives a starting date in datetime format, and total days of voyages to return. Requests all voyages from data wrapper
+        makes a list of all the dates to be included in the final list. Goes through all voyages and keeps only the ones with the same dates.
+        Sorts by departure time and returns list. If no voyages were initially received from data wrapper, it raises an error"""
+        starting_date = starting_date.date
+        all_voyages_list = self.get_all_voyages()
+        if all_voyages_list:
+            voyages_for_period = []
+            dates_in_period = []
+            end_date = starting_date + timedelta(days=total_days - 1)
+            current_date = starting_date
+            while current_date <= end_date:
+                dates_in_period.append(current_date)
+                current_date += timedelta(days=1)
+            
+            for voyage in all_voyages_list:
+                if voyage.departure_time.date in dates_in_period:
+                    voyages_for_period.append(voyage)
+            
+            sorted_voyages_for_period = sorted(voyages_for_period, key=lambda voyage: voyage.departure_time)
+            return sorted_voyages_for_period
+        raise ValueError(ErrorMessages.NO_VOYAGES_FOUND)
 
-    def get_voyages_week(self, date_input):
-        """Receives date, requests all voyages from data wrapper, if there is no voyages returns error
-        if there is it returns voyages for that week in a list sorted"""
-        all_voyages = self.get_all_voyages()
-        if all_voyages:
-            voyages_week = []
-            dates_week = []
-            counter_date = date_input
-            end_date = date_input + timedelta(days=6)
-            while date_input <= end_date:
-                dates_week.append(date_input)
-                counter_date += 1
-            for voyage in all_voyages:
-                if voyage.departure_time in dates_week:
-                    voyages_week.append(voyage)
-            sorted_voyages_week = sorted(voyages_week, key=lambda voyage: (voyage.date, voyage.departure_time)) #not sure if this sorts properly
-            return sorted_voyages_week
-        else:
-            raise ValueError(ErrorMessages.NO_VOYAGES_FOUND)
+    # def get_voyages_week(self, date_input):
+    #     """Receives date, requests all voyages from data wrapper, if there is no voyages returns error
+    #     if there is it returns voyages for that week in a list sorted"""
+    #     all_voyages = self.get_all_voyages()
+    #     if all_voyages:
+    #         voyages_week = []
+    #         dates_week = []
+    #         counter_date = date_input
+    #         end_date = date_input + timedelta(days=6)
+    #         while date_input <= end_date:
+    #             dates_week.append(date_input)
+    #             counter_date += 1
+    #         for voyage in all_voyages:
+    #             if voyage.departure_time in dates_week:
+    #                 voyages_week.append(voyage)
+    #         sorted_voyages_week = sorted(voyages_week, key=lambda voyage: (voyage.date, voyage.departure_time)) #not sure if this sorts properly
+    #         return sorted_voyages_week
+    #     else:
+    #         raise ValueError(ErrorMessages.NO_VOYAGES_FOUND)
 
-    def get_voyage_schedule(self, ssn, first_day_of_week):
+    def get_voyage_schedule(self, ssn, first_day_of_week): #should change name to weekly schedule probably
         """Receives ssn, and starting date of the week, checks them for the crew members ssn, and saves
         the one that have them listed. returns them in a list sorted. if there is no voyages it returns error code"""
         crew_members_voyages = []
-        voyages_week = self.get_voyages_week(first_day_of_week)
+        voyages_week = self.get_voyages_for_period(first_day_of_week, 7)
         if voyages_week:
             job_title = ["captain", "pilot", "head flight attendant", "extra flight attendants"]
             for voyage in voyages_week:
