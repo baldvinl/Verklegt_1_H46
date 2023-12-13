@@ -24,21 +24,21 @@ class Destination_Logic:
         else:
             raise ValueError(ErrorMessages.DESTINATION_NOT_FOUND)
     
-    def get_destination(self, iata: str):
+    def get_destination(self, airport: str):
         """Requests lists of all destinations from data wrapper. If destination is not found it returns an error
-        if not it finds specific destination with iata provided and returns it."""
+        if not it finds specific destination with airport provided and returns it."""
         destinations_list = self.get_all_destinations()
         for destination in destinations_list:
-            if destination.airport == iata:
+            if destination.airport == airport:
                 return destination
         raise ValueError(ErrorMessages.DESTINATION_NOT_FOUND)
 
-    def change_ice_info(self, iata: str, new_info: tuple):
-        """Receives iata and new_info tuple with the format (new_name, new_number) - if one of those doesn't need to be changed
+    def change_ice_info(self, airport: str, new_info: tuple):
+        """Receives airport and new_info tuple with the format (new_name, new_number) - if one of those doesn't need to be changed
         it will be set to "None", requests destination object from data
-        wrapper using iata, changes the information and returns updated destination object"""
-        # send iata and get destination object back from data
-        destination = self.get_destination(iata)
+        wrapper using airport, changes the information and returns updated destination object"""
+        # send airport and get destination object back from data
+        destination = self.get_destination(airport)
         # new info is tuple [(name, number)]
         # change object here and send back to data
         if destination:
