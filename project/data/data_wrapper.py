@@ -88,7 +88,7 @@ class Data_Wrapper:
     
     
     def register_updated_voyage_to_file(self, voyage):
-        """Adds all the voyages in new file and swaps out the old voyage for the new updated one""""
+        """Adds all the voyages in new file and swaps out the old voyage for the new updated one"""
 
         return self.voyage_data.register_updated_voyage_to_file(voyage)
     
