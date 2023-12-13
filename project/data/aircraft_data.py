@@ -13,7 +13,6 @@ class Aircraft_Data:
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 
             writer.writerow({"name": aircraft.name, "type": aircraft.type, "manufacturer": aircraft.manufacturer})
-
     
 
     
