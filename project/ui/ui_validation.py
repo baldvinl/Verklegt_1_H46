@@ -16,6 +16,7 @@ AIRCRAFT_NAME_VALUE_ERROR_MESSAGE = "The format is not correct"
 AIRCRAFT_NAME_INPUT = "Enter a correct aircraft name:"
 AIRPORT_NAME_LEN = 3
 TIME_LEN = 5
+ALL_PUNCTUATION = "!\"#$%&\'()*+,-./:;<=>?@[\]^_`{|}~"
 
 
 # ------------CREW---------------------
@@ -41,14 +42,17 @@ class Validation_Ui:
 
     def validate_no_numbers(self, numbers):
         #something wrong
-        validate = r"^\d+$"
+        # validate = r"^\d+$"
+        validate = r"^[0-9]+$"
+        # validate = r"^[a-zA-Z!#$%&()]+$"
+        # !"#$%&\'()*+,-./:;<=>?@[\]^_`{|}~
         if re.match(validate, numbers):
             raise ValueError(AIRCRAFT_NAME_VALUE_ERROR_MESSAGE)
         return numbers
     
     def validate_no_letter(self, letters):
         #incorrect
-        validate = r"^\d+$"
+        validate = r"^[a-zA-Z]+$"
         if re.match(validate, letters):
             raise ValueError(AIRCRAFT_NAME_VALUE_ERROR_MESSAGE)
         return letters
