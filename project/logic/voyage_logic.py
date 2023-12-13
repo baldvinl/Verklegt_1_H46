@@ -1,4 +1,4 @@
-from datetime import date, timedelta
+from datetime import date, timedelta, datetime
 from data.data_wrapper import Data_Wrapper
 from model.voyage import Voyage
 from model.error_messages import ErrorMessages
@@ -20,7 +20,7 @@ class Voyage_Logic:
             voyages = self.get_future_voyages()
         if voyages:
             for voyage in voyages:
-                if voyage.destination == destination & voyage.time_depart_destination == departure_time:
+                if voyage.destination == destination and voyage.time_depart_destination == departure_time:
                     return voyage
                 else:
                     raise ValueError(ErrorMessages.NO_VOYAGES_FOUND)
@@ -60,13 +60,13 @@ class Voyage_Logic:
         else:
             raise ValueError(ErrorMessages.VOYAGE_ALREADY_IN_SYSTEM)
 
-    def add_crew_to_voyage(self, ssn_list: list, voyage: Voyage):
-        """Receives crew members ssn in a list, and voyage object. Updates voyage
-        object according to the job title of each crew member and returns it"""
-        for ssn in ssn_list:
-            job_title = #TODO
-            setattr(voyage, job_title, ssn)
-        return self.data_wrapper.register_updated_voyage_to_file(voyage)
+    # def add_crew_to_voyage(self, ssn_list: list, voyage: Voyage):
+    #     """Receives crew members ssn in a list, and voyage object. Updates voyage
+    #     object according to the job title of each crew member and returns it"""
+    #     for ssn in ssn_list:
+    #         job_title = #TODO
+    #         setattr(voyage, job_title, ssn)
+    #     return self.data_wrapper.register_updated_voyage_to_file(voyage)
     
     def add_aircraft_to_voyage(self, aircraft, destination, departure):
         """Gets voyage with certain destination & departure time, adds aircraft to it and returns to data wrapper TODO B requirement"""
@@ -80,7 +80,7 @@ class Voyage_Logic:
     
     def check_date_past(self, date_input) -> bool:
         """checks if date given is in the past or not"""
-        today = date.today()
+        today = datetime.today() #to fix
         if today > date_input:
             return True
         else:
