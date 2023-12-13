@@ -1,5 +1,6 @@
 import os
 from ui.ui_mainmenu import *
+from ui.ui_menu_display import Destination_Menu_Display
 from logic.logic_wrapper import Logic_Wrapper
 
 from model.destination import Destination
@@ -17,13 +18,13 @@ class DestinationMenu_ui():
         current_menu = "Destination menu"
         
         MainMenu_ui.clear_terminal()
-        MainMenu_ui.main_header(current_menu)
+        Destination_Menu_Display.display_destination_menu(self)
 
-        print(f"1. Register a new destination")
-        print(f"2. Destination info")
-        print(f"3. Edit destination ICE information")
+        # print(f"1. Register a new destination")
+        # print(f"2. Destination info")
+        # print(f"3. Edit destination ICE information")
 
-        print(f"[M]enu  [B]ack  [Q]uit")
+        # print(f"[M]enu  [B]ack  [Q]uit")
     
     def register_destination(self):
         '''Function that asks for input to register destination and returns destination information.'''

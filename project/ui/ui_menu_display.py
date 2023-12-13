@@ -58,7 +58,7 @@ class Main_Menu_Display:
         print(f'{HYPHEN:>15}         {sub_header:<59}{HYPHEN:>1}')
         Header_Footer_Display.display_lines_below_in_submenu(self)
 
-        menu_list = ['Employees', 'Destination', 'Voyages', 'Aircraft', 'Print options']
+        menu_list = ['Crew members', 'Destination', 'Voyages', 'Aircraft', 'Print options']
         rest_of_lines = 10 - len(menu_list)
 
         for number , ele in enumerate(menu_list):

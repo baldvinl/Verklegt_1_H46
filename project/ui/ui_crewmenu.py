@@ -1,5 +1,6 @@
 import os
 from ui.ui_mainmenu import MainMenu_ui
+from ui.ui_menu_display import Crew_Member_Menu_Display
 
 from logic.logic_wrapper import Logic_Wrapper
 
@@ -26,16 +27,17 @@ class CrewMenu_ui():
         current_menu = "Crew menu"
 
         MainMenu_ui.clear_terminal()
-        MainMenu_ui.main_header(current_menu)
+        # MainMenu_ui.main_header(current_menu)
+        Crew_Member_Menu_Display.display_crew_member_menu(self)
 
-        print(f"1. Register Captain")
-        print(f"2. Register First Officer")
-        print(f"3. Register Head Flight Attendant.")
-        print(f"4. Register Flight Attendant.")   
-        print(f"5. Crew records")
-        print(f"6. Crew availability")
+        # print(f"1. Register Captain")
+        # print(f"2. Register First Officer")
+        # print(f"3. Register Head Flight Attendant.")
+        # print(f"4. Register Flight Attendant.")   
+        # print(f"5. Crew records")
+        # print(f"6. Crew availability")
 
-        print(f"[M]enu  [B]ack  [Q]uit")
+        # print(f"[M]enu  [B]ack  [Q]uit")
     
     def register_crew(self, crew_type):
         '''Function that asks for input to register crew and returns crew information.'''
