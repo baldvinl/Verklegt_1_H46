@@ -1,3 +1,4 @@
+
 # from ui.ui_menu_display import Main_Menu
 # from ui.ui_menu_display import Header_Footer
 # from ui.ui_menu_display import Inputs_Prompt
@@ -20,8 +21,8 @@ from ui.ui_validation import Voyage_Validation
 # test_air = Destination_Ui('Iceland', 'EEA', '03:45', '02:02', '453','John Smith', '393939393' )
 # test_air.validate_distance_from_iceland('94a9')
 
-test_air = Voyage_Validation('Nuuk','a','a','a','a','a','a','a')
-test_air.validate_voyage('nupk')
+# test_air = Voyage_Validation('Nuuk','a','a','a','a','a','a','a')
+# test_air.validate_voyage('nupk')
 
 # test_air.validate_airport('KefrF')
 # test_air.validate_flight_time('0945')
