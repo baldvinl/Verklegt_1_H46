@@ -7,10 +7,10 @@ from model.crew import Crew
 from model.pilot import Pilot
 from model.flight_attendant import Flight_Attendant
 from model.voyage import Voyage
+from ui.ui_menu_display import Crew_Menu
 
 
 QUIT = "[Q]uit"
-
 
 class CrewMenu_ui():
     def __init__(self):
@@ -26,7 +26,7 @@ class CrewMenu_ui():
         current_menu = "Crew menu"
 
         MainMenu_ui.clear_terminal()
-        MainMenu_ui.main_header(current_menu)
+        Crew_Menu.display_employees_menu()
 
         print(f"1. Register Captain")
         print(f"2. Register First Officer")
@@ -43,7 +43,7 @@ class CrewMenu_ui():
         current_menu = "Register crew"
 
         MainMenu_ui.clear_terminal()
-        MainMenu_ui.main_header(current_menu)  
+        # MainMenu_ui.main_header(current_menu)  
 
         if crew_type == "1":
             ssn = input("Enter SSN: ")
