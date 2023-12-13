@@ -1,8 +1,8 @@
-destination,time_depart_iceland,time_depart_destination,captain,pilot,head_flight_attendant,flight_attendant1,flight_attendant2
-greenland_NEW,2024-01-11 08:45:00,2024-01-11 12:30:00,,,,,
-NEW,2024-07-11 08:45:00,2024-07-11 12:30:00,,,,,
-PLA,2023-12-23 15:15:15,2023-12-23 20:20:20,1508694589,1712846589,,,
-HAR,2024-02-23 15:15:15,2024-02-23 20:20:20,SOMETHING,SOMETHING,,,
-greenland_OLD,2023-01-11 08:45:00,2023-01-11 12:30:00,,,,,
-OLD,2023-05-11 08:45:00,2023-01-11 12:30:00,,,,,
-BAR_OLD,2023-02-23 15:15:15,2023-02-23 20:20:20,SOMETHING,SOMETHING,,,
+airport,country,flight_duration,distance,ice_name,ice_number
+FOY,Forya,2.5,2500,Jorgen Manni,45871569
+GRE,Greenland,2,2000,Nuuk Banuuk,987654321
+LYR,SVALBARD,02:50,2500,Test,588522LOL
+LOL,PAAAAAAA,xx:xx,909,changed,55555
+KEF,Iceland,03:00,300,test,7777777
+GRE,dlskfj,03:00,300,test,04359034
+FRA,dlskfj,03:00,300,test,04359034

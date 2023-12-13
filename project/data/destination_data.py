@@ -35,13 +35,13 @@ class Destination_Data:
             csvfile.close()
             
     
-    def get_destination_from_file(self, iata):
-        """Returns the destination with the reletive iata"""
+    def get_destination_from_file(self, airport_iata):
+        """Returns the destination with the reletive airport_iata"""
 
         with open(self.file_destinations, newline="", encoding="utf-8") as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
-                if row["airport"] == iata:
+                if row["airport"] == airport_iata:
                     destination = Destination(
                         row["airport"], 
                         row["country"], 
