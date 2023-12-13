@@ -33,14 +33,11 @@ class Destination_Logic:
                 return destination
         raise ValueError(ErrorMessages.DESTINATION_NOT_FOUND)
 
-    def change_ice_info(self, airport: str, new_info: tuple):
+    def change_emergency_contact_info(self, airport: str, new_info: tuple):
         """Receives airport and new_info tuple with the format (new_name, new_number) - if one of those doesn't need to be changed
         it will be set to "None", requests destination object from data
         wrapper using airport, changes the information and returns updated destination object"""
-        # send airport and get destination object back from data
         destination = self.get_destination(airport)
-        # new info is tuple [(name, number)]
-        # change object here and send back to data
         if destination:
             if new_info[0]:
                 destination.ice_name = new_info[0]

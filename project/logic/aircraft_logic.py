@@ -7,7 +7,7 @@ class Aircraft_Logic:
 
     def register_aircraft(self, aircraft: Aircraft):
         """Receives aircraft object and forwards to data wrapper"""
-        return self.data_wrapper.register_aircraft(aircraft)
+        return self.data_wrapper.create_aircraft(aircraft)
 
     def get_aircraft_info(self, name: str):
         """Receives aircraft name and forwards to data wrapper"""
