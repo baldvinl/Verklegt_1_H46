@@ -1,5 +1,5 @@
 
-QUIT_MENU = '[M]ENU  [Q]UIT'
+QUIT_MENU = '[Q]UIT'
 QUIT_MENU_BACK = '[M]ENU  [BACK]  [Q]UIT'
 
 UNDERSCORE = '_'
@@ -11,31 +11,20 @@ SPACE = ' '
 PIPE = '|'
 EQUAL_SIGN = '=' * 68
 
-
-#------COMMAND CONSTANTS-----------
-COMMAND = 'Enter a menu number: '
-
-class Inputs_Prompt:
-    def __init__(self):
-        return None
-    def menu_number(self):
-        print(f'{COMMAND:>35}')
-        print()
-
 class Header_Footer:
     def __init__(self):
         return None
 
     def display_main_header(self):
         print()
-        print()
-        print(' '*29,'||\    ||         ||\    ||')
-        print(' '*29,'|| \   ||    ^    || \   ||      **' )
-        print(' '*29,'||  \  ||  // \\\  ||  \  ||   ^  || ||__')
-        print(' '*29,'||   \ || //___\\\ ||   \ ||  /_\ || ||')
-        print(' '*29,'||    \||//     \\\||    \|| /   \|| ||')
+        print('\033[1;35;40m')
+        print(' '*27,'||\    ||         ||\    ||')
+        print(' ' * 19,'_|_', ' ' * 4,'|| \   ||    ^    || \   ||      **',' ' * 9, '_|_')
+        print(' ' * 16,'---(*)---',' ' * 1,'||  \  ||  // \\\  ||  \  ||   ^  || ||__',' ' * 1 , '---(*)---')
+        print(' ' * 18,'\" \' \"',' ' * 3,'||   \ || //___\\\ ||   \ ||  /_\ || ||',' ' * 5 , '\" \' \"')
+        print(' '*28,'||    \||//     \\\||    \|| /   \|| ||')
 
-    def display_main_footer_with_q_m(self):
+    def display_main_footer_with_q(self):
         print(f'{HYPHEN:>15}{EQUAL_SIGN.center(67)}{HYPHEN}')
         print(f'{HYPHEN:>15}{HYPHEN:>69}')
         print(f'{HYPHEN:>15}{QUIT_MENU.center(67)}{HYPHEN:>2}')
@@ -66,7 +55,7 @@ class Display_Main_Menu:
         Header_Footer.display_main_header(self)
         Header_Footer.lines_above_in_submenu(self)
         sub_header = 'Main menu'
-        print(f'{HYPHEN:>15}{sub_header:>18}{HYPHEN:>51}')
+        print(f'{HYPHEN:>15}         {sub_header:<59}{HYPHEN:>1}')
         Header_Footer.display_lines_below_in_submenu(self)
 
         menu_list = ['Employees', 'Destination', 'Voyages', 'Aircraft', 'Print options']
@@ -77,19 +66,21 @@ class Display_Main_Menu:
         for _ in range(rest_of_lines):
             print(f'{HYPHEN:>15}{HYPHEN:>69}')
 
-        Header_Footer.display_main_footer_with_q_m(self)
+        Header_Footer.display_main_footer_with_q(self)
 
 class Display_Crew_Menu:
+class Crew_Menu:
     def __init__(self):
         return None
     
-    def display_employees_menu(self):
+    def display_crew_menu(self):
+        Header_Footer.display_main_header(self)
         Header_Footer.lines_above_in_submenu(self)
-        sub_header = 'Employees'
-        print(f'{HYPHEN:>15}{sub_header:>18}{HYPHEN:>51}')
+        sub_header = 'Crew'
+        print(f'{HYPHEN:>15}         {sub_header:<59}{HYPHEN:>1}')
         Header_Footer.display_lines_below_in_submenu(self)
 
-        menu_list = ['Register pilot', 'Register captain', 'Register flight attentant', 'Register head flight attentant', 'Employee record', 'Employee avaliability', 'List of employees']
+        menu_list = ['Register captain', 'Register pilot', 'Register head flight attentant', 'Register flight attentant', 'Employee record', 'Employee avaliability', 'List of employees']
         rest_of_lines = 10 - len(menu_list)
 
         for number , ele in enumerate(menu_list):
@@ -97,10 +88,13 @@ class Display_Crew_Menu:
         for _ in range(rest_of_lines):
             print(f'{HYPHEN:>15}{HYPHEN:>69}')
 
+        Header_Footer.display_main_footer_with_q_m_b(self)
+
     def register_captain(self):
+        Header_Footer.display_main_header(self)
         Header_Footer.lines_above_in_submenu(self)
         sub_header = 'Register captain'
-        print(f'{HYPHEN:>15}{sub_header:>25}{HYPHEN:>44}')
+        print(f'{HYPHEN:>15}         {sub_header:<59}{HYPHEN:>1}')
         Header_Footer.display_lines_below_in_submenu(self)
 
         menu_list = ['SSN: ', 'Name: ', 'Supervisor: Yes', 'Address: ', 'Area Code: ', 'Email: ', 'Mobile number: ', 'Phone number: ', 'Type rating: ']
@@ -111,14 +105,13 @@ class Display_Crew_Menu:
         for _ in range(rest_of_lines):
             print(f'{HYPHEN:>15}{HYPHEN:>69}')
 
-        Header_Footer.lines_above_in_submenu(self)
-
-       
+        Header_Footer.display_main_footer_with_q_m_b(self)
 
     def register_pilot(self):
+        Header_Footer.display_main_header(self)
         Header_Footer.lines_above_in_submenu(self)
         sub_header = 'Register pilot'
-        print(f'{HYPHEN:>15}{sub_header:>25}{HYPHEN:>44}')
+        print(f'{HYPHEN:>15}         {sub_header:<59}{HYPHEN:>1}')
         Header_Footer.display_lines_below_in_submenu(self)
 
         menu_list = ['SSN: ', 'Name: ', 'Supervisor: No', 'Address: ', 'Area Code: ', 'Email: ', 'Mobile number: ', 'Phone number: ', 'Type rating: ']
@@ -129,10 +122,13 @@ class Display_Crew_Menu:
         for _ in range(rest_of_lines):
             print(f'{HYPHEN:>15}{HYPHEN:>69}')
 
+        Header_Footer.display_main_footer_with_q_m_b(self)
+
     def register_head_flight_attentant(self):
+        Header_Footer.display_main_header(self)
         Header_Footer.lines_above_in_submenu(self)
-        sub_header = 'Register head flight_attentant'
-        print(f'{HYPHEN:>15}{sub_header:>25}{HYPHEN:>44}')
+        sub_header = 'Register head flight attentant'
+        print(f'{HYPHEN:>15}         {sub_header:<59}{HYPHEN:>1}')
         Header_Footer.display_lines_below_in_submenu(self)
 
         menu_list = ['SSN: ', 'Name: ', 'Supervisor: Yes', 'Address: ', 'Area Code: ', 'Email: ', 'Mobile number: ', 'Phone number: ']
@@ -143,10 +139,13 @@ class Display_Crew_Menu:
         for _ in range(rest_of_lines):
             print(f'{HYPHEN:>15}{HYPHEN:>69}')
 
+        Header_Footer.display_main_footer_with_q_m_b(self)
+
     def register_flight_attentant(self):
+        Header_Footer.display_main_header(self)
         Header_Footer.lines_above_in_submenu(self)
-        sub_header = 'Register flight_attentant'
-        print(f'{HYPHEN:>15}{sub_header:>25}{HYPHEN:>44}')
+        sub_header = 'Register flight attentant'
+        print(f'{HYPHEN:>15}         {sub_header:<59}{HYPHEN:>1}')
         Header_Footer.display_lines_below_in_submenu(self)
 
         menu_list = ['SSN: ', 'Name: ', 'Supervisor: No', 'Address: ', 'Area Code: ', 'Email: ', 'Mobile number: ', 'Phone number: ']
@@ -157,100 +156,371 @@ class Display_Crew_Menu:
         for _ in range(rest_of_lines):
             print(f'{HYPHEN:>15}{HYPHEN:>69}')
 
-        
-    def get_employees_record(self):
-        pass
-    def edit_employees_records(self):
-        pass
+        Header_Footer.display_main_footer_with_q_m_b(self)
+
+    def display_crew_records_menu(self):
+        Header_Footer.display_main_header(self)
+        Header_Footer.lines_above_in_submenu(self)
+        sub_header = 'Crew records'
+        print(f'{HYPHEN:>15}         {sub_header:<59}{HYPHEN:>1}')
+        Header_Footer.display_lines_below_in_submenu(self)
+
+        menu_list = ['View crew member records', 'Edit crew member record', 'Print crew member list']
+        rest_of_lines = 10 - len(menu_list)
+
+        for number , ele in enumerate(menu_list):
+            print(f'{HYPHEN:>15}{(number+1):>10}   {ele:<55}{HYPHEN:>1}')
+        for _ in range(rest_of_lines):
+            print(f'{HYPHEN:>15}{HYPHEN:>69}')
+
+        Header_Footer.display_main_footer_with_q_m_b(self)
+
+    def view_crew_member_records(self):
+        Header_Footer.display_main_header(self)
+        Header_Footer.lines_above_in_submenu(self)
+        sub_header = 'View crew member records'
+        print(f'{HYPHEN:>15}         {sub_header:<59}{HYPHEN:>1}')
+        Header_Footer.display_lines_below_in_submenu(self)
+
+        menu_list = ['SSN: ']
+        rest_of_lines = 10 - len(menu_list)
+
+        for number , ele in enumerate(menu_list):
+            print(f'{HYPHEN:>15}{(number+1):>10}   {ele:<55}{HYPHEN:>1}')
+        for _ in range(rest_of_lines):
+            print(f'{HYPHEN:>15}{HYPHEN:>69}')
+
+        Header_Footer.display_main_footer_with_q_m_b(self)
+
+    def crew_member_records(self):
+        Header_Footer.display_main_header(self)
+        Header_Footer.lines_above_in_submenu(self)
+        sub_header = 'Crew member records'
+        print(f'{HYPHEN:>15}         {sub_header:<59}{HYPHEN:>1}')
+        Header_Footer.display_lines_below_in_submenu(self)
+
+        menu_list = ['SSN: ', 'Name: ', 'Address: ', 'Area code: ', 'Email: ', 'Mobile number: ', 'Phone number: ', 'Job title: ']
+        rest_of_lines = 10 - len(menu_list)
+
+        for number , ele in enumerate(menu_list):
+            print(f'{HYPHEN:>15}{(number+1):>10}   {ele:<55}{HYPHEN:>1}')
+        for _ in range(rest_of_lines):
+            print(f'{HYPHEN:>15}{HYPHEN:>69}')
+
+        Header_Footer.display_main_footer_with_q_m_b(self)
+
+    def edit_crew_member_records_ssn(self):
+        Header_Footer.display_main_header(self)
+        Header_Footer.lines_above_in_submenu(self)
+        sub_header = 'Edit crew member records'
+        print(f'{HYPHEN:>15}         {sub_header:<59}{HYPHEN:>1}')
+        Header_Footer.display_lines_below_in_submenu(self)
+
+        menu_list = ['SSN: ']
+        rest_of_lines = 10 - len(menu_list)
+
+        for number , ele in enumerate(menu_list):
+            print(f'{HYPHEN:>15}{(number+1):>10}   {ele:<55}{HYPHEN:>1}')
+        for _ in range(rest_of_lines):
+            print(f'{HYPHEN:>15}{HYPHEN:>69}')
+
+        Header_Footer.display_main_footer_with_q_m_b(self)
+
+    def edit_crew_member_records(self):
+        Header_Footer.display_main_header(self)
+        Header_Footer.lines_above_in_submenu(self)
+        sub_header = 'Edit crew member records'
+        print(f'{HYPHEN:>15}         {sub_header:<59}{HYPHEN:>1}')
+        Header_Footer.display_lines_below_in_submenu(self)
+
+        menu_list = ['SSN: ', 'Name: ', 'Address: ', 'Area code: ', 'Email: ', 'Mobile number: ', 'Phone number: ', 'Job title: ']
+        rest_of_lines = 10 - len(menu_list)
+
+        for number , ele in enumerate(menu_list):
+            print(f'{HYPHEN:>15}{(number+1):>10}   {ele:<55}{HYPHEN:>1}')
+        for _ in range(rest_of_lines):
+            print(f'{HYPHEN:>15}{HYPHEN:>69}')
+
+        Header_Footer.display_main_footer_with_q_m_b(self)
+
+
     def check_employees_availability(self):
-        print('Available employees for given day')
-        # print('Shift schedule for employees on specific day')
-        # print('Shift schedule for employee within a specific week')
+        pass
     def get_all_employees_list(self):
-        print('All employee list')
+        pass
     def get_pilot_list(self):
-        print('Pilot list')
+        pass
     def get_flight_attentant_list(self):
-        print('Flight attentant list')
+        pass
 
 
 class Display_Destination_Menu:
     def __init__(self):
         return None
-    def get_destination_menu(self):
-        extra_lines = 9
-        print(f'{HYPHEN:>15}{EQUAL_SIGN.center(67)}{HYPHEN}')
-        print(f'{HYPHEN:>15}{HYPHEN:>69}')
-        print(f'{HYPHEN:>15}{DESTINATION_MENU:>21}{HYPHEN:>48}')
-        print(f'{HYPHEN:>15}{DASH.center(67)}{HYPHEN}')
-        print(f'{HYPHEN:>15}{ONE:>10}{REGISTER_DESTINATION:>22}{HYPHEN:>37}')
-        print(f'{HYPHEN:>15}{TWO:>10}{DESTINATION_INFO:>18}{HYPHEN:>41}')
-        print(f'{HYPHEN:>15}{THREE:>10}{EDIT_DESTINATION:>18}{HYPHEN:>41}')
-        for _ in range(extra_lines):
+    
+    def display_destination_menu(self):
+        Header_Footer.display_main_header(self)
+        Header_Footer.lines_above_in_submenu(self)
+        sub_header = 'Destination'
+        print(f'{HYPHEN:>15}         {sub_header:<59}{HYPHEN:>1}')
+        Header_Footer.display_lines_below_in_submenu(self)
+
+        menu_list = ['Register a new destination', 'Destination info', 'Edit destination']
+        rest_of_lines = 10 - len(menu_list)
+
+        for number , ele in enumerate(menu_list):
+            print(f'{HYPHEN:>15}{(number+1):>10}   {ele:<55}{HYPHEN:>1}')
+        for _ in range(rest_of_lines):
             print(f'{HYPHEN:>15}{HYPHEN:>69}')
+
+        Header_Footer.display_main_footer_with_q_m_b(self)
 
     def register_new_destination(self):
-        pass
-    def destination_info(self):
-        pass
-    def edit_destination(self):
-        pass
+        Header_Footer.display_main_header(self)
+        Header_Footer.lines_above_in_submenu(self)
+        sub_header = 'Register destination'
+        print(f'{HYPHEN:>15}         {sub_header:<59}{HYPHEN:>1}')
+        Header_Footer.display_lines_below_in_submenu(self)
 
-class Display_Voyages_Menu:
+        menu_list = ['Airport IATA code: ', 'Country: ', 'Flight duration: ', 'Distance: ', 'ICE name: ', 'ICE number: ']
+        rest_of_lines = 10 - len(menu_list)
+
+        for number , ele in enumerate(menu_list):
+            print(f'{HYPHEN:>15}{(number+1):>10}   {ele:<55}{HYPHEN:>1}')
+        for _ in range(rest_of_lines):
+            print(f'{HYPHEN:>15}{HYPHEN:>69}')
+
+        Header_Footer.display_main_footer_with_q_m_b(self)
+
+    def destination_info(self):
+        Header_Footer.display_main_header(self)
+        Header_Footer.lines_above_in_submenu(self)
+        sub_header = 'Destination info'
+        print(f'{HYPHEN:>15}         {sub_header:<59}{HYPHEN:>1}')
+        Header_Footer.display_lines_below_in_submenu(self)
+
+        menu_list = ['IATA code: ']
+        rest_of_lines = 10 - len(menu_list)
+
+        for number , ele in enumerate(menu_list):
+            print(f'{HYPHEN:>15}{(number+1):>10}   {ele:<55}{HYPHEN:>1}')
+        for _ in range(rest_of_lines):
+            print(f'{HYPHEN:>15}{HYPHEN:>69}')
+
+        Header_Footer.display_main_footer_with_q_m_b(self)
+
+    def destination_record(self):
+        Header_Footer.display_main_header(self)
+        Header_Footer.lines_above_in_submenu(self)
+        sub_header = 'Destination record'
+        print(f'{HYPHEN:>15}         {sub_header:<59}{HYPHEN:>1}')
+        Header_Footer.display_lines_below_in_submenu(self)
+
+        menu_list = ['IATA code: ', 'Country: ', 'Flight duration: ', 'Distance: ', 'ICE name: ', 'ICE number: ']
+        rest_of_lines = 10 - len(menu_list)
+
+        for number , ele in enumerate(menu_list):
+            print(f'{HYPHEN:>15}{(number+1):>10}   {ele:<55}{HYPHEN:>1}')
+        for _ in range(rest_of_lines):
+            print(f'{HYPHEN:>15}{HYPHEN:>69}')
+
+        Header_Footer.display_main_footer_with_q_m_b(self)      
+
+    def edit_destination(self):
+        Header_Footer.display_main_header(self)
+        Header_Footer.lines_above_in_submenu(self)
+        sub_header = 'Edit destination'
+        print(f'{HYPHEN:>15}         {sub_header:<59}{HYPHEN:>1}')
+        Header_Footer.display_lines_below_in_submenu(self)
+
+        menu_list = ['IATA code: ']
+        rest_of_lines = 10 - len(menu_list)
+
+        for number , ele in enumerate(menu_list):
+            print(f'{HYPHEN:>15}{(number+1):>10}   {ele:<55}{HYPHEN:>1}')
+        for _ in range(rest_of_lines):
+            print(f'{HYPHEN:>15}{HYPHEN:>69}')
+
+        Header_Footer.display_main_footer_with_q_m_b(self) 
+
+    def edit_destination_record(self):
+        Header_Footer.display_main_header(self)
+        Header_Footer.lines_above_in_submenu(self)
+        sub_header = 'Edit destination record'
+        print(f'{HYPHEN:>15}         {sub_header:<59}{HYPHEN:>1}')
+        Header_Footer.display_lines_below_in_submenu(self)
+
+        menu_list = ['IATA code: ', 'Country: ', 'Flight duration: ', 'Distance: ', 'ICE name: ', 'ICE number: ']
+        rest_of_lines = 10 - len(menu_list)
+
+        for number , ele in enumerate(menu_list):
+            print(f'{HYPHEN:>15}{(number+1):>10}   {ele:<55}{HYPHEN:>1}')
+        for _ in range(rest_of_lines):
+            print(f'{HYPHEN:>15}{HYPHEN:>69}')
+
+        Header_Footer.display_main_footer_with_q_m_b(self) 
+
+class Voyages_Menu:
     def __init__(self):
         return None
-    def get_voyage_menu(self):
-        extra_lines = 6
-        print(f'{HYPHEN:>15}{EQUAL_SIGN.center(67)}{HYPHEN}')
-        print(f'{HYPHEN:>15}{HYPHEN:>69}')
-        print(f'{HYPHEN:>15}{VOYAGE_MENU:>16}{HYPHEN:>53}')
-        print(f'{HYPHEN:>15}{DASH.center(67)}{HYPHEN}')
-        print(f'{HYPHEN:>15}{ONE:>10}{REGISTER_VOYAGE:>17}{HYPHEN:>42}')
-        print(f'{HYPHEN:>15}{TWO:>10}{PRINT_VOYAGES_ONE_DAY:>25}{HYPHEN:>34}')
-        print(f'{HYPHEN:>15}{THREE:>10}{PRINT_VOYAGES_ONE_WEEK:>26}{HYPHEN:>33}')
-        print(f'{HYPHEN:>15}{FOUR:>10}{CREW_MEMBER_AVAILABILITY:>26}{HYPHEN:>33}')
-        print(f'{HYPHEN:>15}{FIVE:>10}{ADD_AIRCRAFT_VOYAGE:>14}{HYPHEN:>45}')
-        print(f'{HYPHEN:>15}{SIX:>10}{ADD_CREW_VOYAGE:>10}{HYPHEN:>49}')
-        for _ in range(extra_lines):
+    
+    def display_voyage_menu(self):
+        Header_Footer.display_main_header(self)
+        Header_Footer.lines_above_in_submenu(self)
+        sub_header = 'Voyages'
+        print(f'{HYPHEN:>15}         {sub_header:<59}{HYPHEN:>1}')
+        Header_Footer.display_lines_below_in_submenu(self)
+
+        menu_list = ['Register voyage', 'Print voyage 1 day', 'Print voyages 1 week', 'Employee availability', 'Add aircraft', 'Add crew']
+        rest_of_lines = 10 - len(menu_list)
+
+        for number , ele in enumerate(menu_list):
+            print(f'{HYPHEN:>15}{(number+1):>10}   {ele:<55}{HYPHEN:>1}')
+        for _ in range(rest_of_lines):
             print(f'{HYPHEN:>15}{HYPHEN:>69}')
+
+        Header_Footer.display_main_footer_with_q_m_b(self) 
+
     def register_new_voyage(self):
-        print('Register a new voyage')
+        Header_Footer.display_main_header(self)
+        Header_Footer.lines_above_in_submenu(self)
+        sub_header = 'Register voyage'
+        print(f'{HYPHEN:>15}         {sub_header:<59}{HYPHEN:>1}')
+        Header_Footer.display_lines_below_in_submenu(self)
+
+        menu_list = ['Destination: ', 'Date: ', 'Time of departure from Iceland: ', 'Time of departure from destination: ']
+        rest_of_lines = 10 - len(menu_list)
+
+        for number , ele in enumerate(menu_list):
+            print(f'{HYPHEN:>15}{(number+1):>10}   {ele:<55}{HYPHEN:>1}')
+        for _ in range(rest_of_lines):
+            print(f'{HYPHEN:>15}{HYPHEN:>69}')
+
+        Header_Footer.display_main_footer_with_q_m_b(self) 
+
     def print_voyages(self):
-        print('Print for 1 day')
-        # print('Print for 1 week')
-    # call a function employees avalability
+        Header_Footer.display_main_header(self)
+        Header_Footer.lines_above_in_submenu(self)
+        sub_header = 'Print voyages'
+        print(f'{HYPHEN:>15}         {sub_header:<59}{HYPHEN:>1}')
+        Header_Footer.display_lines_below_in_submenu(self)
+
+        menu_list = ['Print for 1 day', 'Print for 1 week']
+        rest_of_lines = 10 - len(menu_list)
+
+        for number , ele in enumerate(menu_list):
+            print(f'{HYPHEN:>15}{(number+1):>10}   {ele:<55}{HYPHEN:>1}')
+        for _ in range(rest_of_lines):
+            print(f'{HYPHEN:>15}{HYPHEN:>69}')
+
+        Header_Footer.display_main_footer_with_q_m_b(self)
+
     def add_aircraft(self):
-        print('Add aircraft')
+        Header_Footer.display_main_header(self)
+        Header_Footer.lines_above_in_submenu(self)
+        sub_header = 'Add aircraft to voyage'
+        print(f'{HYPHEN:>15}         {sub_header:<59}{HYPHEN:>1}')
+        Header_Footer.display_lines_below_in_submenu(self)
+
+        menu_list = ['Destination: ', 'Date: ', 'Time: ']
+        rest_of_lines = 10 - len(menu_list)
+
+        for number , ele in enumerate(menu_list):
+            print(f'{HYPHEN:>15}{(number+1):>10}   {ele:<55}{HYPHEN:>1}')
+        for _ in range(rest_of_lines):
+            print(f'{HYPHEN:>15}{HYPHEN:>69}')
+
+        Header_Footer.display_main_footer_with_q_m_b(self)
+
     def add_crew(self):
-        print('Add crew')
+        Header_Footer.display_main_header(self)
+        Header_Footer.lines_above_in_submenu(self)
+        sub_header = 'Add crew to voyage'
+        print(f'{HYPHEN:>15}         {sub_header:<59}{HYPHEN:>1}')
+        Header_Footer.display_lines_below_in_submenu(self)
+
+        menu_list = ['Destination: ', 'Date: ', 'Time: ']
+        rest_of_lines = 10 - len(menu_list)
+
+        for number , ele in enumerate(menu_list):
+            print(f'{HYPHEN:>15}{(number+1):>10}   {ele:<55}{HYPHEN:>1}')
+        for _ in range(rest_of_lines):
+            print(f'{HYPHEN:>15}{HYPHEN:>69}')
+
+        Header_Footer.display_main_footer_with_q_m_b(self)
 
 class Display_Aircraft_Menu:
     def __init__(self):
         return None
-    def get_aircraft_menu(self):
-        extra_lines = 10
-        print(f'{HYPHEN:>15}{EQUAL_SIGN.center(67)}{HYPHEN}')
-        print(f'{HYPHEN:>15}{HYPHEN:>69}')
-        # print(f'{HYPHEN:>15}{AIRCRAFT_MENU:>18}{HYPHEN:>51}')
-        # print(f'{HYPHEN:>15}{DASH.center(67)}{HYPHEN}')
-        # print(f'{HYPHEN:>15}{ONE:>10}{REGISTER_AIRCRAFT:>19}{HYPHEN:>40}')
-        # print(f'{HYPHEN:>15}{TWO:>10}{AIRCRAFT_STATUS:>17}{HYPHEN:>42}')
-        for _ in range(extra_lines):
+    
+    def display_aircraft_menu(self):
+        Header_Footer.display_main_header(self)
+        Header_Footer.lines_above_in_submenu(self)
+        sub_header = 'Aircraft'
+        print(f'{HYPHEN:>15}         {sub_header:<59}{HYPHEN:>1}')
+        Header_Footer.display_lines_below_in_submenu(self)
+
+        menu_list = ['Register aircraft', 'Aircraft status']
+        rest_of_lines = 10 - len(menu_list)
+
+        for number , ele in enumerate(menu_list):
+            print(f'{HYPHEN:>15}{(number+1):>10}   {ele:<55}{HYPHEN:>1}')
+        for _ in range(rest_of_lines):
             print(f'{HYPHEN:>15}{HYPHEN:>69}')
 
+        Header_Footer.display_main_footer_with_q_m_b(self)
+
+    def register_aircraft(self):
+        Header_Footer.display_main_header(self)
+        Header_Footer.lines_above_in_submenu(self)
+        sub_header = 'Register aircraft'
+        print(f'{HYPHEN:>15}         {sub_header:<59}{HYPHEN:>1}')
+        Header_Footer.display_lines_below_in_submenu(self)
+
+        menu_list = ['Name: ', 'Type: ', 'Manufacturer: ', 'Seat count: ']
+        rest_of_lines = 10 - len(menu_list)
+
+        for number , ele in enumerate(menu_list):
+            print(f'{HYPHEN:>15}{(number+1):>10}   {ele:<55}{HYPHEN:>1}')
+        for _ in range(rest_of_lines):
+            print(f'{HYPHEN:>15}{HYPHEN:>69}')
+
+        Header_Footer.display_main_footer_with_q_m_b(self)
+
+    def aircraft_status(self):
+        Header_Footer.display_main_header(self)
+        Header_Footer.lines_above_in_submenu(self)
+        sub_header = 'Aircraft status'
+        print(f'{HYPHEN:>15}         {sub_header:<59}{HYPHEN:>1}')
+        Header_Footer.display_lines_below_in_submenu(self)
+
+        menu_list = ['Date: ', 'Time: ']
+        rest_of_lines = 10 - len(menu_list)
+
+        for number , ele in enumerate(menu_list):
+            print(f'{HYPHEN:>15}{(number+1):>10}   {ele:<55}{HYPHEN:>1}')
+        for _ in range(rest_of_lines):
+            print(f'{HYPHEN:>15}{HYPHEN:>69}')
+
+        Header_Footer.display_main_footer_with_q_m_b(self)  
+
 class Print_Menu:
-    print('Print employee list')
-    # print('Print pilot list')
-    # print('Print flight attendant list')
-    # print('Available employees for given day')
-    # print('List of destinations')
-    # print('Shift schedule for employees on specific day')
-    # print('Shift schedule for employee within a specific week')
-    # print('Aircraft status')
-    # print('Print voyages for 1 day')
-    # print('Print voyages for 1 week')
-
+    def __init__(self):
+        return None
     
+    def display_print_menu(self):
+        Header_Footer.display_main_header(self)
+        Header_Footer.lines_above_in_submenu(self)
+        sub_header = 'Print menu'
+        print(f'{HYPHEN:>15}         {sub_header:<59}{HYPHEN:>1}')
+        Header_Footer.display_lines_below_in_submenu(self)
 
+        menu_list = ['Print crew list', 'Print pilot list', 'Print flight attendant list', 'Available crew for given day', 'List of destinations', 'Shift schedule for crew on specific day', 'Shift schedule for crew member within a specific week', 'Aircraft status', 'Print voyages for 1 day', 'Print voyages for 1 week']
+        rest_of_lines = 10 - len(menu_list)
 
+        for number , ele in enumerate(menu_list):
+            print(f'{HYPHEN:>15}{(number+1):>10}   {ele:<55}{HYPHEN:>1}')
+        for _ in range(rest_of_lines):
+            print(f'{HYPHEN:>15}{HYPHEN:>69}')
 
+        Header_Footer.display_main_footer_with_q_m_b(self) 

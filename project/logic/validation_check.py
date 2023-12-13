@@ -16,6 +16,8 @@ class ValidationLogic:
     NO_VOYAGES_FOUND = "NVF"
     NO_CREW_FOUND = "NCF"
     DESTINATION_NOT_FOUND = "DNF"
+    NO_PILOTS_FOUND = "NPF"
+    NO_FLIGHT_ATTENDANTS_FOUND = "NFAF"
 
     def __init__(self) -> None:
         pass
