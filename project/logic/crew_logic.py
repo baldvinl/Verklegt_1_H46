@@ -1,6 +1,6 @@
 from data.data_wrapper import Data_Wrapper
 from model.crew import Crew
-from model.custom_exceptions import CrewMemberNotFound, CrewMemberAlreadyInSystem, PilotsNotFound, FlightAttendantsNotFound, NoCrewMembersRegistered
+from logic.validation_logic import CrewMemberNotFound, CrewMemberAlreadyInSystem, PilotsNotFound, FlightAttendantsNotFound, NoCrewMembersRegistered
 from model.pilot import Pilot
 from logic.voyage_logic import Voyage_Logic
 
@@ -17,19 +17,21 @@ class Crew_Logic:
             for member in all_crew_list:
                 if member.ssn == ssn:
                     return member
-            raise CrewMemberNotFound
+            raise CrewMemberNotFound()
+        execpt CrewMemberNotFound as error
+            print
 
     def register_crew(self, crew: Crew):
         """Receives crew object, checks if member with same ssn already exists, if not checks 
         if crew object received is of the type Pilot or not and forwards to data wrapper accordingly"""
-        try:
-            self.get_crew_member(crew.ssn)
-            raise CrewMemberAlreadyInSystem
-        except CrewMemberNotFound:
-            if isinstance(crew, Pilot):
-                return self.data_wrapper.register_pilot_to_file(crew)
-            else:
-                return self.data_wrapper.register_flight_attendant_to_file(crew)
+        alread_exists = self.get_crew_member(crew.ssn)
+        if not alread_exists:
+            do register
+        if isinstance(crew, Pilot):
+            return self.data_wrapper.register_pilot_to_file(crew)
+        else:
+            return self.data_wrapper.register_flight_attendant_to_file(crew) #remove to file
+        else raise already exists somewhere
 
     def get_pilots(self):
         """Requests all pilots from data wrapper and returns if there is any. 

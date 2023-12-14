@@ -1,6 +1,7 @@
 from datetime import date, timedelta, datetime
 from data.data_wrapper import Data_Wrapper
 from model.voyage import Voyage
+from logic.validation_logic import VoyagesNotFound, VoyageAlreadyInSystem
 
 class Voyage_Logic:
     def __init__(self, data_connection: Data_Wrapper):
@@ -17,12 +18,11 @@ class Voyage_Logic:
             voyages = self.get_past_voyages()
         else:
             voyages = self.get_future_voyages()
-        if voyages:
-            for voyage in voyages:
-                if voyage.destination == destination and voyage.time_depart_destination == departure_time:
-                    return voyage
-                else:
-                    raise ValueError(ErrorMessages.NO_VOYAGES_FOUND)
+
+        for voyage in voyages:
+            if voyage.destination == destination and voyage.time_depart_destination == departure_time:
+                return voyage
+            raise VoyagesNotFound
     
     def get_all_voyages(self) -> list:
         """Requests past and future voyage lists from data wrapper, checks if empty, if so returns error otherwise returns list"""
@@ -31,33 +31,30 @@ class Voyage_Logic:
         all_voyages = future_voyages + past_voyages
         if all_voyages:
             return all_voyages
-        else:
-            raise ValueError(ErrorMessages.NO_VOYAGES_FOUND)
+        raise VoyagesNotFound
         
     def get_future_voyages(self) -> list:
         """Requests future voyage list from data wrapper, checks if empty, if so returns error otherwise returns list"""
         future_voyages = self.data_wrapper.get_future_voyages_from_file()
         if future_voyages:
             return future_voyages
-        else:
-            raise ValueError(ErrorMessages.NO_VOYAGES_FOUND)
+        raise VoyagesNotFound
 
     def get_past_voyages(self) -> list:
         """Requests past voyage list from data wrapper, checks if empty, if so returns error otherwise returns list"""
         past_voyages = self.data_wrapper.get_past_voyages_from_file()
         if past_voyages:
             return past_voyages
-        else:
-            raise ValueError(ErrorMessages.NO_VOYAGES_FOUND)
+        raise VoyagesNotFound
 
     def register_voyage(self, new_voyage: Voyage):
         """Receives voyage object, checks if already in system, if so returns error code
         and if not forwards to data wrapper"""
-        old_voyage = self.get_voyage(new_voyage.destination, new_voyage.time_depart_destination)
-        if not old_voyage:
+        try:
+            old_voyage = self.get_voyage(new_voyage.destination, new_voyage.time_depart_destination)
+            raise VoyageAlreadyInSystem
+        except VoyagesNotFound:
             return self.data_wrapper.register_voyage_to_file(new_voyage)
-        else:
-            raise ValueError(ErrorMessages.VOYAGE_ALREADY_IN_SYSTEM)
 
     # def add_crew_to_voyage(self, ssn_list: list, voyage: Voyage):
     #     """Receives crew members ssn in a list, and voyage object. Updates voyage
@@ -79,7 +76,7 @@ class Voyage_Logic:
     
     def check_date_past(self, date_input) -> bool:
         """checks if date given is in the past or not"""
-        today = datetime.today() #to fix
+        today = datetime.today()
         if today > date_input:
             return True
         else:
