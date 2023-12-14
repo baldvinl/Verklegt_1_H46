@@ -1,6 +1,5 @@
 import os
-from ui.ui_menu_display import Header_Footer_Display
-from ui.ui_menu_display import Main_Menu_Display
+from ui.menu_display_ui import *
 
 NAME = "NaN Air"
 TITLE = "Crew planning software"
@@ -8,17 +7,9 @@ QUIT = "[Q]uit"
 QUIT_MESSAGE = "Quitting program"
 current_menu = "Main menu"
 
-class MainMenu_ui():
+class Menu_Actions():
     def __init__(self):
-        return None
-    
-    def display_main_menu(self):
-        '''Function that displays the main menu UI.'''
-
-        MainMenu_ui.clear_terminal()
-        Main_Menu_Display.display_main_menu(self)
-        
-        
+        return None   
 
     
     def input(self):
@@ -30,6 +21,7 @@ class MainMenu_ui():
             command = command.lower()
             return command
         
+    
     def clear_terminal():
         '''Function that clears the terminal screen.'''
 
@@ -38,12 +30,6 @@ class MainMenu_ui():
         else:
             os.system('cls')
     
-    def display_main_header(current_menu):
-        '''Reusable menu header for all menus.'''
-        
-        print(f"{NAME}")
-        print(f"{TITLE}")
-        print(f"{current_menu}")
     
     def quit_program():
         '''Function that quits the program.'''
