@@ -1,7 +1,6 @@
 from datetime import date, timedelta, datetime
 from data.data_wrapper import Data_Wrapper
 from model.voyage import Voyage
-from model.error_messages import ErrorMessages
 
 class Voyage_Logic:
     def __init__(self, data_connection: Data_Wrapper):

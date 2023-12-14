@@ -1,7 +1,7 @@
 from data.data_wrapper import Data_Wrapper
 from model.crew import Crew
+from model.custom_exceptions import CrewMemberNotFound, CrewMemberAlreadyInSystem, PilotsNotFound, FlightAttendantsNotFound, NoCrewMembersRegistered
 from model.pilot import Pilot
-from model.error_messages import ErrorMessages
 from logic.voyage_logic import Voyage_Logic
 
 class Crew_Logic:
@@ -17,17 +17,20 @@ class Crew_Logic:
             for member in all_crew_list:
                 if member.ssn == ssn:
                     return member
-            raise ValueError(ErrorMessages.CREW_MEMBER_NOT_FOUND)
+            raise CrewMemberNotFound
 
     def register_crew(self, crew: Crew):
         """Receives crew object, checks if member with same ssn already exists, if not checks 
         if crew object received is of the type Pilot or not and forwards to data wrapper accordingly"""
-        self.validation_check.crew_already_in_system_check(crew)
-        if isinstance(crew, Pilot):
-            return self.data_wrapper.register_pilot_to_file(crew)
-        else:
-            return self.data_wrapper.register_flight_attendant_to_file(crew)
-        
+        try:
+            self.get_crew_member(crew.ssn)
+            raise CrewMemberAlreadyInSystem
+        except CrewMemberNotFound:
+            if isinstance(crew, Pilot):
+                return self.data_wrapper.register_pilot_to_file(crew)
+            else:
+                return self.data_wrapper.register_flight_attendant_to_file(crew)
+
     def get_pilots(self):
         """Requests all pilots from data wrapper and returns if there is any. 
         If not returns error code"""
@@ -35,7 +38,7 @@ class Crew_Logic:
         if pilots_list:
             return pilots_list
         else:
-            raise ValueError(ErrorMessages.NO_PILOTS_FOUND)
+            raise PilotsNotFound
         
     def get_flight_attendants(self):
         """Requests all flight attendants from data wrapper and returns if there is any. 
@@ -44,7 +47,7 @@ class Crew_Logic:
         if flight_attendants_list:
             return flight_attendants_list
         else:
-            raise ValueError(ErrorMessages.NO_FLIGHT_ATTENDANTS_FOUND)
+            raise FlightAttendantsNotFound
     
     def get_all_crew(self):
         """Receives lists of pilots and flight attendants from data wrapper, 
@@ -55,16 +58,15 @@ class Crew_Logic:
         if all_crew_list:
             return all_crew_list
         else:
-            raise ValueError(ErrorMessages.NO_CREW_FOUND)
+            raise NoCrewMembersRegistered
 
     def change_crew_info(self, ssn: str, changes: list[tuple]):
         """Receives ssn, and changes list of tuples with format 
         [(attribute, new_value)], requests crew member with ssn
         changes attributes with their new values 
         and returns updated object to data wrapper"""
-        self.validation_check.crew_already_in_system_check()
-        crew_member = self.get_crew_member(ssn)
-        if crew_member:
+        try:
+            crew_member = self.get_crew_member(ssn)
             for attribute_name, new_value in changes:
                 attribute_name_lower = attribute_name.lower()
                 setattr(crew_member, attribute_name_lower, new_value)
@@ -72,6 +74,27 @@ class Crew_Logic:
                 return self.data_wrapper.register_updated_pilot_to_file(crew_member)
             else:
                 return self.data_wrapper.register_updated_flight_attendant_to_file(crew_member)
+        except CrewMemberNotFound:
+            pass #idk yet
+    
+    def find_crew_for_voyage(self, departure_time):
+        """Receives date, requests crew not working on that date, returns dictionary with key: job title 
+        and fills with all crew members separated by their job title, if there is no crew it returns
+        error code"""
+        busy = False
+        job_title = ["captain", "pilot", "head_flight_attendant"]
+        crew_not_working = self.crew_status(departure_time, busy)
+        if crew_not_working:
+            crew_dict = dict.fromkeys(job_title, None)
+            crew_dict.update({"flight_attendants": None})
+            for member in crew_not_working:
+                if member.job_title in crew_dict:
+                    crew_dict[member.job_title].append(member)
+                else:
+                    crew_dict["flight_attendants"].append(member)
+            return crew_dict
+        else:
+            raise ValueError(ErrorMessages.NO_CREW_FOUND)
 
     def crew_status(self, departure_time, busy: bool):
         """Receives departure time and availability request (working or not working), requests
@@ -104,23 +127,3 @@ class Crew_Logic:
         if not busy:
             return crew_not_working
         return crew_working
-    
-    def find_crew_for_voyage(self, departure_time):
-        """Receives date, requests crew not working on that date, returns dictionary with key: job title 
-        and fills with all crew members separated by their job title, if there is no crew it returns
-        error code"""
-        busy = False
-        job_title = ["captain", "pilot", "head_flight_attendant"]
-        crew_not_working = self.crew_status(departure_time, busy)
-        if crew_not_working:
-            crew_dict = dict.fromkeys(job_title, None)
-            crew_dict.update({"flight_attendants": None})
-            for member in crew_not_working:
-                if member.job_title in crew_dict:
-                    crew_dict[member.job_title].append(member)
-                else:
-                    crew_dict["flight_attendants"].append(member)
-            return crew_dict
-        else:
-            raise ValueError(ErrorMessages.NO_CREW_FOUND)
-
