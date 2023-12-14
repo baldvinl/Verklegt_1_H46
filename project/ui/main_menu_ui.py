@@ -1,5 +1,6 @@
 import os
-from ui.ui_menu_display import Display_Main_Menu
+from ui.ui_menu_display import Header_Footer_Display
+from ui.ui_menu_display import Main_Menu_Display
 
 NAME = "NaN Air"
 TITLE = "Crew planning software"
@@ -11,17 +12,20 @@ class MainMenu_ui():
     def __init__(self):
         return None
     
-    def main_menu(self):
+    def display_main_menu(self):
         '''Function that displays the main menu UI.'''
 
         MainMenu_ui.clear_terminal()
-        Display_Main_Menu.display_main_menu(self)
+        Main_Menu_Display.display_main_menu(self)
+        
+        
 
+    
     def input(self):
         '''Function that asks for menu number in the main menu UI.'''
 
         while True:
-            self.main_menu()
+            self.display_main_menu()
             command = input("Please enter menu number: ")
             command = command.lower()
             return command
@@ -34,6 +38,12 @@ class MainMenu_ui():
         else:
             os.system('cls')
     
+    def display_main_header(current_menu):
+        '''Reusable menu header for all menus.'''
+        
+        print(f"{NAME}")
+        print(f"{TITLE}")
+        print(f"{current_menu}")
     
     def quit_program():
         '''Function that quits the program.'''
