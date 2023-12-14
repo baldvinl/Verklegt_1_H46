@@ -6,7 +6,7 @@ from ui.aircraft_menu_ui import AircraftMenu_ui
 from ui.voyage_menu_ui import VoyageMenu_ui
 
 QUIT_MESSAGE = "Quitting program"
-    
+
 run_program = True
 
 while run_program:

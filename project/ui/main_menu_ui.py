@@ -34,12 +34,6 @@ class MainMenu_ui():
         else:
             os.system('cls')
     
-    def main_header(current_menu):
-        '''Reusable menu header for all menus.'''
-        
-        print(f"{NAME}")
-        print(f"{TITLE}")
-        print(f"{current_menu}")
     
     def quit_program():
         '''Function that quits the program.'''

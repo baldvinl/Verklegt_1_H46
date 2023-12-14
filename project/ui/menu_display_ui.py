@@ -30,7 +30,7 @@ class Header_Footer_Display:
         print(f'{HYPHEN:>15}{QUIT_MENU.center(67)}{HYPHEN:>2}')
         print(f'{HYPHEN:>15}{HYPHEN:>69}')
         print(f'{HYPHEN:>15}{EQUAL_SIGN.center(67)}{HYPHEN}')
-        print()
+        print('\033[1;37;40m')
 
     def display_main_footer_with_q_m_b(self):
         print(f'{HYPHEN:>15}{EQUAL_SIGN.center(67)}{HYPHEN}')
@@ -38,7 +38,7 @@ class Header_Footer_Display:
         print(f'{HYPHEN:>15}{QUIT_MENU_BACK.center(67)}{HYPHEN:>2}')
         print(f'{HYPHEN:>15}{HYPHEN:>69}')
         print(f'{HYPHEN:>15}{EQUAL_SIGN.center(67)}{HYPHEN}')
-        print()
+        print('\033[1;37;40m')
 
     def display_lines_above_in_submenu(self):
         print(f'{HYPHEN:>15}{EQUAL_SIGN.center(67)}{HYPHEN}')
@@ -46,6 +46,7 @@ class Header_Footer_Display:
 
     def display_lines_below_in_submenu(self):
         print(f'{HYPHEN:>15}{DASH.center(67)}{HYPHEN}')
+
 
 class Main_Menu_Display:
     def __init__(self):
@@ -79,7 +80,7 @@ class Crew_Member_Menu_Display:
         print(f'{HYPHEN:>15}         {sub_header:<59}{HYPHEN:>1}')
         Header_Footer_Display.display_lines_below_in_submenu(self)
 
-        menu_list = ['Register captain', 'Register pilot', 'Register head flight attentant', 'Register flight attentant', 'Crew member record', 'Crew member avaliability', 'List of crew members']
+        menu_list = ['Register captain', 'Register pilot', 'Register head flight attendant', 'Register flight attendant', 'Crew member record', 'Crew member avaliability', 'List of crew members']
         rest_of_lines = 10 - len(menu_list)
 
         for number , ele in enumerate(menu_list):
@@ -263,7 +264,7 @@ class Destination_Menu_Display:
         print(f'{HYPHEN:>15}         {sub_header:<59}{HYPHEN:>1}')
         Header_Footer_Display.display_lines_below_in_submenu(self)
 
-        menu_list = ['Register a new destination', 'Destination info', 'Edit destination']
+        menu_list = ['Register destination', 'Destination info', 'Edit destination']
         rest_of_lines = 10 - len(menu_list)
 
         for number , ele in enumerate(menu_list):
@@ -369,7 +370,7 @@ class Voyages_Menu_Display:
         print(f'{HYPHEN:>15}         {sub_header:<59}{HYPHEN:>1}')
         Header_Footer_Display.display_lines_below_in_submenu(self)
 
-        menu_list = ['Register voyage', 'Print voyage 1 day', 'Print voyages 1 week', 'Employee availability', 'Add aircraft', 'Add crew']
+        menu_list = ['Register voyage', 'Print voyage 1 day', 'Print voyages 1 week', 'Crew member availability', 'Add aircraft', 'Add crew']
         rest_of_lines = 10 - len(menu_list)
 
         for number , ele in enumerate(menu_list):

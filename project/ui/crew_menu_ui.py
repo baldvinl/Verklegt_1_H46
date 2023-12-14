@@ -8,10 +8,10 @@ from model.crew import Crew
 from model.pilot import Pilot
 from model.flight_attendant import Flight_Attendant
 from model.voyage import Voyage
+from ui.menu_display_ui import Crew_Member_Menu_Display
 
 
 QUIT = "[Q]uit"
-
 
 class CrewMenu_ui():
     def __init__(self):
