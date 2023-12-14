@@ -16,6 +16,8 @@ class ValidationLogic:
     def __init__(self, data_connection: Data_Wrapper) -> None:
         self.data_wrapper = data_connection
 
+    # VALIDATION FUNCTIONS
+
     def destination_already_in_system_check(self, new_destination: Destination):
         all_destination = self.data_wrapper.get_destinations_from_file()
         for destination in all_destination:
@@ -23,17 +25,13 @@ class ValidationLogic:
                 raise ValueError(ErrorMessages.DESTINATION_ALREADY_IN_SYSTEM)
 
     def crew_already_in_system_check(self, new_member: Crew):
-        all_pilots = self.data_wrapper.get_pilots_from_file()
-        all_flight_attendants = self.data_wrapper.get_flight_attendants_from_file()
-        all_crew = all_pilots + all_flight_attendants
+        all_crew = self.get_all_crew()
         for crew_member in all_crew:
             if crew_member.ssn == new_member.ssn:
                 raise ValueError(ErrorMessages.CREW_MEMBER_ALREADY_IN_SYSTEM)
             
     def crew_not_in_system_check(self, ssn):
-        all_pilots = self.data_wrapper.get_pilots_from_file()
-        all_flight_attendants = self.data_wrapper.get_flight_attendants_from_file()
-        all_crew = all_pilots + all_flight_attendants
+        all_crew = self.get_all_crew()
         ssn_list = []
         if all_crew:
             for crew_member in all_crew:
@@ -49,4 +47,21 @@ class ValidationLogic:
 
     def crew_in_file_check(self):
         pass
+
+    # UTILITY FUNCTIONS
+
+    def get_all_crew(self):
+        """Requests crew lists from data wrapper and combines them in one to get all crew"""
+        all_pilots = self.data_wrapper.get_pilots_from_file()
+        all_flight_attendants = self.data_wrapper.get_flight_attendants_from_file()
+        all_crew = all_pilots + all_flight_attendants
+        return all_crew
     
+    def get_all_crew_ssn(self):
+        """Requests crew lists, and makes a list of all the social security numbers"""
+        all_crew = self.get_all_crew()
+        ssn_list = []
+        if all_crew:
+            for crew_member in all_crew:
+                ssn_list.append(crew_member.ssn)
+            return ssn_list

@@ -1,5 +1,6 @@
-# from project.logic.logic_wrapper import Logic_Wrapper
+
 import re
+
 
 PUNCTUATION_IN_STRING_ERROR_MESSAGE = 'There is punctuation in the string'
 DIGIT_IN_STRING_ERROR_MESSAGE = 'There is a digit in the string'
@@ -12,7 +13,7 @@ MUST_BE_CAPITAL_LETTERS_AND_CORRECT_LENGHT_ERROR_MESSAGE = 'There are non-capita
 INCORRECT_TIME_ERROR_MESSAGE = 'The time is not in correct format'
 NOT_DIGIT_ERROR_MESSAGE = 'There are non-digit character in the string'
 AIRCRAFT_NAME_ERROR_MESSAGE = 'Aircraft name is not in correct format (XX:XXX)'
-
+EMPTY_INPUT_ERROR = 'The input cannot be empty'
 
 class Validation_Ui:
     def __init__(
@@ -28,7 +29,8 @@ class Validation_Ui:
         airport,
         flight_time,
         distance,
-        aircraft_name
+        aircraft_name,
+        empty_input,
     ):
         self.symbols = punctuation
         self.numbers = numbers
@@ -42,6 +44,8 @@ class Validation_Ui:
         self.flight_time = flight_time
         self.distance = distance
         self.aircraft_name = aircraft_name
+        self.empty_input = empty_input
+        
 
     def validate_no_punctuation(self, punctuation):
         """Raise error when there are punctuation in a string"""
@@ -82,7 +86,7 @@ class Validation_Ui:
 
         validate = r"^[a-zA-Z]{2,15}+$"
         if not re.search(validate, name_country):
-            raise ValueError(PUNCTUATION_AND_CORRECT_LENGHT_ERROR_MESSAGE))
+            raise ValueError(PUNCTUATION_AND_CORRECT_LENGHT_ERROR_MESSAGE)
         return name_country
 
     def validate_phone_number(self, phone):
@@ -119,8 +123,7 @@ class Validation_Ui:
 
         validate = r"^[A-Z]{3}+$"
         if not re.search(validate, airport):
-            print(MUST_BE_CAPITAL_LETTERS_AND_CORRECT_LENGHT_ERROR_MESSAGE)
-            raise ValueError
+            raise ValueError(MUST_BE_CAPITAL_LETTERS_AND_CORRECT_LENGHT_ERROR_MESSAGE)
         return airport
 
     def validate_flight_time(self, flight_time):
@@ -128,8 +131,7 @@ class Validation_Ui:
         validate = r"^[0-2][0-9][:][0-5][0-9]"
 
         if not re.search(validate, flight_time):
-            print(INCORRECT_TIME_ERROR_MESSAGE)
-            raise ValueError
+            raise ValueError(INCORRECT_TIME_ERROR_MESSAGE)
         return flight_time
 
     def validate_distance(self, distance):
@@ -137,8 +139,7 @@ class Validation_Ui:
 
         validate = r"^\d+$"
         if not re.search(validate, distance):
-            print(NOT_DIGIT_ERROR_MESSAGE)
-            raise ValueError
+            raise ValueError(NOT_DIGIT_ERROR_MESSAGE)
         return distance
 
     def validate_aircraft_name(self, aircraft_name):
@@ -147,6 +148,11 @@ class Validation_Ui:
 
         valitity = r"^[A-Z]{2}-[A-Z]{3}$"
         if not re.search(valitity, aircraft_name ):
-            print(AIRCRAFT_NAME_ERROR_MESSAGE)
-            raise ValueError
+            raise ValueError(AIRCRAFT_NAME_ERROR_MESSAGE)
         return aircraft_name
+    
+    def validate_empty_input(self, empty_input):
+        if empty_input == None:
+            raise TypeError(EMPTY_INPUT_ERROR)
+        return empty_input
+
