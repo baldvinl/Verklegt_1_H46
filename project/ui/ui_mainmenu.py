@@ -35,7 +35,7 @@ class MainMenu_ui():
             os.system('cls')
     
     
-    def quit_program():
+    def quit_program(self):
         '''Function that quits the program.'''
 
         command = input(f"Are you sure you want to quit? (Y/N) ")
