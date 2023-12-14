@@ -48,8 +48,8 @@ class Crew_Logic:
             raise ValueError(ErrorMessages.NO_FLIGHT_ATTENDANTS_FOUND)
     
     def get_all_crew(self):
-        """Receives lists of pilots and flight attendants 
-        from data wrapper, combines them and returns list if not empty, otherwise an error code"""
+        """Receives lists of pilots and flight attendants from data wrapper, 
+        combines them and returns list if not empty, otherwise an error code""" #TODO
         pilots_list = self.data_wrapper.get_pilots_from_file()
         flight_attendants_list = self.data_wrapper.get_flight_attendants_from_file()
         all_crew_list = pilots_list + flight_attendants_list
@@ -63,6 +63,7 @@ class Crew_Logic:
         [(attribute, new_value)], requests crew member with ssn
         changes attributes with their new values 
         and returns updated object to data wrapper"""
+        self.validation_check.crew_already_in_system_check()
         crew_member = self.get_crew_member(ssn)
         if crew_member:
             for attribute_name, new_value in changes:
@@ -72,8 +73,6 @@ class Crew_Logic:
                 return self.data_wrapper.register_updated_pilot_to_file(crew_member)
             else:
                 return self.data_wrapper.register_updated_flight_attendant_to_file(crew_member)
-        else:
-            raise ValueError(ErrorMessages.NO_CREW_FOUND)
 
     def crew_status(self, departure_time, busy: bool):
         """Receives departure time and availability request (working or not working), requests
