@@ -4,41 +4,41 @@ from ui.menu_display_ui import *
 from model.pilot import Pilot
 from model.flight_attendant import Flight_Attendant
 
-class CrewMenu_ui():
+class CrewMenu_Ui():
     def __init__(self):
         self.logic_wrapper = Logic_Wrapper
-        self.pilot = Pilot
-        self.flight_attendant = Flight_Attendant
-        return None
     
-    def crew_menu(self):
+    def display_crew_menu(self):
         '''Function that displays Crew Menu UI.'''
 
-        current_menu = "Crew menu"
+        sub_header = 'Crew Members'
+        menu_list = ['Register Crew Member', 'Crew member record', 'Crew member avaliability', 'List of crew members']
 
-        MainMenu_ui.clear_terminal()
-        Crew_Menu.display_employees_menu()
+        Menu_Actions.clear_terminal()
+        Menu_Display.display_sub_menu(self, sub_header, menu_list)
 
-        print(f"1. Register Captain")
-        print(f"2. Register First Officer")
-        print(f"3. Register Head Flight Attendant.")
-        print(f"4. Register Flight Attendant.")   
-        print(f"5. Crew records")
-        print(f"6. Crew availability")
-
-        print(f"[M]enu  [B]ack  [Q]uit")
     
+    def display_register_crew_menu(self):
+        """Function that displays the Register Crew menu"""
+
+        sub_header = 'Register Crew Members'
+        menu_list = ['register captain', 'Register pilot', 'Register head flight attendant', 'Register flight attendant']
+
+        Menu_Actions.clear_terminal()
+        Menu_Display.display_sub_menu(self, sub_header, menu_list)
+
+
     def register_crew(self, crew_type):
         '''Function that asks for input to register crew and returns crew information.'''
 
-        current_menu = "Register crew"
+        sub_header = "Register crew"
+        menu_list = ['Enter SSN: ', 'Enter name: ']
 
-        MainMenu_ui.clear_terminal()
-        # MainMenu_ui.main_header(current_menu)  
+        Menu_Actions.clear_terminal()
 
         if crew_type == "1":
-            ssn = input("Enter SSN: ")
-            name = input("Enter name: ")
+            ssn = input("")
+            name = input("")
             job_title = "Captain"
             address = input("Enter address: ")
             area_code = input("Enter area code: ")
