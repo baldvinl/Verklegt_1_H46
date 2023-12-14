@@ -3,32 +3,31 @@ from model.crew import Crew
 from model.pilot import Pilot
 from model.error_messages import ErrorMessages
 from logic.voyage_logic import Voyage_Logic
+from logic.validation_check import ValidationLogic
 
 class Crew_Logic:
-    def __init__(self, data_connection: Data_Wrapper, voyage_logic_instance: Voyage_Logic):
+    def __init__(self, data_connection: Data_Wrapper, voyage_logic_instance: Voyage_Logic, validation_instance: ValidationLogic):
         self.data_wrapper = data_connection
         self.voyage_logic = voyage_logic_instance
+        self.validation_check = validation_instance
 
     def get_crew_member(self, ssn: str):
         """Receives social security number of crew member, checks if already exists and forwards to data wrapper
         if not it returns an error code"""
-        all_crew = self.get_all_crew()
-        for member in all_crew:
+        self.validation_check.crew_not_in_system_check(ssn)
+        all_crew_list = self.get_all_crew()
+        for member in all_crew_list:
             if member.ssn == ssn:
                 return member
-        raise ValueError(ErrorMessages.NO_CREW_FOUND)
 
     def register_crew(self, crew: Crew):
         """Receives crew object, checks if member with same ssn already exists, if not checks 
         if crew object received is of the type Pilot or not and forwards to data wrapper accordingly"""
-        crew_member = self.get_crew_member(crew.ssn)
-        if not crew_member:
-            if isinstance(crew, Pilot):
-                return self.data_wrapper.register_pilot_to_file(crew)
-            else:
-                return self.data_wrapper.register_flight_attendant_to_file(crew)
+        self.validation_check.crew_already_in_system_check(crew)
+        if isinstance(crew, Pilot):
+            return self.data_wrapper.register_pilot_to_file(crew)
         else:
-            raise ValueError(ErrorMessages.CREW_MEMBER_ALREADY_IN_SYSTEM)
+            return self.data_wrapper.register_flight_attendant_to_file(crew)
         
     def get_pilots(self):
         """Requests all pilots from data wrapper and returns if there is any. 
@@ -126,3 +125,4 @@ class Crew_Logic:
             return crew_dict
         else:
             raise ValueError(ErrorMessages.NO_CREW_FOUND)
+
