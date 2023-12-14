@@ -1,9 +1,8 @@
 import os
 from logic.logic_wrapper import Logic_Wrapper
 from ui.menu_display_ui import *
-
-
-QUIT = "[Q]uit"
+from model.pilot import Pilot
+from model.flight_attendant import Flight_Attendant
 
 class CrewMenu_ui():
     def __init__(self):
