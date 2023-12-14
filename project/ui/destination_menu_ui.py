@@ -42,10 +42,6 @@ class DestinationMenu_ui():
         for i in range(len(menu_list)):
             MainMenu_ui.clear_terminal()
             Empty_Menu_Display.display_list_menu(self, menu_list, a_list)
-<<<<<<< HEAD
-            # print('\033[1;37;40m')
-=======
->>>>>>> project
             a = input(command_list[i])
             a_list[i] = a
         
