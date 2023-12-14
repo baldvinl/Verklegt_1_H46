@@ -30,7 +30,7 @@
 
 
 
-from ui.ui_mainmenu import MainMenu_ui
+from ui.main_menu_ui import MainMenu_ui
 
 
 main_menu = MainMenu_ui()

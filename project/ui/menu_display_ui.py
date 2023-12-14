@@ -1,6 +1,6 @@
 
 QUIT_MENU = '[Q]UIT'
-QUIT_MENU_BACK = '[M]ENU  [BACK]  [Q]UIT'
+QUIT_MENU_BACK = '[M]ENU  [B]ACK  [Q]UIT'
 
 UNDERSCORE = '_'
 DASH = '-' * 68
@@ -273,22 +273,22 @@ class Destination_Menu_Display:
 
         Header_Footer_Display.display_main_footer_with_q_m_b(self)
 
-    def display_register_new_destination(self):
-        Header_Footer_Display.display_main_header(self)
-        Header_Footer_Display.display_lines_above_in_submenu(self)
-        sub_header = 'Register destination'
-        print(f'{HYPHEN:>15}         {sub_header:<59}{HYPHEN:>1}')
-        Header_Footer_Display.display_lines_below_in_submenu(self)
+    # def display_register_destination(self):
+    #     Header_Footer_Display.display_main_header(self)
+    #     Header_Footer_Display.display_lines_above_in_submenu(self)
+    #     sub_header = 'Register destination'
+    #     print(f'{HYPHEN:>15}         {sub_header:<59}{HYPHEN:>1}')
+    #     Header_Footer_Display.display_lines_below_in_submenu(self)
 
-        menu_list = ['Airport IATA code: ', 'Country: ', 'Flight duration: ', 'Distance: ', 'ICE name: ', 'ICE number: ']
-        rest_of_lines = 10 - len(menu_list)
+    #     menu_list = ['IATA code: ', 'Country: ', 'Flight duration: ', 'Distance: ', 'ICE name: ', 'ICE number: ']
+    #     rest_of_lines = 10 - len(menu_list)
 
-        for number , ele in enumerate(menu_list):
-            print(f'{HYPHEN:>15}{(number+1):>10}   {ele:<55}{HYPHEN:>1}')
-        for _ in range(rest_of_lines):
-            print(f'{HYPHEN:>15}{HYPHEN:>69}')
+    #     for number , ele in enumerate(menu_list):
+    #         print(f'{HYPHEN:>15}{(number+1):>10}   {ele:<55}{HYPHEN:>1}')
+    #     for _ in range(rest_of_lines):
+    #         print(f'{HYPHEN:>15}{HYPHEN:>69}')
 
-        Header_Footer_Display.display_main_footer_with_q_m_b(self)
+    #     Header_Footer_Display.display_main_footer_with_q_m_b(self)
 
     def display_destination_info(self):
         Header_Footer_Display.display_main_header(self)
@@ -356,7 +356,7 @@ class Destination_Menu_Display:
         for _ in range(rest_of_lines):
             print(f'{HYPHEN:>15}{HYPHEN:>69}')
 
-        Header_Footer_Display.display_main_footer_with_q_m_b(self) 
+        Header_Footer_Display.display_main_footer_with_q_m_b(self)
 
 class Voyages_Menu_Display:
     def __init__(self):
@@ -379,7 +379,7 @@ class Voyages_Menu_Display:
 
         Header_Footer_Display.display_main_footer_with_q_m_b(self) 
 
-    def display_register_new_voyage(self):
+    def display_register_voyage(self):
         Header_Footer_Display.display_main_header(self)
         Header_Footer_Display.display_lines_above_in_submenu(self)
         sub_header = 'Register voyage'
@@ -420,7 +420,7 @@ class Voyages_Menu_Display:
         print(f'{HYPHEN:>15}         {sub_header:<59}{HYPHEN:>1}')
         Header_Footer_Display.display_lines_below_in_submenu(self)
 
-        menu_list = ['Destination: ', 'Date: ', 'Time: ']
+        menu_list = [input('Destination: '), input('Date: '), input('Time: ')]
         rest_of_lines = 10 - len(menu_list)
 
         for number , ele in enumerate(menu_list):
@@ -437,7 +437,7 @@ class Voyages_Menu_Display:
         print(f'{HYPHEN:>15}         {sub_header:<59}{HYPHEN:>1}')
         Header_Footer_Display.display_lines_below_in_submenu(self)
 
-        menu_list = ['Destination: ', 'Date: ', 'Time: ']
+        menu_list = [input('Destination: '), input('Date: '), input('Time: ')]
         rest_of_lines = 10 - len(menu_list)
 
         for number , ele in enumerate(menu_list):
@@ -522,3 +522,25 @@ class Print_Menu_Display:
             print(f'{HYPHEN:>15}{HYPHEN:>69}')
 
         Header_Footer_Display.display_main_footer_with_q_m_b(self) 
+
+class Empty_Menu_Display:
+        def __init__(self):
+            return None
+
+        def display_list_menu(self, menu_list, a_list):
+            Header_Footer_Display.display_main_header(self)
+            Header_Footer_Display.display_lines_above_in_submenu(self)
+            sub_header = 'Register destination'
+            print(f'{HYPHEN:>15}         {sub_header:<59}{HYPHEN:>1}')
+            Header_Footer_Display.display_lines_below_in_submenu(self)
+
+            rest_of_lines = 10 - len(menu_list)
+
+            for number , (x, y) in enumerate(zip(menu_list, a_list)):
+                print(f'{HYPHEN:>15}{(number+1):>10}   {(x + y):<55}{HYPHEN:>1}')
+            for _ in range(rest_of_lines):
+                print(f'{HYPHEN:>15}{HYPHEN:>69}')
+
+            Header_Footer_Display.display_main_footer_with_q_m_b(self)
+
+        

@@ -1,5 +1,5 @@
 import os
-from ui.ui_mainmenu import *
+from ui.main_menu_ui import *
 
 QUIT = "[Q]uit"
 

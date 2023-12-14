@@ -1,7 +1,8 @@
 import os
-from ui.ui_mainmenu import *
-from ui.ui_menu_display import Destination_Menu_Display
+from ui.main_menu_ui import *
+from ui.menu_display_ui import Destination_Menu_Display
 from logic.logic_wrapper import Logic_Wrapper
+from ui.menu_display_ui import Empty_Menu_Display
 
 from model.destination import Destination
 
@@ -10,40 +11,48 @@ QUIT = "[Q]uit"
 class DestinationMenu_ui():
     def __init__(self):
         self.logic_wrapper = Logic_Wrapper
-        return None
     
     def destination_menu(self):
         '''Function that displays Destination Menu UI.'''
-
-        current_menu = "Destination menu"
         
         MainMenu_ui.clear_terminal()
         Destination_Menu_Display.display_destination_menu(self)
-
-        # print(f"1. Register a new destination")
-        # print(f"2. Destination info")
-        # print(f"3. Edit destination ICE information")
-
-        # print(f"[M]enu  [B]ack  [Q]uit")
     
     def register_destination(self):
         '''Function that asks for input to register destination and returns destination information.'''
 
-        current_menu = "Register a new destination"
+        # MainMenu_ui.clear_terminal()
+        # MainMenu_ui.main_header(current_menu)
+        # Destination_Menu_Display.display_register_destination(self)
 
-        MainMenu_ui.clear_terminal()
-        MainMenu_ui.main_header(current_menu)
+        iata = "Enter IATA code: "
+        country = "Enter country: "
+        duration = "Enter flight duration in hh:mm: "
+        distance = "Enter distance in kilometers: "
+        ice_name = "Enter emergency contact name: "
+        ice_number = "Enter emergency contact phone number: "
 
-        iata = input("Enter IATA code: ")
-        country = input("Enter country: ")
-        duration = input("Enter flight duration in hh:mm: ")
-        distance = input("Enter distance in kilometers: ")
-        ice_name = input("Enter emergency contact name: ")
-        ice_number = input("Enter emergency contact phone number: ")
+        a_list = []
+        for i in range(0, 10):
+            a_list.append('')
+
+        command_list = [iata, country, duration, distance, ice_name, ice_number]
+        menu_list = ['IATA code: ', 'Country: ', 'Flight duration: ', 'Distance: ', 'Ice name: ', 'Ice number: ']
+
+        for i in range(len(menu_list)):
+            MainMenu_ui.clear_terminal()
+            Empty_Menu_Display.display_list_menu(self, menu_list, a_list)
+            a = input(command_list[i])
+            a_list[i] = a
         
-        new_dest = Destination(iata, country, duration, distance, ice_name, ice_number)
 
-        return new_dest
+
+        # MainMenu_ui.clear_terminal()
+        # Empty_Menu_Display.display_list_menu(self)
+        
+                # new_dest = Destination(a)
+
+        # return new_dest
 
     def destination_info(self):
         '''Function that displays the information about the destinations.'''
@@ -51,12 +60,13 @@ class DestinationMenu_ui():
         current_menu = "Destination info"
 
         MainMenu_ui.clear_terminal()
-        MainMenu_ui.main_header(current_menu)
+        # MainMenu_ui.main_header(current_menu)
+        Destination_Menu_Display.display_destination_info(self)
         
         wrapper = Logic_Wrapper()
-        info = wrapper.display_destinations()
+        info = wrapper.get_all_destinations()
 
-        loc_info = Destination()
+        # loc_info = Destination()
 
         print(f"IATA, Country, Distance, Flight duration, ICE Name, ICE Number")
         for elem in info:

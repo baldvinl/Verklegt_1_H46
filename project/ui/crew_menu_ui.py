@@ -1,6 +1,6 @@
 import os
-from ui.ui_mainmenu import MainMenu_ui
-from ui.ui_menu_display import Crew_Member_Menu_Display
+from ui.main_menu_ui import MainMenu_ui
+from ui.menu_display_ui import Crew_Member_Menu_Display
 
 from logic.logic_wrapper import Logic_Wrapper
 
@@ -42,21 +42,25 @@ class CrewMenu_ui():
     def register_crew(self, crew_type):
         '''Function that asks for input to register crew and returns crew information.'''
 
-        current_menu = "Register crew"
+        # current_menu = "Register crew"
 
         MainMenu_ui.clear_terminal()
-        MainMenu_ui.main_header(current_menu)  
+        # MainMenu_ui.main_header(current_menu) 
+        
 
         if crew_type == "1":
+            Crew_Member_Menu_Display.display_register_captain(self)
             ssn = input("Enter SSN: ")
-            name = input("Enter name: ")
+            firstname = input("Enter first name: ")
+            lastname = input("Enter last name: ")
             job_title = "Captain"
             address = input("Enter address: ")
-            area_code = input("Enter area code: ")
             email = input("Enter email: ")
             mobile_no = input("Enter mobile phone number: ")
             phone_no = input("Enter home phone number: ")
             type_rating = input("Enter type rating: ")
+
+            name = firstname + ' ' + lastname
 
             new_crew_member = Pilot(ssn, name, job_title, address, email, mobile_no, phone_no, type_rating)
             return new_crew_member

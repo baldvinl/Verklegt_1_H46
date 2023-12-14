@@ -1,12 +1,12 @@
 
-from ui.ui_mainmenu import MainMenu_ui
-from ui.ui_crewmenu import CrewMenu_ui
-from ui.ui_destinationmenu import DestinationMenu_ui
-from ui.ui_aircraftmenu import AircraftMenu_ui
-from ui.ui_voyagemenu import VoyageMenu_ui
+from ui.main_menu_ui import MainMenu_ui
+from ui.crew_menu_ui import CrewMenu_ui
+from ui.destination_menu_ui import DestinationMenu_ui
+from ui.aircraft_menu_ui import AircraftMenu_ui
+from ui.voyage_menu_ui import VoyageMenu_ui
 
 QUIT_MESSAGE = "Quitting program"
-
+    
 run_program = True
 
 while run_program:

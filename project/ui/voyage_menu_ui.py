@@ -1,7 +1,8 @@
 import os
 from datetime import datetime
 
-from ui.ui_mainmenu import *
+from ui.main_menu_ui import *
+from ui.menu_display_ui import Voyages_Menu_Display
 
 from logic.logic_wrapper import Logic_Wrapper
 
@@ -26,26 +27,17 @@ class VoyageMenu_ui():
     def voyage_menu(self):
         '''Function that displays the Voyage Menu UI.'''
 
-        current_menu = "Voyage menu"
 
         MainMenu_ui.clear_terminal()
-        MainMenu_ui.main_header(current_menu)
+        Voyages_Menu_Display.display_voyage_menu(self)
 
-        print(f"1. Register a new voyage")
-        print(f"2. Print voyages")
-        print(f"3. Crew availability")
-        print(f"4. Add aircraft to voyage")
-        print(f"5. Add crew to voyage")
-
-        print(f"[M]enu  [B]ack  [Q]uit")
-    
     def register_voyage(self):
         '''Function that asks for input to register a new voyage and returns voyage information.'''
 
         current_menu = "Register a new voyage"
 
         MainMenu_ui.clear_terminal()
-        MainMenu_ui.main_header(current_menu)
+        # Voyages_Menu_Display.
 
         destination_iata = input("Enter destination IATA code: ")
         voyage_date = input("Enter voyage date: ")
@@ -62,7 +54,7 @@ class VoyageMenu_ui():
         current_menu = f"Crew allocation on {date}"
 
         MainMenu_ui.clear_terminal()
-        MainMenu_ui.main_header(current_menu)
+        Voyages_Menu_Display.display_add_crew(self)
 
         wrapper = Logic_Wrapper()
         crew_availability = wrapper.availability_list(date, working)
