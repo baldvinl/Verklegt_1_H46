@@ -1,5 +1,5 @@
 import os
-from ui.ui_mainmenu import MainMenu_ui
+
 
 from logic.logic_wrapper import Logic_Wrapper
 
@@ -7,7 +7,7 @@ from model.crew import Crew
 from model.pilot import Pilot
 from model.flight_attendant import Flight_Attendant
 from model.voyage import Voyage
-from ui.ui_menu_display import Crew_Menu
+# from ui.ui_menu_display import Crew_Menu
 
 
 QUIT = "[Q]uit"

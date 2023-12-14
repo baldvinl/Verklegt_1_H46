@@ -29,13 +29,4 @@
 # test_input.menu_number()
 
 
-
-from ui.ui_mainmenu import MainMenu_ui
-
-
-main_menu = MainMenu_ui()
-
-
-main_menu.main_menu()
-main_menu.input()
-
+from ui.menu_display_ui import *

@@ -7,13 +7,16 @@ ALLOWED_INPUT = ['m', 'q', 'b']
 
 class DestinationMenu_ui():
     def __init__(self):
-        self.logic_wrapper = Logic_Wrapper
+        self.logic_wrapper = Logic_Wrapper()
     
     def destination_display_menu(self):
         """Function that displays Destination Menu UI."""
         
+        sub_header = 'Destination'
+        menu_list = ['Register destination', 'Display all destinations', 'Edit emergency contact']
+
         Menu_Actions.clear_terminal()
-        Menu_Display.display_sub_menu(self)
+        Menu_Display.display_sub_menu(self, sub_header, menu_list)
     
     def get_destination_info_from_user(self):
         """Function that asks for inputs to register attributes for a destination and returns a destination object."""
@@ -26,7 +29,7 @@ class DestinationMenu_ui():
                         "Enter emergency contact phone number: "
                         ]
     
-        menu_list = ['aiport iata : ', 'Country: ', 'Flight duration: ', 'Distance: ', 'Ice name: ', 'Ice number: ']
+        menu_list = ['Aiport iata : ', 'Country: ', 'Flight duration: ', 'Distance: ', 'Ice name: ', 'Ice number: ']
 
         input_list = []
 
@@ -92,7 +95,7 @@ class DestinationMenu_ui():
         command_text = "Select menu option: "
 
         while command := (input(command_text)).lower() not in allowed_commands_input:
-            self.destination_display_menu()
+            Menu_Display.destination_display_menu()
 
             if command == 'm':
                 Menu_Display.display_main_menu()
@@ -113,5 +116,5 @@ class DestinationMenu_ui():
             elif command == '3':
                 airport_iata = input("Enter the airport IATA code: ")
                 emergency_contact_information = self.change_emergency_contact_from_input()
-                self.logic_wrapper.change_emergency_contact_info(airport_iata, emergency_contact_information)'
+                self.logic_wrapper.change_emergency_contact_info(airport_iata, emergency_contact_information)
                 

@@ -95,7 +95,7 @@ class Menu_Display:
         Header_Footer_Display.display_main_footer_with_q_m_b(self)
 
 
-    def display_empty_list_menu(self, menu_list, a_list):
+    def display_empty_list_menu(self, sub_header, menu_list, a_list):
             Header_Footer_Display.display_main_header(self)
             Header_Footer_Display.display_lines_above_in_submenu(self)
             sub_header = 'Register destination'
@@ -117,11 +117,11 @@ class Menu_Actions():
         return None   
 
     
-    def input(self):
+    def command_input(self):
         '''Function that asks for menu number in the main menu UI.'''
 
         while True:
-            self.display_main_menu()
+            Menu_Display.display_main_menu(self)
             command = input("Please enter menu number: ")
             command = command.lower()
             return command
