@@ -1,5 +1,5 @@
 class Voyage:
-    def __init__(self, destination, time_depart_iceland, time_depart_destination,
+    def __init__(self, destination=None, time_depart_iceland=None, time_depart_destination=None,
                 captain = '', pilot = '', head_flight_attendant = '', flight_attendant1 ='', flight_attendant2=''):
         self.destination = destination
         self.time_depart_iceland = time_depart_iceland

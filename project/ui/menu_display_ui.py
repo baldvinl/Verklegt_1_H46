@@ -68,7 +68,7 @@ class Menu_Display:
         print(f'{HYPHEN:>15}         {sub_header:<59}{HYPHEN:>1}')
         Header_Footer_Display.display_lines_below_in_submenu(self)
 
-        menu_list = ['Crew members', 'Destination', 'Voyages', 'Aircraft', 'Print options']
+        menu_list = ['Crew members', 'Destination', 'Voyages', 'Aircraft']
         rest_of_lines = 10 - len(menu_list)
 
         for number , ele in enumerate(menu_list):
@@ -98,7 +98,6 @@ class Menu_Display:
     def display_empty_list_menu(self, sub_header, menu_list, a_list):
             Header_Footer_Display.display_main_header(self)
             Header_Footer_Display.display_lines_above_in_submenu(self)
-            sub_header = 'Register destination'
             print(f'{HYPHEN:>15}         {sub_header:<59}{HYPHEN:>1}')
             Header_Footer_Display.display_lines_below_in_submenu(self)
 
@@ -145,7 +144,6 @@ class Menu_Actions():
             quit()
         else: 
             return None
-
 
 
 class Crew_Member_Menu_Display:
