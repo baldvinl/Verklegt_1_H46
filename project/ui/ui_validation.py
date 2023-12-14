@@ -82,7 +82,7 @@ class Validation_Ui:
 
         validate = r"^[a-zA-Z]{2,15}+$"
         if not re.search(validate, name_country):
-            raise ValueError(PUNCTUATION_AND_CORRECT_LENGHT_ERROR_MESSAGE))
+            raise ValueError(PUNCTUATION_AND_CORRECT_LENGHT_ERROR_MESSAGE)
         return name_country
 
     def validate_phone_number(self, phone):
