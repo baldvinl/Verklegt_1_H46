@@ -47,7 +47,6 @@ class Header_Footer_Display:
     def display_lines_below_in_submenu(self):
         print(f'{HYPHEN:>15}{DASH.center(67)}{HYPHEN}')
 
-
 class Main_Menu_Display:
     def __init__(self):
         return None
