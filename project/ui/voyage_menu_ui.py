@@ -39,7 +39,7 @@ class VoyageMenu_ui():
 
         print(f"[M]enu  [B]ack  [Q]uit")
     
-    def register_voyage(self):
+    def register_voyage_from_input(self):
         '''Function that asks for input to register a new voyage and returns voyage information.'''
 
         current_menu = "Register a new voyage"
