@@ -1,7 +1,7 @@
 from datetime import date, timedelta, datetime
 from data.data_wrapper import Data_Wrapper
 from model.voyage import Voyage
-from logic.validation_logic import VoyagesNotFound, VoyageAlreadyInSystem
+from logic.custom_exceptions import VoyageNotFound
 
 class Voyage_Logic:
     def __init__(self, data_connection: Data_Wrapper):
@@ -15,15 +15,15 @@ class Voyage_Logic:
         """Requests voyage list, checks for a certain voyage with specific destination 
         and departure time from data wrapper, returns either voyage object or error code"""
         if self.check_date_past(departure_time):
-            voyages = self.get_past_voyages()
+            voyages_list = self.get_past_voyages()
         else:
-            voyages = self.get_future_voyages()
+            voyages_list = self.get_future_voyages()
+        if voyages_list:
+            for voyage in voyages_list:
+                if voyage.destination == destination and voyage.time_depart_destination == departure_time:
+                    return voyage
+        raise VoyageNotFound("Voyage was not found!")
 
-        for voyage in voyages:
-            if voyage.destination == destination and voyage.time_depart_destination == departure_time:
-                return voyage
-            raise VoyagesNotFound
-    
     def get_all_voyages(self) -> list:
         """Requests past and future voyage lists from data wrapper, checks if empty, if so returns error otherwise returns list"""
         future_voyages = self.get_future_voyages()
@@ -31,21 +31,19 @@ class Voyage_Logic:
         all_voyages = future_voyages + past_voyages
         if all_voyages:
             return all_voyages
-        raise VoyagesNotFound
-        
+        return False
+
     def get_future_voyages(self) -> list:
         """Requests future voyage list from data wrapper, checks if empty, if so returns error otherwise returns list"""
         future_voyages = self.data_wrapper.get_future_voyages_from_file()
         if future_voyages:
             return future_voyages
-        raise VoyagesNotFound
 
     def get_past_voyages(self) -> list:
         """Requests past voyage list from data wrapper, checks if empty, if so returns error otherwise returns list"""
         past_voyages = self.data_wrapper.get_past_voyages_from_file()
         if past_voyages:
             return past_voyages
-        raise VoyagesNotFound
 
     def register_voyage(self, new_voyage: Voyage):
         """Receives voyage object, checks if already in system, if so returns error code
@@ -74,13 +72,6 @@ class Voyage_Logic:
         """Receives destination and data and forwards to data wrapper TODO B requirement"""
         return self.data_wrapper.get_voyage_status(destination, departure)
     
-    def check_date_past(self, date_input) -> bool:
-        """checks if date given is in the past or not"""
-        today = datetime.today()
-        if today > date_input:
-            return True
-        else:
-            return False
         
     def get_voyages_for_period(self, starting_date, total_days):
         """Receives a starting date in datetime format, and total days of voyages to return. Requests all voyages from data wrapper
@@ -123,3 +114,11 @@ class Voyage_Logic:
             return crew_members_voyages_sorted
         else:
             raise ValueError(ErrorMessages.NO_VOYAGES_FOUND)
+
+    def check_date_past(self, date_input) -> bool:
+        """checks if date given is in the past or not"""
+        today = datetime.today()
+        if today > date_input:
+            return True
+        else:
+            return False

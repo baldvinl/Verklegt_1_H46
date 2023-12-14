@@ -7,14 +7,19 @@ from logic.voyage_logic import Voyage_Logic
 from pprint import pprint
 from datetime import datetime, date, timedelta
 from model.voyage import Voyage
+from model.destination import Destination
+from logic.destination_logic import Destination_Logic
+from logic.validation_logic import Validation_Logic
 
 
 wrapper = Data_Wrapper()
+validation = Validation_Logic()
 voyage_logic = Voyage_Logic(wrapper)
 logic = Crew_Logic(wrapper, voyage_logic)
+destlogic = Destination_Logic(wrapper, validation)
 
-# test = Destination()
-# logic.register_destination(test)
+test = Destination("ITA", "sdlaskd", "01:00", "300", "", "")
+destlogic.register_destination(test)
 # datetimeinput = datetime.strptime("2023-05-11 08:45:00", "%Y-%m-%d %H:%M:%S")
 # test = Voyage("GRE", datetimeinput, datetimeinput)
 # list = voyage_logic.register_voyage(test)
@@ -29,7 +34,7 @@ logic = Crew_Logic(wrapper, voyage_logic)
 
 
 # list = (pilot1, pilot2, ... )
-lostofstuff = [1, 2, 3, 4]
-for thing in lostofstuff:
-    if thing == 5:
-        return True
+# lostofstuff = [1, 2, 3, 4]
+# for thing in lostofstuff:
+#     if thing == 5:
+#         return True
