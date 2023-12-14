@@ -1,6 +1,6 @@
 from data.data_wrapper import Data_Wrapper
 from model.destination import Destination
-from logic.validation_logic import DestinationAlreadyRegistered
+from logic.validation_logic import Validation_Logic
 
 class Destination_Logic:
     def __init__(self, data_connection: Data_Wrapper):
@@ -10,12 +10,14 @@ class Destination_Logic:
         """Receives destination, checks if it already exists, if so gives error, if not it forwards
         the new destination to data wrapper."""
         all_destinations = self.get_all_destinations()
-        
-        if new_destination.ice_name and new_destination.ice_number:
-            return self.data_wrapper.register_destination_in_file(new_destination)
+        already_in_system = Validation_Logic.DestinationAlreadyRegistered(new_destination, all_destinations)
+        if not already_in_system:
+            if new_destination.ice_name and new_destination.ice_number:
+                return self.data_wrapper.register_destination_in_file(new_destination)
 
-    def get_all_destinations(self):
+    def get_all_destinations(self) -> list:
         """Requests destinations list from data wrapper. If empty returns error otherwise returns list"""
+        
         return self.data_wrapper.get_destinations_from_file()
     
     def get_destination(self, airport: str):

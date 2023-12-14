@@ -9,4 +9,3 @@ class Validation_Logic:
                 if destination.airport == new_destination.airport:
                     return True
         return False
-    
