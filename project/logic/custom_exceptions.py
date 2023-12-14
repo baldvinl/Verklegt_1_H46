@@ -6,3 +6,6 @@ class DestinationNotFound(Exception):
 
 class VoyageNotFound(Exception):
     pass
+
+class VoyageAlreadyInSystem(Exception):
+    pass
