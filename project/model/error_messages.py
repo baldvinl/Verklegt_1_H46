@@ -1,7 +1,7 @@
 class ErrorMessages:
 
     NO_VOYAGES_FOUND = "No voyages found!"
-    NO_CREW_FOUND = "No crew members found!"
+    CREW_MEMBER_NOT_FOUND = "No crew members found!"
     DESTINATION_NOT_FOUND = "Destination not found!"
     NO_PILOTS_FOUND = "No pilots found!"
     NO_FLIGHT_ATTENDANTS_FOUND = "No flight attendants found!"

@@ -17,7 +17,7 @@ class Crew_Logic:
             for member in all_crew_list:
                 if member.ssn == ssn:
                     return member
-            raise ValueError(ErrorMessages.NO_CREW_FOUND)
+            raise ValueError(ErrorMessages.CREW_MEMBER_NOT_FOUND)
 
     def register_crew(self, crew: Crew):
         """Receives crew object, checks if member with same ssn already exists, if not checks 
