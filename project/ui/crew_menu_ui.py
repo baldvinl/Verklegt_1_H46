@@ -249,7 +249,7 @@ class CrewMenu_Ui():
 
         Menu_Actions.clear_terminal()
         
-        sub_header = "Enter Crew Member Information"
+        sub_header = "Enter Crew Member Information, SSN and the first day of the week"
 
         command_list = ["Enter the crew member's SSN: ", 
                         "Enter the year: ", 
