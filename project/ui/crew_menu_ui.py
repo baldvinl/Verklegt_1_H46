@@ -3,6 +3,7 @@ from logic.logic_wrapper import Logic_Wrapper
 from ui.menu_display_ui import *
 from model.pilot import Pilot
 from model.flight_attendant import Flight_Attendant
+from datetime import datetime
 
 class CrewMenu_Ui():
     def __init__(self, logic_conneciton: Logic_Wrapper):
@@ -247,7 +248,7 @@ class CrewMenu_Ui():
     def get_input_for_crew_schedule(self):
         """Function that displays the schedule for a given crew number for the week starting with date."""
         
-        sub_header = "Enter Crew Member Information, SSN and the first day of the week"
+        sub_header = "Crew Member: SSN and first day of the week"
 
         command_list = ["Enter the crew member's SSN: ", 
                         "Enter the year: ", 
@@ -268,20 +269,23 @@ class CrewMenu_Ui():
                 Menu_Display.display_empty_list_menu(self, sub_header, menu_list, input_list)
                 a = input(command_list[i])
                 input_list[i] = a
-                print()
-       
+
             answer = input('Is The Information Correct (press y for yes): ')
             if answer == 'y':
                 break
 
-            ssn = input_list[0]
-            start_date = datetime(input_list[1], input_list[2], input_list[3])
+        ssn = input_list[0]
+        year = input(input_list[1])
+        month = input(input_list[2])
+        day = input(input_list[3])
 
-            list_voyages = self.logic_wrapper.get_weekly_voyage_schedule((ssn, start_date))
-            Menu_Display_Lists.display_one_crewmember_schedule(ssn, list_voyages)
+        start_date = datetime(year, month, day)
+
+        list_voyages = self.logic_wrapper.get_weekly_voyage_schedule((ssn, start_date))
+        Menu_Display_Lists.display_one_crewmember_schedule(ssn, list_voyages)
 
 
-    def input(self):
+    def crew_input_display(self):
         '''Function that asks for input in crew menu.'''
 
         while True:

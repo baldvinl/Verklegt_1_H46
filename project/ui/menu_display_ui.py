@@ -115,8 +115,8 @@ class Menu_Display:
 
 
 class Menu_Display_Lists:
-    def __init__(self, logic_connection: Logic_Wrapper):
-        self.logic_wrapper = logic_connection
+    def __init__(self):
+        return None
     
     def display_one_crewmember_schedule(self, ssn, list_voyages):
 
