@@ -1,8 +1,9 @@
 from ui.validation__ui import Validation_Ui
 from ui.print_lists_ui import List_Print_UI
 from model.pilot import Pilot
+from model.destination import Destination
 
-
+des_list = List_Print_UI()
 
 test_list = List_Print_UI(
     "9392929392",
