@@ -1,5 +1,5 @@
 class Voyage:
-    def __init__(self, destination, time_depart_iceland, time_depart_destination,
+    def __init__(self, destination=None, time_depart_iceland=None, time_depart_destination=None,
                 captain = '', pilot = '', head_flight_attendant = '', flight_attendant1 ='', flight_attendant2=''):
         self.destination = destination
         self.time_depart_iceland = time_depart_iceland
@@ -14,3 +14,8 @@ class Voyage:
     def is_manned(self):
         """returns true if all captain pilot and head flight attendant are part of the crew"""
         return self.captain and self.pilot and self.head_flight_attendant
+    
+    def attribute_implementation(self, attributes_list):
+        self.destination = attributes_list[0]
+        self.time_depart_iceland = attributes_list[1]
+        self.time_depart_destination = attributes_list[2]
