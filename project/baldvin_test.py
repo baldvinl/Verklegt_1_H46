@@ -1,7 +1,7 @@
 from ui.menu_display_ui import *
 from ui.destination_menu_ui import *
 
-run_program = True
+wrapper = Logic_Wrapper()
 
 while True:
     command = Menu_Actions().menu_input()
@@ -11,7 +11,7 @@ while True:
             command = crewmenu.input()
             break
         if command == '2':
-            destinationmenu = DestinationMenu_ui()
+            destinationmenu = DestinationMenu_ui(wrapper)
             command = destinationmenu.destination_input_display()
             break
         if command == '3':

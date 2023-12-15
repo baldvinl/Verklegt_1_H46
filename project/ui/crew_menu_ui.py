@@ -5,8 +5,8 @@ from model.pilot import Pilot
 from model.flight_attendant import Flight_Attendant
 
 class CrewMenu_Ui():
-    def __init__(self):
-        self.logic_wrapper = Logic_Wrapper
+    def __init__(self, logic_conneciton: Logic_Wrapper):
+        self.logic_wrapper = logic_conneciton
     
     def display_crew_menu(self):
         '''Function that displays Crew Menu UI.'''

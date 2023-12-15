@@ -1,58 +1,48 @@
-import os
 from datetime import datetime
-
-from ui.ui_mainmenu import *
-
 from logic.logic_wrapper import Logic_Wrapper
-
-from model.voyage import Voyage
-from model.crew import Crew
-from model.destination import Destination
-
-
-NAME = "NaN Air"
-TITLE = "Crew planning software"
-QUIT = "[Q]uit"
-
+from ui.menu_display_ui import *
+from model.voyage import *
+from model.destination import *
 
 class VoyageMenu_ui():
     def __init__(self):
         self.logic_wrapper = Logic_Wrapper
-        self.crew = Crew
-        self.voyage = Voyage
-        self.destination = Destination
-        return None
     
     def voyage_menu(self):
         '''Function that displays the Voyage Menu UI.'''
 
-        current_menu = "Voyage menu"
+        sub_header = 'Voyage Menu'
+        voyage_menu_list = ['Register voyage', 'Print Voyages', 'Add Crew to Voyage']
 
-        MainMenu_ui.clear_terminal()
-        MainMenu_ui.main_header(current_menu)
+        Menu_Actions.clear_terminal()
+        Menu_Display.display_sub_menu(self, sub_header, voyage_menu_list)
 
-        print(f"1. Register a new voyage")
-        print(f"2. Print voyages")
-        print(f"3. Crew availability")
-        print(f"4. Add aircraft to voyage")
-        print(f"5. Add crew to voyage")
-
-        print(f"[M]enu  [B]ack  [Q]uit")
-    
     def register_voyage_from_input(self):
         '''Function that asks for input to register a new voyage and returns voyage information.'''
 
-        current_menu = "Register a new voyage"
+        sub_header = 'Register voyage'
+        command_list = ["Enter airport IATA: ", "Enter voyage date: ", "Enter departure time from Iceland: ", "Enter departure time from destination: "]
 
-        MainMenu_ui.clear_terminal()
-        MainMenu_ui.main_header(current_menu)
+        menu_list = ['Airport IATA Code: ', 'Voyage Date: ', 'Departure time from Iceland: ', 'Enter departure time from destination: ']
 
-        destination_iata = input("Enter destination IATA code: ")
-        voyage_date = input("Enter voyage date: ")
-        departure_time_from = input("Enter departure time from Iceland: ")
-        departure_time_to = input(f"Enter departure time from {destination_iata}: ")
+        input_list = []
 
-        new_voyage = Voyage(destination_iata, voyage_date, departure_time_from, departure_time_to)
+        while True:
+            for i in range(0, 10):
+                input_list.append('')
+
+            for i in range(len(menu_list)):
+                Menu_Actions.clear_terminal()
+                Menu_Display.display_empty_list_menu(self, sub_header, menu_list, input_list)
+                a = input(command_list[i])
+                input_list[i] = a
+
+            answer = input('Press y if you want to save the voyage: ')
+            if answer == 'y':
+                break
+
+        new_voyage = Voyage()
+        new_voyage.attribute_implementation(input_list)
         
         return new_voyage
 
@@ -62,7 +52,7 @@ class VoyageMenu_ui():
         current_menu = f"Crew allocation on {date}"
 
         MainMenu_ui.clear_terminal()
-        MainMenu_ui.main_header(current_menu)
+        Voyages_Menu_Display.display_add_crew(self)
 
         wrapper = Logic_Wrapper()
         crew_availability = wrapper.availability_list(date, working)
@@ -205,21 +195,26 @@ class VoyageMenu_ui():
 
         while True:
             self.voyage_menu()
-            command = input("Please enter menu number: ")
-            command = command.lower()
-            if command == "q":
-                MainMenu_ui.quit_program()
+            command = input("Select menu option: ")
+        
+            if command == "m":
+                Menu_Actions.menu_input()
+
+            elif command == "q":
+                Menu_Actions.quit_program()
+
+            elif command == "b":
+                break
+            
+            elif command == '1':
+                self.logic_wrapper.register_voyage(self.register_voyage_from_input)
+
+            elif command == '2':
                 pass
-            if command == "b":
-                print("Going back to previous menu.")
-                return "b"
-            if command == '1':
-                voyage_entry = self.register_voyage()
-                wrapper = Logic_Wrapper()
-                wrapper.register_voyage(voyage_entry)
-                print(voyage_entry)
-            if command == '2':
+
+            elif command == '3':
                 pass
-            if command == '3':
-                command = self.display_crew_availability()
+            
+            elif command == "4":
+                pass
     

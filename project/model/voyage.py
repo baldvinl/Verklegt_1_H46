@@ -14,3 +14,8 @@ class Voyage:
     def is_manned(self):
         """returns true if all captain pilot and head flight attendant are part of the crew"""
         return self.captain and self.pilot and self.head_flight_attendant
+    
+    def attribute_implementation(self, attributes_list):
+        self.destination = attributes_list[0]
+        self.time_depart_iceland = attributes_list[1]
+        self.time_depart_destination = attributes_list[2]

@@ -6,8 +6,8 @@ ALLOWED_INPUT = ['m', 'q', 'b']
 
 
 class DestinationMenu_ui():
-    def __init__(self):
-        self.logic_wrapper = Logic_Wrapper
+    def __init__(self, data_connection):
+        self.logic_wrapper = data_connection
     
     def destination_display_menu(self):
         """Function that displays Destination Menu UI."""
@@ -49,10 +49,10 @@ class DestinationMenu_ui():
             if answer == 'y':
                 break
             
-        new_dest = Destination()
-        new_dest.attribute_implementation(input_list)
+        new_destination = Destination()
+        new_destination.attribute_implementation(input_list)
 
-        return new_dest
+        return new_destination
     
 
     def display_all_destination_info(self):

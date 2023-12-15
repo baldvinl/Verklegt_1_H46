@@ -4,16 +4,16 @@ from logic.validation_logic import Validation_Logic
 from logic.custom_exceptions import DestinationMissingEmergencyContactInfo, DestinationNotFound
 
 class Destination_Logic:
-    def __init__(self, data_connection: Data_Wrapper, validation_instance: Validation_Logic):
+    def __init__(self, data_connection: Data_Wrapper):
         self.data_wrapper = data_connection
-        self.validation_logic = validation_instance
+        self.validation_logic = Validation_Logic
 
     def get_all_destinations(self) -> list:
         """Requests destinations list from data wrapper. If empty returns error otherwise returns list"""
         all_destinations = self.data_wrapper.get_destinations_from_file()
         return all_destinations
 
-    def register_destination(self, new_destination: Destination):
+    def register_destination(self, new_destination: Destination): #Took out the voyage_logic to be able to run
         """Receives destination, checks if it already exists, if so gives error, if not it forwards
         the new destination to data wrapper."""
         all_destinations = self.get_all_destinations()
