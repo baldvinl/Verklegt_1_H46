@@ -1,120 +1,168 @@
 import os
-from ui.ui_mainmenu import MainMenu_ui
-
 from logic.logic_wrapper import Logic_Wrapper
-
-from model.crew import Crew
+from ui.menu_display_ui import *
 from model.pilot import Pilot
 from model.flight_attendant import Flight_Attendant
-from model.voyage import Voyage
-from ui.ui_menu_display import Crew_Menu
 
-
-QUIT = "[Q]uit"
-
-class CrewMenu_ui():
-    def __init__(self):
-        self.logic_wrapper = Logic_Wrapper
-        self.crew = Crew
-        self.pilot = Pilot
-        self.flight_attendant = Flight_Attendant
-        return None
+class CrewMenu_Ui():
+    def __init__(self, logic_conneciton: Logic_Wrapper):
+        self.logic_wrapper = logic_conneciton
     
-    def crew_menu(self):
+
+    def display_crew_menu(self):
         '''Function that displays Crew Menu UI.'''
 
-        current_menu = "Crew menu"
+        sub_header = 'Crew Members'
 
-        MainMenu_ui.clear_terminal()
-        Crew_Menu.display_employees_menu()
+        menu_list = ['Register captain', 
+                     'Register pilot', 
+                     'Register head flight attendant', 
+                     'Register flight attendant', 
+                     'Crew member record', 
+                     'Crew member avaliability', 
+                    ]
 
-        print(f"1. Register Captain")
-        print(f"2. Register First Officer")
-        print(f"3. Register Head Flight Attendant.")
-        print(f"4. Register Flight Attendant.")   
-        print(f"5. Crew records")
-        print(f"6. Crew availability")
+        Menu_Actions.clear_terminal()
+        Menu_Display.display_sub_menu(self, sub_header, menu_list)
 
-        print(f"[M]enu  [B]ack  [Q]uit")
-    
-    def register_crew(self, crew_type):
+
+    def register_crew_from_input(self, crew_type):
         '''Function that asks for input to register crew and returns crew information.'''
 
-        current_menu = "Register crew"
-
-        MainMenu_ui.clear_terminal()
-        # MainMenu_ui.main_header(current_menu)  
+        sub_header = "Register crew"
+        menu_list = ['Social Security Number ', 'Name', 'job_title', 'address', 'email', 'mobile_no', 'phone_no', 'type_rating']
+        
+        Menu_Actions.clear_terminal()
+        Menu_Display.display_sub_menu(self, sub_header, menu_list)
 
         if crew_type == "1":
-            ssn = input("Enter SSN: ")
-            name = input("Enter name: ")
-            job_title = "Captain"
-            address = input("Enter address: ")
-            area_code = input("Enter area code: ")
-            email = input("Enter email: ")
-            mobile_no = input("Enter mobile phone number: ")
-            phone_no = input("Enter home phone number: ")
-            type_rating = input("Enter type rating: ")
+
+            while True:
+                Menu_Actions.clear_terminal()
+                Menu_Display.display_sub_menu(self, sub_header, menu_list)
+
+                ssn = input("Enter SSN: ")
+                name = input("Enter name: ")
+                job_title = "Captain"
+                address = input("Enter address: ")
+                email = input("Enter email: ")
+                mobile_no = input("Enter mobile phone number: ")
+                phone_no = input("Enter home phone number: ")
+                type_rating = input("Enter type rating: ")
+
+                answer = input('Press y if you want to save the destination: ')
+                if answer == 'y':
+                    break
 
             new_crew_member = Pilot(ssn, name, job_title, address, email, mobile_no, phone_no, type_rating)
             return new_crew_member
 
 
-        if crew_type == "2":
-            ssn = input("Enter SSN: ")
-            name = input("Enter name: ")
-            job_title = "First Officer"
-            address = input("Enter address: ")
-            area_code = input("Enter area code: ")
-            email = input("Enter email: ")
-            mobile_no = input("Enter mobile phone number: ")
-            phone_no = input("Enter home phone number: ")
-            type_rating = input("Enter type rating: ")
+        elif crew_type == "2":
+            while True:
+                Menu_Actions.clear_terminal()
+                Menu_Display.display_sub_menu(self, sub_header, menu_list)
+
+                ssn = input("Enter SSN: ")
+                name = input("Enter name: ")
+                job_title = "Captain"
+                address = input("Enter address: ")
+                email = input("Enter email: ")
+                mobile_no = input("Enter mobile phone number: ")
+                phone_no = input("Enter home phone number: ")
+                type_rating = input("Enter type rating: ")
+
+                answer = input('Press y if you want to save the destination: ')
+                if answer == 'y':
+                    break
 
             new_crew_member = Pilot(ssn, name, job_title, address, email, mobile_no, phone_no, type_rating)
             return new_crew_member
 
         
-        if crew_type == "3":    
-            ssn = input("Enter SSN: ")
-            name = input("Enter name: ")
-            job_title = "Head Flight Attendant"
-            address = input("Enter address: ")
-            area_code = input("Enter area code: ")
-            email = input("Enter email: ")
-            mobile_no = input("Enter mobile phone number: ")
-            phone_no = input("Enter home phone number: ")
+        elif crew_type == "3":    
+            while True:
+                Menu_Actions.clear_terminal()
+                Menu_Display.display_sub_menu(self, sub_header, menu_list)
+
+                ssn = input("Enter SSN: ")
+                name = input("Enter name: ")
+                job_title = "Captain"
+                address = input("Enter address: ")
+                email = input("Enter email: ")
+                mobile_no = input("Enter mobile phone number: ")
+                phone_no = input("Enter home phone number: ")
+
+                answer = input('Press y if you want to save the destination: ').lower()
+                if answer == 'y':
+                    break
 
             new_crew_member = Flight_Attendant(ssn, name, job_title, address, email, mobile_no, phone_no)
             return new_crew_member
 
-        if crew_type == "4":    
-            ssn = input("Enter SSN: ")
-            name = input("Enter name: ")
-            job_title = "Flight Attendant"
-            address = input("Enter address: ")
-            area_code = input("Enter area code: ")
-            email = input("Enter email: ")
-            mobile_no = input("Enter mobile phone number: ")
-            phone_no = input("Enter home phone number: ")
+        elif crew_type == "4":
+
+            while True:
+                Menu_Actions.clear_terminal()
+                Menu_Display.display_sub_menu(self, sub_header, menu_list)
+
+                ssn = input("Enter SSN: ")
+                name = input("Enter name: ")
+                job_title = "Captain"
+                address = input("Enter address: ")
+                email = input("Enter email: ")
+                mobile_no = input("Enter mobile phone number: ")
+                phone_no = input("Enter home phone number: ")
+
+                answer = input('Press y if you want to save the destination: ')
+                if answer == 'y':
+                    break
 
             new_crew_member = Flight_Attendant(ssn, name, job_title, address, email, mobile_no, phone_no)
             return new_crew_member
+        else:
+            Menu_Actions.menu_input()
+            
     
-    def crew_records(self):
+    def crew_record_sub_menu(self):
         """Function that displays the crew records menu and asks for input."""
-        pass
 
+        sub_header = 'Crew Records'
+
+        menu_list = ['View Crew Member Records', 
+                     'Edit Crew Member Records', 
+                     'List of All Crew Members'
+                     'List of All Pilots',
+                     'List of All Flight Attendants'
+                    ]
+
+        Menu_Actions.clear_terminal()
+        Menu_Display.display_sub_menu(self, sub_header, menu_list)
+
+    
+    def display_all_crew(self):
+        """Function that displays all information about the crew."""
+
+        current_menu = "List of crew members"
+
+        Menu_Actions.clear_terminal()
+        Menu_Display.m.main_header(current_menu)
+        
+        wrapper = Logic_Wrapper()
+        info = wrapper.get_all_crew() #need to confirm function call
+
+        crew_info = Crew()
+
+    
     def display_pilots(self):
         """Function that displays all information about the pilots."""
 
-        current_menu = "List of pilots"
+        sub_header = "List of pilots"
 
-        MainMenu_ui.clear_terminal()
-        MainMenu_ui.main_header(current_menu)
+        Menu_Actions.clear_terminal()
+        Menu_Display.display_empty_list_menu(self, sub_header, )
         
-        wrapper = Logic_Wrapper()
-        info = wrapper.get_pilots() #need to confirm function call
+        info = self.logic_wrapper.get_pilots() #need to confirm function call
 
         pilot_info = Pilot()
 
@@ -132,8 +180,8 @@ class CrewMenu_ui():
 
         current_menu = "List of flight attendants"
 
-        MainMenu_ui.clear_terminal()
-        MainMenu_ui.main_header(current_menu)
+        Menu_Actions.clear_terminal()
+        Menu_Display.m
         
         wrapper = Logic_Wrapper()
         info = wrapper.get_flight_attendants() #need to confirm function call
@@ -149,18 +197,6 @@ class CrewMenu_ui():
         command = input("Please enter command: ")
         command = command.lower()
 
-    def display_all_crew(self):
-        """Function that displays all information about the crew."""
-
-        current_menu = "List of crew members"
-
-        MainMenu_ui.clear_terminal()
-        MainMenu_ui.main_header(current_menu)
-        
-        wrapper = Logic_Wrapper()
-        info = wrapper.get_all_crew() #need to confirm function call
-
-        crew_info = Crew()
 
         print(f"SSN, Name, Job title, Address, E-mail, Mobile, Phone, Type rating") #how do we get the type rating for pilots?
         for elem in info:
@@ -176,8 +212,8 @@ class CrewMenu_ui():
 
         current_menu = f"Information about crew member {ssn}"
 
-        MainMenu_ui.clear_terminal()
-        MainMenu_ui.main_header(current_menu)
+        Menu_Actions.clear_terminal()
+        Menu_Display.m.main_header(current_menu)
         
         wrapper = Logic_Wrapper()
         info = wrapper.get_crew_member() #need to confirm function call
@@ -196,8 +232,8 @@ class CrewMenu_ui():
         
         current_menu = "Edit crew member information"
 
-        MainMenu_ui.clear_terminal()
-        MainMenu_ui.main_header(current_menu)
+        Menu_Actions.clear_terminal()
+        Menu_Display.m.main_header(current_menu)
         
         new_crew_info = ()
 
@@ -217,36 +253,45 @@ class CrewMenu_ui():
         '''Function that asks for input in crew menu.'''
 
         while True:
-            self.crew_menu()
-            command = input("Please enter menu number: ")
-            command = command.lower()
-            if command == "q":
-                MainMenu_ui.quit_program()
+            self.display_crew_menu()
+            command = input("Select menu option: ").lower()
+
+            if command == "m":
+                Menu_Actions.menu_input()
+
+            elif command == "q":
+                Menu_Actions.quit_program()
+
+            elif command == "b":
+                break
+
+            elif command == '1' or command == '2' or command == '3' or command == '4':
+                crew_entry = self.register_crew_from_input(command)
+                self.logic_wrapper.register_crew(crew_entry)
+                print(crew_entry)
+
+            elif command == '5': #Crew Member record (sub menu)
+                command
+                if command == '1':
+                    'View Crew Member Records'
+                    pass
+
+                elif command == '2':
+                    'Edit Crew Member Records'
+                    pass
+
+                elif command == '3':
+                    'List of All Crew Members'
+                    pass
+
+                elif command == '4':
+                    'List of All Pilots'
+                    pass
+
+                elif command == '5':
+                    'List of All Flight Attendants'
+                    pass
+
+            elif command == '6':
                 pass
-            if command == "b":
-                print("Going back to previous menu.")
-                return "b"
-            if command == '1':
-                crew_entry = self.register_crew(command)
-                print(crew_entry)
-                wrapper = Logic_Wrapper
-                wrapper.register_crew(wrapper, crew_entry)
-            if command == '2':
-                crew_entry = self.register_crew(command)
-                wrapper = Logic_Wrapper
-                wrapper.register_crew(wrapper, crew_entry)
-                print(crew_entry)
-            if command == '3':
-                crew_entry = self.register_crew(command)
-                wrapper = Logic_Wrapper
-                wrapper.register_crew(wrapper, crew_entry)
-                print(crew_entry)
-            if command == '4':
-                crew_entry = self.register_crew(command)
-                wrapper = Logic_Wrapper
-                wrapper.register_crew(wrapper, crew_entry)
-                print(crew_entry)
-            if command == '5':
-                pass
-            if command == '6':
-                pass
+
