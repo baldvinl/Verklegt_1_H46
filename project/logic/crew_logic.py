@@ -17,7 +17,7 @@ class Crew_Logic:
                 if member.ssn == ssn:
                     return member
 
-    def register_crew(self, crew: Crew):
+    def register_crew(self, crew):
         """Receives crew object, checks if member with same ssn already exists, if not checks 
         if crew object received is of the type Pilot or not and forwards to data wrapper accordingly"""
         already_exists = self.get_crew_member(crew.ssn)
