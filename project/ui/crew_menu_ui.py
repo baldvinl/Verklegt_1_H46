@@ -312,15 +312,15 @@ class CrewMenu_Ui():
             elif command == '5': #Crew Member record (sub menu)
                 new_command = input("Select menu option: ").lower()
                 if new_command == '1':
-                    'View Crew Member Records'
+                    ''
                     pass
 
                 elif new_command == '2':
-                    'Edit Crew Member Records'
+                    ''
                     pass
 
                 elif new_command == '3':
-                    'List of All Crew Members'
+                    ''
                     pass
 
                 elif new_command == '4':

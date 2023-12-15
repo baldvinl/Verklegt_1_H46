@@ -31,12 +31,12 @@ class Logic_Wrapper:
         if crew object received is of the type Pilot or not and forwards to data wrapper accordingly"""
         return self.crew_logic.register_crew(crew)
 
-    def change_crew_info(self, ssn: str, changes: list[tuple]):
+    def change_crew_info(self, crew_member):
         """Receives ssn of crew member and changes in a list of tuples
         with the format [(attribute, new_value)], requests crew member with
         provided ssn from data wrapper, makes the changes and sends back
         the updated crew member object."""
-        return self.crew_logic.change_crew_info(ssn, changes)
+        return self.crew_logic.change_crew_info(crew_member)
 
     def get_all_crew(self):
         """Receives lists of pilots and flight attendants 

@@ -22,9 +22,7 @@ class List_Print_UI:
         self.logic_wrapper = logic_connection
 
     def display_main_list(self, pilot_list):
-        '''Pilot list, available employees list, all employees list'''
         print()
-        print('List of all pilots')
         print('='*125)
         print(f'{SSN:<12}{NAME:<25}{ADDRESS:<15}{JOB_TITLE:<17}{EMAIL:<25}{MOBILE:<12}{HOME_NR:<12}{TYPE_RATING:<7}')
         print('-'*125)
@@ -34,9 +32,7 @@ class List_Print_UI:
 
 
     def display_flight_attendant_list(self, flight_attendant_list):
-        '''Flight attendant list'''
         print()
-        print('List of all Flight attendant')
         print('='*125, "\033[1m")
         print(f'{SSN:<12}{NAME:<25}{ADDRESS:<15}{JOB_TITLE:<17}{EMAIL:<25}{MOBILE:<12}{HOME_NR:<12}',"\033[0;0m")
         print('-'*125)
@@ -66,9 +62,7 @@ class List_Print_UI:
         print("-" * 55)
 
     def display_destination_list(self, dest_list):
-        '''Destination list'''
         print()
-        print('List of all destinations')
         print('='*100, "\033[1m")
         print(f'{AIRPORT:<9}{COUNTRY:<17}{FLIGHT_DURATION:^13}{DISTANCE:^15}{EMERGENCY_CONTACT_NAME:<25}{EMERGENCY_CONTACT_NUMBER:<12}',"\033[0;0m")
         print('-'*100)
@@ -78,7 +72,6 @@ class List_Print_UI:
     
     def display_schedule_for_all_crew(self, a_list):
         print()
-        print('Shift schedule for employees on specific day and destination')
         print('='*120, "\033[1m")
         print(f'{SSN:<12}{NAME:<20}{ADDRESS:<15}{EMAIL:<22}{MOBILE:^12}{HOME_NR:^12}{JOB_TITLE:<16}{COUNTRY}',"\033[0;0m")
         print('-'*120)

@@ -75,19 +75,18 @@ class Voyage_Logic:
         makes a list of all the dates to be included in the final list. Goes through all voyages and keeps only the ones with 
         the same dates & if they are manned or not. Sorts by departure time and returns list. 
         If no voyages were initially received from data wrapper, it raises an error"""
-        starting_date = starting_date.date()
         all_voyages_list = self.get_all_voyages()
         if all_voyages_list:
             voyages_for_period = []
             dates_in_period = []
-            end_date = starting_date + timedelta(days=total_days - 1)
+            end_date = starting_date + timedelta(days = (total_days - 1))
             current_date = starting_date
             while current_date <= end_date:
                 dates_in_period.append(current_date)
-                current_date += timedelta(days=1)
+                current_date += timedelta(days = 1)
             
             for voyage in all_voyages_list:
-                if voyage.time_depart_iceland.date() in dates_in_period:
+                if voyage.time_depart_iceland in dates_in_period:
                     voyages_for_period.append((voyage, voyage.is_manned()))
             return voyages_for_period
             # sorted_voyages_for_period = sorted(voyages_for_period, key=lambda voyage: voyage.time_depart_iceland)
@@ -102,11 +101,11 @@ class Voyage_Logic:
         crew_members_voyages = []
         voyages_week = self.get_voyages_for_period(first_day_of_week, 7)
         if voyages_week:
-            job_title = ["captain", "pilot", "head flight attendant", "extra flight attendants"]
-            for voyage in voyages_week:
+            job_title = ["captain", "pilot", "head_flight_attendant", "flight_attendant1", "flight_attendant2"]
+            for voyage, manned in voyages_week:
                 crew_in_voyage = []
                 for job in job_title:
-                    for crew in crew_in_voyage:
+                    for crew in voyage:
                         crew.append(getattr(voyage, job))
                 if ssn in crew_in_voyage:
                     crew_members_voyages.append(voyage)

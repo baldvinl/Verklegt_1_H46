@@ -19,8 +19,8 @@ while True:
             command = destinationmenu.destination_input_display()
             break
         if command == '3':
-            voyagemenu = VoyageMenu_ui(wrapper)
-            command = voyagemenu.input()
+            voyagemenu = VoyageMenu_ui(wrapper, listprint)
+            command = voyagemenu.voyage_input()
             break
         if command == '4':
             aircraftmenu = AircraftMenu_ui(wrapper)

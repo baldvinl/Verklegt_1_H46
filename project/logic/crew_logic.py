@@ -50,17 +50,13 @@ class Crew_Logic:
         if all_crew_list:
             return all_crew_list
 
-    def change_crew_info(self, ssn: str, changes: list[tuple]):
+    def change_crew_info(self, crew_member):
         """Receives ssn, and changes list of tuples with format 
         [(attribute, new_value)], requests crew member with ssn
         changes attributes with their new values 
         and returns updated object to data wrapper"""
-        crew_member = self.get_crew_member(ssn)
-        for attribute_name, new_value in changes:
-            attribute_name_lower = attribute_name.lower()
-            setattr(crew_member, attribute_name_lower, new_value)
-        if crew_member.job_title.lower() == "pilot" or crew_member.job_title.lower() == "captain":
-            return self.data_wrapper.register_updated_pilot_to_file(crew_member)
+        if isinstance(crew_member, Pilot):
+                return self.data_wrapper.register_updated_pilot_to_file(crew_member)
         else:
             return self.data_wrapper.register_updated_flight_attendant_to_file(crew_member)
     
@@ -87,19 +83,20 @@ class Crew_Logic:
         the ssns found in the voyages that day it makes 2 lists one for crew thats working
         and one for crew that isnt. Then returns according to the availability requested"""
 
-        voyages_that_day = self.voyage_logic.get_voyages_day(departure_time)
+        voyages_that_day = self.voyage_logic.get_voyages_for_period(departure_time , 1)
         crew = self.get_all_crew()
         attributes_list = ["pilot", "captain", "head_flight_attendant", "flight_attendant1", "flight_attendant2"]
 
-        if not voyages_that_day:
-            raise ValueError(ErrorMessages.NO_VOYAGES_FOUND)
+        # if not voyages_that_day:
+        #     raise ValueError(ErrorMessages.NO_VOYAGES_FOUND)
         
         ssn_list_of_crew_on_voyage = []
         for attribute in attributes_list:
-            attribute_value = getattr(voyages_that_day, attribute)
-            ssn_list_of_crew_on_voyage.append(attribute_value)
-        if not crew:
-            raise ValueError(ErrorMessages.NO_CREW_FOUND)
+            for voyage in voyages_that_day:
+                attribute_value = getattr(voyage, attribute)
+                ssn_list_of_crew_on_voyage.append(attribute_value)
+        # if not crew:
+        #     raise ValueError(ErrorMessages.NO_CREW_FOUND)
         
         crew_not_working = []
         crew_working = []
