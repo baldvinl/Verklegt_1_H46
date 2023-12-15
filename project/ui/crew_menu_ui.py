@@ -65,7 +65,7 @@ class CrewMenu_Ui():
 
                 ssn = input("Enter SSN: ")
                 name = input("Enter name: ")
-                job_title = "Captain"
+                job_title = "Pilot"
                 address = input("Enter address: ")
                 email = input("Enter email: ")
                 mobile_no = input("Enter mobile phone number: ")
@@ -87,7 +87,7 @@ class CrewMenu_Ui():
 
                 ssn = input("Enter SSN: ")
                 name = input("Enter name: ")
-                job_title = "Captain"
+                job_title = "Head flight attendant"
                 address = input("Enter address: ")
                 email = input("Enter email: ")
                 mobile_no = input("Enter mobile phone number: ")
@@ -108,7 +108,7 @@ class CrewMenu_Ui():
 
                 ssn = input("Enter SSN: ")
                 name = input("Enter name: ")
-                job_title = "Captain"
+                job_title = "Flight attendant"
                 address = input("Enter address: ")
                 email = input("Enter email: ")
                 mobile_no = input("Enter mobile phone number: ")

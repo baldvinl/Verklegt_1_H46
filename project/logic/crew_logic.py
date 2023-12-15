@@ -22,7 +22,7 @@ class Crew_Logic:
         if crew object received is of the type Pilot or not and forwards to data wrapper accordingly"""
         already_exists = self.get_crew_member(crew.ssn)
         if not already_exists:
-            if crew.job_title.lower() == "pilot" or crew.job_title.lower() == "captain":
+            if crew.job_title == "Pilot" or crew.job_title == "Captain":
                 return self.data_wrapper.register_pilot_to_file(crew)
             else:
                 return self.data_wrapper.register_flight_attendant_to_file(crew)

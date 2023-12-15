@@ -92,7 +92,7 @@ class Voyage_Logic:
             
             sorted_voyages_for_period = sorted(voyages_for_period, key=lambda voyage: voyage.departure_time)
             return sorted_voyages_for_period
-        raise ValueError(ErrorMessages.NO_VOYAGES_FOUND)
+        # raise ValueError(ErrorMessages.NO_VOYAGES_FOUND)
 
     def get_weekly_voyage_schedule(self, ssn, first_day_of_week):
         """Receives ssn, and starting date of the week, checks them for the crew members ssn, and saves
@@ -109,8 +109,8 @@ class Voyage_Logic:
                     crew_members_voyages.append(voyage)
             crew_members_voyages_sorted = sorted(crew_members_voyages, key=lambda voyage:(voyage.date, voyage.departure_time))
             return crew_members_voyages_sorted
-        else:
-            raise ValueError(ErrorMessages.NO_VOYAGES_FOUND)
+        # else:
+            # raise ValueError(ErrorMessages.NO_VOYAGES_FOUND)
 
     def check_date_past(self, date_input) -> bool:
         """checks if date given is in the past or not"""
