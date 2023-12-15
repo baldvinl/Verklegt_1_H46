@@ -73,10 +73,10 @@ class List_Print_UI:
         print()
         print('List of all destinations')
         print('='*100, "\033[1m")
-        print(f'{AIRPORT:<9}{COUNTRY:<17}{FLIGHT_DURATION:^13}{DISTANCE:^15}{EMERGENCY_CONTACT_NAME:<25}{EMERGENCY_CONTACT_NUMBER:<12}',"\033[0;0m")
+        print(f'{AIRPORT:<9}{COUNTRY:<17}{FLIGHT_DURATION:^13}{DISTANCE:^15}{EMERGENCY_CONTACT_NAME:<25}{EMERGENCY_CONTACT_NUMBER:^12}',"\033[0;0m")
         print('-'*100)
         for destination in dest_list:
-            print(f'{destination.airport:<9}{destination.country:<17}{destination.flight_duration:^13}{destination.distance:^15}{destination.ice_name:<25}{destination.ice_number:<12}')
+            print(f'{destination.airport:<9}{destination.country:<17}{destination.flight_duration:^13}{destination.distance:^15}{destination.ice_name:<25}{destination.ice_number:^12}')
         print('-'*100)
     
     def display_schedule_for_all_crew(self, a_list):
@@ -91,8 +91,6 @@ class List_Print_UI:
         print('-'*120)
 
     def display_schedule_for_employees(self, schedule_list):
-
-        a_list = ['Greenland', '23/11/23 05:00', '23/11/23 08:30', '0302030405']
 
         print()
         print('Shift schedule for employees on specific day and destination')
