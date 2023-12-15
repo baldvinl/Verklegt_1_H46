@@ -1,5 +1,6 @@
 from logic.logic_wrapper import Logic_Wrapper
 from model.pilot import Pilot
+from model.flight_attendant import Flight_Attendant
 
 SSN = 'SSN'
 NAME = 'Name'
@@ -36,8 +37,18 @@ class List_Print_UI:
         print()
         print()
         print()
+
+    def display_flight_attendant_list(self, flight_attendant_list):
+        print()
+        print('List of all Flight attentant')
+        print('='*125, "\033[1m")
+        print(f'{SSN:<12}{NAME:<25}{ADDRESS:<15}{JOB_TITLE:<17}{EMAIL:<25}{MOBILE:<12}{HOME_NR:<12}',"\033[0;0m")
+        print('-'*125)
+        for flight_attendant in flight_attendant_list:
+            print(f'{flight_attendant.ssn:<12}{flight_attendant.name:<25}{flight_attendant.address:<15}{flight_attendant.job_title:<17}{flight_attendant.email:<25}{flight_attendant.mobile_no:<12}{flight_attendant.phone_no:<12}')
+        print('-'*125)
     
-    def display_one_crewmember_scedule(self)
+    def display_one_crewmember_scedule(self):
          
         header = "Shift schedule for <name>, <SSN> within week <number>"
         subheader = "Destination"
