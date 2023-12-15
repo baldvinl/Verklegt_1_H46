@@ -54,8 +54,7 @@ class CrewMenu_Ui():
                 if answer == 'y':
                     break
 
-            new_crew_member = Pilot(ssn, name, job_title, address, email, mobile_no, phone_no, type_rating)
-            return new_crew_member
+            return Pilot(ssn, name, job_title, address, email, mobile_no, phone_no, type_rating)
 
 
         elif crew_type == "2":
@@ -76,8 +75,7 @@ class CrewMenu_Ui():
                 if answer == 'y':
                     break
 
-            new_crew_member = Pilot(ssn, name, job_title, address, email, mobile_no, phone_no, type_rating)
-            return new_crew_member
+            return Pilot(ssn, name, job_title, address, email, mobile_no, phone_no, type_rating)
 
         
         elif crew_type == "3":    
@@ -97,8 +95,7 @@ class CrewMenu_Ui():
                 if answer == 'y':
                     break
 
-            new_crew_member = Flight_Attendant(ssn, name, job_title, address, email, mobile_no, phone_no)
-            return new_crew_member
+            return Flight_Attendant(ssn, name, job_title, address, email, mobile_no, phone_no)
 
         elif crew_type == "4":
 
@@ -118,8 +115,7 @@ class CrewMenu_Ui():
                 if answer == 'y':
                     break
 
-            new_crew_member = Flight_Attendant(ssn, name, job_title, address, email, mobile_no, phone_no)
-            return new_crew_member
+            return Flight_Attendant(ssn, name, job_title, address, email, mobile_no, phone_no)
         else:
             Menu_Actions.menu_input()
             
