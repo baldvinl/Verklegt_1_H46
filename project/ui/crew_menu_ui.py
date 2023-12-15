@@ -131,9 +131,9 @@ class CrewMenu_Ui():
 
         menu_list = ['View Crew Member Records', 
                      'Edit Crew Member Records', 
-                     'Print Crew Member Records'
                      'List of All Crew Members'
                      'List of All Pilots',
+                     'List of All Flight Attendants'
                     ]
 
         Menu_Actions.clear_terminal()
@@ -145,8 +145,8 @@ class CrewMenu_Ui():
 
         current_menu = "List of crew members"
 
-        MainMenu_ui.clear_terminal()
-        MainMenu_ui.main_header(current_menu)
+        Menu_Actions.clear_terminal()
+        Menu_Display.m.main_header(current_menu)
         
         wrapper = Logic_Wrapper()
         info = wrapper.get_all_crew() #need to confirm function call
@@ -180,8 +180,8 @@ class CrewMenu_Ui():
 
         current_menu = "List of flight attendants"
 
-        MainMenu_ui.clear_terminal()
-        MainMenu_ui.main_header(current_menu)
+        Menu_Actions.clear_terminal()
+        Menu_Display.m
         
         wrapper = Logic_Wrapper()
         info = wrapper.get_flight_attendants() #need to confirm function call
@@ -212,8 +212,8 @@ class CrewMenu_Ui():
 
         current_menu = f"Information about crew member {ssn}"
 
-        MainMenu_ui.clear_terminal()
-        MainMenu_ui.main_header(current_menu)
+        Menu_Actions.clear_terminal()
+        Menu_Display.m.main_header(current_menu)
         
         wrapper = Logic_Wrapper()
         info = wrapper.get_crew_member() #need to confirm function call
@@ -232,8 +232,8 @@ class CrewMenu_Ui():
         
         current_menu = "Edit crew member information"
 
-        MainMenu_ui.clear_terminal()
-        MainMenu_ui.main_header(current_menu)
+        Menu_Actions.clear_terminal()
+        Menu_Display.m.main_header(current_menu)
         
         new_crew_info = ()
 
@@ -270,12 +270,28 @@ class CrewMenu_Ui():
                 self.logic_wrapper.register_crew(crew_entry)
                 print(crew_entry)
 
-            elif command == '5': #Crew Member record
+            elif command == '5': #Crew Member record (sub menu)
                 command
                 if command == '1':
+                    'View Crew Member Records'
+                    pass
+
+                elif command == '2':
                     'Edit Crew Member Records'
                     pass
 
-                pass
+                elif command == '3':
+                    'List of All Crew Members'
+                    pass
+
+                elif command == '4':
+                    'List of All Pilots'
+                    pass
+
+                elif command == '5':
+                    'List of All Flight Attendants'
+                    pass
+
             elif command == '6':
                 pass
+
