@@ -88,10 +88,11 @@ class Voyage_Logic:
             
             for voyage in all_voyages_list:
                 if voyage.departure_time.date in dates_in_period:
-                    voyages_for_period.append(voyage, voyage.is_manned())
-            if voyages_for_period:
-                sorted_voyages_for_period = sorted(voyages_for_period, key=lambda voyage: voyage.departure_time)
-                return sorted_voyages_for_period
+                    voyages_for_period.append((voyage, voyage.is_manned()))
+            
+            sorted_voyages_for_period = sorted(voyages_for_period, key=lambda voyage: voyage.departure_time)
+            return sorted_voyages_for_period
+        raise ValueError(ErrorMessages.NO_VOYAGES_FOUND)
 
     def get_weekly_voyage_schedule(self, ssn, first_day_of_week):
         """Receives ssn, and starting date of the week, checks them for the crew members ssn, and saves
