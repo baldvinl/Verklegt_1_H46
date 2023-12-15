@@ -244,7 +244,7 @@ class CrewMenu_Ui():
 
         return ssn, new_crew_info
     
-    def display_crew_schedule_date(self, ssn, date):
+    def get_input_for_crew_schedule(self):
         """Function that displays the schedule for a given crew number for the week starting with date."""
 
         Menu_Actions.clear_terminal()
@@ -276,13 +276,11 @@ class CrewMenu_Ui():
             if answer == 'y':
                 break
 
-        Menu_Display.display_empty_list_menu(self, sub_header, menu_list, menu_list):
+            ssn = input_list[0]
+            start_date = datetime(input_list[1], input_list[2], input_list[3])
 
-
-        Menu_Actions.clear_terminal()
-        Menu_Display_Lists.display_one_crewmember_schedule(self, ssn, list_of_voyages)
-
-        return 
+            list_voyages = self.logic_wrapper.get_weekly_voyage_schedule((ssn, start_date))
+            Menu_Display_Lists.display_one_crewmember_schedule(ssn, list_voyages)
 
 
     def input(self):
@@ -328,8 +326,9 @@ class CrewMenu_Ui():
                     pass
 
             elif command == '6':
-                list_of_voyages = self.logic_wrapper.get_weekly_voyage_schedule()
-                self.display_crew_schedule_date(date, ssn)
+                self.get_input_for_crew_schedule()
+
+                
 
 ssn and date from input send with get_weekly_voyage_schedule
 

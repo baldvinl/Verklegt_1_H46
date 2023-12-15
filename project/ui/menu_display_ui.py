@@ -120,6 +120,8 @@ class Menu_Display_Lists:
     
     def display_one_crewmember_schedule(self, ssn, list_voyages):
 
+        Menu_Actions.clear_terminal()
+
         crew_member = self.logic_wrapper.get_crew_member(ssn)
 
         header = f"Shift schedule for: {crew_member.name}, SSN: {crew_member.ssn}"
