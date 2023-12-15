@@ -8,29 +8,24 @@ class Crew_Logic:
         self.data_wrapper = data_connection
         self.voyage_logic = voyage_logic_instance
 
-    # def get_crew_member(self, ssn: str):
-    #     """Receives social security number of crew member, checks if already exists and forwards to data wrapper
-    #     if not it returns an error code"""
-    #     all_crew_list = self.get_all_crew()
-    #     if all_crew_list:
-    #         for member in all_crew_list:
-    #             if member.ssn == ssn:
-    #                 return member
-    #         raise CrewMemberNotFound()
-    #     execpt CrewMemberNotFound as error
-    #         print
+    def get_crew_member(self, ssn: str):
+        """Receives social security number of crew member, checks if already exists and forwards to data wrapper
+        if not it returns an error code"""
+        all_crew_list = self.get_all_crew()
+        if all_crew_list:
+            for member in all_crew_list:
+                if member.ssn == ssn:
+                    return member
 
-    # def register_crew(self, crew: Crew):
-    #     """Receives crew object, checks if member with same ssn already exists, if not checks 
-    #     if crew object received is of the type Pilot or not and forwards to data wrapper accordingly"""
-    #     alread_exists = self.get_crew_member(crew.ssn)
-    #     if not alread_exists:
-    #         do register
-    #     if isinstance(crew, Pilot):
-    #         return self.data_wrapper.register_pilot_to_file(crew)
-    #     else:
-    #         return self.data_wrapper.register_flight_attendant_to_file(crew) #remove to file
-    #     else raise already exists somewhere
+    def register_crew(self, crew):
+        """Receives crew object, checks if member with same ssn already exists, if not checks 
+        if crew object received is of the type Pilot or not and forwards to data wrapper accordingly"""
+        already_exists = self.get_crew_member(crew.ssn)
+        if not already_exists:
+            if crew.job_title == "Pilot" or crew.job_title == "Captain":
+                return self.data_wrapper.register_pilot_to_file(crew)
+            else:
+                return self.data_wrapper.register_flight_attendant_to_file(crew)
 
     def get_pilots(self):
         """Requests all pilots from data wrapper and returns if there is any. 
@@ -38,8 +33,6 @@ class Crew_Logic:
         pilots_list = self.data_wrapper.get_pilots_from_file()
         if pilots_list:
             return pilots_list
-        else:
-            raise PilotsNotFound
         
     def get_flight_attendants(self):
         """Requests all flight attendants from data wrapper and returns if there is any. 
@@ -47,8 +40,6 @@ class Crew_Logic:
         flight_attendants_list = self.data_wrapper.get_flight_attendants_from_file()
         if flight_attendants_list:
             return flight_attendants_list
-        else:
-            raise FlightAttendantsNotFound
     
     def get_all_crew(self):
         """Receives lists of pilots and flight attendants from data wrapper, 
@@ -58,25 +49,20 @@ class Crew_Logic:
         all_crew_list = pilots_list + flight_attendants_list
         if all_crew_list:
             return all_crew_list
-        else:
-            raise NoCrewMembersRegistered
 
     def change_crew_info(self, ssn: str, changes: list[tuple]):
         """Receives ssn, and changes list of tuples with format 
         [(attribute, new_value)], requests crew member with ssn
         changes attributes with their new values 
         and returns updated object to data wrapper"""
-        try:
-            crew_member = self.get_crew_member(ssn)
-            for attribute_name, new_value in changes:
-                attribute_name_lower = attribute_name.lower()
-                setattr(crew_member, attribute_name_lower, new_value)
-            if isinstance(crew_member, Pilot):
-                return self.data_wrapper.register_updated_pilot_to_file(crew_member)
-            else:
-                return self.data_wrapper.register_updated_flight_attendant_to_file(crew_member)
-        except CrewMemberNotFound:
-            pass #idk yet
+        crew_member = self.get_crew_member(ssn)
+        for attribute_name, new_value in changes:
+            attribute_name_lower = attribute_name.lower()
+            setattr(crew_member, attribute_name_lower, new_value)
+        if crew_member.job_title.lower() == "pilot" or crew_member.job_title.lower() == "captain":
+            return self.data_wrapper.register_updated_pilot_to_file(crew_member)
+        else:
+            return self.data_wrapper.register_updated_flight_attendant_to_file(crew_member)
     
     def find_crew_for_voyage(self, departure_time):
         """Receives date, requests crew not working on that date, returns dictionary with key: job title 
@@ -94,10 +80,8 @@ class Crew_Logic:
                 else:
                     crew_dict["flight_attendants"].append(member)
             return crew_dict
-        else:
-            raise ValueError(ErrorMessages.NO_CREW_FOUND)
 
-    def crew_status(self, departure_time, busy: bool):
+    def crew_status(self, departure_time, busy: bool): #TODO
         """Receives departure time and availability request (working or not working), requests
         voyages that day using the date from data wrapper, gets all crew from data wrapper. Using
         the ssns found in the voyages that day it makes 2 lists one for crew thats working

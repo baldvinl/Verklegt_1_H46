@@ -1,7 +1,7 @@
-from datetime import date, timedelta, datetime
+from datetime import timedelta, datetime
 from data.data_wrapper import Data_Wrapper
 from model.voyage import Voyage
-from logic.custom_exceptions import VoyageNotFound
+from logic.custom_exceptions import VoyageNotFound, VoyageAlreadyInSystem
 
 class Voyage_Logic:
     def __init__(self, data_connection: Data_Wrapper):
@@ -31,7 +31,6 @@ class Voyage_Logic:
         all_voyages = future_voyages + past_voyages
         if all_voyages:
             return all_voyages
-        return False
 
     def get_future_voyages(self) -> list:
         """Requests future voyage list from data wrapper, checks if empty, if so returns error otherwise returns list"""
@@ -48,11 +47,10 @@ class Voyage_Logic:
     def register_voyage(self, new_voyage: Voyage):
         """Receives voyage object, checks if already in system, if so returns error code
         and if not forwards to data wrapper"""
-        try:
-            old_voyage = self.get_voyage(new_voyage.destination, new_voyage.time_depart_destination)
-            raise VoyageAlreadyInSystem
-        except VoyagesNotFound:
+        old_voyage = self.get_voyage(new_voyage.destination, new_voyage.time_depart_destination)
+        if not old_voyage:
             return self.data_wrapper.register_voyage_to_file(new_voyage)
+        raise VoyageAlreadyInSystem("Voyage is already registered!")
 
     # def add_crew_to_voyage(self, ssn_list: list, voyage: Voyage):
     #     """Receives crew members ssn in a list, and voyage object. Updates voyage
@@ -68,17 +66,16 @@ class Voyage_Logic:
         voyage_to_add_aircraft.aircraft = aircraft
         return self.data_wrapper.add_aircraft(aircraft)
 
-    def get_voyage_status(self, destination, departure):
-        """Receives destination and data and forwards to data wrapper TODO B requirement"""
-        return self.data_wrapper.get_voyage_status(destination, departure)
+    # def get_voyage_status(self, destination, departure):
+    #     """Receives destination and data and forwards to data wrapper TODO B requirement"""
+    #     return self.data_wrapper.get_voyage_status(destination, departure)
     
-        
     def get_voyages_for_period(self, starting_date, total_days):
         """Receives a starting date in datetime format, and total days of voyages to return. Requests all voyages from data wrapper
         makes a list of all the dates to be included in the final list. Goes through all voyages and keeps only the ones with 
         the same dates & if they are manned or not. Sorts by departure time and returns list. 
         If no voyages were initially received from data wrapper, it raises an error"""
-        starting_date = starting_date.date
+        starting_date = starting_date.date()
         all_voyages_list = self.get_all_voyages()
         if all_voyages_list:
             voyages_for_period = []
@@ -91,11 +88,11 @@ class Voyage_Logic:
             
             for voyage in all_voyages_list:
                 if voyage.departure_time.date in dates_in_period:
-                    voyages_for_period.append(voyage, voyage.is_manned())
+                    voyages_for_period.append((voyage, voyage.is_manned()))
             
             sorted_voyages_for_period = sorted(voyages_for_period, key=lambda voyage: voyage.departure_time)
             return sorted_voyages_for_period
-        raise ValueError(ErrorMessages.NO_VOYAGES_FOUND)
+        # raise ValueError(ErrorMessages.NO_VOYAGES_FOUND)
 
     def get_weekly_voyage_schedule(self, ssn, first_day_of_week):
         """Receives ssn, and starting date of the week, checks them for the crew members ssn, and saves
@@ -107,13 +104,13 @@ class Voyage_Logic:
             for voyage in voyages_week:
                 crew_in_voyage = []
                 for job in job_title:
-                    crew_in_voyage.append(getattr(voyage.job))
+                    crew_in_voyage.append(getattr(voyage, job))
                 if ssn in crew_in_voyage:
                     crew_members_voyages.append(voyage)
             crew_members_voyages_sorted = sorted(crew_members_voyages, key=lambda voyage:(voyage.date, voyage.departure_time))
             return crew_members_voyages_sorted
-        else:
-            raise ValueError(ErrorMessages.NO_VOYAGES_FOUND)
+        # else:
+            # raise ValueError(ErrorMessages.NO_VOYAGES_FOUND)
 
     def check_date_past(self, date_input) -> bool:
         """checks if date given is in the past or not"""

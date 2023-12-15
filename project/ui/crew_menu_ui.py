@@ -3,6 +3,7 @@ from logic.logic_wrapper import Logic_Wrapper
 from ui.menu_display_ui import *
 from model.pilot import Pilot
 from model.flight_attendant import Flight_Attendant
+from datetime import datetime
 
 class CrewMenu_Ui():
     def __init__(self, logic_conneciton: Logic_Wrapper):
@@ -14,12 +15,12 @@ class CrewMenu_Ui():
 
         sub_header = 'Crew Members'
 
-        menu_list = ['Register captain', 
-                     'Register pilot', 
-                     'Register head flight attendant', 
-                     'Register flight attendant', 
-                     'Crew member record', 
-                     'Crew member avaliability', 
+        menu_list = ['Register Captain', 
+                     'Register Pilot', 
+                     'Register Head flight Attendant', 
+                     'Register Flight Attendant', 
+                     'Crew Member Information', 
+                     'Crew Member Avaliability', 
                     ]
 
         Menu_Actions.clear_terminal()
@@ -54,8 +55,7 @@ class CrewMenu_Ui():
                 if answer == 'y':
                     break
 
-            new_crew_member = Pilot(ssn, name, job_title, address, email, mobile_no, phone_no, type_rating)
-            return new_crew_member
+            return Pilot(ssn, name, job_title, address, email, mobile_no, phone_no, type_rating)
 
 
         elif crew_type == "2":
@@ -65,7 +65,7 @@ class CrewMenu_Ui():
 
                 ssn = input("Enter SSN: ")
                 name = input("Enter name: ")
-                job_title = "Captain"
+                job_title = "Pilot"
                 address = input("Enter address: ")
                 email = input("Enter email: ")
                 mobile_no = input("Enter mobile phone number: ")
@@ -76,8 +76,7 @@ class CrewMenu_Ui():
                 if answer == 'y':
                     break
 
-            new_crew_member = Pilot(ssn, name, job_title, address, email, mobile_no, phone_no, type_rating)
-            return new_crew_member
+            return Pilot(ssn, name, job_title, address, email, mobile_no, phone_no, type_rating)
 
         
         elif crew_type == "3":    
@@ -87,7 +86,7 @@ class CrewMenu_Ui():
 
                 ssn = input("Enter SSN: ")
                 name = input("Enter name: ")
-                job_title = "Captain"
+                job_title = "Head flight attendant"
                 address = input("Enter address: ")
                 email = input("Enter email: ")
                 mobile_no = input("Enter mobile phone number: ")
@@ -97,8 +96,7 @@ class CrewMenu_Ui():
                 if answer == 'y':
                     break
 
-            new_crew_member = Flight_Attendant(ssn, name, job_title, address, email, mobile_no, phone_no)
-            return new_crew_member
+            return Flight_Attendant(ssn, name, job_title, address, email, mobile_no, phone_no)
 
         elif crew_type == "4":
 
@@ -108,7 +106,7 @@ class CrewMenu_Ui():
 
                 ssn = input("Enter SSN: ")
                 name = input("Enter name: ")
-                job_title = "Captain"
+                job_title = "Flight attendant"
                 address = input("Enter address: ")
                 email = input("Enter email: ")
                 mobile_no = input("Enter mobile phone number: ")
@@ -118,8 +116,7 @@ class CrewMenu_Ui():
                 if answer == 'y':
                     break
 
-            new_crew_member = Flight_Attendant(ssn, name, job_title, address, email, mobile_no, phone_no)
-            return new_crew_member
+            return Flight_Attendant(ssn, name, job_title, address, email, mobile_no, phone_no)
         else:
             Menu_Actions.menu_input()
             
@@ -127,10 +124,10 @@ class CrewMenu_Ui():
     def crew_record_sub_menu(self):
         """Function that displays the crew records menu and asks for input."""
 
-        sub_header = 'Crew Records'
+        sub_header = 'Crew Member Information'
 
-        menu_list = ['View Crew Member Records', 
-                     'Edit Crew Member Records', 
+        menu_list = ['View Crew Member Information', 
+                     'Edit Crew Member Information', 
                      'List of All Crew Members'
                      'List of All Pilots',
                      'List of All Flight Attendants'
@@ -247,9 +244,48 @@ class CrewMenu_Ui():
         new_crew_info = address, email, mobile_no, phone_no
 
         return ssn, new_crew_info
+    
+    def get_input_for_crew_schedule(self):
+        """Function that displays the schedule for a given crew number for the week starting with date."""
+        
+        sub_header = "Crew Member: SSN and first day of the week"
+
+        command_list = ["Enter the crew member's SSN: ", 
+                        "Enter the year: ", 
+                        "Enter the month: ", 
+                        "Enter the day of the month: "
+                        ]
+        
+        menu_list = ['Crew Members SSN: ', 'The Year: ', 'The Month: ', 'The Day of the Month: ']
+
+        input_list = []
+
+        while True:
+            for i in range(0, 10):
+                input_list.append('')
+
+            for i in range(len(menu_list)):
+                Menu_Actions.clear_terminal()
+                Menu_Display.display_empty_list_menu(self, sub_header, menu_list, input_list)
+                a = input(command_list[i])
+                input_list[i] = a
+
+            answer = input('Is The Information Correct (press y for yes): ')
+            if answer == 'y':
+                break
+
+        ssn = input_list[0]
+        year = input(input_list[1])
+        month = input(input_list[2])
+        day = input(input_list[3])
+
+        start_date = datetime(year, month, day)
+
+        list_voyages = self.logic_wrapper.get_weekly_voyage_schedule((ssn, start_date))
+        Menu_Display_Lists.display_one_crewmember_schedule(ssn, list_voyages)
 
 
-    def input(self):
+    def crew_input_display(self):
         '''Function that asks for input in crew menu.'''
 
         while True:
@@ -268,30 +304,28 @@ class CrewMenu_Ui():
             elif command == '1' or command == '2' or command == '3' or command == '4':
                 crew_entry = self.register_crew_from_input(command)
                 self.logic_wrapper.register_crew(crew_entry)
-                print(crew_entry)
 
             elif command == '5': #Crew Member record (sub menu)
-                command
-                if command == '1':
+                new_command = input("Select menu option: ").lower()
+                if new_command == '1':
                     'View Crew Member Records'
                     pass
 
-                elif command == '2':
+                elif new_command == '2':
                     'Edit Crew Member Records'
                     pass
 
-                elif command == '3':
+                elif new_command == '3':
                     'List of All Crew Members'
                     pass
 
-                elif command == '4':
+                elif new_command == '4':
                     'List of All Pilots'
                     pass
 
-                elif command == '5':
+                elif new_command == '5':
                     'List of All Flight Attendants'
                     pass
 
             elif command == '6':
-                pass
-
+                self.get_input_for_crew_schedule()

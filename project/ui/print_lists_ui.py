@@ -1,9 +1,6 @@
 from logic.logic_wrapper import Logic_Wrapper
-from model.pilot import Pilot
-from model.flight_attendant import Flight_Attendant
-from model.destination import Destination
-from data.destination_data import Destination
-
+from model.voyage import Voyage
+from datetime import datetime
 
 SSN = 'SSN'
 NAME = 'Name'
@@ -51,20 +48,24 @@ class List_Print_UI:
             print(f'{flight_attendant.ssn:<12}{flight_attendant.name:<25}{flight_attendant.address:<15}{flight_attendant.job_title:<17}{flight_attendant.email:<25}{flight_attendant.mobile_no:<12}{flight_attendant.phone_no:<12}')
         print('-'*125)
     
-    def display_one_crewmember_scedule(self):
-         
+    def display_one_crewmember_schedule(self, list_voyages):
+
+        crew_member = self.logic_wrapper.get_crew_member(ssn):
+
         header = "Shift schedule for <name>, <SSN> within week <number>"
         subheader = "Destination"
         whitespace = " "
-        day_list = ["Monday: ","Tuesday: ","Wedensday: ","Thursday: ","Friday: ","Saturday: ","Sunday: ",]
-        country_list = ["Greenland","Day off","Greenland","Svalbard","Svalbard","Faroe Island","Day off",]
-       
+
+        country_list = []
+        for voyage in list_voyages:
+            work_date = datetime.strptime(voyage.time_depart_iceland["time_depart_iceland"], '%Y-%m-%d %H:%M')
+            country_list.append((work_date, voyage.country))
         print()
         print(header)
         print("=" * 55)
         print(f"{whitespace:<10}{subheader:^45}")
         print("-" * 55)
-        for day, country in zip(day_list, country_list):
+        for (day, country) in country_list:
             print(f"{day:<10}{country:^45}")
         print("-" * 55)
 
