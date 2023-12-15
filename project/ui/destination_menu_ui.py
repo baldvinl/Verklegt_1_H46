@@ -12,11 +12,11 @@ class DestinationMenu_ui():
     def destination_display_menu(self):
         """Function that displays Destination Menu UI."""
 
-        sub_header = 'Crew Members Menu'
-        crew_menu_list = ['Register Destination', 'Display All Destinations', 'Edit Emergency Contact']
+        sub_header = 'Destination Menu'
+        destination_menu_list = ['Register Destination', 'Display All Destinations', 'Edit Emergency Contact']
 
         Menu_Actions.clear_terminal()
-        Menu_Display.display_sub_menu(self, sub_header, menu_list)
+        Menu_Display.display_sub_menu(self, sub_header, destination_menu_list)
     
     def get_destination_info_from_user(self):
         """Function that asks for inputs to register attributes for a destination and returns a destination object."""
@@ -31,7 +31,7 @@ class DestinationMenu_ui():
                         "Enter emergency contact phone number: "
                         ]
     
-        menu_list = ['aiport iata : ', 'Country: ', 'Flight duration: ', 'Distance: ', 'Ice name: ', 'Ice number: ']
+        menu_list = ['Airport IATA code:' , 'Country: ', 'Flight duration: ', 'Distance: ', 'Emergency name: ', 'Emergency number: ']
 
         input_list = []
 
@@ -92,11 +92,9 @@ class DestinationMenu_ui():
     def destination_input_display(self):
         '''Function that asks for input in destination menu.'''
 
-        allowed_commands_input = ['m', 'q', 'b', '1', '2', '3']
-        command_text = "Select menu option: "
-
-        while command := (input(command_text)).lower() not in allowed_commands_input:
+        while True:
             self.destination_display_menu()
+            command = input("Select menu option: ")
 
             if command == 'm':
                 Menu_Actions.menu_input()

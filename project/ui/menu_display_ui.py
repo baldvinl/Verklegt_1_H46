@@ -115,12 +115,7 @@ class Menu_Actions():
     def __init__(self):
         return None   
 
-<<<<<<< HEAD
-    
-    def command_input(self):
-=======
     def menu_input(self):
->>>>>>> gudrunelin
         '''Function that asks for menu number in the main menu UI.'''
 
         while True:
