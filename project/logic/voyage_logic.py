@@ -87,11 +87,11 @@ class Voyage_Logic:
                 current_date += timedelta(days=1)
             
             for voyage in all_voyages_list:
-                if voyage.departure_time.date in dates_in_period:
+                if voyage.time_depart_iceland.date() in dates_in_period:
                     voyages_for_period.append((voyage, voyage.is_manned()))
-            
-            sorted_voyages_for_period = sorted(voyages_for_period, key=lambda voyage: voyage.departure_time)
-            return sorted_voyages_for_period
+            return voyages_for_period
+            # sorted_voyages_for_period = sorted(voyages_for_period, key=lambda voyage: voyage.time_depart_iceland)
+            # return sorted_voyages_for_period
         # raise ValueError(ErrorMessages.NO_VOYAGES_FOUND)
 
     def get_weekly_voyage_schedule(self, ssn_and_date: tuple):
@@ -106,7 +106,8 @@ class Voyage_Logic:
             for voyage in voyages_week:
                 crew_in_voyage = []
                 for job in job_title:
-                    crew_in_voyage.append(getattr(voyage, job))
+                    for crew in crew_in_voyage:
+                        crew.append(getattr(voyage, job))
                 if ssn in crew_in_voyage:
                     crew_members_voyages.append(voyage)
             crew_members_voyages_sorted = sorted(crew_members_voyages, key=lambda voyage:(voyage.date, voyage.departure_time))

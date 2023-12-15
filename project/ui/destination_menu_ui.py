@@ -62,7 +62,7 @@ class DestinationMenu_ui():
         
         ##Kemur fall inn hér sem kallar á að prenta lista inn á viðmót með lista af objectum
 
-        Menu_Actions.clear_terminal()        
+        Menu_Actions.clear_terminal()
         list_of_objects = self.logic_wrapper.get_all_destinations()
         self.print_list.display_destination_list(list_of_objects)
         
