@@ -14,12 +14,12 @@ class CrewMenu_Ui():
 
         sub_header = 'Crew Members'
 
-        menu_list = ['Register captain', 
-                     'Register pilot', 
-                     'Register head flight attendant', 
-                     'Register flight attendant', 
-                     'Crew member record', 
-                     'Crew member avaliability', 
+        menu_list = ['Register Captain', 
+                     'Register Pilot', 
+                     'Register Head flight Attendant', 
+                     'Register Flight Attendant', 
+                     'Crew Member Information', 
+                     'Crew Member Avaliability', 
                     ]
 
         Menu_Actions.clear_terminal()
@@ -123,10 +123,10 @@ class CrewMenu_Ui():
     def crew_record_sub_menu(self):
         """Function that displays the crew records menu and asks for input."""
 
-        sub_header = 'Crew Records'
+        sub_header = 'Crew Member Information'
 
-        menu_list = ['View Crew Member Records', 
-                     'Edit Crew Member Records', 
+        menu_list = ['View Crew Member Information', 
+                     'Edit Crew Member Information', 
                      'List of All Crew Members'
                      'List of All Pilots',
                      'List of All Flight Attendants'
@@ -246,8 +246,6 @@ class CrewMenu_Ui():
     
     def get_input_for_crew_schedule(self):
         """Function that displays the schedule for a given crew number for the week starting with date."""
-
-        Menu_Actions.clear_terminal()
         
         sub_header = "Enter Crew Member Information, SSN and the first day of the week"
 
@@ -304,24 +302,24 @@ class CrewMenu_Ui():
                 self.logic_wrapper.register_crew(crew_entry)
 
             elif command == '5': #Crew Member record (sub menu)
-                command
-                if command == '1':
+                new_command = input("Select menu option: ").lower()
+                if new_command == '1':
                     'View Crew Member Records'
                     pass
 
-                elif command == '2':
+                elif new_command == '2':
                     'Edit Crew Member Records'
                     pass
 
-                elif command == '3':
+                elif new_command == '3':
                     'List of All Crew Members'
                     pass
 
-                elif command == '4':
+                elif new_command == '4':
                     'List of All Pilots'
                     pass
 
-                elif command == '5':
+                elif new_command == '5':
                     'List of All Flight Attendants'
                     pass
 
