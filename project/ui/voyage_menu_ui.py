@@ -5,8 +5,8 @@ from model.voyage import *
 from model.destination import *
 
 class VoyageMenu_ui():
-    def __init__(self):
-        self.logic_wrapper = Logic_Wrapper
+    def __init__(self, data_connection):
+        self.logic_wrapper = data_connection
     
     def voyage_menu(self):
         '''Function that displays the Voyage Menu UI.'''
@@ -195,7 +195,7 @@ class VoyageMenu_ui():
 
         while True:
             self.voyage_menu()
-            command = input("Select menu option: ")
+            command = input("Select menu option: ").lower()
         
             if command == "m":
                 Menu_Actions.menu_input()
