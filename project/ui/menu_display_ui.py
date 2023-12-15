@@ -71,7 +71,7 @@ class Menu_Display:
         print(f'{HYPHEN:>15}         {sub_header:<59}{HYPHEN:>1}')
         Header_Footer_Display.display_lines_below_in_submenu(self)
 
-        menu_list = ['Crew members', 'Destination', 'Voyages', 'Aircraft', 'Print list']
+        menu_list = ['Crew members', 'Destination', 'Voyages', 'Aircraft']
         rest_of_lines = 10 - len(menu_list)
 
         for number , ele in enumerate(menu_list):
@@ -115,8 +115,8 @@ class Menu_Display:
 
 
 class Menu_Display_Lists:
-    def __init__(self, logic_connection: Logic_Wrapper):
-        self.logic_wrapper = logic_connection
+    def __init__(self):
+        return None
     
     def display_one_crewmember_schedule(self, ssn, list_voyages):
 

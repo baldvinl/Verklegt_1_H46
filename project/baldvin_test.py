@@ -12,7 +12,7 @@ while True:
     while True:
         if command == '1':
             crewmenu = CrewMenu_Ui(wrapper)
-            command = crewmenu.input()
+            command = crewmenu.crew_input_display()
             break
         if command == '2':
             destinationmenu = DestinationMenu_ui(wrapper, listprint)
