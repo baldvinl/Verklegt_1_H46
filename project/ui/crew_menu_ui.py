@@ -31,14 +31,13 @@ class CrewMenu_Ui():
     def register_crew(self, crew_type):
         '''Function that asks for input to register crew and returns crew information.'''
 
-        sub_header = "Register crew"
-        menu_list = ['Enter SSN: ', 'Enter name: ']
+        current_menu = "Register crew"
 
-        Menu_Actions.clear_terminal()
+        Menu_Actions.clear_terminal()x 
 
         if crew_type == "1":
-            ssn = input("")
-            name = input("")
+            ssn = input("Enter SSN: ")
+            name = input("Enter name: ")
             job_title = "Captain"
             address = input("Enter address: ")
             area_code = input("Enter area code: ")

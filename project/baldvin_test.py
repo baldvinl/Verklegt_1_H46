@@ -1,17 +1,10 @@
-
-from ui.ui_mainmenu import MainMenu_ui
-from ui.ui_crewmenu import CrewMenu_ui
-from ui.ui_destinationmenu import DestinationMenu_ui
-from ui.ui_aircraftmenu import AircraftMenu_ui
-from ui.ui_voyagemenu import VoyageMenu_ui
-
-QUIT_MESSAGE = "Quitting program"
+from ui.menu_display_ui import *
+from ui.destination_menu_ui import *
 
 run_program = True
 
-while run_program:
-    mainmenu = MainMenu_ui()
-    command = mainmenu.input()
+while True:
+    command = Menu_Actions().menu_input()
     while True:
         if command == '1':
             crewmenu = CrewMenu_ui()
@@ -19,7 +12,7 @@ while run_program:
             break
         if command == '2':
             destinationmenu = DestinationMenu_ui()
-            command = destinationmenu.input()
+            command = destinationmenu.destination_input_display()
             break
         if command == '3':
             voyagemenu = VoyageMenu_ui()
@@ -33,7 +26,7 @@ while run_program:
             print("Print options")
             break
         if command == "q":
-            MainMenu_ui.quit_program()
+            Menu_Actions.quit_program()
         if command == "b":
             break
         

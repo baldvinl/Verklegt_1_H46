@@ -11,15 +11,19 @@ class DestinationMenu_ui():
     
     def destination_display_menu(self):
         """Function that displays Destination Menu UI."""
-        sub_header = 'Crew members'
-        crew_menu_list = ['Register Destination', 'Diplay All Destinations', 'Edit Emergency Contact']
+
+        sub_header = 'Crew Members Menu'
+        crew_menu_list = ['Register Destination', 'Display All Destinations', 'Edit Emergency Contact']
+
         Menu_Actions.clear_terminal()
         Menu_Display.display_sub_menu(self, sub_header, crew_menu_list)
     
     def get_destination_info_from_user(self):
         """Function that asks for inputs to register attributes for a destination and returns a destination object."""
 
-        command_list = ["Enter aiport iata : ", 
+        sub_header = 'Register Destination'
+
+        command_list = ["Enter airport IATA: ", 
                         "Enter country: ", 
                         "Enter flight duration in hh:mm: ", 
                         "Enter distance in kilometers: ", 
@@ -27,7 +31,7 @@ class DestinationMenu_ui():
                         "Enter emergency contact phone number: "
                         ]
     
-        menu_list = ['aiport iata : ', 'Country: ', 'Flight duration: ', 'Distance: ', 'Ice name: ', 'Ice number: ']
+        menu_list = ['Airport IATA code:' , 'Country: ', 'Flight duration: ', 'Distance: ', 'Emergency name: ', 'Emergency number: ']
 
         input_list = []
 
@@ -37,10 +41,10 @@ class DestinationMenu_ui():
 
             for i in range(len(menu_list)):
                 Menu_Actions.clear_terminal()
-                Menu_Display.display_empty_list_menu(self, menu_list, input_list)
+                Menu_Display.display_empty_list_menu(self, sub_header, menu_list, input_list)
                 a = input(command_list[i])
-                input_list[i] = a
-
+                input_list[i] = a 
+            #ATH prentast ekki út innsláttur áður en þessi spurning kemur
             answer = input('Press y if you want to save the destination: ')
             if answer == 'y':
                 break
@@ -68,17 +72,16 @@ class DestinationMenu_ui():
         """Function that asks for ariport IATA and if they want to change either emergency 
         contact or number or both and returns a tuple"""
 
-        Menu_Actions.clear_terminal()
-
-        question_ice_name = input("Would you like to change the emergency contact name (y/n): ").lower()
-        question_ice_number = input("Would you like to change the emergency contact number (y/n): ").lower()
-
+        question_ice_name = input("Would you like to change the emergency contact name? (press y for yes): ").lower()
+        
         if question_ice_name == 'y':
             new_ice_name = input("Enter the new emergency contact name: ")
         else:
             new_ice_name = ''
 
-        if question_ice_number == 'n':
+        question_ice_number = input("Would you like to change the emergency contact number? (press y for yes): ").lower()
+
+        if question_ice_number == 'y':
             new_ice_number = input("Enter the new emergency contact phone number: ")
         else:
             new_ice_number = ''
@@ -89,14 +92,12 @@ class DestinationMenu_ui():
     def destination_input_display(self):
         '''Function that asks for input in destination menu.'''
 
-        allowed_commands_input = ['m', 'q', 'b', '1', '2', '3']
-        command_text = "Select menu option: "
-
-        while command := (input(command_text)).lower() not in allowed_commands_input:
+        while True:
             self.destination_display_menu()
+            command = input("Select menu option: ")
 
             if command == 'm':
-                Menu_Display.display_main_menu()
+                Menu_Actions.menu_input()
 
             elif command == "q":
                 Menu_Actions.quit_program()
@@ -106,7 +107,6 @@ class DestinationMenu_ui():
             
             elif command == '1':
                 self.logic_wrapper.register_destination(self.get_destination_info_from_user())
-                break
           
             elif command == '2':
                 self.display_all_destination_info()
@@ -114,5 +114,5 @@ class DestinationMenu_ui():
             elif command == '3':
                 airport_iata = input("Enter the airport IATA code: ")
                 emergency_contact_information = self.change_emergency_contact_from_input()
-                self.logic_wrapper.change_emergency_contact_info(airport_iata, emergency_contact_information)'
+                self.logic_wrapper.change_emergency_contact_info(airport_iata, emergency_contact_information)
                 
