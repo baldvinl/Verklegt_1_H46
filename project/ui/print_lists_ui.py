@@ -1,4 +1,3 @@
-from pprint import pprint
 from logic.logic_wrapper import Logic_Wrapper
 from model.pilot import Pilot
 
@@ -37,7 +36,37 @@ class List_Print_UI:
         print()
         print()
         print()
-            #     for number , ele in enumerate(menu_list):
-            # print(f'{HYPHEN:>15}{(number+1):>10}   {ele:<55}{HYPHEN:>1}')
     
-    
+    def display_one_crewmember_scedule(self)
+         
+        header = "Shift schedule for <name>, <SSN> within week <number>"
+        subheader = "Destination"
+        whitespace = " "
+        day_list = [
+            "Monday: ",
+            "Tuesday: ",
+            "Wedensday: ",
+            "Thursday: ",
+            "Friday: ",
+            "Saturday: ",
+            "Sunday: ",
+        ]
+        country_list = [
+            "Greenland",
+            "Day off",
+            "Greenland",
+            "Svalbard",
+            "Svalbard",
+            "Faroe Island",
+            "Day off",
+        ]
+
+        print(header)
+        print("=" * 55)
+        print(f"{whitespace:<10}{subheader:^45}")
+        print("-" * 55)
+        for day, country in zip(day_list, country_list):
+            print(f"{day:<10}{country:^45}")
+        print("-" * 55)
+            
+            
