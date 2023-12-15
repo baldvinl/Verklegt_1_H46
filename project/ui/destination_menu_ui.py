@@ -6,8 +6,8 @@ ALLOWED_INPUT = ['m', 'q', 'b']
 
 
 class DestinationMenu_ui():
-    def __init__(self):
-        self.logic_wrapper = Logic_Wrapper
+    def __init__(self, data_connection):
+        self.logic_wrapper = data_connection
     
     def destination_display_menu(self):
         """Function that displays Destination Menu UI."""
