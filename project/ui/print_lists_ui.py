@@ -19,17 +19,13 @@ FLIGHT_DURATION = 'Flight duration'
 DISTANCE = 'Dinstance'
 EMERGENCY_CONTACT_NAME = 'Emergency contact name'
 EMERGENCY_CONTACT_NUMBER = 'Emergency number'
+DESTINATION = 'Destination'
+DEPARTURE_ICELAND = 'Dep Iceland'
+DEPARTURE_COUNTRY = 'Dep country'
+WHITESPACE = ' '
 
 class List_Print_UI:
-    def __init__(self,ssn, name, job_title, address, email, mobile, phone_no, type_rating, logic_connection: Logic_Wrapper):
-        self.ssn = ssn
-        self.name = name
-        self.job_title = job_title
-        self.address = address
-        self.email = email
-        self.molbile = mobile
-        self.phone_no = phone_no
-        self.type_rating = type_rating
+    def __init__(self, logic_connection: Logic_Wrapper):
         self.logic_wrapper = logic_connection
 
     def display_main_list(self, pilot_list):
@@ -93,6 +89,24 @@ class List_Print_UI:
             
             print(f'{crew_member.ssn:<12}{crew_member.name:<20}{crew_member.address:<15}{crew_member.email:<22}{crew_member.mobile:^12}{crew_member.phone_no:^12}{crew_member.job_title:<16}{crew_member.country} ')
         print('-'*120)
+
+    def display_schedule_for_employees(self, schedule_list):
+
+        a_list = ['Greenland', '23/11/23 05:00', '23/11/23 08:30', '0302030405']
+
+        print()
+        print('Shift schedule for employees on specific day and destination')
+        print('='*80, "\033[1m")
+        print(f'{DESTINATION:<15}{DEPARTURE_ICELAND:^20}{DEPARTURE_COUNTRY:^20}{SSN:^20}'"\033[0;0m")
+        print('-'*80)
+        for voyages in schedule_list:
+            print(f'{voyages.country:<15}{voyages.time_depart_iceland:^20}{voyages.time_depart_destination:^20}')
+            print(f'{WHITESPACE*170}              Captain: {voyages.captain}')
+            print(f'{WHITESPACE*170}                Pilot: {voyages.pilot}')
+            print(f'{WHITESPACE*170}Head flight attendant: {voyages.head_flight_attendant}')
+            print(f'{WHITESPACE*170}   Flight attendant 1: {voyages.flight_attendant1}')
+            print(f'{WHITESPACE*170}   Flight attendant 2: {voyages.flight_attendant2}')
+        print('-'*80)
 
     
 
