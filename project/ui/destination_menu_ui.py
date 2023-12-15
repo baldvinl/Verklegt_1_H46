@@ -1,13 +1,15 @@
 from logic.logic_wrapper import Logic_Wrapper
 from model.destination import Destination
 from ui.menu_display_ui import *
+from ui.print_lists_ui import List_Print_UI
 
 ALLOWED_INPUT = ['m', 'q', 'b']
 
 
 class DestinationMenu_ui():
-    def __init__(self, data_connection: Logic_Wrapper):
+    def __init__(self, data_connection: Logic_Wrapper, list_print: List_Print_UI):
         self.logic_wrapper = data_connection
+        self.print_list = list_print
     
     def destination_display_menu(self):
         """Function that displays Destination Menu UI."""
@@ -62,6 +64,7 @@ class DestinationMenu_ui():
 
         Menu_Actions.clear_terminal()        
         list_of_objects = self.logic_wrapper.get_all_destinations()
+        self.print_list.display_destination_list(list_of_objects)
         
         command = input().lower()
 

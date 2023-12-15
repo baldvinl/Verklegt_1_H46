@@ -271,7 +271,7 @@ class CrewMenu_Ui():
                 a = input(command_list[i])
                 input_list[i] = a
                 print()
-       
+        
             answer = input('Is The Information Correct (press y for yes): ')
             if answer == 'y':
                 break
