@@ -17,7 +17,7 @@ class Logic_Wrapper:
         self.aircraft_logic = Aircraft_Logic(self.data_wrapper)
         self.voyage_logic = Voyage_Logic(self.data_wrapper)
         self.crew_logic = Crew_Logic(self.data_wrapper, self.voyage_logic)
-        self.destination_logic = Destination_Logic(self.data_wrapper)
+        self.destination_logic = Destination_Logic(self.data_wrapper) #Took out the voyage_logic to be able to run
 
     # CREW
 

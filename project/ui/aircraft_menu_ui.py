@@ -1,69 +1,68 @@
-import os
-from ui.ui_mainmenu import *
-
-QUIT = "[Q]uit"
-
+from logic.logic_wrapper import Logic_Wrapper
+from ui.menu_display_ui import *
+from model.aircraft import *
 
 class AircraftMenu_ui():
     def __init__(self):
-        return None
+        self.logic_wrapper = Logic_Wrapper
     
     def aircraft_menu(self):
         '''Function that displays Aircraft Menu UI.'''
 
-        current_menu = "Aircraft menu"
+        sub_header = "Aircraft menu"
+        aircraft_menu_list = ['Register aircraft']
 
-        MainMenu_ui.clear_terminal()
-        MainMenu_ui.main_header(current_menu)
-
-        print(f"1. Register a new aircraft")
-        print(f"2. Aircraft status")
-        print(f"[M]enu  [B]ack  [Q]uit")
+        Menu_Actions.clear_terminal()
+        Menu_Display.display_sub_menu(self, sub_header, aircraft_menu_list)
     
-    def register_aircraft(self):
+    def register_aircraft_display(self):
         '''Function that asks for input to register aircraft and returns aircraft information.'''
 
-        current_menu = "Register a new aircraft"
-        MainMenu_ui.clear_terminal()
-        MainMenu_ui.main_header(current_menu)
+        sub_header = 'Register aircraft'
+        command_list = ['Enter aircraft name: ', 'Enter aircraft type: ', 'Enter the aircraft manufacturer: ', 'Enter the seat count: ']
 
-        aircraft_name = input("Enter aircraft name: ")
-        aircraft_type = input("Enter aircraft type: ")
-        aircraft_manufacturer = input("Enter the aircraft manufacturer: ")
-        seat_count = input("Enter the seat count: ")
+        menu_list = ['Name: ', 'Type: ', 'Manufacturer: ', 'Seat count: ']
 
-        return aircraft_name, aircraft_type, aircraft_manufacturer, seat_count
-
-    def aircraft_status(self):
-        '''Function that displays the aircraft status.'''
-        
-        current_menu = "Aircraft status"
-        MainMenu_ui.clear_terminal()
-        MainMenu_ui.main_header(current_menu)
-
-        date = input("Enter date: (YY-MM-DD) ")
-        time = input("Enter time: (hh:mm) ")
-
-        # Call function that returns list of aircraft and their status at the given date/time.
-
-        pass
-
-    def input(self):
-        '''Function that asks for input in aircraft menu.'''
+        input_list = [] 
 
         while True:
+            for i in range(0, 10):
+                input_list.append('')
+
+            for i in range(len(menu_list)):
+                Menu_Actions.clear_terminal()
+                Menu_Display.display_empty_list_menu(self, sub_header, menu_list, input_list)
+                a = input(command_list[i])
+                input_list[i] = a
+
+            answer = input('Press y if you want to save the destination: ')
+            if answer != 'y':
+                break
+
+        new_aircraft = Aircraft()
+        new_aircraft.attribute_implementation(input_list)
+
+        current_menu = "Register a new aircraft"
+        Menu_Actions.clear_terminal()
+        Menu_Display.display_empty_list_menu(self, sub_header, menu_list, input_list)
+
+        return new_aircraft
+
+    def aircraft_input(self):
+        '''Function that asks for input in aircraft menu.'''
+        
+        while True:
             self.aircraft_menu()
-            command = input("Please enter menu number: ")
-            command = command.lower()
-            if command == "q":
-                MainMenu_ui.quit_program()
-                pass
-            if command == "b":
-                print("Going back to previous menu.")
-                return "b"
-            if command == '1':
-                aircraft_entry = self.register_aircraft()
-                print(aircraft_entry)
-            if command == '2':
-                pass
-                
+            command = input('Select menu option: ').lower()
+
+            if command == 'm':
+                Menu_Actions.menu_input(self)
+
+            elif command == "q":
+                Menu_Actions.quit_program()
+
+            elif command == "b":
+                break
+            
+            elif command == '1':
+                self.logic_wrapper.register_aircraft(self.register_aircraft_display())
