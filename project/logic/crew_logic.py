@@ -22,7 +22,7 @@ class Crew_Logic:
         if crew object received is of the type Pilot or not and forwards to data wrapper accordingly"""
         already_exists = self.get_crew_member(crew.ssn)
         if not already_exists:
-            if crew.job_title == "Pilot" or crew.job_title == "Captain":
+            if isinstance(crew, Pilot):
                 return self.data_wrapper.register_pilot_to_file(crew)
             else:
                 return self.data_wrapper.register_flight_attendant_to_file(crew)
@@ -75,7 +75,7 @@ class Crew_Logic:
             crew_dict = dict.fromkeys(job_title, None)
             crew_dict.update({"flight_attendants": None})
             for member in crew_not_working:
-                if member.job_title in crew_dict:
+                if member.job_title in job_title:
                     crew_dict[member.job_title].append(member)
                 else:
                     crew_dict["flight_attendants"].append(member)

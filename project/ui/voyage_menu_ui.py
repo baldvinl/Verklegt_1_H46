@@ -51,7 +51,7 @@ class VoyageMenu_ui():
         
         current_menu = f"Crew allocation on {date}"
 
-        MainMenu_ui.clear_terminal()
+        Menu_Actions.clear_terminal()
         Voyages_Menu_Display.display_add_crew(self)
 
         wrapper = Logic_Wrapper()
@@ -82,8 +82,8 @@ class VoyageMenu_ui():
         
         current_menu = f"Schedule for {ssn} on the week starting with {date}"
 
-        MainMenu_ui.clear_terminal()
-        MainMenu_ui.main_header(current_menu)
+        Menu_Actions.clear_terminal()
+        Menu_Display.main_header(current_menu)
 
         wrapper = Logic_Wrapper()
         schedule = wrapper.get_voyages_date(ssn, date) #need to confirm function call
@@ -102,8 +102,8 @@ class VoyageMenu_ui():
         
         current_menu = f"Voyages on {date}"
 
-        MainMenu_ui.clear_terminal()
-        MainMenu_ui.main_header(current_menu)
+        Menu_Actions.clear_terminal()
+        Header_Footer_Display.main_header(current_menu)
 
         wrapper = Logic_Wrapper()
         voyages = wrapper.get_voyage_status(date)
@@ -121,7 +121,7 @@ class VoyageMenu_ui():
         
         current_menu = f"Voyages in week after {date}"
 
-        MainMenu_ui.clear_terminal()
+        Menu_Actions.clear_terminal()
         MainMenu_ui.main_header(current_menu)
 
         wrapper = Logic_Wrapper()
@@ -140,7 +140,7 @@ class VoyageMenu_ui():
 
         current_menu = "Display voyages"
 
-        MainMenu_ui.clear_terminal()
+        Menu_Actions.clear_terminal()
         MainMenu_ui.main_header(current_menu)
 
         print(f"1. Voyage fully manned for date")
@@ -164,7 +164,7 @@ class VoyageMenu_ui():
 
         current_menu = "Display crew availability"
 
-        MainMenu_ui.clear_terminal()
+        Menu_Actions.clear_terminal()
         MainMenu_ui.main_header(current_menu)
 
         print(f"1. Working crew for given day")

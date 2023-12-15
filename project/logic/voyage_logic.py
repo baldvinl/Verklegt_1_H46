@@ -52,7 +52,7 @@ class Voyage_Logic:
             return self.data_wrapper.register_voyage_to_file(new_voyage)
         raise VoyageAlreadyInSystem("Voyage is already registered!")
 
-    # def add_crew_to_voyage(self, ssn_list: list, voyage: Voyage):
+    # def add_crew_to_voyage(self, ssn_list: list, voyage: Voyage): #TODO
     #     """Receives crew members ssn in a list, and voyage object. Updates voyage
     #     object according to the job title of each crew member and returns it"""
     #     for ssn in ssn_list:
