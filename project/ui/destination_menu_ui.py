@@ -12,11 +12,11 @@ class DestinationMenu_ui():
     def destination_display_menu(self):
         """Function that displays Destination Menu UI."""
 
-        sub_header = 'Crew Members Menu'
-        crew_menu_list = ['Register Destination', 'Display All Destinations', 'Edit Emergency Contact']
+        sub_header = 'Destination Menu'
+        destination_menu_list = ['Register Destination', 'Display All Destinations', 'Edit Emergency Contact']
 
         Menu_Actions.clear_terminal()
-        Menu_Display.display_sub_menu(self, sub_header, crew_menu_list)
+        Menu_Display.display_sub_menu(self, sub_header, destination_menu_list)
     
     def get_destination_info_from_user(self):
         """Function that asks for inputs to register attributes for a destination and returns a destination object."""
