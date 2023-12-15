@@ -46,7 +46,8 @@ class DestinationMenu_ui():
                 Menu_Display.display_empty_list_menu(self, sub_header, menu_list, input_list)
                 a = input(command_list[i])
                 input_list[i] = a 
-            #ATH prentast ekki út innsláttur áður en þessi spurning kemur
+                print()
+           
             answer = input('Press y if you want to save the destination: ')
             if answer == 'y':
                 break
@@ -59,8 +60,6 @@ class DestinationMenu_ui():
 
     def display_all_destination_info(self):
         '''Function that displays the information about the destinations.'''
-        
-        ##Kemur fall inn hér sem kallar á að prenta lista inn á viðmót með lista af objectum
 
         Menu_Actions.clear_terminal()
         list_of_objects = self.logic_wrapper.get_all_destinations()

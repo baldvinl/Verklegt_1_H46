@@ -3,7 +3,10 @@ from logic.logic_wrapper import Logic_Wrapper
 from ui.menu_display_ui import *
 from model.pilot import Pilot
 from model.flight_attendant import Flight_Attendant
+from model.crew import Crew
 from datetime import datetime
+
+ALLOWED_INPUT = ['m', 'q', 'b']
 
 class CrewMenu_Ui():
     def __init__(self, logic_conneciton: Logic_Wrapper):
@@ -121,7 +124,7 @@ class CrewMenu_Ui():
             Menu_Actions.menu_input()
             
     
-    def crew_record_sub_menu(self):
+    def crew_information_sub_menu(self):
         """Function that displays the crew records menu and asks for input."""
 
         sub_header = 'Crew Member Information'
@@ -204,46 +207,70 @@ class CrewMenu_Ui():
         command = input("Please enter command: ")
         command = command.lower()
     
-    def display_crew_member(self, ssn):
+    def display_crew_member(self):
         """Function that displays all information about a crew member."""
 
-        current_menu = f"Information about crew member {ssn}"
-
+        sub_header = 'Crew Member Information'
+        menu_list = []
         Menu_Actions.clear_terminal()
-        Menu_Display.m.main_header(current_menu)
-        
-        wrapper = Logic_Wrapper()
-        info = wrapper.get_crew_member() #need to confirm function call
+        Menu_Display.display_sub_menu(self, sub_header, menu_list)
+        ssn = input("Please enter the ssn of the crew_member: ").lower()        
 
-        crew_info = Crew(info)
+        crew_member = self.logic_wrapper.get_crew_member(ssn)
+        second_sub_header = crew_member.name
 
-        print(f"SSN, Name, Job title, Address, E-mail, Mobile, Phone, Type rating") #how do we get the type rating for pilots?
-        print(crew_info.ssn, crew_info.name, crew_info.job_title, crew_info.address, crew_info.email, crew_info.mobile_no, crew_info.phone_no, crew_info.type_rating, end= " " "\n")
-        print(f"[M]enu  [B]ack  [Q]uit")
+        menu_list =  ['SNN: '+ crew_member.ssn,
+                     'Job titile: ' + crew_member.job_title, 
+                     'Address: ' + crew_member.address, 
+                     'E-mail: ' + crew_member.email,
+                     'Mobile_no: '+ crew_member.mobile_no,
+                     'Phone_no: ' + crew_member.phone_no]
         
-        command = input("Please enter command: ")
-        command = command.lower()
+        Menu_Actions.clear_terminal()
+        Menu_Display.display_sub_menu(self, second_sub_header, menu_list)
+
+        command = input().lower()
+        while command != ALLOWED_INPUT:
+            continue
     
-    def change_crew_info(self):
+    def change_crew_info_from_input(self):
         """Function that asks for crew SSN and updated information and returns."""
         
-        current_menu = "Edit crew member information"
+        sub_header = "Edit Crew Member Information"
 
-        Menu_Actions.clear_terminal()
-        Menu_Display.m.main_header(current_menu)
+        command_list = ["Enter The Crew Member's SSN: ",
+                        "Enter Address: ",
+                        "Enter E-mail: ",
+                        "Enter Mobile Phone Number: ",
+                        "Enter Home Phone Number: "
+                        ]
         
-        new_crew_info = ()
+        menu_list = ['Crew Members SSN: ', 'Address: ', 'E-mail: ', 'Mobile Phone Number: ', 'Home Phone Number: ']
 
-        ssn = input("Enter the crew member's SSN: ")
-        address = input("Enter address: ")
-        area_code = input("Enter area code: ")
-        email = input("Enter email: ")
-        mobile_no = input("Enter mobile phone number: ")
-        phone_no = input("Enter home phone number: ")
+        input_list = []
 
-        new_crew_info = address, email, mobile_no, phone_no
+        while True:
+            for i in range(0, 10):
+                input_list.append('')
 
-        return ssn, new_crew_info
+            for i in range(len(menu_list)):
+                Menu_Actions.clear_terminal()
+                Menu_Display.display_empty_list_menu(self, sub_header, menu_list, input_list)
+                a = input(command_list[i])
+                input_list[i] = a 
+                print()
+            
+            answer = input('Press y if you want to save the destination: ')
+            if answer == 'y':
+                break
+
+        ssn = input_list[0]
+
+        if self.logic_wrapper.get_crew_member(ssn):
+            new_crew_member = Crew()
+            new_crew_member.attribute_implementation(input_list[1:])
+    
+        return new_crew_member
     
     def get_input_for_crew_schedule(self):
         """Function that displays the schedule for a given crew number for the week starting with date."""
@@ -286,7 +313,7 @@ class CrewMenu_Ui():
         if list_voyages:
             Menu_Display_Lists.display_one_crewmember_schedule(ssn, list_voyages)
         else:
-            print("emmpty")
+            print("empty")
 
 
     def crew_input_display(self):
@@ -309,15 +336,15 @@ class CrewMenu_Ui():
                 crew_entry = self.register_crew_from_input(command)
                 self.logic_wrapper.register_crew(crew_entry)
 
-            elif command == '5': #Crew Member record (sub menu)
+            elif command == '5': 
+                self.crew_information_sub_menu()
                 new_command = input("Select menu option: ").lower()
+                
                 if new_command == '1':
-                    'View Crew Member Records'
-                    pass
+                    self.display_crew_member()
 
                 elif new_command == '2':
-                    'Edit Crew Member Records'
-                    pass
+                    self.change_crew_info_from_input()
 
                 elif new_command == '3':
                     'List of All Crew Members'
