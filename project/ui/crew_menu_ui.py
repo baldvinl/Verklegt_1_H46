@@ -54,8 +54,7 @@ class CrewMenu_Ui():
                 if answer == 'y':
                     break
 
-            new_crew_member = Pilot(ssn, name, job_title, address, email, mobile_no, phone_no, type_rating)
-            return new_crew_member
+            return Pilot(ssn, name, job_title, address, email, mobile_no, phone_no, type_rating)
 
 
         elif crew_type == "2":
@@ -76,8 +75,7 @@ class CrewMenu_Ui():
                 if answer == 'y':
                     break
 
-            new_crew_member = Pilot(ssn, name, job_title, address, email, mobile_no, phone_no, type_rating)
-            return new_crew_member
+            return Pilot(ssn, name, job_title, address, email, mobile_no, phone_no, type_rating)
 
         
         elif crew_type == "3":    
@@ -97,8 +95,7 @@ class CrewMenu_Ui():
                 if answer == 'y':
                     break
 
-            new_crew_member = Flight_Attendant(ssn, name, job_title, address, email, mobile_no, phone_no)
-            return new_crew_member
+            return Flight_Attendant(ssn, name, job_title, address, email, mobile_no, phone_no)
 
         elif crew_type == "4":
 
@@ -118,8 +115,7 @@ class CrewMenu_Ui():
                 if answer == 'y':
                     break
 
-            new_crew_member = Flight_Attendant(ssn, name, job_title, address, email, mobile_no, phone_no)
-            return new_crew_member
+            return Flight_Attendant(ssn, name, job_title, address, email, mobile_no, phone_no)
         else:
             Menu_Actions.menu_input()
             
@@ -247,6 +243,46 @@ class CrewMenu_Ui():
         new_crew_info = address, email, mobile_no, phone_no
 
         return ssn, new_crew_info
+    
+    def display_crew_schedule_date(self, ssn, date):
+        """Function that displays the schedule for a given crew number for the week starting with date."""
+
+        Menu_Actions.clear_terminal()
+        
+        sub_header = "Enter Crew Member Information"
+
+        command_list = ["Enter the crew member's SSN: ", 
+                        "Enter the year: ", 
+                        "Enter the month: ", 
+                        "Enter the day of the month: "
+                        ]
+        
+        menu_list = ['Crew Members SSN: ', 'The Year: ', 'The Month: ', 'The Day of the Month: ']
+
+        input_list = []
+
+        while True:
+            for i in range(0, 10):
+                input_list.append('')
+
+            for i in range(len(menu_list)):
+                Menu_Actions.clear_terminal()
+                Menu_Display.display_empty_list_menu(self, sub_header, menu_list, input_list)
+                a = input(command_list[i])
+                input_list[i] = a
+                print()
+       
+            answer = input('Is The Information Correct (press y for yes): ')
+            if answer == 'y':
+                break
+
+        Menu_Display.display_empty_list_menu(self, sub_header, menu_list, menu_list):
+
+
+        Menu_Actions.clear_terminal()
+        Menu_Display_Lists.display_one_crewmember_schedule(self, ssn, list_of_voyages)
+
+        return 
 
 
     def input(self):
@@ -268,7 +304,6 @@ class CrewMenu_Ui():
             elif command == '1' or command == '2' or command == '3' or command == '4':
                 crew_entry = self.register_crew_from_input(command)
                 self.logic_wrapper.register_crew(crew_entry)
-                print(crew_entry)
 
             elif command == '5': #Crew Member record (sub menu)
                 command
@@ -293,5 +328,8 @@ class CrewMenu_Ui():
                     pass
 
             elif command == '6':
-                pass
+                list_of_voyages = self.logic_wrapper.get_weekly_voyage_schedule()
+                self.display_crew_schedule_date(date, ssn)
+
+ssn and date from input send with get_weekly_voyage_schedule
 
