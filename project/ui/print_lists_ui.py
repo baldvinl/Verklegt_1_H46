@@ -4,6 +4,7 @@ from model.flight_attendant import Flight_Attendant
 from model.destination import Destination
 from data.destination_data import Destination
 
+
 SSN = 'SSN'
 NAME = 'Name'
 JOB_TITLE = 'Job title'
@@ -41,11 +42,7 @@ class List_Print_UI:
         for pilot in pilot_list:
             print(f'{pilot.ssn:<12}{pilot.name:<25}{pilot.address:<15}{pilot.job_title:<17}{pilot.email:<25}{pilot.mobile_no:<12}{pilot.phone_no:<12}{pilot.type_rating:<7}')
         print('-'*125)
-        print()
-        print()
-        print()
-        print()
-        print()
+
 
     def display_flight_attendant_list(self, flight_attendant_list):
         '''Flight attendant list'''
@@ -65,7 +62,8 @@ class List_Print_UI:
         whitespace = " "
         day_list = ["Monday: ","Tuesday: ","Wedensday: ","Thursday: ","Friday: ","Saturday: ","Sunday: ",]
         country_list = ["Greenland","Day off","Greenland","Svalbard","Svalbard","Faroe Island","Day off",]
-
+       
+        print()
         print(header)
         print("=" * 55)
         print(f"{whitespace:<10}{subheader:^45}")
@@ -74,15 +72,23 @@ class List_Print_UI:
             print(f"{day:<10}{country:^45}")
         print("-" * 55)
 
-def display_destination_list(self, dest_list):
-    '''Destination list'''
-    print()
-    print('List of all destinations')
-    print('='*100, "\033[1m")
-    print(f'{AIRPORT:<9}{COUNTRY:<17}{FLIGHT_DURATION:^13}{DISTANCE:^15}{EMERGENCY_CONTACT_NAME:<25}{EMERGENCY_CONTACT_NUMBER:<12}',"\033[0;0m")
-    print('-'*100)
-    for destination in dest_list:
-        print(f'{destination.airport:<9}{destination.country:<17}{destination.flight_duration:^13}{destination.distance:^15}{destination.ice_name:<25}{destination.ice_number:<12}')
-    print('-'*100)
-            
-            
+    def display_destination_list(self, dest_list):
+        '''Destination list'''
+        print()
+        print('List of all destinations')
+        print('='*100, "\033[1m")
+        print(f'{AIRPORT:<9}{COUNTRY:<17}{FLIGHT_DURATION:^13}{DISTANCE:^15}{EMERGENCY_CONTACT_NAME:<25}{EMERGENCY_CONTACT_NUMBER:<12}',"\033[0;0m")
+        print('-'*100)
+        for destination in dest_list:
+            print(f'{destination.airport:<9}{destination.country:<17}{destination.flight_duration:^13}{destination.distance:^15}{destination.ice_name:<25}{destination.ice_number:<12}')
+        print('-'*100)
+
+    def display_schedule_for_all_crew(self, a_list):
+        print()
+        print('Shift schedule for employees on specific day and destination')
+        print('='*100, "\033[1m")
+        print(f'{AIRPORT:<9}{COUNTRY:<17}{FLIGHT_DURATION:^13}{DISTANCE:^15}{EMERGENCY_CONTACT_NAME:<25}{EMERGENCY_CONTACT_NUMBER:<12}',"\033[0;0m")
+        print('-'*100)
+        for destination in dest_list:
+            print(f'{destination.airport:<9}{destination.country:<17}{destination.flight_duration:^13}{destination.distance:^15}{destination.ice_name:<25}{destination.ice_number:<12}')
+        print('-'*100)
