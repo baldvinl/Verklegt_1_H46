@@ -76,26 +76,7 @@ class VoyageMenu_ui():
         command = command.lower()
         
         return None
-
-    def display_crew_schedule_date(self, ssn, date):
-        """Function that displays the schedule for a given crew number for the week starting with date."""
-        
-        current_menu = f"Schedule for {ssn} on the week starting with {date}"
-
-        Menu_Actions.clear_terminal()
-        Menu_Display.main_header(current_menu)
-
-        wrapper = Logic_Wrapper()
-        schedule = wrapper.get_voyages_date(ssn, date) #need to confirm function call
-        
-        crew_info = Crew(schedule)
-
-        print(f"SSN, Name, Job title, Address, E-mail, Mobile, Phone, Destination") 
-        print(crew_info.ssn, crew_info.name, crew_info.job_title, crew_info.address, crew_info.email, crew_info.mobile_no, crew_info.phone_no, crew_info.destination, end= " " "\n") # need to confirm how to get destination
-        print(f"[M]enu  [B]ack  [Q]uit")
-        
-        command = input("Please enter command: ")
-        command = command.lower()
+    
 
     def display_voyages_for_day(self, date):
         """Function that sends date to logic layer and prints all voyages on given date and if they are fully manned or not."""
@@ -215,6 +196,4 @@ class VoyageMenu_ui():
             elif command == '3':
                 pass
             
-            elif command == "4":
-                pass
     
