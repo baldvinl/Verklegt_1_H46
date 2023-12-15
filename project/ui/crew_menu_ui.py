@@ -327,8 +327,3 @@ class CrewMenu_Ui():
 
             elif command == '6':
                 self.get_input_for_crew_schedule()
-
-                
-
-ssn and date from input send with get_weekly_voyage_schedule
-
