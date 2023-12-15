@@ -16,9 +16,13 @@ FLIGHT_DURATION = 'Flight duration'
 DISTANCE = 'Dinstance'
 EMERGENCY_CONTACT_NAME = 'Emergency contact name'
 EMERGENCY_CONTACT_NUMBER = 'Emergency number'
+DESTINATION = 'Destination'
+DEPARTURE_ICELAND = 'Dep Iceland'
+DEPARTURE_COUNTRY = 'Dep country'
+WHITESPACE = ' '
 
 class List_Print_UI:
-    def __init__(self,logic_connection: Logic_Wrapper):
+    def __init__(self, logic_connection: Logic_Wrapper):
         self.logic_wrapper = logic_connection
 
     def display_main_list(self, pilot_list):
@@ -64,10 +68,10 @@ class List_Print_UI:
     def display_destination_list(self, dest_list):
         print()
         print('='*100, "\033[1m")
-        print(f'{AIRPORT:<9}{COUNTRY:<17}{FLIGHT_DURATION:^13}{DISTANCE:^15}{EMERGENCY_CONTACT_NAME:<25}{EMERGENCY_CONTACT_NUMBER:<12}',"\033[0;0m")
+        print(f'{AIRPORT:<9}{COUNTRY:<17}{FLIGHT_DURATION:^13}{DISTANCE:^15}{EMERGENCY_CONTACT_NAME:<25}{EMERGENCY_CONTACT_NUMBER:^12}',"\033[0;0m")
         print('-'*100)
         for destination in dest_list:
-            print(f'{destination.airport:<9}{destination.country:<17}{destination.flight_duration:^13}{destination.distance:^15}{destination.ice_name:<25}{destination.ice_number:<12}')
+            print(f'{destination.airport:<9}{destination.country:<17}{destination.flight_duration:^13}{destination.distance:^15}{destination.ice_name:<25}{destination.ice_number:^12}')
         print('-'*100)
     
     def display_schedule_for_all_crew(self, a_list):
@@ -79,6 +83,22 @@ class List_Print_UI:
             
             print(f'{crew_member.ssn:<12}{crew_member.name:<20}{crew_member.address:<15}{crew_member.email:<22}{crew_member.mobile:^12}{crew_member.phone_no:^12}{crew_member.job_title:<16}{crew_member.country} ')
         print('-'*120)
+
+    def display_schedule_for_employees(self, schedule_list):
+
+        print()
+        print('Shift schedule for employees on specific day and destination')
+        print('='*80, "\033[1m")
+        print(f'{DESTINATION:<15}{DEPARTURE_ICELAND:^20}{DEPARTURE_COUNTRY:^20}{SSN:^20}'"\033[0;0m")
+        print('-'*80)
+        for voyages in schedule_list:
+            print(f'{voyages.country:<15}{voyages.time_depart_iceland:^20}{voyages.time_depart_destination:^20}')
+            print(f'{WHITESPACE*170}              Captain: {voyages.captain}')
+            print(f'{WHITESPACE*170}                Pilot: {voyages.pilot}')
+            print(f'{WHITESPACE*170}Head flight attendant: {voyages.head_flight_attendant}')
+            print(f'{WHITESPACE*170}   Flight attendant 1: {voyages.flight_attendant1}')
+            print(f'{WHITESPACE*170}   Flight attendant 2: {voyages.flight_attendant2}')
+        print('-'*80)
 
     
 
