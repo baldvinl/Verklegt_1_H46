@@ -107,7 +107,7 @@ class DestinationMenu_ui():
             
             elif command == '1':
                 self.logic_wrapper.register_destination(self.get_destination_info_from_user())
-          
+        
             elif command == '2':
                 self.display_all_destination_info()
 

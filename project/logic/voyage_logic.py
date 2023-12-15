@@ -1,7 +1,7 @@
 from datetime import timedelta, datetime
 from data.data_wrapper import Data_Wrapper
 from model.voyage import Voyage
-from logic.custom_exceptions import VoyageNotFound, VoyageAlreadyInSystem, NoVoyagesForThisPeriod
+from logic.custom_exceptions import VoyageNotFound, VoyageAlreadyInSystem
 
 class Voyage_Logic:
     def __init__(self, data_connection: Data_Wrapper):

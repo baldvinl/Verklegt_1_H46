@@ -207,7 +207,7 @@ class VoyageMenu_ui():
                 break
             
             elif command == '1':
-                self.logic_wrapper.register_voyage(self.register_voyage_from_input)
+                self.logic_wrapper.register_voyage(self.register_voyage_from_input) #TODO
 
             elif command == '2':
                 pass
