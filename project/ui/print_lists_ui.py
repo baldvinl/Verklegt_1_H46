@@ -82,13 +82,20 @@ class List_Print_UI:
         for destination in dest_list:
             print(f'{destination.airport:<9}{destination.country:<17}{destination.flight_duration:^13}{destination.distance:^15}{destination.ice_name:<25}{destination.ice_number:<12}')
         print('-'*100)
-
+    
     def display_schedule_for_all_crew(self, a_list):
         print()
         print('Shift schedule for employees on specific day and destination')
-        print('='*100, "\033[1m")
-        print(f'{AIRPORT:<9}{COUNTRY:<17}{FLIGHT_DURATION:^13}{DISTANCE:^15}{EMERGENCY_CONTACT_NAME:<25}{EMERGENCY_CONTACT_NUMBER:<12}',"\033[0;0m")
-        print('-'*100)
-        for destination in dest_list:
-            print(f'{destination.airport:<9}{destination.country:<17}{destination.flight_duration:^13}{destination.distance:^15}{destination.ice_name:<25}{destination.ice_number:<12}')
-        print('-'*100)
+        print('='*120, "\033[1m")
+        print(f'{SSN:<12}{NAME:<20}{ADDRESS:<15}{EMAIL:<22}{MOBILE:^12}{HOME_NR:^12}{JOB_TITLE:<16}{COUNTRY}',"\033[0;0m")
+        print('-'*120)
+        for crew_member in a_list:
+            
+            print(f'{crew_member.ssn:<12}{crew_member.name:<20}{crew_member.address:<15}{crew_member.email:<22}{crew_member.mobile:^12}{crew_member.phone_no:^12}{crew_member.job_title:<16}{crew_member.country} ')
+        print('-'*120)
+
+    
+
+
+
+    
