@@ -16,12 +16,12 @@ class Destination_Logic:
     def register_destination(self, new_destination: Destination): #Took out the voyage_logic to be able to run
         """Receives destination, checks if it already exists, if so gives error, if not it forwards
         the new destination to data wrapper."""
-        all_destinations = self.get_all_destinations()
-        already_in_system = self.validation_logic.DestinationAlreadyRegistered(new_destination, all_destinations)
-        if not already_in_system:
-            if new_destination.ice_name and new_destination.ice_number:
-                return self.data_wrapper.register_destination_in_file(new_destination)
-            raise DestinationMissingEmergencyContactInfo("Destination needs to have an emergency contact name and phone number!")
+        # all_destinations = self.get_all_destinations()
+        # already_in_system = self.validation_logic.DestinationAlreadyRegistered(new_destination, all_destinations)
+        # if not already_in_system:
+        if new_destination.ice_name and new_destination.ice_number:
+            return self.data_wrapper.register_destination_in_file(new_destination)
+            # raise DestinationMissingEmergencyContactInfo("Destination needs to have an emergency contact name and phone number!")
 
     def get_destination(self, airport: str):
         """Requests lists of all destinations from data wrapper. If destination is not found it returns an error

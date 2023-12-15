@@ -107,6 +107,7 @@ class DestinationMenu_ui():
             
             elif command == '1':
                 self.logic_wrapper.register_destination(self.get_destination_info_from_user())
+                print("Destination has been registered!")
         
             elif command == '2':
                 self.display_all_destination_info()
@@ -115,4 +116,4 @@ class DestinationMenu_ui():
                 airport_iata = input("Enter the airport IATA code: ")
                 emergency_contact_information = self.change_emergency_contact_from_input()
                 self.logic_wrapper.change_emergency_contact_info(airport_iata, emergency_contact_information)
-                
+                print("Contact information has been updated!")
