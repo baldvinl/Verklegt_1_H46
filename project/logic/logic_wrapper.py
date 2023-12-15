@@ -67,6 +67,7 @@ class Logic_Wrapper:
         return self.crew_logic.find_crew_for_voyage(departure_time)
 
     # AIRCRAFT
+
     def register_aircraft(self, aircraft: Aircraft):
         """Receives aircraft objects and forwards to data wrapper"""
         return self.aircraft_logic.register_aircraft(aircraft)
@@ -99,9 +100,6 @@ class Logic_Wrapper:
         return self.voyage_logic.get_all_voyages()
 
     def register_voyage(self, new_voyage: Voyage):
-        # When voyage is registered, choose aircraft first then employees
-        # When voyage is registered shall prevent registering a pilot that doesn't have a type rating for an aircraft for that aircraft
-        # Voyage has to consist of two flights and each flight has to be registered with different flight number
         """Receives voyage object, checks if already in system, if so returns error code
         and if not forwards to data wrapper"""
         return self.voyage_logic.register_voyage(new_voyage)
@@ -125,10 +123,10 @@ class Logic_Wrapper:
         Sorts by departure time and returns list. If no voyages were initially received from data wrapper, it raises an error"""
         return self.voyage_logic.get_voyages_for_period(starting_date, total_days)
     
-    def get_weekly_voyage_schedule(self, ssn, date):
+    def get_weekly_voyage_schedule(self, ssn_and_date):
         """Receives ssn, and starting date of the week, checks them for the crew members ssn, and saves
         the one that have them listed. returns them in a list sorted. if there is no voyages it returns error code"""
-        return self.voyage_logic.get_weekly_voyage_schedule(ssn, date)
+        return self.voyage_logic.get_weekly_voyage_schedule(ssn_and_date)
     
     # DESTINATION
 

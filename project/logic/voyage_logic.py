@@ -52,7 +52,7 @@ class Voyage_Logic:
             return self.data_wrapper.register_voyage_to_file(new_voyage)
         raise VoyageAlreadyInSystem("Voyage is already registered!")
 
-    # def add_crew_to_voyage(self, ssn_list: list, voyage: Voyage):
+    # def add_crew_to_voyage(self, ssn_list: list, voyage: Voyage): #TODO
     #     """Receives crew members ssn in a list, and voyage object. Updates voyage
     #     object according to the job title of each crew member and returns it"""
     #     for ssn in ssn_list:
@@ -87,16 +87,18 @@ class Voyage_Logic:
                 current_date += timedelta(days=1)
             
             for voyage in all_voyages_list:
-                if voyage.departure_time.date in dates_in_period:
+                if voyage.time_depart_iceland.date() in dates_in_period:
                     voyages_for_period.append((voyage, voyage.is_manned()))
-            
-            sorted_voyages_for_period = sorted(voyages_for_period, key=lambda voyage: voyage.departure_time)
-            return sorted_voyages_for_period
+            return voyages_for_period
+            # sorted_voyages_for_period = sorted(voyages_for_period, key=lambda voyage: voyage.time_depart_iceland)
+            # return sorted_voyages_for_period
         # raise ValueError(ErrorMessages.NO_VOYAGES_FOUND)
 
-    def get_weekly_voyage_schedule(self, ssn, first_day_of_week):
+    def get_weekly_voyage_schedule(self, ssn_and_date: tuple):
         """Receives ssn, and starting date of the week, checks them for the crew members ssn, and saves
         the one that have them listed. returns them in a list sorted. if there is no voyages it returns error code"""
+        ssn = ssn_and_date[0]
+        first_day_of_week = ssn_and_date[1]
         crew_members_voyages = []
         voyages_week = self.get_voyages_for_period(first_day_of_week, 7)
         if voyages_week:
@@ -104,17 +106,18 @@ class Voyage_Logic:
             for voyage in voyages_week:
                 crew_in_voyage = []
                 for job in job_title:
-                    crew_in_voyage.append(getattr(voyage, job))
+                    for crew in crew_in_voyage:
+                        crew.append(getattr(voyage, job))
                 if ssn in crew_in_voyage:
                     crew_members_voyages.append(voyage)
             crew_members_voyages_sorted = sorted(crew_members_voyages, key=lambda voyage:(voyage.date, voyage.departure_time))
             return crew_members_voyages_sorted
-        # else:
-            # raise ValueError(ErrorMessages.NO_VOYAGES_FOUND)
 
     def check_date_past(self, date_input) -> bool:
         """checks if date given is in the past or not"""
         today = datetime.today()
+
+        
         if today > date_input:
             return True
         else:

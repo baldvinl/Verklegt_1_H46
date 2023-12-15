@@ -269,20 +269,24 @@ class CrewMenu_Ui():
                 Menu_Display.display_empty_list_menu(self, sub_header, menu_list, input_list)
                 a = input(command_list[i])
                 input_list[i] = a
-
+                print()
+        
             answer = input('Is The Information Correct (press y for yes): ')
             if answer == 'y':
                 break
 
         ssn = input_list[0]
-        year = input(input_list[1])
-        month = input(input_list[2])
-        day = input(input_list[3])
+        year = int(input_list[1])
+        month = int(input_list[2])
+        day = int(input_list[3])
 
-        start_date = datetime(year, month, day)
+        start_date = datetime(year, month, day, 0, 0)
 
         list_voyages = self.logic_wrapper.get_weekly_voyage_schedule((ssn, start_date))
-        Menu_Display_Lists.display_one_crewmember_schedule(ssn, list_voyages)
+        if list_voyages:
+            Menu_Display_Lists.display_one_crewmember_schedule(ssn, list_voyages)
+        else:
+            print("emmpty")
 
 
     def crew_input_display(self):

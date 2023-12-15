@@ -1,6 +1,6 @@
 import os
 from model.voyage import Voyage
-from datetime import datetime
+from datetime import datetime, date
 from logic.logic_wrapper import Logic_Wrapper
 
 QUIT_MENU = '[Q]UIT'
@@ -115,10 +115,10 @@ class Menu_Display:
 
 
 class Menu_Display_Lists:
-    def __init__(self):
-        return None
+    def __init__(self, logic_connection: Logic_Wrapper):
+        self.logic_wrapper = logic_connection
     
-    def display_one_crewmember_schedule(self, ssn, list_voyages):
+    def display_one_crewmember_schedule(self, list_voyages):
 
         crew_member = self.logic_wrapper.get_crew_member(ssn)
 
@@ -128,8 +128,9 @@ class Menu_Display_Lists:
 
         country_list = []
         for voyage in list_voyages:
-            work_date = datetime.strptime(voyage.time_depart_iceland["time_depart_iceland"], '%Y-%m-%d %H:%M')
-            country_list.append((work_date, voyage.country))
+            work_date = date(voyage.time_depart_iceland)
+            print(work_date)
+            country_list.append((work_date, voyage.destination))
         print()
         print(header)
         print("=" * 55)

@@ -50,7 +50,7 @@ class List_Print_UI:
     
     def display_one_crewmember_schedule(self, list_voyages):
 
-        crew_member = self.logic_wrapper.get_crew_member(ssn):
+        crew_member = self.logic_wrapper.get_crew_member(ssn)
 
         header = "Shift schedule for <name>, <SSN> within week <number>"
         subheader = "Destination"

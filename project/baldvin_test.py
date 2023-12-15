@@ -5,6 +5,7 @@ from ui.crew_menu_ui import *
 from ui.voyage_menu_ui import *
 
 wrapper = Logic_Wrapper()
+listprint = List_Print_UI(wrapper)
 
 while True:
     command = Menu_Actions().menu_input()
@@ -14,7 +15,7 @@ while True:
             command = crewmenu.crew_input_display()
             break
         if command == '2':
-            destinationmenu = DestinationMenu_ui(wrapper)
+            destinationmenu = DestinationMenu_ui(wrapper, listprint)
             command = destinationmenu.destination_input_display()
             break
         if command == '3':

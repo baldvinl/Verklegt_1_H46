@@ -1,13 +1,15 @@
 from logic.logic_wrapper import Logic_Wrapper
 from model.destination import Destination
 from ui.menu_display_ui import *
+from ui.print_lists_ui import List_Print_UI
 
 ALLOWED_INPUT = ['m', 'q', 'b']
 
 
 class DestinationMenu_ui():
-    def __init__(self, data_connection: Logic_Wrapper):
+    def __init__(self, data_connection: Logic_Wrapper, list_print: List_Print_UI):
         self.logic_wrapper = data_connection
+        self.print_list = list_print
     
     def destination_display_menu(self):
         """Function that displays Destination Menu UI."""
@@ -60,8 +62,9 @@ class DestinationMenu_ui():
         
         ##Kemur fall inn hér sem kallar á að prenta lista inn á viðmót með lista af objectum
 
-        Menu_Actions.clear_terminal()        
+        Menu_Actions.clear_terminal()
         list_of_objects = self.logic_wrapper.get_all_destinations()
+        self.print_list.display_destination_list(list_of_objects)
         
         command = input().lower()
 
@@ -107,6 +110,7 @@ class DestinationMenu_ui():
             
             elif command == '1':
                 self.logic_wrapper.register_destination(self.get_destination_info_from_user())
+                print("Destination has been registered!")
         
             elif command == '2':
                 self.display_all_destination_info()
@@ -115,4 +119,4 @@ class DestinationMenu_ui():
                 airport_iata = input("Enter the airport IATA code: ")
                 emergency_contact_information = self.change_emergency_contact_from_input()
                 self.logic_wrapper.change_emergency_contact_info(airport_iata, emergency_contact_information)
-                
+                print("Contact information has been updated!")
