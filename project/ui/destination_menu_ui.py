@@ -49,10 +49,10 @@ class DestinationMenu_ui():
             if answer == 'y':
                 break
             
-        new_dest = Destination()
-        new_dest.attribute_implementation(input_list)
+        new_destination = Destination()
+        new_destination.attribute_implementation(input_list)
 
-        return new_dest
+        return new_destination
     
 
     def display_all_destination_info(self):

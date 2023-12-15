@@ -95,8 +95,7 @@ class VoyageMenu_ui():
         MainMenu_ui.clear_terminal()
         MainMenu_ui.main_header(current_menu)
 
-        wrapper = Logic_Wrapper()
-        schedule = wrapper.get_voyages_date(ssn, date) #need to confirm function call
+        schedule = Logic_Wrapper.get_voyages_date(ssn, date) #need to confirm function call
         
         crew_info = Crew(schedule)
 
@@ -115,7 +114,7 @@ class VoyageMenu_ui():
         MainMenu_ui.clear_terminal()
         MainMenu_ui.main_header(current_menu)
 
-        wrapper = Logic_Wrapper()
+        
         voyages = wrapper.get_voyage_status(date)
 
         voyage_info = Voyage()
