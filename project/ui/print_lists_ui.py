@@ -101,3 +101,11 @@ class List_Display:
             print(f'{WHITESPACE*170}   Flight attendant 1: {voyage.flight_attendant1}')
             print(f'{WHITESPACE*170}   Flight attendant 2: {voyage.flight_attendant2}')
         print('-'*80)
+<<<<<<< HEAD
+=======
+    
+
+
+
+    
+>>>>>>> hildur_new
