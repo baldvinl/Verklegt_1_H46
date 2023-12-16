@@ -49,8 +49,8 @@ class Voyage_Data:
             for row in reader:
                 voyage_list.append(Voyage(
                     row["destination"],
-                    datetime.strptime(row["time_depart_iceland"], '%Y-%m-%d %H:%M:%S'), 
-                    datetime.strptime(row["time_depart_destination"], '%Y-%m-%d %H:%M:%S'), 
+                    datetime.strptime(row["time_depart_iceland"], '%Y-%m-%d %H:%M'), 
+                    datetime.strptime(row["time_depart_destination"], '%Y-%m-%d %H:%M'), 
                     row["captain"], 
                     row["pilot"], 
                     row["head_flight_attendant"], 
@@ -71,8 +71,8 @@ class Voyage_Data:
             for row in reader:
                 voyage_list.append(Voyage(
                     row["destination"],
-                    datetime.strptime(row["time_depart_iceland"], '%Y-%m-%d %H:%M:%S'), 
-                    datetime.strptime(row["time_depart_destination"], '%Y-%m-%d %H:%M:%S'), 
+                    datetime.strptime(row["time_depart_iceland"], '%Y-%m-%d %H:%M'), 
+                    datetime.strptime(row["time_depart_destination"], '%Y-%m-%d %H:%M'), 
                     row["captain"], 
                     row["pilot"], 
                     row["head_flight_attendant"], 
@@ -105,7 +105,7 @@ class Voyage_Data:
             writer.writeheader()
 
             for row in reader:
-                date = datetime.strptime(row["time_depart_iceland"], '%Y-%m-%d %H:%M:%S')
+                date = datetime.strptime(row["time_depart_iceland"], '%Y-%m-%d %H:%M')
 
                 if row['destination'] == voyage.destination and date == voyage.time_depart_iceland:
                     row = {
@@ -151,7 +151,7 @@ class Voyage_Data:
             writer2.writeheader()
 
             for row in reader:
-                departure_iceland = datetime.strptime(row["time_depart_iceland"], '%Y-%m-%d %H:%M:%S')
+                departure_iceland = datetime.strptime(row["time_depart_iceland"], '%Y-%m-%d %H:%M')
                 datetime_today = datetime.today()
 
                 if departure_iceland < datetime_today:

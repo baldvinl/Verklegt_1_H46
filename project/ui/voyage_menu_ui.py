@@ -170,7 +170,7 @@ class VoyageMenu_ui():
             year = int(input("Enter year: "))
             month = int(input("Enter month: "))
             day = int(input("Enter day: "))
-            date = datetime(year, month, day, 0, 0, 0)
+            date = datetime(year, month, day, 0, 0)
             busy = False
 
             crew_status_list = self.logic_wrapper.crew_status(date, busy)
