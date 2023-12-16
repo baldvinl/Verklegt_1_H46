@@ -50,7 +50,7 @@ class Voyage_Data:
                 voyage_list.append(Voyage(
                     row["destination"],
                     datetime.strptime(row["time_depart_iceland"], '%Y-%m-%d %H:%M'), 
-                    datetime.strptime(row["time_depart_destination"], '%Y-%m-%d %H:%M')], 
+                    datetime.strptime(row["time_depart_destination"], '%Y-%m-%d %H:%M'), 
                     row["captain"], 
                     row["pilot"],
                     row["head_flight_attendant"],
