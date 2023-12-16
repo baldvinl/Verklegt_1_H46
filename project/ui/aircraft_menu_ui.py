@@ -4,7 +4,7 @@ from model.aircraft import *
 
 class AircraftMenu_ui:
     def __init__(self, data_connection: Logic_Wrapper):
-        self.data_wrapper = data_connection
+        self.logic_wrapper = data_connection
     
     def aircraft_menu(self):
         '''Function that displays Aircraft Menu UI.'''
