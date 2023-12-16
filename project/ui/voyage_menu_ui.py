@@ -187,9 +187,9 @@ class VoyageMenu_ui():
         """get destination, departure date -> find voyage
         get crew free on departure date -> list
         """
-        sub_header = 'Under construction'
+        sub_header = 'Under Construction'
 
-        menu_list = ['Will be availble soon', 'Upgrade on the way!', QUIT_MENU]
+        menu_list = ['Will be Availble Soon', 'Upgrade on the Way!', QUIT_MENU]
 
         Menu_Actions.clear_terminal()
         Menu_Display.display_sub_menu(self, sub_header, menu_list)
