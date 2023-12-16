@@ -4,10 +4,12 @@ from ui.menu_display_ui import *
 from model.voyage import *
 from model.destination import *
 from ui.print_lists_ui import List_Display
+from ui.print_lists_ui import List_Display
 
 ALLOWED_INPUT = ['m', 'q', 'b']
 
 class VoyageMenu_ui():
+    def __init__(self, data_connection: Logic_Wrapper, display_connection: List_Display):
     def __init__(self, data_connection: Logic_Wrapper, display_connection: List_Display):
         self.logic_wrapper = data_connection
         self.print_list = display_connection
@@ -103,7 +105,7 @@ class VoyageMenu_ui():
         while command != ALLOWED_INPUT:
             continue 
 
-    def display_voyages_for_day(self, date):
+    def display_voyages_for_day(self, date): 
         """Function that sends date to logic layer and prints all voyages on given date and if they are fully manned or not."""
         
         Menu_Actions.clear_terminal()
@@ -203,10 +205,29 @@ class VoyageMenu_ui():
                 break
             
         departure_from_iceland = datetime(int(input_list[1]), int(input_list[2]), int(input_list[3]))
-        voyage = self.logic_wrapper.get_voyage(input_list[0], departure_from_iceland)
-        crew_available = self.logic_wrapper.find_crew_for_voyage(departure_from_iceland)
-        self.print_list.display_main_list(crew_available)
+
+        captain_list = self.logic_wrapper.find_crew_for_voyage(departure_from_iceland, 'captain')
+        pilot_list = self.logic_wrapper.find_crew_for_voyage(departure_from_iceland, 'pilot')
+        head_flight_attendant_list = self.logic_wrapper.find_crew_for_voyage(departure_from_iceland, 'head_flight_attendant_list')
+        flight_attendant_list = self.logic_wrapper.find_crew_for_voyage(departure_from_iceland, 'flight_attendant_list')
+
+        self.print_list.display_pilot_list(captain_list)
+        captain_ssn = input('Enter the SSN: ')
+
+        self.print_list.display_pilot_list(pilot_list)
+        pilot_ssn = input('Enter the SSN: ')
+
+        self.print_list.display_crew_list(head_flight_attendant_list)
+        head_flight_attendant_ssn = input('Enter the SSN; ')
+
+        self.print_list.display_crew_list(flight_attendant_list)
+        head_flight_attendant_ssn = input('Enter the SSN; ')
+
         
+
+
+        for key,value in crew_available.items():
+            if key == 'captain':
 
 
     def voyage_input(self):
