@@ -153,8 +153,8 @@ class VoyageMenu_ui():
             busy = True
             crew_status_list = self.logic_wrapper.crew_status(date, busy)
             self.print_list.display_schedule_for_all_crew(crew_status_list)
+            
             command = input().lower()
-
             while command != ALLOWED_INPUT:
                 continue 
 
@@ -166,8 +166,8 @@ class VoyageMenu_ui():
             busy = False
             crew_status_list = self.logic_wrapper.crew_status(date, busy)
             self.print_list.display_schedule_for_all_crew(crew_status_list)
+            
             command = input().lower()
-
             while command != ALLOWED_INPUT:
                 continue    
     

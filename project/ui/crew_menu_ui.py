@@ -72,7 +72,7 @@ class CrewMenu_Ui():
                 phone_no = input("Enter home phone number: ")
                 type_rating = input("Enter type rating: ")
 
-                answer = input('Press y if you want to save the destination: ')
+                answer = input('Press y if you want to save the crew member: ')
                 if answer == 'y':
                     break
 
@@ -93,7 +93,7 @@ class CrewMenu_Ui():
                 phone_no = input("Enter home phone number: ")
                 type_rating = input("Enter type rating: ")
 
-                answer = input('Press y if you want to save the destination: ')
+                answer = input('Press y if you want to save the crew member: ')
                 if answer == 'y':
                     break
 
@@ -113,7 +113,7 @@ class CrewMenu_Ui():
                 mobile_no = input("Enter mobile phone number: ")
                 phone_no = input("Enter home phone number: ")
 
-                answer = input('Press y if you want to save the destination: ').lower()
+                answer = input('Press y if you want to save the crew member: ').lower()
                 if answer == 'y':
                     break
 
@@ -133,7 +133,7 @@ class CrewMenu_Ui():
                 mobile_no = input("Enter mobile phone number: ")
                 phone_no = input("Enter home phone number: ")
 
-                answer = input('Press y if you want to save the destination: ')
+                answer = input('Press y if you want to save the crew member: ')
                 if answer == 'y':
                     break
 
@@ -210,7 +210,7 @@ class CrewMenu_Ui():
 
         command = input().lower()
         while command != ALLOWED_INPUT:
-            continue
+            continue 
     
 
     def change_crew_member_info_from_input(self):
@@ -249,6 +249,10 @@ class CrewMenu_Ui():
         if self.logic_wrapper.get_crew_member(ssn):
             new_crew_member = Crew()
             new_crew_member.attribute_implementation(input_list[1:])
+
+        command = input().lower()
+        while command ALLOWED_INPUT:
+            continue 
     
         return new_crew_member
     
