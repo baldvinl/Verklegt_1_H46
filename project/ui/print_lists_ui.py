@@ -24,8 +24,8 @@ class List_Display:
     def __init__(self, logic_connection: Logic_Wrapper):
         self.logic_wrapper = logic_connection
 
-    def display_main_list(self,display_list_header, pilot_list):
-        '''Pilot list, available employees list, all employees list'''
+    def display_pilot_list(self, display_list_header, pilot_list):
+        '''Pilot list, available employees list'''
         print()
         print(display_list_header)
         print('='*125)
@@ -36,10 +36,10 @@ class List_Display:
         print('-'*125)
 
 
-    def display_flight_attendant_list(self, flight_attendant_list):
-        '''Flight attendant list'''
+    def display_crew_list(self, display_list_header, flight_attendant_list):
+        '''Flight attendant or crew list'''
         print()
-        print('List of all Flight attendant')
+        print(display_list_header)
         print('='*125, "\033[1m")
         print(f'{SSN:<12}{NAME:<25}{ADDRESS:<15}{JOB_TITLE:<17}{EMAIL:<25}{MOBILE:<12}{HOME_NR:<12}',"\033[0;0m")
         print('-'*125)
