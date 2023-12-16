@@ -107,20 +107,15 @@ class Crew_Logic:
         the ssns found in the voyages that day it makes 2 lists one for crew thats working
         and one for crew that isnt. Then returns according to the availability requested"""
 
-        voyages_that_day = self.voyage_logic.get_voyages_for_period(departure_time , 1)
+        voyages_that_day = self.voyage_logic.get_voyages_for_period(departure_time, 1)
         crew = self.get_all_crew()
         attributes_list = ["pilot", "captain", "head_flight_attendant", "flight_attendant1", "flight_attendant2"]
-
-        # if not voyages_that_day:
-        #     raise ValueError(ErrorMessages.NO_VOYAGES_FOUND)
         
         ssn_list_of_crew_on_voyage = []
         for attribute in attributes_list:
             for voyage in voyages_that_day:
                 attribute_value = getattr(voyage, attribute)
                 ssn_list_of_crew_on_voyage.append(attribute_value)
-        # if not crew:
-        #     raise ValueError(ErrorMessages.NO_CREW_FOUND)
         
         crew_not_working = []
         crew_working = []
@@ -128,7 +123,7 @@ class Crew_Logic:
             if crew_member.ssn not in ssn_list_of_crew_on_voyage:
                 crew_not_working.append(crew_member)
             else:
-                crew_working.append(crew_member, voyages_that_day.destination)
+                crew_working.append(crew_member)#voyages_that_day.destination
                 
         if not busy:
             return crew_not_working
