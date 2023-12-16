@@ -2,9 +2,9 @@ from logic.logic_wrapper import Logic_Wrapper
 from ui.menu_display_ui import *
 from model.aircraft import *
 
-class AircraftMenu_ui():
-    def __init__(self):
-        self.logic_wrapper = Logic_Wrapper
+class AircraftMenu_ui:
+    def __init__(self, data_connection: Logic_Wrapper):
+        self.data_wrapper = data_connection
     
     def aircraft_menu(self):
         '''Function that displays Aircraft Menu UI.'''
