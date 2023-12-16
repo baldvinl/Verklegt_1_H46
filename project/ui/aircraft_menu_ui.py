@@ -81,3 +81,4 @@ class AircraftMenu_ui:
             
             elif command == '1':
                 self.logic_wrapper.register_aircraft(self.register_aircraft_display())
+                break
