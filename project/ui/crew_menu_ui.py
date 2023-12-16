@@ -10,8 +10,9 @@ from datetime import datetime
 ALLOWED_INPUT = ['m', 'q', 'b']
 
 class CrewMenu_Ui():
-    def __init__(self, logic_conneciton: Logic_Wrapper):
+    def __init__(self, logic_conneciton: Logic_Wrapper, list_print: List_Display):
         self.logic_wrapper = logic_conneciton
+        self.print_list = list_print
     
 
     def display_crew_menu(self):
@@ -31,6 +32,22 @@ class CrewMenu_Ui():
         Menu_Display.display_sub_menu(self, sub_header, menu_list)
 
 
+    def crew_information_sub_menu(self):
+        """Function that displays the crew information menu and asks for input."""
+
+        sub_header = 'Crew Members Information'
+
+        menu_list = ['View Crew Member Information', 
+                     'Edit Crew Member Information', 
+                     'List of All Crew Members',
+                     'List of All Pilots',
+                     'List of All Flight Attendants'
+                    ]
+
+        Menu_Actions.clear_terminal()
+        Menu_Display.display_sub_menu(self, sub_header, menu_list)
+
+    
     def register_crew_from_input(self, crew_type):
         '''Function that asks for input to register crew and returns crew information.'''
 
@@ -123,88 +140,52 @@ class CrewMenu_Ui():
             return Flight_Attendant(ssn, name, job_title, address, email, mobile_no, phone_no)
         else:
             Menu_Actions.menu_input()
-            
-    
-    def crew_information_sub_menu(self):
-        """Function that displays the crew information menu and asks for input."""
-
-        sub_header = 'Crew Members Information'
-
-        menu_list = ['View Crew Member Information', 
-                     'Edit Crew Member Information', 
-                     'List of All Crew Members',
-                     'List of All Pilots',
-                     'List of All Flight Attendants'
-                    ]
-
-        Menu_Actions.clear_terminal()
-        Menu_Display.display_sub_menu(self, sub_header, menu_list)
 
     
-    def display_all_crew(self):
+    def display_list_crew_members(self):
         """Function that displays all information about the crew."""
 
         display_list_header = "List of All Crew Members in the Registry"
-        crew_list = self.logic_wrapper.get_all_crew()
 
 
         Menu_Actions.clear_terminal()
-        List_Display.display_main_list(display_list_header, crew_list)
+        crew_list = self.logic_wrapper.get_all_crew()
+        self.print_list.display_crew_list(display_list_header, crew_list)
+
+                
+        command = input().lower()
+        while command != ALLOWED_INPUT:
+            continue 
 
     
-    def display_pilots(self):
+    def display_pilots(self): 
         """Function that displays all information about the pilots."""
 
-        sub_header = "List of pilots"
+        display_list_header = "List of All Pilots in the Registry"
+        pilot_list = self.logic_wrapper.get_pilots()
 
         Menu_Actions.clear_terminal()
-        Menu_Display.display_empty_list_menu(self, sub_header, )
-        
-        info = self.logic_wrapper.get_pilots() #need to confirm function call
+        self.print_list.display_pilot_list(display_list_header, pilot_list)
 
-        pilot_info = Pilot()
+        command = input().lower()
+        while command != ALLOWED_INPUT:
+            continue 
+    
 
-        print(f"SSN, Name, Job title, Address, E-mail, Mobile, Phone, Type rating")
-        for elem in info:
-            pilot_info = elem
-            print(pilot_info.ssn, pilot_info.name, pilot_info.job_title, pilot_info.address, pilot_info.email, pilot_info.mobile_no, pilot_info.phone_no, pilot_info.type_rating, end= " " "\n")
-        print(f"[M]enu  [B]ack  [Q]uit")
-        
-        command = input("Please enter command: ")
-        command = command.lower()
-
-    def display_flight_attendants(self):
+    def display_flight_attendants(self): #NOT DONE
         """Function that displays all information about the flight attendants."""
 
-        current_menu = "List of flight attendants"
+        display_list_header = "List of All Flight Attendants in the Registry"
+        flight_attendants_list = self.logic_wrapper.get_flight_attendants()
 
         Menu_Actions.clear_terminal()
-        Menu_Display.m
-        
-        wrapper = Logic_Wrapper()
-        info = wrapper.get_flight_attendants() #need to confirm function call
+        self.print_list.display_crew_list(display_list_header, flight_attendants_list)
 
-        fa_info = Flight_Attendant()
-
-        print(f"SSN, Name, Job title, Address, E-mail, Mobile, Phone")
-        for elem in info:
-            fa_info = elem
-            print(fa_info.ssn, fa_info.name, fa_info.job_title, fa_info.address, fa_info.email, fa_info.mobile_no, fa_info.phone_no, end= " " "\n")
-        print(f"[M]enu  [B]ack  [Q]uit")
-        
-        command = input("Please enter command: ")
-        command = command.lower()
-
-
-        print(f"SSN, Name, Job title, Address, E-mail, Mobile, Phone, Type rating") #how do we get the type rating for pilots?
-        for elem in info:
-            crew_info = elem
-            print(crew_info.ssn, crew_info.name, crew_info.job_title, crew_info.address, crew_info.email, crew_info.mobile_no, crew_info.phone_no, crew_info.type_rating, end= " " "\n")
-        print(f"[M]enu  [B]ack  [Q]uit")
-        
-        command = input("Please enter command: ")
-        command = command.lower()
+        command = input().lower()
+        while command != ALLOWED_INPUT:
+            continue 
     
+
     def display_crew_member(self):
         """Function that displays all information about a crew member."""
 
@@ -231,6 +212,7 @@ class CrewMenu_Ui():
         while command != ALLOWED_INPUT:
             continue
     
+
     def change_crew_member_info_from_input(self):
         """Function that asks for crew SSN and updated information and returns."""
         
@@ -270,6 +252,7 @@ class CrewMenu_Ui():
     
         return new_crew_member
     
+
     def get_input_for_crew_schedule(self):
         """Function that displays the schedule for a given crew number for the week starting with date."""
         
@@ -349,15 +332,13 @@ class CrewMenu_Ui():
                     self.change_crew_member_info_from_input()
 
                 elif new_command == '3':
-                    self.display_all_crew()
+                    self.display_list_crew_members()
 
                 elif new_command == '4':
-                    'List of All Pilots'
-                    pass
+                    self.display_pilots()
 
                 elif new_command == '5':
-                    'List of All Flight Attendants'
-                    pass
+                    self.display_flight_attendants()
 
             elif command == '6':
                 self.get_input_for_crew_schedule()
