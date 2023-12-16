@@ -2,6 +2,8 @@ from logic.logic_wrapper import Logic_Wrapper
 from ui.menu_display_ui import *
 from model.aircraft import *
 
+QUIT_MENU = '[M]ENU  [Q]UIT'
+
 class AircraftMenu_ui:
     def __init__(self, data_connection: Logic_Wrapper):
         self.logic_wrapper = data_connection
