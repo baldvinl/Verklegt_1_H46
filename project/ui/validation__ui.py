@@ -1,6 +1,4 @@
-
 import re
-
 
 PUNCTUATION_IN_STRING_ERROR_MESSAGE = 'There is punctuation in the string'
 DIGIT_IN_STRING_ERROR_MESSAGE = 'There is a digit in the string'
@@ -133,6 +131,7 @@ class Validation_Ui:
         if not re.search(validate, flight_time):
             raise ValueError(INCORRECT_TIME_ERROR_MESSAGE)
         return flight_time
+    
 
     def validate_distance(self, distance):
         '''Validate distance. Raise error if distance is not digits '''

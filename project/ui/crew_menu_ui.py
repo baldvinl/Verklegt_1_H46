@@ -72,7 +72,7 @@ class CrewMenu_Ui():
                 phone_no = input("Enter home phone number: ")
                 type_rating = input("Enter type rating: ")
 
-                answer = input('Press y if you want to save the destination: ')
+                answer = input('Press y if you want to save the crew member: ')
                 if answer == 'y':
                     break
 
@@ -93,7 +93,7 @@ class CrewMenu_Ui():
                 phone_no = input("Enter home phone number: ")
                 type_rating = input("Enter type rating: ")
 
-                answer = input('Press y if you want to save the destination: ')
+                answer = input('Press y if you want to save the crew member: ')
                 if answer == 'y':
                     break
 
@@ -113,7 +113,7 @@ class CrewMenu_Ui():
                 mobile_no = input("Enter mobile phone number: ")
                 phone_no = input("Enter home phone number: ")
 
-                answer = input('Press y if you want to save the destination: ').lower()
+                answer = input('Press y if you want to save the crew member: ').lower()
                 if answer == 'y':
                     break
 
@@ -133,7 +133,7 @@ class CrewMenu_Ui():
                 mobile_no = input("Enter mobile phone number: ")
                 phone_no = input("Enter home phone number: ")
 
-                answer = input('Press y if you want to save the destination: ')
+                answer = input('Press y if you want to save the crew member: ')
                 if answer == 'y':
                     break
 
@@ -313,7 +313,7 @@ class CrewMenu_Ui():
             command = input("Select menu option: ").lower()
 
             if command == "m":
-                Menu_Actions.menu_input()
+                Menu_Actions.menu_input(self)
 
             elif command == "q":
                 Menu_Actions.quit_program()
