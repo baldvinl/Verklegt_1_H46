@@ -54,7 +54,7 @@ class VoyageMenu_ui():
         '''Function that asks for input to register a new voyage and returns voyage information.'''
 
         sub_header = 'Register voyage'
-        command_list = ["Enter airport IATA: ", 
+        command_list = ["Enter airport IATA: ",
                         "Enter departure year from Iceland: ", 
                         "Enter departure month from Iceland: ", 
                         "Enter departure day from Iceland: ",  

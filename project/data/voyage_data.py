@@ -44,16 +44,16 @@ class Voyage_Data:
         """Returns a list of all current and future voyages stored in the file"""
 
         voyage_list = []
-        with open(self.file_future_voyages_done, "r", newline="", encoding="utf-8") as csvfile:
+        with open(self.file_future_voyages, "r", newline="", encoding="utf-8") as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
                 voyage_list.append(Voyage(
                     row["destination"],
-                    datetime.strptime(row["time_depart_iceland"], '%Y-%m-%d %H:%M'), 
-                    datetime.strptime(row["time_depart_destination"], '%Y-%m-%d %H:%M'), 
+                    row["time_depart_iceland"], 
+                    row["time_depart_destination"], 
                     row["captain"], 
-                    row["pilot"], 
-                    row["head_flight_attendant"], 
+                    row["pilot"],
+                    row["head_flight_attendant"],
                     row["flight_attendant1"],
                     row["flight_attendant2"]
                     ))
@@ -66,13 +66,13 @@ class Voyage_Data:
         """Returns a list of all past voyages stored in the file"""
 
         voyage_list = []
-        with open(self.file_future_voyages, "r", newline="", encoding="utf-8") as csvfile:
+        with open(self.file_future_voyages_done, "r", newline="", encoding="utf-8") as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
                 voyage_list.append(Voyage(
                     row["destination"],
-                    datetime.strptime(row["time_depart_iceland"], '%Y-%m-%d %H:%M'), 
-                    datetime.strptime(row["time_depart_destination"], '%Y-%m-%d %H:%M'), 
+                    row["time_depart_iceland"], 
+                    row["time_depart_destination"],
                     row["captain"], 
                     row["pilot"], 
                     row["head_flight_attendant"], 

@@ -28,20 +28,20 @@ class Voyage_Logic:
         future_voyages = self.get_future_voyages()
         past_voyages = self.get_past_voyages()
         all_voyages = future_voyages + past_voyages
-        if all_voyages:
-            return all_voyages
+        # if all_voyages:
+        return all_voyages
 
     def get_future_voyages(self) -> list:
         """Requests future voyage list from data wrapper, checks if empty, if so returns error otherwise returns list"""
         future_voyages = self.data_wrapper.get_future_voyages_from_file()
-        if future_voyages:
-            return future_voyages
+        # if future_voyages:
+        return future_voyages
 
     def get_past_voyages(self) -> list:
         """Requests past voyage list from data wrapper, checks if empty, if so returns error otherwise returns list"""
         past_voyages = self.data_wrapper.get_past_voyages_from_file()
-        if past_voyages:
-            return past_voyages
+        # if past_voyages:
+        return past_voyages
 
     def register_voyage(self, new_voyage: Voyage):
         """Receives voyage object, checks if already in system, if so returns error code
@@ -81,11 +81,18 @@ class Voyage_Logic:
             while current_date <= end_date:
                 dates_in_period.append(current_date)
                 current_date += timedelta(days = 1)
-            
+
+        for date in dates_in_period:
             for voyage in all_voyages_list:
-                if voyage.time_depart_iceland in dates_in_period:
+                departure = datetime.strptime(voyage.time_depart_iceland, '%Y-%m-%d %H:%M:%S')
+                if departure == date:
                     voyages_for_period.append((voyage, voyage.is_manned()))
-            return voyages_for_period
+
+        return voyages_for_period
+            # for voyage in all_voyages_list:
+            #     voyage_departure = voyage.time_depart_iceland.date()
+            #     for date in dates_in_period:
+            #         if voyage_departure == date.date():
 
     def get_weekly_voyage_schedule(self, ssn_and_date: tuple):
         """Receives ssn, and starting date of the week, checks them for the crew members ssn, and saves
