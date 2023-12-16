@@ -14,24 +14,24 @@ while True:
         if command == '1':
             crewmenu = CrewMenu_Ui(wrapper, listprint)
             crewmenu.crew_input_display()
-            break
+
         elif command == '2':
             destinationmenu = DestinationMenu_ui(wrapper, listprint)
             destinationmenu.destination_input_display()
-            break
+            
         elif command == '3':
             voyagemenu = VoyageMenu_ui(wrapper, listprint)
             voyagemenu.voyage_input()
-            break
+            
         elif command == '4':
             aircraftmenu = AircraftMenu_ui(wrapper)
             aircraftmenu.aircraft_input()
-            break
-        elif command == '5':
-            print("Print options")
-            break
+            
         elif command == "q":
             Menu_Actions.quit_program()
-        elif command == "b":
+
+        else:
             break
+
+
         

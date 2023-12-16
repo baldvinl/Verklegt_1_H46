@@ -122,6 +122,7 @@ class Menu_Actions():
         '''Function that asks for menu number in the main menu UI.'''
 
         while True:
+            Menu_Actions.clear_terminal()
             Menu_Display.display_main_menu(self)
             command = input("Please enter menu number: ").lower()
             return command

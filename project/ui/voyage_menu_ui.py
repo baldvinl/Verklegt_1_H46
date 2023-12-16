@@ -283,3 +283,4 @@ class VoyageMenu_ui():
             
             elif command == '4':
                 self.display_crew_availability()
+            
