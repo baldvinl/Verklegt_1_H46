@@ -84,7 +84,7 @@ class Voyage_Logic:
 
         for date in dates_in_period:
             for voyage in all_voyages_list:
-                departure = datetime.strptime(voyage.time_depart_iceland, '%Y-%m-%d %H:%M:%S')
+                departure = voyage.time_depart_iceland
                 if departure == date:
                     voyages_for_period.append((voyage, voyage.is_manned()))
 
