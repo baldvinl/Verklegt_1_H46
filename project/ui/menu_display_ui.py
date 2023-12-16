@@ -99,19 +99,19 @@ class Menu_Display:
 
 
     def display_empty_list_menu(self, sub_header, menu_list, a_list):
-            Header_Footer_Display.display_main_header(self)
-            Header_Footer_Display.display_lines_above_in_submenu(self)
-            print(f'{HYPHEN:>15}         {sub_header:<59}{HYPHEN:>1}')
-            Header_Footer_Display.display_lines_below_in_submenu(self)
+        Header_Footer_Display.display_main_header(self)
+        Header_Footer_Display.display_lines_above_in_submenu(self)
+        print(f'{HYPHEN:>15}         {sub_header:<59}{HYPHEN:>1}')
+        Header_Footer_Display.display_lines_below_in_submenu(self)
 
-            rest_of_lines = 10 - len(menu_list)
+        rest_of_lines = 10 - len(menu_list)
 
-            for number , (x, y) in enumerate(zip(menu_list, a_list)):
-                print(f'{HYPHEN:>15}{(number+1):>10}   {(x + y):<55}{HYPHEN:>1}')
-            for _ in range(rest_of_lines):
-                print(f'{HYPHEN:>15}{HYPHEN:>69}')
+        for number , (x, y) in enumerate(zip(menu_list, a_list)):
+            print(f'{HYPHEN:>15}{(number+1):>10}   {(x + y):<55}{HYPHEN:>1}')
+        for _ in range(rest_of_lines):
+            print(f'{HYPHEN:>15}{HYPHEN:>69}')
 
-            Header_Footer_Display.display_main_footer_with_q_m_b(self)
+        Header_Footer_Display.display_main_footer_with_q_m_b(self)
 
 
 class Menu_Display_Lists:

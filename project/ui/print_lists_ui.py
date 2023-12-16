@@ -106,7 +106,6 @@ class List_Print_UI:
             print(f'{WHITESPACE*170}   Flight attendant 1: {voyages.flight_attendant1}')
             print(f'{WHITESPACE*170}   Flight attendant 2: {voyages.flight_attendant2}')
         print('-'*80)
-
     
 
 
