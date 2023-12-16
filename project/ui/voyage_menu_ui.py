@@ -6,6 +6,8 @@ from model.destination import *
 from ui.print_lists_ui import List_Display
 
 ALLOWED_INPUT = ['m', 'q', 'b']
+QUIT_MENU_BACK = '[M]ENU  [B]ACK  [Q]UIT'
+QUIT_MENU = '[M]ENU  [Q]UIT'
 
 class VoyageMenu_ui():
     def __init__(self, data_connection: Logic_Wrapper, display_connection: List_Display):
@@ -95,8 +97,10 @@ class VoyageMenu_ui():
         Menu_Actions.clear_terminal()
 
         crew_members_list = self.logic_wrapper.crew_status(date, working)
-
-        self.print_list.display_flight_attendant_list(crew_members_list)
+        if crew_members_list:
+            self.print_list.display_crew_list(crew_members_list)
+        else:
+            print('No list available:', QUIT_MENU_BACK)
         
         command = ""
         while command not in ALLOWED_INPUT:
@@ -108,9 +112,10 @@ class VoyageMenu_ui():
         Menu_Actions.clear_terminal()
 
         voyage_list_for_day = self.logic_wrapper.get_voyages_for_period(date, 1)
-
-        self.print_list.display_schedule_for_employees(voyage_list_for_day)
-
+        if voyage_list_for_day:
+            self.print_list.display_schedule_for_employees(voyage_list_for_day)
+        else:
+            print('No list available:', QUIT_MENU_BACK)
         command = ""
         while command not in ALLOWED_INPUT:
             command = input().lower() 
@@ -121,13 +126,14 @@ class VoyageMenu_ui():
         Menu_Actions.clear_terminal()
 
         voyage_list_for_week = self.logic_wrapper.get_voyages_for_period(date, 7)
-        
-        self.print_list.display_schedule_for_employees(voyage_list_for_week)
+        if voyage_list_for_week:
+            self.print_list.display_schedule_for_employees(voyage_list_for_week)
+        else:
+            print('No list available:', QUIT_MENU_BACK)
 
-        command = input().lower()
-
-        while command != ALLOWED_INPUT:
-            continue 
+        command = ""
+        while command not in ALLOWED_INPUT:
+            command = input().lower()
 
     def display_crew_availability(self):
         """Function that displays crew availability menu."""
@@ -150,7 +156,11 @@ class VoyageMenu_ui():
             date = datetime(year, month, day, 0, 0, 0)           
             busy = True
             crew_status_list = self.logic_wrapper.crew_status(date, busy)
-            self.print_list.display_schedule_for_all_crew(crew_status_list)
+
+            if crew_status_list:
+                self.print_list.display_schedule_for_all_crew(crew_status_list)
+            else:
+                print('No list available:', QUIT_MENU_BACK)
         
         command = ""
         while command not in ALLOWED_INPUT:
@@ -162,8 +172,12 @@ class VoyageMenu_ui():
             day = int(input("Enter day: "))
             date = datetime(year, month, day, 0, 0, 0)
             busy = False
+
             crew_status_list = self.logic_wrapper.crew_status(date, busy)
-            self.print_list.display_schedule_for_all_crew(crew_status_list)
+            if crew_status_list:
+                self.print_list.display_schedule_for_all_crew(crew_status_list)
+            else:
+                print('No list available:', QUIT_MENU_BACK)
        
         command = ""
         while command not in ALLOWED_INPUT:
@@ -173,51 +187,66 @@ class VoyageMenu_ui():
         """get destination, departure date -> find voyage
         get crew free on departure date -> list
         """
-        sub_header = 'Enter information for voyage you want to add crew to: '
+        sub_header = 'Under construction'
 
-        command_list = ["Enter destination airport: ", 
-                        "Enter departure year from Iceland: ", 
-                        "Enter departure month from Iceland: ", 
-                        "Enter departure day from Iceland: "  
-                        ]
+        menu_list = ['Will be availble soon', 'Upgrade on the way!', QUIT_MENU]
 
-        menu_list = ['Airport: ', 'Departure year from Iceland: ', 'Departure month from Iceland: ', 'Departure day from Iceland: ']
+        Menu_Actions.clear_terminal()
+        Menu_Display.display_sub_menu(self, sub_header, menu_list)
 
-        input_list = []
+        command = input()
 
-        while True:
-            for i in range(0, 10):
-                input_list.append('')
+        if command == "m":
+            Menu_Actions.menu_input(self)
 
-            for i in range(len(menu_list)):
-                Menu_Actions.clear_terminal()
-                Menu_Display.display_empty_list_menu(self, sub_header, menu_list, input_list)
-                a = input(command_list[i])
-                input_list[i] = a
+        elif command == "q":
+            Menu_Actions.quit_program()
+
+        # sub_header = 'Enter information for voyage you want to add crew to: '
+
+        # command_list = ["Enter destination airport: ", 
+        #                 "Enter departure year from Iceland: ", 
+        #                 "Enter departure month from Iceland: ", 
+        #                 "Enter departure day from Iceland: "  
+        #                 ]
+
+        # menu_list = ['Airport: ', 'Departure year from Iceland: ', 'Departure month from Iceland: ', 'Departure day from Iceland: ']
+
+        # input_list = []
+
+        # while True:
+        #     for i in range(0, 10):
+        #         input_list.append('')
+
+        #     for i in range(len(menu_list)):
+        #         Menu_Actions.clear_terminal()
+        #         Menu_Display.display_empty_list_menu(self, sub_header, menu_list, input_list)
+        #         a = input(command_list[i])
+        #         input_list[i] = a
                 
 
-            answer = input('Press y if you want to save the voyage: ')
-            if answer == 'y':
-                break
+        #     answer = input('Press y if you want to save the voyage: ')
+        #     if answer == 'y':
+        #         break
             
-        departure_from_iceland = datetime(int(input_list[1]), int(input_list[2]), int(input_list[3]))
+        # departure_from_iceland = datetime(int(input_list[1]), int(input_list[2]), int(input_list[3]))
 
-        captain_list = self.logic_wrapper.find_crew_for_voyage(departure_from_iceland, 'captain')
-        pilot_list = self.logic_wrapper.find_crew_for_voyage(departure_from_iceland, 'pilot')
-        head_flight_attendant_list = self.logic_wrapper.find_crew_for_voyage(departure_from_iceland, 'head_flight_attendant_list')
-        flight_attendant_list = self.logic_wrapper.find_crew_for_voyage(departure_from_iceland, 'flight_attendant_list')
+        # captain_list = self.logic_wrapper.find_crew_for_voyage(departure_from_iceland, 'captain')
+        # pilot_list = self.logic_wrapper.find_crew_for_voyage(departure_from_iceland, 'pilot')
+        # head_flight_attendant_list = self.logic_wrapper.find_crew_for_voyage(departure_from_iceland, 'head_flight_attendant_list')
+        # flight_attendant_list = self.logic_wrapper.find_crew_for_voyage(departure_from_iceland, 'flight_attendant_list')
 
-        self.print_list.display_pilot_list(captain_list)
-        captain_ssn = input('Enter the SSN: ')
+        # self.print_list.display_pilot_list(captain_list)
+        # captain_ssn = input('Enter the SSN: ')
 
-        self.print_list.display_pilot_list(pilot_list)
-        pilot_ssn = input('Enter the SSN: ')
+        # self.print_list.display_pilot_list(pilot_list)
+        # pilot_ssn = input('Enter the SSN: ')
 
-        self.print_list.display_crew_list(head_flight_attendant_list)
-        head_flight_attendant_ssn = input('Enter the SSN: ')
+        # self.print_list.display_crew_list(head_flight_attendant_list)
+        # head_flight_attendant_ssn = input('Enter the SSN: ')
 
-        self.print_list.display_crew_list(flight_attendant_list)
-        flight_attendant_ssn = input('Enter the SSN: ')
+        # self.print_list.display_crew_list(flight_attendant_list)
+        # flight_attendant_ssn = input('Enter the SSN: ')
 
         
 

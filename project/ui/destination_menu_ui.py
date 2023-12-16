@@ -64,6 +64,10 @@ class DestinationMenu_ui():
         Menu_Actions.clear_terminal()
         list_of_objects = self.logic_wrapper.get_all_destinations()
         self.print_list.display_destination_list(list_of_objects)
+
+        command = ""
+        while command not in ALLOWED_INPUT:
+            command = input().lower()
         
 
     def change_emergency_contact_from_input(self):
