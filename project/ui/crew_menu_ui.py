@@ -297,15 +297,19 @@ class CrewMenu_Ui():
                 a = input(command_list[i])
                 input_list[i] = a
                 print()
-        
+            
+            try:
+                ssn = input_list[0]
+                year = int(input_list[1])
+                month = int(input_list[2])
+                day = int(input_list[3])
+            except ValueError:
+                input('Please enter numberic values')
+                continue
+
             answer = input('Is The Information Correct (press y for yes): ')
             if answer == 'y':
                 break
-
-        ssn = input_list[0]
-        year = int(input_list[1])
-        month = int(input_list[2])
-        day = int(input_list[3])
 
         start_date = datetime(year, month, day, 0, 0)
 
@@ -313,7 +317,7 @@ class CrewMenu_Ui():
         if list_voyages:
             List_Display.display_one_crewmember_schedule(ssn, list_voyages)
         else:
-            print("No voyages registered to this Crew member")
+            self.crew_input_display()
 
         command = ""
         while command not in ALLOWED_INPUT:
