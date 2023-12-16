@@ -1,13 +1,13 @@
 from logic.logic_wrapper import Logic_Wrapper
 from model.destination import Destination
 from ui.menu_display_ui import *
-from ui.print_lists_ui import List_Print_UI
+from ui.print_lists_ui import List_Display
 
 ALLOWED_INPUT = ['m', 'q', 'b']
 
 
 class DestinationMenu_ui():
-    def __init__(self, data_connection: Logic_Wrapper, list_print: List_Print_UI):
+    def __init__(self, data_connection: Logic_Wrapper, list_print: List_Display):
         self.logic_wrapper = data_connection
         self.print_list = list_print
     
@@ -46,7 +46,8 @@ class DestinationMenu_ui():
                 Menu_Display.display_empty_list_menu(self, sub_header, menu_list, input_list)
                 a = input(command_list[i])
                 input_list[i] = a 
-            #ATH prentast ekki út innsláttur áður en þessi spurning kemur
+                print()
+           
             answer = input('Press y if you want to save the destination: ')
             if answer == 'y':
                 break
@@ -59,8 +60,6 @@ class DestinationMenu_ui():
 
     def display_all_destination_info(self):
         '''Function that displays the information about the destinations.'''
-        
-        ##Kemur fall inn hér sem kallar á að prenta lista inn á viðmót með lista af objectum
 
         Menu_Actions.clear_terminal()
         list_of_objects = self.logic_wrapper.get_all_destinations()

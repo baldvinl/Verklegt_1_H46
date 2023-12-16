@@ -1,6 +1,5 @@
 from logic.logic_wrapper import Logic_Wrapper
-from model.voyage import Voyage
-from datetime import datetime
+from datetime import datetime 
 
 SSN = 'SSN'
 NAME = 'Name'
@@ -21,12 +20,14 @@ DEPARTURE_ICELAND = 'Dep Iceland'
 DEPARTURE_COUNTRY = 'Dep country'
 WHITESPACE = ' '
 
-class List_Print_UI:
+class List_Display:
     def __init__(self, logic_connection: Logic_Wrapper):
         self.logic_wrapper = logic_connection
 
-    def display_main_list(self, pilot_list):
+    def display_main_list(self,display_list_header, pilot_list):
+        '''Pilot list, available employees list, all employees list'''
         print()
+        print(display_list_header)
         print('='*125)
         print(f'{SSN:<12}{NAME:<25}{ADDRESS:<15}{JOB_TITLE:<17}{EMAIL:<25}{MOBILE:<12}{HOME_NR:<12}{TYPE_RATING:<7}')
         print('-'*125)
@@ -43,12 +44,13 @@ class List_Print_UI:
         for flight_attendant in flight_attendant_list:
             print(f'{flight_attendant.ssn:<12}{flight_attendant.name:<25}{flight_attendant.address:<15}{flight_attendant.job_title:<17}{flight_attendant.email:<25}{flight_attendant.mobile_no:<12}{flight_attendant.phone_no:<12}')
         print('-'*125)
+
     
-    def display_one_crewmember_schedule(self, list_voyages):
+    def display_one_crewmember_schedule(self, ssn, list_voyages):
 
         crew_member = self.logic_wrapper.get_crew_member(ssn)
 
-        header = "Shift schedule for <name>, <SSN> within week <number>"
+        header = f"Shift schedule for: {crew_member.name}, SSN: {crew_member.ssn}"
         subheader = "Destination"
         whitespace = " "
 
