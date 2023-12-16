@@ -63,21 +63,21 @@ class AircraftMenu_ui:
 
     #     return new_aircraft
 
-    # def aircraft_input(self):
-    #     '''Function that asks for input in aircraft menu.'''
+    def aircraft_input(self):
+        '''Function that asks for input in aircraft menu.'''
         
-    #     while True:
-    #         self.aircraft_menu()
-    #         command = input('Select menu option: ').lower()
+        while True:
+            self.aircraft_menu()
+            command = input('Select menu option: ').lower()
 
-    #         if command == 'm':
-    #             Menu_Actions.menu_input(self)
+            if command == 'm':
+                Menu_Actions.menu_input(self)
 
-    #         elif command == "q":
-    #             Menu_Actions.quit_program()
+            elif command == "q":
+                Menu_Actions.quit_program()
 
-    #         elif command == "b":
-    #             break
+            elif command == "b":
+                break
             
-    #         elif command == '1':
-    #             self.logic_wrapper.register_aircraft(self.register_aircraft_display())
+            elif command == '1':
+                self.logic_wrapper.register_aircraft(self.register_aircraft_display())
