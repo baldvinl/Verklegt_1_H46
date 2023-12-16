@@ -61,7 +61,7 @@ class List_Display:
 
         country_list = []
         for voyage in list_voyages:
-            work_date = datetime.strptime(voyage.time_depart_iceland["time_depart_iceland"], '%Y-%m-%d %H:%M')
+            work_date = datetime.strptime(voyage.time_depart_iceland["time_depart_iceland"], '%Y-%m-%d %H:%M:S')
             country_list.append((work_date, voyage.country))
         print()
         print(header)
