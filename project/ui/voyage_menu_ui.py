@@ -224,8 +224,8 @@ class VoyageMenu_ui():
         
 
 
-        for key,value in crew_available.items():
-            if key == 'captain':
+        # for key,value in crew_available.items():
+        #     if key == 'captain':
 
 
     def voyage_input(self):
