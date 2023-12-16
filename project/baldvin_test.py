@@ -3,9 +3,10 @@ from ui.destination_menu_ui import *
 from ui.aircraft_menu_ui import *
 from ui.crew_menu_ui import *
 from ui.voyage_menu_ui import *
+from ui.print_lists_ui import List_Display
 
 wrapper = Logic_Wrapper()
-listprint = List_Print_UI(wrapper)
+listprint = List_Display(wrapper)
 
 while True:
     command = Menu_Actions().menu_input()

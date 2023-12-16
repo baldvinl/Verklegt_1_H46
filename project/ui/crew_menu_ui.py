@@ -1,5 +1,6 @@
 import os
 from logic.logic_wrapper import Logic_Wrapper
+from ui.print_lists_ui import *
 from ui.menu_display_ui import *
 from model.pilot import Pilot
 from model.flight_attendant import Flight_Attendant
@@ -125,13 +126,13 @@ class CrewMenu_Ui():
             
     
     def crew_information_sub_menu(self):
-        """Function that displays the crew records menu and asks for input."""
+        """Function that displays the crew information menu and asks for input."""
 
-        sub_header = 'Crew Member Information'
+        sub_header = 'Crew Members Information'
 
         menu_list = ['View Crew Member Information', 
                      'Edit Crew Member Information', 
-                     'List of All Crew Members'
+                     'List of All Crew Members',
                      'List of All Pilots',
                      'List of All Flight Attendants'
                     ]
@@ -143,15 +144,12 @@ class CrewMenu_Ui():
     def display_all_crew(self):
         """Function that displays all information about the crew."""
 
-        current_menu = "List of crew members"
+        display_list_header = "List of All Crew Members in the Registry"
+        crew_list = self.logic_wrapper.get_all_crew()
+
 
         Menu_Actions.clear_terminal()
-        Menu_Display.m.main_header(current_menu)
-        
-        wrapper = Logic_Wrapper()
-        info = wrapper.get_all_crew() #need to confirm function call
-
-        crew_info = Crew()
+        List_Display.display_main_list(display_list_header, crew_list)
 
     
     def display_pilots(self):
@@ -233,7 +231,7 @@ class CrewMenu_Ui():
         while command != ALLOWED_INPUT:
             continue
     
-    def change_crew_info_from_input(self):
+    def change_crew_member_info_from_input(self):
         """Function that asks for crew SSN and updated information and returns."""
         
         sub_header = "Edit Crew Member Information"
@@ -311,9 +309,13 @@ class CrewMenu_Ui():
 
         list_voyages = self.logic_wrapper.get_weekly_voyage_schedule((ssn, start_date))
         if list_voyages:
-            Menu_Display_Lists.display_one_crewmember_schedule(ssn, list_voyages)
+            List_Display.display_one_crewmember_schedule(ssn, list_voyages)
         else:
-            print("empty")
+            print("No voyages registered to this Crew member")
+
+        command = input().lower()
+        while command != ALLOWED_INPUT:
+            continue
 
 
     def crew_input_display(self):
@@ -344,11 +346,10 @@ class CrewMenu_Ui():
                     self.display_crew_member()
 
                 elif new_command == '2':
-                    self.change_crew_info_from_input()
+                    self.change_crew_member_info_from_input()
 
                 elif new_command == '3':
-                    'List of All Crew Members'
-                    pass
+                    self.display_all_crew()
 
                 elif new_command == '4':
                     'List of All Pilots'

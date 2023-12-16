@@ -1,6 +1,6 @@
 import os
 from model.voyage import Voyage
-from datetime import datetime, date
+from datetime import datetime
 from logic.logic_wrapper import Logic_Wrapper
 
 QUIT_MENU = '[Q]UIT'
@@ -71,7 +71,7 @@ class Menu_Display:
         print(f'{HYPHEN:>15}         {sub_header:<59}{HYPHEN:>1}')
         Header_Footer_Display.display_lines_below_in_submenu(self)
 
-        menu_list = ['Crew members', 'Destination', 'Voyages', 'Aircraft']
+        menu_list = ['Crew members', 'Destination', 'Voyages', 'Aircraft', 'Print list']
         rest_of_lines = 10 - len(menu_list)
 
         for number , ele in enumerate(menu_list):
@@ -112,33 +112,6 @@ class Menu_Display:
                 print(f'{HYPHEN:>15}{HYPHEN:>69}')
 
             Header_Footer_Display.display_main_footer_with_q_m_b(self)
-
-
-class Menu_Display_Lists:
-    def __init__(self, logic_connection: Logic_Wrapper):
-        self.logic_wrapper = logic_connection
-    
-    def display_one_crewmember_schedule(self, list_voyages):
-
-        crew_member = self.logic_wrapper.get_crew_member(ssn)
-
-        header = f"Shift schedule for: {crew_member.name}, SSN: {crew_member.ssn}"
-        subheader = "Destination"
-        whitespace = " "
-
-        country_list = []
-        for voyage in list_voyages:
-            work_date = date(voyage.time_depart_iceland)
-            print(work_date)
-            country_list.append((work_date, voyage.destination))
-        print()
-        print(header)
-        print("=" * 55)
-        print(f"{whitespace:<10}{subheader:^45}")
-        print("-" * 55)
-        for (day, country) in country_list:
-            print(f"{day:<10}{country:^45}")
-        print("-" * 55)
 
 
 class Menu_Actions():

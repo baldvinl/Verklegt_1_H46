@@ -1,13 +1,13 @@
 from logic.logic_wrapper import Logic_Wrapper
 from model.destination import Destination
 from ui.menu_display_ui import *
-from ui.print_lists_ui import List_Print_UI
+from ui.print_lists_ui import List_Display
 
 ALLOWED_INPUT = ['m', 'q', 'b']
 
 
 class DestinationMenu_ui():
-    def __init__(self, data_connection: Logic_Wrapper, list_print: List_Print_UI):
+    def __init__(self, data_connection: Logic_Wrapper, list_print: List_Display):
         self.logic_wrapper = data_connection
         self.print_list = list_print
     
