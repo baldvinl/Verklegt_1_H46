@@ -165,14 +165,16 @@ class CrewMenu_Ui():
         pilot_list = self.logic_wrapper.get_pilots()
 
         Menu_Actions.clear_terminal()
-        self.print_list.display_pilot_list(display_list_header, pilot_list)
 
-        command = ""
-        while command not in ALLOWED_INPUT:
-            command = input().lower() 
+        if pilot_list:
+            self.print_list.display_pilot_list(display_list_header, pilot_list)
+        
+            command = ""
+            while command not in ALLOWED_INPUT:
+                command = input().lower() 
     
 
-    def display_flight_attendants(self): #NOT DONE
+    def display_flight_attendants(self):
         """Function that displays all information about the flight attendants."""
 
         display_list_header = "List of All Flight Attendants in the Registry"
@@ -195,7 +197,13 @@ class CrewMenu_Ui():
         Menu_Display.display_sub_menu(self, sub_header, menu_list)
         ssn = input("Please enter the ssn of the crew_member: ").lower()        
 
+
         crew_member = self.logic_wrapper.get_crew_member(ssn)
+        if crew_member:
+            pass
+        else:
+            self.crew_input_display()
+        
         second_sub_header = crew_member.name
 
         menu_list =  ['SNN: '+ crew_member.ssn,
@@ -240,7 +248,7 @@ class CrewMenu_Ui():
                 input_list[i] = a 
                 print()
             
-            answer = input('Press y if you want to save the destination: ')
+            answer = input('Press y if you want to save the crew member: ')
             if answer == 'y':
                 break
 
@@ -252,7 +260,14 @@ class CrewMenu_Ui():
             new_crew_member.attribute_implementation(input_list[1:])
             new_crew_member.ssn = input_list[0]
 
+        else:
+            self.crew_input_display()
+
         self.logic_wrapper.change_crew_info( new_crew_member)
+
+        command = ""
+        while command not in ALLOWED_INPUT:
+            command = input().lower() 
 
         return new_crew_member
     

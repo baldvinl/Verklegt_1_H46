@@ -19,6 +19,7 @@ DESTINATION = 'Destination'
 DEPARTURE_ICELAND = 'Dep Iceland'
 DEPARTURE_COUNTRY = 'Dep country'
 WHITESPACE = ' '
+QUIT_MENU_BACK = '[M]ENU  [Q]UIT'
 
 class List_Display:
     def __init__(self, logic_connection: Logic_Wrapper):
@@ -34,6 +35,8 @@ class List_Display:
         for pilot in pilot_list:
             print(f'{pilot.ssn:<12}{pilot.name:<25}{pilot.address:<15}{pilot.job_title:<17}{pilot.email:<25}{pilot.mobile_no:<12}{pilot.phone_no:<12}{pilot.type_rating:<7}')
         print('-'*125)
+        
+        print(QUIT_MENU_BACK)
 
 
     def display_crew_list(self, display_list_header, flight_attendant_list):
@@ -46,6 +49,7 @@ class List_Display:
         for flight_attendant in flight_attendant_list:
             print(f'{flight_attendant.ssn:<12}{flight_attendant.name:<25}{flight_attendant.address:<15}{flight_attendant.job_title:<17}{flight_attendant.email:<25}{flight_attendant.mobile_no:<12}{flight_attendant.phone_no:<12}')
         print('-'*125)
+        print(QUIT_MENU_BACK)
 
     
     def display_one_crewmember_schedule(self, ssn, list_voyages):
@@ -68,6 +72,7 @@ class List_Display:
         for (day, country) in country_list:
             print(f"{day:<10}{country:^45}")
         print("-" * 55)
+        print(QUIT_MENU_BACK)
 
     def display_destination_list(self, dest_list):
         print()
@@ -77,6 +82,7 @@ class List_Display:
         for destination in dest_list:
             print(f'{destination.airport:<9}{destination.country:<17}{destination.flight_duration:^13}{destination.distance:^15}{destination.ice_name:<25}{destination.ice_number:^12}')
         print('-'*100)
+        print(QUIT_MENU_BACK)
     
     def display_schedule_for_all_crew(self, a_list):
         print()
@@ -87,6 +93,7 @@ class List_Display:
             
             print(f'{crew_member.ssn:<12}{crew_member.name:<20}{crew_member.address:<15}{crew_member.email:<22}{crew_member.mobile_no:^12}{crew_member.phone_no:^12}{crew_member.job_title:<16} ')
         print('-'*120)
+        print(QUIT_MENU_BACK)
 
     def display_schedule_for_employees(self, schedule_list):
         print()
@@ -101,3 +108,4 @@ class List_Display:
             print(f'{WHITESPACE*170}   Flight attendant 1: {voyage.flight_attendant1}')
             print(f'{WHITESPACE*170}   Flight attendant 2: {voyage.flight_attendant2}')
         print('-'*80)
+        print(QUIT_MENU_BACK)

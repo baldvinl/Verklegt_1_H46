@@ -32,12 +32,11 @@ class Crew_Logic:
     def get_pilots(self):
         """Requests all pilots from data wrapper and returns if there is any. 
         If not returns error code"""
-        all_crew = self.get_all_crew()
-        pilots_list = []
-        for c in all_crew:
-            if c.job_title == "pilot":
-                pilots_list.append(c)
+        pilots_list = self.data_wrapper.get_pilots_from_file()
+        if pilots_list:
             return pilots_list
+        else:
+                return False
         
     def get_flight_attendants(self):
         """Requests all flight attendants from data wrapper and returns if there is any. 
@@ -45,15 +44,19 @@ class Crew_Logic:
         flight_attendants_list = self.data_wrapper.get_flight_attendants_from_file()
         if flight_attendants_list:
             return flight_attendants_list
+        else:
+                return False
     
     def get_all_crew(self):
         """Receives lists of pilots and flight attendants from data wrapper, 
-        combines them and returns list if not empty, otherwise an error code""" #TODO
+        combines them and returns list if not empty, otherwise an error code""" 
         pilots_list = self.data_wrapper.get_pilots_from_file()
         flight_attendants_list = self.data_wrapper.get_flight_attendants_from_file()
         all_crew_list = pilots_list + flight_attendants_list
         if all_crew_list:
             return all_crew_list
+        else:
+            return False
 
     def change_crew_info(self, crew_member):
         """Receives ssn, and changes list of tuples with format 
