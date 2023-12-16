@@ -65,10 +65,6 @@ class DestinationMenu_ui():
         list_of_objects = self.logic_wrapper.get_all_destinations()
         self.print_list.display_destination_list(list_of_objects)
         
-        command = input().lower()
-
-        while command != ALLOWED_INPUT:
-            continue 
 
     def change_emergency_contact_from_input(self):
         """Function that asks for ariport IATA and if they want to change either emergency 
@@ -99,7 +95,7 @@ class DestinationMenu_ui():
             command = input("Select menu option: ")
 
             if command == 'm':
-                Menu_Actions.menu_input()
+                Menu_Actions.menu_input(self)
 
             elif command == "q":
                 Menu_Actions.quit_program()

@@ -236,7 +236,7 @@ class VoyageMenu_ui():
             command = input("Select menu option: ").lower()
         
             if command == "m":
-                Menu_Actions.menu_input()
+                Menu_Actions.menu_input(self)
 
             elif command == "q":
                 Menu_Actions.quit_program()
