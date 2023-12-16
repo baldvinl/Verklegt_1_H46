@@ -22,7 +22,6 @@ class Voyage_Logic:
             for voyage in voyages_list:
                 if voyage.destination == destination and voyage.time_depart_destination == departure_time:
                     return voyage
-        raise VoyageNotFound("Voyage was not found!")
 
     def get_all_voyages(self) -> list:
         """Requests past and future voyage lists from data wrapper, checks if empty, if so returns error otherwise returns list"""
@@ -47,14 +46,12 @@ class Voyage_Logic:
     def register_voyage(self, new_voyage: Voyage):
         """Receives voyage object, checks if already in system, if so returns error code
         and if not forwards to data wrapper"""
-        old_voyage = self.get_voyage(new_voyage.destination, new_voyage.time_depart_destination)
-        if not old_voyage:
-            return self.data_wrapper.register_voyage_to_file(new_voyage)
-        raise VoyageAlreadyInSystem("Voyage is already registered!")
+        return self.data_wrapper.register_voyage_to_file(new_voyage)
 
     # def add_crew_to_voyage(self, ssn_list: list, voyage: Voyage): #TODO
     #     """Receives crew members ssn in a list, and voyage object. Updates voyage
     #     object according to the job title of each crew member and returns it"""
+        
     #     for ssn in ssn_list:
     #         job_title = #TODO
     #         setattr(voyage, job_title, ssn)
@@ -89,9 +86,6 @@ class Voyage_Logic:
                 if voyage.time_depart_iceland in dates_in_period:
                     voyages_for_period.append((voyage, voyage.is_manned()))
             return voyages_for_period
-            # sorted_voyages_for_period = sorted(voyages_for_period, key=lambda voyage: voyage.time_depart_iceland)
-            # return sorted_voyages_for_period
-        # raise ValueError(ErrorMessages.NO_VOYAGES_FOUND)
 
     def get_weekly_voyage_schedule(self, ssn_and_date: tuple):
         """Receives ssn, and starting date of the week, checks them for the crew members ssn, and saves

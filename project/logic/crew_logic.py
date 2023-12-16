@@ -56,7 +56,7 @@ class Crew_Logic:
         changes attributes with their new values 
         and returns updated object to data wrapper"""
         if isinstance(crew_member, Pilot):
-                return self.data_wrapper.register_updated_pilot_to_file(crew_member)
+            return self.data_wrapper.register_updated_pilot_to_file(crew_member)
         else:
             return self.data_wrapper.register_updated_flight_attendant_to_file(crew_member)
     
@@ -74,7 +74,7 @@ class Crew_Logic:
                 if member.job_title in job_title:
                     crew_dict[member.job_title].append(member)
                 else:
-                    crew_dict["flight_attendants"].append(member)
+                    crew_dict["flight_attendants"].append(member) #doesnt work 
             return crew_dict
 
     def crew_status(self, departure_time, busy: bool): #TODO
