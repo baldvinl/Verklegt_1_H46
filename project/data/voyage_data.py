@@ -58,9 +58,9 @@ class Voyage_Data:
                     row["flight_attendant2"]
                     ))
             
-            for object in voyage_list:
-                object.time_depart_iceland = datetime.strptime(object.time_depart_iceland, '%Y-%m-%d %H:%M')
-                object.time_depart_iceland = datetime.strptime(object.time_depart_destination, '%Y-%m-%d %H:%M')
+        for object in voyage_list:
+            object.time_depart_iceland = datetime.strptime(object.time_depart_iceland, '%Y-%m-%d %H:%M:%S')
+            object.time_depart_iceland = datetime.strptime(object.time_depart_destination, '%Y-%m-%d %H:%M:%S')
 
             csvfile.close()
         return voyage_list
@@ -84,9 +84,9 @@ class Voyage_Data:
                     row["flight_attendant2"]
                     ))
                 
-            for object in voyage_list:
-                object.time_depart_iceland = datetime.strptime(object.time_depart_iceland, '%Y-%m-%d %H:%M')
-                object.time_depart_iceland = datetime.strptime(object.time_depart_destination, '%Y-%m-%d %H:%M')
+        for object in voyage_list:
+            object.time_depart_iceland = datetime.strptime(object.time_depart_iceland, '%Y-%m-%d %H:%M:%S')
+            object.time_depart_iceland = datetime.strptime(object.time_depart_destination, '%Y-%m-%d %H:%M:%S')
         
             csvfile.close()
         return voyage_list
