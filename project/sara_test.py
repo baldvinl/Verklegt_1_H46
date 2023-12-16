@@ -1,32 +1,26 @@
-# from ui.ui_menu_display import Aircraft_Menu
-# from ui.ui_menu_display import Main_Menu
-# from ui.ui_menu_display import Crew_Member_Menu
-# from ui.ui_menu_display import Header_Footer
-# from ui.ui_menu_display import Inputs_Prompt
-# from ui.ui_menu_display import Destination_Menu
-# from ui.ui_menu_display import Voyages_Menu
-# from ui.ui_menu_display import Print_Menu
+from log
 
+class Menu_Display_Lists:
+    def __init__(self, logic_connection: Logic_Wrapper):
+        self.logic_wrapper = logic_connection
+    
+    def display_one_crewmember_schedule(self, ssn, list_voyages):
 
-# test_header = Header_Footer()
-# #test_menu = Main_Menu()
-# #test_menu = Main_Menu()
-# #test_destinationmenu = Destination_Menu()
-# #test_aircraftmenu = Aircraft_Menu()
-# test_printmenu = Print_Menu()
-# #test_menu = Crew_Member_Menu()
-# #test_voyagemenu = Voyages_Menu()
-# test_input = Inputs_Prompt()
+        crew_member = self.logic_wrapper.get_crew_member(ssn)
 
+        header = f"Shift schedule for: {crew_member.name}, SSN: {crew_member.ssn}"
+        subheader = "Destination"
+        whitespace = " "
 
-# test_header.get_main_header()
-# test_printmenu.get_print_menu()
-# #test_menu.get_crew_member_menu()
-# #test_voyagemenu.get_voyage_menu()
-# #test_aircraftmenu.get_aircraft_menu()
-# # test_destinationmenu.get_destination_menu()
-# test_header.get_main_footer_with_q_m_b()
-# test_input.menu_number()
-
-
-from ui.menu_display_ui import *
+        country_list = []
+        for voyage in list_voyages:
+            work_date = datetime.strptime(voyage.time_depart_iceland["time_depart_iceland"], '%Y-%m-%d %H:%M')
+            country_list.append((work_date, voyage.country))
+        print()
+        print(header)
+        print("=" * 55)
+        print(f"{whitespace:<10}{subheader:^45}")
+        print("-" * 55)
+        for (day, country) in country_list:
+            print(f"{day:<10}{country:^45}")
+        print("-" * 55)

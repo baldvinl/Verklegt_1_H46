@@ -22,7 +22,7 @@ class Crew_Logic:
         if crew object received is of the type Pilot or not and forwards to data wrapper accordingly"""
         already_exists = self.get_crew_member(crew.ssn)
         if not already_exists:
-            if crew.job_title == "Pilot" or crew.job_title == "Captain":
+            if isinstance(crew, Pilot):
                 return self.data_wrapper.register_pilot_to_file(crew)
             else:
                 return self.data_wrapper.register_flight_attendant_to_file(crew)
@@ -50,16 +50,12 @@ class Crew_Logic:
         if all_crew_list:
             return all_crew_list
 
-    def change_crew_info(self, ssn: str, changes: list[tuple]):
+    def change_crew_info(self, crew_member):
         """Receives ssn, and changes list of tuples with format 
         [(attribute, new_value)], requests crew member with ssn
         changes attributes with their new values 
         and returns updated object to data wrapper"""
-        crew_member = self.get_crew_member(ssn)
-        for attribute_name, new_value in changes:
-            attribute_name_lower = attribute_name.lower()
-            setattr(crew_member, attribute_name_lower, new_value)
-        if crew_member.job_title.lower() == "pilot" or crew_member.job_title.lower() == "captain":
+        if isinstance(crew_member, Pilot):
             return self.data_wrapper.register_updated_pilot_to_file(crew_member)
         else:
             return self.data_wrapper.register_updated_flight_attendant_to_file(crew_member)
@@ -75,10 +71,10 @@ class Crew_Logic:
             crew_dict = dict.fromkeys(job_title, None)
             crew_dict.update({"flight_attendants": None})
             for member in crew_not_working:
-                if member.job_title in crew_dict:
+                if member.job_title in job_title:
                     crew_dict[member.job_title].append(member)
                 else:
-                    crew_dict["flight_attendants"].append(member)
+                    crew_dict["flight_attendants"].append(member) #doesnt work 
             return crew_dict
 
     def crew_status(self, departure_time, busy: bool): #TODO
@@ -87,19 +83,20 @@ class Crew_Logic:
         the ssns found in the voyages that day it makes 2 lists one for crew thats working
         and one for crew that isnt. Then returns according to the availability requested"""
 
-        voyages_that_day = self.voyage_logic.get_voyages_day(departure_time)
+        voyages_that_day = self.voyage_logic.get_voyages_for_period(departure_time , 1)
         crew = self.get_all_crew()
         attributes_list = ["pilot", "captain", "head_flight_attendant", "flight_attendant1", "flight_attendant2"]
 
-        if not voyages_that_day:
-            raise ValueError(ErrorMessages.NO_VOYAGES_FOUND)
+        # if not voyages_that_day:
+        #     raise ValueError(ErrorMessages.NO_VOYAGES_FOUND)
         
         ssn_list_of_crew_on_voyage = []
         for attribute in attributes_list:
-            attribute_value = getattr(voyages_that_day, attribute)
-            ssn_list_of_crew_on_voyage.append(attribute_value)
-        if not crew:
-            raise ValueError(ErrorMessages.NO_CREW_FOUND)
+            for voyage in voyages_that_day:
+                attribute_value = getattr(voyage, attribute)
+                ssn_list_of_crew_on_voyage.append(attribute_value)
+        # if not crew:
+        #     raise ValueError(ErrorMessages.NO_CREW_FOUND)
         
         crew_not_working = []
         crew_working = []
