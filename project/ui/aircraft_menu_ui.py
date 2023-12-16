@@ -42,7 +42,6 @@ class AircraftMenu_ui():
         new_aircraft = Aircraft()
         new_aircraft.attribute_implementation(input_list)
 
-        current_menu = "Register a new aircraft"
         Menu_Actions.clear_terminal()
         Menu_Display.display_empty_list_menu(self, sub_header, menu_list, input_list)
 
