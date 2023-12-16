@@ -60,22 +60,25 @@ class Crew_Logic:
         else:
             return self.data_wrapper.register_updated_flight_attendant_to_file(crew_member)
     
-    def find_crew_for_voyage(self, departure_time):
+    def find_crew_for_voyage(self, departure_time, job_title):
         """Receives date, requests crew not working on that date, returns dictionary with key: job title 
         and fills with all crew members separated by their job title, if there is no crew it returns
         error code"""
         busy = False
-        job_title = ["captain", "pilot", "head_flight_attendant"]
+        # job_title = ["captain", "pilot", "head_flight_attendant", "flight_attendant1", "flight_attendant2"]
         crew_not_working = self.crew_status(departure_time, busy)
+        crew_list = []
+        # crew_sorted = sorted(crew_not_working, key=lambda x: x.job_title)
+        # return crew_sorted
         if crew_not_working:
-            crew_dict = dict.fromkeys(job_title, None)
-            crew_dict.update({"flight_attendants": None})
-            for member in crew_not_working:
-                if member.job_title in job_title:
-                    crew_dict[member.job_title].append(member)
-                else:
-                    crew_dict["flight_attendants"].append(member) #doesnt work 
-            return crew_dict
+            for crew_member in crew_not_working:
+                if job_title in crew_member.job_title:
+                    crew_list.append(crew_member)
+        return crew_list
+        #     crew_dict = dict.fromkeys(job_title, None)
+        #     for member in crew_not_working:
+        #         crew_dict[member.job_title].append(member)
+        # return crew_dict
 
     def crew_status(self, departure_time, busy: bool): #TODO
         """Receives departure time and availability request (working or not working), requests
@@ -109,3 +112,4 @@ class Crew_Logic:
         if not busy:
             return crew_not_working
         return crew_working
+
