@@ -34,8 +34,7 @@ class List_Display:
         print('-'*125)
         for pilot in pilot_list:
             print(f'{pilot.ssn:<12}{pilot.name:<25}{pilot.address:<15}{pilot.job_title:<17}{pilot.email:<25}{pilot.mobile_no:<12}{pilot.phone_no:<12}{pilot.type_rating:<7}')
-        print('-'*125)
-        
+        print('-'*125)        
         print(QUIT_MENU_BACK)
 
 
