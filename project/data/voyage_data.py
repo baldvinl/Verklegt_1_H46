@@ -49,8 +49,8 @@ class Voyage_Data:
             for row in reader:
                 voyage_list.append(Voyage(
                     row["destination"],
-                    datetime.strptime(row["time_depart_iceland"], '%Y-%m-%d %H:%M'), 
-                    datetime.strptime(row["time_depart_destination"], '%Y-%m-%d %H:%M'), 
+                    row["time_depart_iceland"], '%Y-%m-%d %H:%M', 
+                    row["time_depart_destination"], '%Y-%m-%d %H:%M', 
                     row["captain"], 
                     row["pilot"],
                     row["head_flight_attendant"],
@@ -58,6 +58,10 @@ class Voyage_Data:
                     row["flight_attendant2"]
                     ))
             
+                for object in voyage_list:
+                    datetime.strptime(object.time_depart_iceland, '%Y-%m-%d %H:%M')
+                    datetime.strptime(object.time_depart_destination, '%Y-%m-%d %H:%M')
+
             csvfile.close()
         return voyage_list
     
@@ -71,15 +75,19 @@ class Voyage_Data:
             for row in reader:
                 voyage_list.append(Voyage(
                     row["destination"],
-                    datetime.strptime(row["time_depart_iceland"], '%Y-%m-%d %H:%M'), 
-                    datetime.strptime(row["time_depart_destination"], '%Y-%m-%d %H:%M'),
+                    row["time_depart_iceland"], '%Y-%m-%d %H:%M', 
+                    row["time_depart_destination"], '%Y-%m-%d %H:%M',
                     row["captain"], 
                     row["pilot"], 
                     row["head_flight_attendant"], 
                     row["flight_attendant1"],
                     row["flight_attendant2"]
                     ))
-            
+                
+                for object in voyage_list:
+                    datetime.strptime(object.time_depart_iceland, '%Y-%m-%d %H:%M')
+                    datetime.strptime(object.time_depart_destination, '%Y-%m-%d %H:%M')
+        
             csvfile.close()
         return voyage_list
                 
