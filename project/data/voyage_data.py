@@ -49,8 +49,8 @@ class Voyage_Data:
             for row in reader:
                 voyage_list.append(Voyage(
                     row["destination"],
-                    row["time_depart_iceland"], '%Y-%m-%d %H:%M', 
-                    row["time_depart_destination"], '%Y-%m-%d %H:%M', 
+                    row["time_depart_iceland"],
+                    row["time_depart_destination"],
                     row["captain"], 
                     row["pilot"],
                     row["head_flight_attendant"],
@@ -75,8 +75,8 @@ class Voyage_Data:
             for row in reader:
                 voyage_list.append(Voyage(
                     row["destination"],
-                    row["time_depart_iceland"], '%Y-%m-%d %H:%M', 
-                    row["time_depart_destination"], '%Y-%m-%d %H:%M',
+                    row["time_depart_iceland"], 
+                    row["time_depart_destination"],
                     row["captain"], 
                     row["pilot"], 
                     row["head_flight_attendant"], 
