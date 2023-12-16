@@ -59,8 +59,8 @@ class Voyage_Data:
                     ))
             
             for object in voyage_list:
-                datetime.strptime(object.time_depart_iceland, '%Y-%m-%d %H:%M')
-                datetime.strptime(object.time_depart_destination, '%Y-%m-%d %H:%M')
+                object.time_depart_iceland = datetime.strptime(object.time_depart_iceland, '%Y-%m-%d %H:%M')
+                object.time_depart_iceland = datetime.strptime(object.time_depart_destination, '%Y-%m-%d %H:%M')
 
             csvfile.close()
         return voyage_list
