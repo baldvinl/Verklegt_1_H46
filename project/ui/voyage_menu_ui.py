@@ -98,10 +98,9 @@ class VoyageMenu_ui():
 
         self.print_list.display_flight_attendant_list(crew_members_list)
         
-        command = input().lower()
-
-        while command != ALLOWED_INPUT:
-            continue 
+        command = ""
+        while command not in ALLOWED_INPUT:
+            command = input().lower() 
 
     def display_voyages_for_day(self, date): 
         """Function that sends date to logic layer and prints all voyages on given date and if they are fully manned or not."""
@@ -112,10 +111,9 @@ class VoyageMenu_ui():
 
         self.print_list.display_schedule_for_employees(voyage_list_for_day)
 
-        command = input().lower()
-
-        while command != ALLOWED_INPUT:
-            continue 
+        command = ""
+        while command not in ALLOWED_INPUT:
+            command = input().lower() 
         
     def display_voyages_for_week(self, date):
         """Function that sends date to logic layer and prints all voyages a week from given date and if they are fully manned or not."""
@@ -153,10 +151,10 @@ class VoyageMenu_ui():
             busy = True
             crew_status_list = self.logic_wrapper.crew_status(date, busy)
             self.print_list.display_schedule_for_all_crew(crew_status_list)
-            command = input().lower()
-
-            while command != ALLOWED_INPUT:
-                continue 
+        
+        command = ""
+        while command not in ALLOWED_INPUT:
+            command = input().lower() 
 
         if command == '2':
             year = int(input("Enter year: "))
@@ -166,10 +164,10 @@ class VoyageMenu_ui():
             busy = False
             crew_status_list = self.logic_wrapper.crew_status(date, busy)
             self.print_list.display_schedule_for_all_crew(crew_status_list)
-            command = input().lower()
-
-            while command != ALLOWED_INPUT:
-                continue    
+       
+        command = ""
+        while command not in ALLOWED_INPUT:
+            command = input().lower()  
     
     def add_crew_to_voyage(self):
         """get destination, departure date -> find voyage
@@ -216,16 +214,16 @@ class VoyageMenu_ui():
         pilot_ssn = input('Enter the SSN: ')
 
         self.print_list.display_crew_list(head_flight_attendant_list)
-        head_flight_attendant_ssn = input('Enter the SSN; ')
+        head_flight_attendant_ssn = input('Enter the SSN: ')
 
         self.print_list.display_crew_list(flight_attendant_list)
-        head_flight_attendant_ssn = input('Enter the SSN; ')
+        flight_attendant_ssn = input('Enter the SSN: ')
 
         
 
 
-        for key,value in crew_available.items():
-            if key == 'captain':
+        # for key,value in crew_available.items():
+        #     if key == 'captain':
 
 
     def voyage_input(self):

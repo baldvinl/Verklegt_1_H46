@@ -16,6 +16,8 @@ class Crew_Logic:
             for member in all_crew_list:
                 if member.ssn == ssn:
                     return member
+        
+        return False
 
     def register_crew(self, crew):
         """Receives crew object, checks if member with same ssn already exists, if not checks 
@@ -30,8 +32,11 @@ class Crew_Logic:
     def get_pilots(self):
         """Requests all pilots from data wrapper and returns if there is any. 
         If not returns error code"""
-        pilots_list = self.data_wrapper.get_pilots_from_file()
-        if pilots_list:
+        all_crew = self.get_all_crew()
+        pilots_list = []
+        for c in all_crew:
+            if c.job_title == "pilot":
+                pilots_list.append(c)
             return pilots_list
         
     def get_flight_attendants(self):
@@ -55,6 +60,22 @@ class Crew_Logic:
         [(attribute, new_value)], requests crew member with ssn
         changes attributes with their new values 
         and returns updated object to data wrapper"""
+        
+        # if it is an update we have missing job_title
+        if crew_member.job_title == None:
+            # try to get the person by the ssn
+            original_entry = self.get_crew_member(crew_member.ssn)
+            if original_entry == None:
+                return False
+            else:
+                #we have a winner, so update his info parts
+                original_entry.address = crew_member.address
+                original_entry.email = crew_member.email
+                original_entry.mobile_no = crew_member.mobile_no
+                original_entry.phone_no = crew_member.phone_no
+                # so we updated org with changes so now overwrite what we got
+                crew_member = original_entry
+        
         if isinstance(crew_member, Pilot):
             return self.data_wrapper.register_updated_pilot_to_file(crew_member)
         else:

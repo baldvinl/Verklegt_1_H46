@@ -1,11 +1,13 @@
-airport,country,flight_duration,distance,ice_name,ice_number
-FOY,Forya,2.5,2500,Jorgen Manni,45871569
-GRE,Greenland,2,2000,Nuuk Banuuk,987654321
-LYR,SVALBARD,02:50,2500,Test,588522LOL
-LOL,PAAAAAAA,xx:xx,909,changed,55555
-KEF,Iceland,03:00,300,123456,3333333
-GRE,dlskfj,03:00,300,test,04359034
-FRA,dlskfj,03:00,300,test,04359034
-BLA,dlskfj,03:00,300,test,04359034
-OOG,dlskfj,03:00,300,test,04359034
-WAR,idk,lsdk,lskdl,sdlfkjdsf,lsadklsad
+ssn,name,job_title,address,email,mobile_no,phone_no
+9988776655,Rose,Head flight attendant,wateveralane 89,CHANGED,6969691,88464
+03204092359,sdklasflk,flight attendant,neverland,absolutely@not.com,0233495,
+0210320392103,sdklasflk,flight attendant,neverland,absolutely@not.com,0233495,
+sdlfkdslf,dsl;f;dsfl,sdf;ldsf;lsd,Captain,sadjaskd,ksajdks,sakdaldk
+3493240,sdkff,ldkflfd344,Captain,lsdfksld@lfdklds.com,302049302,012390329
+32049230,sadlkasld,sldkasldkasl,Captain,daldksldkas,daslkdlaskd,asdka
+120391023,pilottest,ldksadj,Pilot,asdkasdl,asdlkasdl,asdlkajd
+flightatttest,sldkfsl,Flight attendant,dsflfkdslfs,ldskfsldf,sldkflds,ldskflsdf
+32090324923,captain112,sldksald,Captain,sadlksaldksad,dalksdlsak,saldkasld
+112,sldlsad,saldksald,Pilot,lsakdlsad,ldslfkd,dlfkdlf
+04903,ldskfld,ldfkdlf,Pilot,dlfkd,ldkf,lsdkf
+1000,ladkal,ldsksd,12jl12,djfkldjldf,djlkdjf,dljld

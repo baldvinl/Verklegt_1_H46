@@ -153,9 +153,9 @@ class CrewMenu_Ui():
         self.print_list.display_crew_list(display_list_header, crew_list)
 
                 
-        command = input().lower()
-        while command != ALLOWED_INPUT:
-            continue 
+        command = ""
+        while command not in ALLOWED_INPUT:
+            command = input().lower() 
 
     
     def display_pilots(self): 
@@ -167,9 +167,9 @@ class CrewMenu_Ui():
         Menu_Actions.clear_terminal()
         self.print_list.display_pilot_list(display_list_header, pilot_list)
 
-        command = input().lower()
-        while command != ALLOWED_INPUT:
-            continue 
+        command = ""
+        while command not in ALLOWED_INPUT:
+            command = input().lower() 
     
 
     def display_flight_attendants(self): #NOT DONE
@@ -181,9 +181,9 @@ class CrewMenu_Ui():
         Menu_Actions.clear_terminal()
         self.print_list.display_crew_list(display_list_header, flight_attendants_list)
 
-        command = input().lower()
-        while command != ALLOWED_INPUT:
-            continue 
+        command = ""
+        while command not in ALLOWED_INPUT:
+            command = input().lower() 
     
 
     def display_crew_member(self):
@@ -208,9 +208,9 @@ class CrewMenu_Ui():
         Menu_Actions.clear_terminal()
         Menu_Display.display_sub_menu(self, second_sub_header, menu_list)
 
-        command = input().lower()
-        while command != ALLOWED_INPUT:
-            continue
+        command = ""
+        while command not in ALLOWED_INPUT:
+            command = input().lower() 
     
 
     def change_crew_member_info_from_input(self):
@@ -246,10 +246,14 @@ class CrewMenu_Ui():
 
         ssn = input_list[0]
 
+        
         if self.logic_wrapper.get_crew_member(ssn):
             new_crew_member = Crew()
             new_crew_member.attribute_implementation(input_list[1:])
-    
+            new_crew_member.ssn = input_list[0]
+
+        self.logic_wrapper.change_crew_info( new_crew_member)
+
         return new_crew_member
     
 
@@ -296,9 +300,9 @@ class CrewMenu_Ui():
         else:
             print("No voyages registered to this Crew member")
 
-        command = input().lower()
-        while command != ALLOWED_INPUT:
-            continue
+        command = ""
+        while command not in ALLOWED_INPUT:
+            command = input().lower() 
 
 
     def crew_input_display(self):
